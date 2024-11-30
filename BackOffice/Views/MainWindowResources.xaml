@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:BackOffice.ViewModels"
+
+                    xmlns:vw="clr-namespace:BackOffice.Views"
+                    xmlns:vwo="clr-namespace:BackOffice.Views.Other"
+                    xmlns:vwol="clr-namespace:BackOffice.Views.Other.Locations">
+
+    <DataTemplate DataType="{x:Type vm:Other.Locations.LocationsViewModel}">
+        <vwol:LocationsView />
+    </DataTemplate>
+
+</ResourceDictionary>

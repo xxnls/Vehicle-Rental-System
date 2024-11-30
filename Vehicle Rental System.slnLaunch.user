@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Default",
+    "Projects": [
+      {
+        "Path": "API\\API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "BackOffice\\BackOffice.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
