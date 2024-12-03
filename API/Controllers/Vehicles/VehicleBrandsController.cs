@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Context;
-using API.Models.Vehicles;
+using API.Models.Vehicles.VehicleBrands;
+using API.Models.Vehicles.VehicleBrands.DTOs;
 
 namespace API.Controllers.Vehicles
 {
@@ -23,14 +24,29 @@ namespace API.Controllers.Vehicles
 
         // GET: api/VehicleBrands
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<VehicleBrand>>> GetVehicleBrands()
+        public async Task<ActionResult<IEnumerable<RVehicleBrandDTO>>> GetVehicleBrands()
         {
-            return await _context.VehicleBrands.ToListAsync();
+            var vehicleBrandDTOs = await _context.VehicleBrands
+                .Select(vb => new RVehicleBrandDTO
+                {
+                    VehicleBrandId = vb.VehicleBrandId,
+                    Name = vb.Name,
+                    Description = vb.Description,
+                    Website = vb.Website,
+                    LogoUrl = vb.LogoUrl,
+                    CreatedDate = vb.CreatedDate,
+                    ModifiedDate = vb.ModifiedDate,
+                    DeletedDate = vb.DeletedDate,
+                    IsActive = vb.IsActive
+                })
+                .ToListAsync();
+
+            return Ok(vehicleBrandDTOs);
         }
 
         // GET: api/VehicleBrands/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<VehicleBrand>> GetVehicleBrand(int id)
+        public async Task<ActionResult<RVehicleBrandDTO>> GetVehicleBrand(int id)
         {
             var vehicleBrand = await _context.VehicleBrands.FindAsync(id);
 
@@ -39,20 +55,37 @@ namespace API.Controllers.Vehicles
                 return NotFound();
             }
 
-            return vehicleBrand;
+            var vehicleBrandDTO = new RVehicleBrandDTO
+            {
+                VehicleBrandId = vehicleBrand.VehicleBrandId,
+                Name = vehicleBrand.Name,
+                Description = vehicleBrand.Description,
+                Website = vehicleBrand.Website,
+                LogoUrl = vehicleBrand.LogoUrl,
+                CreatedDate = vehicleBrand.CreatedDate,
+                ModifiedDate = vehicleBrand.ModifiedDate,
+                DeletedDate = vehicleBrand.DeletedDate,
+                IsActive = vehicleBrand.IsActive
+            };
+
+            return Ok(vehicleBrandDTO);
         }
 
         // PUT: api/VehicleBrands/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutVehicleBrand(int id, VehicleBrand vehicleBrand)
+        public async Task<IActionResult> PutVehicleBrand(int id, CUVehicleBrandDTO vehicleBrandDto)
         {
-            if (id != vehicleBrand.VehicleBrandId)
+            var existingVehicleBrand = await _context.VehicleBrands.FindAsync(id);
+            if (existingVehicleBrand == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
-            _context.Entry(vehicleBrand).State = EntityState.Modified;
+            existingVehicleBrand.Name = vehicleBrandDto.Name;
+            existingVehicleBrand.Description = vehicleBrandDto.Description;
+            existingVehicleBrand.Website = vehicleBrandDto.Website;
+            existingVehicleBrand.LogoUrl = vehicleBrandDto.LogoUrl;
+            existingVehicleBrand.ModifiedDate = DateTime.UtcNow;
 
             try
             {
@@ -74,17 +107,38 @@ namespace API.Controllers.Vehicles
         }
 
         // POST: api/VehicleBrands
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<VehicleBrand>> PostVehicleBrand(VehicleBrand vehicleBrand)
+        public async Task<ActionResult<RVehicleBrandDTO>> PostVehicleBrand(CUVehicleBrandDTO vehicleBrandDto)
         {
-            _context.VehicleBrands.Add(vehicleBrand);
+            var newVehicleBrand = new VehicleBrand
+            {
+                Name = vehicleBrandDto.Name,
+                Description = vehicleBrandDto.Description,
+                Website = vehicleBrandDto.Website,
+                LogoUrl = vehicleBrandDto.LogoUrl,
+                CreatedDate = DateTime.UtcNow,
+                IsActive = true
+            };
+
+            _context.VehicleBrands.Add(newVehicleBrand);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetVehicleBrand", new { id = vehicleBrand.VehicleBrandId }, vehicleBrand);
+            var responseDto = new RVehicleBrandDTO
+            {
+                VehicleBrandId = newVehicleBrand.VehicleBrandId,
+                Name = newVehicleBrand.Name,
+                Description = newVehicleBrand.Description,
+                Website = newVehicleBrand.Website,
+                LogoUrl = newVehicleBrand.LogoUrl,
+                CreatedDate = newVehicleBrand.CreatedDate,
+                IsActive = newVehicleBrand.IsActive
+            };
+
+            return CreatedAtAction(nameof(GetVehicleBrand), new { id = newVehicleBrand.VehicleBrandId }, responseDto);
         }
 
         // DELETE: api/VehicleBrands/5
+        // SOFT DELETE
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVehicleBrand(int id)
         {
@@ -94,7 +148,8 @@ namespace API.Controllers.Vehicles
                 return NotFound();
             }
 
-            _context.VehicleBrands.Remove(vehicleBrand);
+            vehicleBrand.DeletedDate = DateTime.UtcNow;
+            vehicleBrand.IsActive = false;
             await _context.SaveChangesAsync();
 
             return NoContent();

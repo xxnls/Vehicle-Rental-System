@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ViewResources\" />
+    <None Remove="ViewResources\Icons\menu.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +29,14 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewResources\CustomControls\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ViewResources\Icons\menu.png" />
   </ItemGroup>
 
 </Project>

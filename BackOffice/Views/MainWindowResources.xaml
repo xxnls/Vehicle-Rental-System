@@ -4,10 +4,54 @@
 
                     xmlns:vw="clr-namespace:BackOffice.Views"
                     xmlns:vwo="clr-namespace:BackOffice.Views.Other"
+                    xmlns:vwv="clr-namespace:BackOffice.Views.Vehicles"
                     xmlns:vwol="clr-namespace:BackOffice.Views.Other.Locations">
 
     <DataTemplate DataType="{x:Type vm:Other.Locations.LocationsViewModel}">
         <vwol:LocationsView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:VehicleBrandsViewModel}">
+        <vwv:VehicleBrandsView />
+    </DataTemplate>
+
+    <Storyboard x:Key="ExpandSidebar">
+        <DoubleAnimation Storyboard.TargetName="Sidebar" 
+                         Storyboard.TargetProperty="Width" 
+                         To="200"/>
+    </Storyboard>
+    <Storyboard x:Key="CollapseSidebar">
+        <DoubleAnimation Storyboard.TargetName="Sidebar" 
+                         Storyboard.TargetProperty="Width" 
+                         To="52"/>
+    </Storyboard>
+
+    <Style TargetType="Button" x:Key="SideBarButton">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Margin" Value="5, 0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Padding" Value="5,5" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="ButtonBorder"
+                            Background="{TemplateBinding Background}" 
+                            CornerRadius="5"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Left" />
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <!-- Hover Trigger -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="LightBlue" />
+                            <Setter Property="Cursor" Value="Hand" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

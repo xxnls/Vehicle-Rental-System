@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BackOffice.Models.Vehicles;
+namespace API.Models.Vehicles.VehicleBrands;
 
 public partial class VehicleBrand
 {

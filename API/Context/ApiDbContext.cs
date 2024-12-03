@@ -9,6 +9,7 @@ using API.Models.Other.Locations;
 using API.Models.Other.News;
 using API.Models.Rentals;
 using API.Models.Vehicles;
+using API.Models.Vehicles.VehicleBrands;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Context;
