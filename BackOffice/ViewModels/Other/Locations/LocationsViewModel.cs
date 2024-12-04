@@ -38,6 +38,7 @@ namespace BackOffice.ViewModels.Other.Locations
             {
                 Locations.Add(location);
             }
+            UpdateStatus("Locations loaded successfully.");
         }
     }
 }

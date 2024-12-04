@@ -1,5 +1,7 @@
-﻿using BackOffice.ViewModels.Other.Locations;
+﻿using BackOffice.Helpers;
+using BackOffice.ViewModels.Other.Locations;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,6 @@ namespace BackOffice.ViewModels
         private readonly Dictionary<string, object> _viewModelMappings;
 
         private double _sidebarWidth = 200;
-
         public double SidebarWidth
         {
             get => _sidebarWidth;
@@ -30,7 +31,6 @@ namespace BackOffice.ViewModels
         }
 
         private object _currentWorkspace;
-
         public object CurrentWorkspace
         {
             get => _currentWorkspace;
@@ -38,6 +38,17 @@ namespace BackOffice.ViewModels
             {
                 _currentWorkspace = value;
                 OnPropertyChanged(nameof(CurrentWorkspace));
+            }
+        }
+
+        private string _statusMessage;
+        public string StatusMessage
+        {
+            get => _statusMessage;
+            set
+            {
+                _statusMessage = value;
+                OnPropertyChanged(nameof(StatusMessage));
             }
         }
         #endregion
@@ -50,6 +61,12 @@ namespace BackOffice.ViewModels
 
         public MainWindowViewModel()
         {
+            // Register to receive status messages
+            WeakReferenceMessenger.Default.Register<Messenger>(this, (r, m) =>
+            {
+                StatusMessage = m.Value;
+            });
+
             // Initialize mappings between string and view models
             _viewModelMappings = new Dictionary<string, object>
             {

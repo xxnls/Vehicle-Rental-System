@@ -81,11 +81,12 @@ namespace BackOffice.ViewModels
                 {
                     VehicleBrands.Add(brand);
                 }
-                StatusMessage = "Vehicle brands loaded successfully.";
+
+                UpdateStatus("Vehicle brands loaded successfully.");
             }
             catch (Exception ex)
             {
-                StatusMessage = $"Error loading vehicle brands: {ex.Message}";
+                UpdateStatus($"Error loading vehicle brands: {ex.Message}");
             }
             finally
             {
@@ -108,12 +109,12 @@ namespace BackOffice.ViewModels
                 };
 
                 await _apiClient.PostAsync<CUVehicleBrandDTO, RVehicleBrandDTO>("VehicleBrands", newBrand);
-                StatusMessage = "Vehicle brand added successfully.";
+                UpdateStatus("Vehicle brand added successfully.");
                 await LoadVehicleBrandsAsync();
             }
             catch (Exception ex)
             {
-                StatusMessage = $"Error adding vehicle brand: {ex.Message}";
+                UpdateStatus($"Error adding vehicle brand: {ex.Message}");
             }
             finally
             {
@@ -142,12 +143,12 @@ namespace BackOffice.ViewModels
                 };
 
                 await _apiClient.PutAsync($"VehicleBrands/{SelectedVehicleBrand.VehicleBrandId}", updatedBrand);
-                StatusMessage = "Vehicle brand updated successfully.";
+                UpdateStatus("Vehicle brand updated successfully.");
                 await LoadVehicleBrandsAsync();
             }
             catch (Exception ex)
             {
-                StatusMessage = $"Error updating vehicle brand: {ex.Message}";
+                UpdateStatus($"Error updating vehicle brand: {ex.Message}");
             }
             finally
             {
@@ -162,12 +163,12 @@ namespace BackOffice.ViewModels
             {
                 IsBusy = true;
                 await _apiClient.DeleteAsync($"VehicleBrands/{id}");
-                StatusMessage = "Vehicle brand deleted successfully.";
+                UpdateStatus("Vehicle brand deleted successfully.");
                 await LoadVehicleBrandsAsync();
             }
             catch (Exception ex)
             {
-                StatusMessage = $"Error deleting vehicle brand: {ex.Message}";
+                UpdateStatus($"Error deleting vehicle brand: {ex.Message}");
             }
             finally
             {
