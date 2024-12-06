@@ -9,7 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ViewResources\Icons\add.png" />
+    <None Remove="ViewResources\Icons\clsoe.png" />
+    <None Remove="ViewResources\Icons\delete.png" />
+    <None Remove="ViewResources\Icons\edit.png" />
     <None Remove="ViewResources\Icons\menu.png" />
+    <None Remove="ViewResources\Icons\reload.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,11 +37,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewResources\CustomControls\" />
+    <Resource Include="ViewResources\Icons\add.png" />
+    <Resource Include="ViewResources\Icons\clsoe.png" />
+    <Resource Include="ViewResources\Icons\delete.png" />
+    <Resource Include="ViewResources\Icons\edit.png" />
+    <Resource Include="ViewResources\Icons\menu.png" />
+    <Resource Include="ViewResources\Icons\reload.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="ViewResources\Icons\menu.png" />
+    <Folder Include="ViewModels\CustomControls\" />
   </ItemGroup>
 
 </Project>

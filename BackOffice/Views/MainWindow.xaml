@@ -39,13 +39,13 @@
             <Button Grid.Row="0"
                     Style="{StaticResource SideBarButton}"
                     VerticalAlignment="Top" 
-                    Margin="9,7,0,5"
+                    Margin="5,5,0,5"
                     Command="{Binding ToggleSidebarCommand}">
                 <Image Source="/ViewResources/Icons/menu.png" Height="24" Width="24"></Image>
             </Button>
 
             <!-- Menu Items -->
-            <StackPanel Grid.Row="1" Margin="5,0">
+            <StackPanel Grid.Row="1" Margin="4,0">
                 <!-- Vehicles  -->
                 <Expander Header="Vehicles"
                           Foreground="White"

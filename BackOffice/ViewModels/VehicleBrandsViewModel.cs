@@ -15,16 +15,18 @@ namespace BackOffice.ViewModels
         public VehicleBrandsViewModel()
         {
             _apiClient = new ApiClient();
+
             VehicleBrands = new ObservableCollection<RVehicleBrandDTO>();
+
             LoadVehicleBrandsCommand = new RelayCommand(async () => await LoadVehicleBrandsAsync());
             AddVehicleBrandCommand = new RelayCommand(async () => await AddVehicleBrandAsync());
             UpdateVehicleBrandCommand = new RelayCommand(async () => await UpdateVehicleBrandAsync());
-            DeleteVehicleBrandCommand = new RelayCommand<int>(async (id) => await DeleteVehicleBrandAsync(id));
+            DeleteVehicleBrandCommand = new RelayCommand(async () => await DeleteVehicleBrandAsync());
 
             LoadVehicleBrandsAsync();
         }
 
-        #region Properties
+        #region Properties & Fields
 
         // Observable collection for displaying a list of vehicle brands
         public ObservableCollection<RVehicleBrandDTO> VehicleBrands { get; }
@@ -157,12 +159,18 @@ namespace BackOffice.ViewModels
         }
 
         // Delete a vehicle brand
-        private async Task DeleteVehicleBrandAsync(int id)
+        private async Task DeleteVehicleBrandAsync()
         {
+            if (SelectedVehicleBrand == null)
+            {
+                UpdateStatus("Please select a vehicle brand to delete.");
+                return;
+            }
+
             try
             {
                 IsBusy = true;
-                await _apiClient.DeleteAsync($"VehicleBrands/{id}");
+                await _apiClient.DeleteAsync($"VehicleBrands/{SelectedVehicleBrand.VehicleBrandId}");
                 UpdateStatus("Vehicle brand deleted successfully.");
                 await LoadVehicleBrandsAsync();
             }

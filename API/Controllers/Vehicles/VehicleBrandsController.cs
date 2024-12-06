@@ -27,6 +27,7 @@ namespace API.Controllers.Vehicles
         public async Task<ActionResult<IEnumerable<RVehicleBrandDTO>>> GetVehicleBrands()
         {
             var vehicleBrandDTOs = await _context.VehicleBrands
+                .Where(vb => vb.IsActive)
                 .Select(vb => new RVehicleBrandDTO
                 {
                     VehicleBrandId = vb.VehicleBrandId,

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BackOffice.Views.Vehicles"
+             xmlns:cc="clr-namespace:BackOffice.Views.CustomControls"
              xmlns:vm="clr-namespace:BackOffice.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -12,7 +13,14 @@
         <vm:VehicleBrandsViewModel />
     </UserControl.DataContext>
 
-    <Grid>
-        <DataGrid ItemsSource="{Binding VehicleBrands}" Style="{StaticResource DefaultDataGridStyle}"/>
-    </Grid>
+    <StackPanel Orientation="Vertical">
+        <cc:CRUDButtonsControl LoadCommand="{Binding LoadVehicleBrandsCommand}"
+                               AddCommand="{Binding AddVehicleBrandCommand}"
+                               EditCommand="{Binding UpdateVehicleBrandCommand}"
+                               DeleteCommand="{Binding DeleteVehicleBrandCommand}"/>
+
+        <DataGrid ItemsSource="{Binding VehicleBrands}"
+                  Style="{StaticResource DefaultDataGridStyle}"
+                  SelectedItem="{Binding SelectedVehicleBrand, Mode=TwoWay}"/>
+    </StackPanel>
 </UserControl>

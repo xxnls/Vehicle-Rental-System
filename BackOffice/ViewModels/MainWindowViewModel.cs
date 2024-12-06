@@ -81,6 +81,7 @@ namespace BackOffice.ViewModels
             ChangeWorkspaceCommand = new RelayCommand<object>(ChangeWorkspace);
         }
 
+        #region Methods
         private void ToggleSidebar()
         {
             SidebarWidth = SidebarWidth == 200 ? 52 : 200;
@@ -93,5 +94,6 @@ namespace BackOffice.ViewModels
                 CurrentWorkspace = _viewModelMappings[viewModelKey];
             }
         }
+        #endregion
     }
 }
