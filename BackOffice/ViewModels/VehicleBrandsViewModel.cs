@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using BackOffice.Services;
 using CommunityToolkit.Mvvm.Input;
 using BackOffice.Models.Vehicles.VehicleBrands.DTOs;
+using BackOffice.Helpers;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace BackOffice.ViewModels
 {
@@ -18,10 +21,17 @@ namespace BackOffice.ViewModels
 
             VehicleBrands = new ObservableCollection<RVehicleBrandDTO>();
 
+            IsListVisible = true;
+            IsCreating = false;
+            IsEditing = false;
+
             LoadVehicleBrandsCommand = new RelayCommand(async () => await LoadVehicleBrandsAsync());
             AddVehicleBrandCommand = new RelayCommand(async () => await AddVehicleBrandAsync());
             UpdateVehicleBrandCommand = new RelayCommand(async () => await UpdateVehicleBrandAsync());
             DeleteVehicleBrandCommand = new RelayCommand(async () => await DeleteVehicleBrandAsync());
+            SwitchToCreateModeCommand = new RelayCommand(SwitchToCreateMode);
+            SwitchToEditModeCommand = new RelayCommand(SwitchToEditMode);
+            SwitchToListModeCommand = new RelayCommand(Cancel);
 
             LoadVehicleBrandsAsync();
         }
@@ -52,6 +62,40 @@ namespace BackOffice.ViewModels
             }
         }
 
+        // Visibility properties for switching between list, create, and edit modes
+        private bool _isListVisible;
+        public bool IsListVisible
+        {
+            get => _isListVisible;
+            set
+            {
+                _isListVisible = value;
+                OnPropertyChanged(nameof(IsListVisible));
+            }
+        }
+
+        private bool _isCreating;
+        public bool IsCreating
+        {
+            get => _isCreating;
+            set
+            {
+                _isCreating = value;
+                OnPropertyChanged(nameof(IsCreating));
+            }
+        }
+
+        private bool _isEditing;
+        public bool IsEditing
+        {
+            get => _isEditing;
+            set
+            {
+                _isEditing = value;
+                OnPropertyChanged(nameof(IsEditing));
+            }
+        }
+
         // Properties for binding input fields
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }
@@ -66,6 +110,9 @@ namespace BackOffice.ViewModels
         public ICommand AddVehicleBrandCommand { get; }
         public ICommand UpdateVehicleBrandCommand { get; }
         public ICommand DeleteVehicleBrandCommand { get; }
+        public ICommand SwitchToListModeCommand { get; }
+        public ICommand SwitchToCreateModeCommand { get; }
+        public ICommand SwitchToEditModeCommand { get; }
 
         #endregion
 
@@ -88,12 +135,55 @@ namespace BackOffice.ViewModels
             }
             catch (Exception ex)
             {
+                // TODO: DO ERROR DIALOG
                 UpdateStatus($"Error loading vehicle brands: {ex.Message}");
             }
             finally
             {
                 IsBusy = false;
             }
+        }
+
+        // Cancel the current operation and switch back to list mode
+        private void Cancel()
+        {
+            IsCreating = false;
+            IsEditing = false;
+            IsListVisible = true;
+
+            UpdateStatus("Switched back to list mode.");
+        }
+
+        // Switch to create mode
+        private void SwitchToCreateMode()
+        {
+            IsEditing = false;
+            IsListVisible = false;
+            IsCreating = true;
+
+            // Reset form fields for a new entry
+            Name = string.Empty;
+            Description = null;
+            Website = null;
+            LogoUrl = null;
+
+            UpdateStatus("Switched to create mode.");
+        }
+
+        // Switch to edit mode
+        private void SwitchToEditMode()
+        {
+            if (SelectedVehicleBrand == null)
+            {
+                UpdateStatus("Please select a vehicle brand to edit.");
+                return;
+            }
+
+            IsListVisible = false;
+            IsCreating = false;
+            IsEditing = true;
+
+            UpdateStatus("Switched to edit mode.");
         }
 
         // Add a new vehicle brand
@@ -116,6 +206,7 @@ namespace BackOffice.ViewModels
             }
             catch (Exception ex)
             {
+                // TODO: DO ERROR DIALOG
                 UpdateStatus($"Error adding vehicle brand: {ex.Message}");
             }
             finally
@@ -127,12 +218,6 @@ namespace BackOffice.ViewModels
         // Update the selected vehicle brand
         private async Task UpdateVehicleBrandAsync()
         {
-            //if (SelectedVehicleBrand == null)
-            //{
-            //    StatusMessage = "Please select a vehicle brand to update.";
-            //    return;
-            //}
-
             try
             {
                 IsBusy = true;
@@ -150,6 +235,7 @@ namespace BackOffice.ViewModels
             }
             catch (Exception ex)
             {
+                // TODO: DO ERROR DIALOG
                 UpdateStatus($"Error updating vehicle brand: {ex.Message}");
             }
             finally
@@ -176,6 +262,7 @@ namespace BackOffice.ViewModels
             }
             catch (Exception ex)
             {
+                // TODO: DO ERROR DIALOG
                 UpdateStatus($"Error deleting vehicle brand: {ex.Message}");
             }
             finally

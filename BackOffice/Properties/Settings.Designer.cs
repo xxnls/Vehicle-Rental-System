@@ -34,13 +34,25 @@ namespace BackOffice.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool HideListWhenCreating {
             get {
-                return ((string)(this["Setting"]));
+                return ((bool)(this["HideListWhenCreating"]));
             }
             set {
-                this["Setting"] = value;
+                this["HideListWhenCreating"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool HideListWhenEditing {
+            get {
+                return ((bool)(this["HideListWhenEditing"]));
+            }
+            set {
+                this["HideListWhenEditing"] = value;
             }
         }
     }

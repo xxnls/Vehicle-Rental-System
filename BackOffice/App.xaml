@@ -9,6 +9,8 @@
                 <ResourceDictionary Source="/ViewResources/Colors.xaml" />
                 <ResourceDictionary Source="/ViewResources/Styles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

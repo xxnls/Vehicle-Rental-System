@@ -14,13 +14,60 @@
     </UserControl.DataContext>
 
     <StackPanel Orientation="Vertical">
-        <cc:CRUDButtonsControl LoadCommand="{Binding LoadVehicleBrandsCommand}"
-                               AddCommand="{Binding AddVehicleBrandCommand}"
-                               EditCommand="{Binding UpdateVehicleBrandCommand}"
-                               DeleteCommand="{Binding DeleteVehicleBrandCommand}"/>
 
-        <DataGrid ItemsSource="{Binding VehicleBrands}"
-                  Style="{StaticResource DefaultDataGridStyle}"
-                  SelectedItem="{Binding SelectedVehicleBrand, Mode=TwoWay}"/>
+        <Grid Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <!-- Input Fields -->
+                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                    <Label Content="Name:"/>
+                    <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                    <Label Content="Description:"/>
+                    <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                    <Label Content="Website:"/>
+                    <TextBox Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                    <Label Content="Logo URL:"/>
+                    <TextBox Text="{Binding LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <!-- Action Buttons -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Save" Command="{Binding AddVehicleBrandCommand}" />
+                    <!--IsEnabled="{Binding IsValid, UpdateSourceTrigger=PropertyChanged}"-->
+                    <Button Content="Cancel" Command="{Binding SwitchToListModeCommand}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel Orientation="Vertical">
+                <Label Content="Name: "/>
+                <Label Content="Name: "/>
+                <Label Content="Name: "/>
+                <Label Content="Name: "/>
+                <Button Content="Cancel" Command="{Binding SwitchToListModeCommand}"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <cc:CRUDButtonsControl LoadCommand="{Binding LoadVehicleBrandsCommand}"
+                                   AddCommand="{Binding SwitchToCreateModeCommand}"
+                                   EditCommand="{Binding SwitchToEditModeCommand}"
+                                   DeleteCommand="{Binding DeleteVehicleBrandCommand}"/>
+
+            <DataGrid ItemsSource="{Binding VehicleBrands}"
+                      Style="{StaticResource DefaultDataGridStyle}"
+                      SelectedItem="{Binding SelectedVehicleBrand, Mode=TwoWay}"/>
+        </StackPanel>
+
+
     </StackPanel>
 </UserControl>

@@ -5,8 +5,11 @@
     <Setting Name="ApiBaseUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://localhost:7230/api/</Value>
     </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="HideListWhenCreating" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="HideListWhenEditing" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
