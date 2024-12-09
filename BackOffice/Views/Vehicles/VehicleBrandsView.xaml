@@ -29,28 +29,28 @@
                 <!-- Input Fields -->
                 <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                     <Label Content="Name:"/>
-                    <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                    <TextBox Text="{Binding NewVehicleBrand.Name, UpdateSourceTrigger=PropertyChanged}" 
                              Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
                     <TextBlock Foreground="Red" Text="{Binding Error}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                     <Label Content="Description:"/>
-                    <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" 
+                    <TextBox Text="{Binding NewVehicleBrand.Description, UpdateSourceTrigger=PropertyChanged}" 
                              Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
                     <TextBlock Foreground="Red" Text="{Binding Error}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                     <Label Content="Website:"/>
-                    <TextBox Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}" 
+                    <TextBox Text="{Binding NewVehicleBrand.Website, UpdateSourceTrigger=PropertyChanged}" 
                              Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
                     <TextBlock Foreground="Red" Text="{Binding Error}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                     <Label Content="Logo URL:"/>
-                    <TextBox Text="{Binding LogoUrl, UpdateSourceTrigger=PropertyChanged}" 
+                    <TextBox Text="{Binding NewVehicleBrand.LogoUrl, UpdateSourceTrigger=PropertyChanged}" 
                              Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
                     <TextBlock Foreground="Red" Text="{Binding Error}" />
                 </StackPanel>

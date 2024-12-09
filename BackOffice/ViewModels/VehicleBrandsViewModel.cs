@@ -58,6 +58,17 @@ namespace BackOffice.ViewModels
             }
         }
 
+        private CUVehicleBrandDTO _newVehicleBrand = new CUVehicleBrandDTO();
+        public CUVehicleBrandDTO NewVehicleBrand
+        {
+            get => _newVehicleBrand;
+            set
+            {
+                _newVehicleBrand = value;
+                OnPropertyChanged(nameof(NewVehicleBrand));
+            }
+        }
+
         // Properties for binding input fields
         private string _name = string.Empty;
         public string Name
@@ -188,15 +199,15 @@ namespace BackOffice.ViewModels
             {
                 IsBusy = true;
 
-                var newBrand = new CUVehicleBrandDTO
-                {
-                    Name = Name,
-                    Description = Description,
-                    Website = Website,
-                    LogoUrl = LogoUrl
-                };
+                //var newBrand = new CUVehicleBrandDTO
+                //{
+                //    Name = Name,
+                //    Description = Description,
+                //    Website = Website,
+                //    LogoUrl = LogoUrl
+                //};
 
-                await _apiClient.PostAsync<CUVehicleBrandDTO, RVehicleBrandDTO>("VehicleBrands", newBrand);
+                await _apiClient.PostAsync<CUVehicleBrandDTO, RVehicleBrandDTO>("VehicleBrands", NewVehicleBrand);
                 UpdateStatus("Vehicle brand added successfully.");
                 await LoadVehicleBrandsAsync();
             }
@@ -209,11 +220,7 @@ namespace BackOffice.ViewModels
             {
                 IsBusy = false;
 
-                // Reset form fields for a new entry
-                Name = string.Empty;
-                Description = null;
-                Website = null;
-                LogoUrl = null;
+                NewVehicleBrand = new CUVehicleBrandDTO();
 
                 Cancel();
             }
