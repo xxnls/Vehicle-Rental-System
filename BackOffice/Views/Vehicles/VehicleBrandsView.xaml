@@ -65,12 +65,41 @@
         </Grid>
 
         <Grid Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <StackPanel Orientation="Vertical">
-                <Label Content="Name: "/>
-                <Label Content="Name: "/>
-                <Label Content="Name: "/>
-                <Label Content="Name: "/>
-                <Button Content="Cancel" Command="{Binding SwitchToListModeCommand}"/>
+            <StackPanel Orientation="Vertical" Margin="10">
+                <!-- Input Fields -->
+                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                    <Label Content="Name:" />
+                    <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
+                    <TextBlock Foreground="Red" Text="{Binding Error}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                    <Label Content="Description:" />
+                    <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" 
+                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
+                    <TextBlock Foreground="Red" Text="{Binding Error}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                    <Label Content="Website:" />
+                    <TextBox Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}" 
+                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
+                    <TextBlock Foreground="Red" Text="{Binding Error}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                    <Label Content="Logo URL:" />
+                    <TextBox Text="{Binding LogoUrl, UpdateSourceTrigger=PropertyChanged}" 
+                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
+                    <TextBlock Foreground="Red" Text="{Binding Error}" />
+                </StackPanel>
+
+                <!-- Action Buttons -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Save" Command="{Binding UpdateVehicleBrandCommand}" />
+                    <Button Content="Cancel" Command="{Binding SwitchToListModeCommand}" />
+                </StackPanel>
             </StackPanel>
         </Grid>
 

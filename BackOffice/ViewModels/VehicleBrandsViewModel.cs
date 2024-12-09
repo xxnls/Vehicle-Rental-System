@@ -59,7 +59,7 @@ namespace BackOffice.ViewModels
         }
 
         // Properties for binding input fields
-        private string _name;
+        private string _name = string.Empty;
         public string Name
         {
             get => _name;
@@ -245,6 +245,7 @@ namespace BackOffice.ViewModels
             finally
             {
                 IsBusy = false;
+                Cancel();
             }
         }
 
