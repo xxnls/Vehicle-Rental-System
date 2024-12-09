@@ -11,7 +11,7 @@ using CommunityToolkit.Mvvm.Messaging;
 
 namespace BackOffice.ViewModels
 {
-    public class VehicleBrandsViewModel : BaseViewModel
+    public class VehicleBrandsViewModel : BaseListViewModel
     {
         private readonly ApiClient _apiClient;
 
@@ -20,10 +20,6 @@ namespace BackOffice.ViewModels
             _apiClient = new ApiClient();
 
             VehicleBrands = new ObservableCollection<RVehicleBrandDTO>();
-
-            IsListVisible = true;
-            IsCreating = false;
-            IsEditing = false;
 
             LoadVehicleBrandsCommand = new RelayCommand(async () => await LoadVehicleBrandsAsync());
             AddVehicleBrandCommand = new RelayCommand(async () => await AddVehicleBrandAsync());
@@ -62,45 +58,50 @@ namespace BackOffice.ViewModels
             }
         }
 
-        // Visibility properties for switching between list, create, and edit modes
-        private bool _isListVisible;
-        public bool IsListVisible
-        {
-            get => _isListVisible;
-            set
-            {
-                _isListVisible = value;
-                OnPropertyChanged(nameof(IsListVisible));
-            }
-        }
-
-        private bool _isCreating;
-        public bool IsCreating
-        {
-            get => _isCreating;
-            set
-            {
-                _isCreating = value;
-                OnPropertyChanged(nameof(IsCreating));
-            }
-        }
-
-        private bool _isEditing;
-        public bool IsEditing
-        {
-            get => _isEditing;
-            set
-            {
-                _isEditing = value;
-                OnPropertyChanged(nameof(IsEditing));
-            }
-        }
-
         // Properties for binding input fields
-        public string Name { get; set; } = string.Empty;
-        public string? Description { get; set; }
-        public string? Website { get; set; }
-        public string? LogoUrl { get; set; }
+        private string _name;
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        private string? _description;
+        public string? Description
+        {
+            get => _description;
+            set
+            {
+                _description = value;
+                OnPropertyChanged(nameof(Description));
+            }
+        }
+
+        private string? _website;
+        public string? Website
+        {
+            get => _website;
+            set
+            {
+                _website = value;
+                OnPropertyChanged(nameof(Website));
+            }
+        }
+
+        private string? _logoUrl;
+        public string? LogoUrl
+        {
+            get => _logoUrl;
+            set
+            {
+                _logoUrl = value;
+                OnPropertyChanged(nameof(LogoUrl));
+            }
+        }
 
         #endregion
 
@@ -161,12 +162,6 @@ namespace BackOffice.ViewModels
             IsListVisible = false;
             IsCreating = true;
 
-            // Reset form fields for a new entry
-            Name = string.Empty;
-            Description = null;
-            Website = null;
-            LogoUrl = null;
-
             UpdateStatus("Switched to create mode.");
         }
 
@@ -175,7 +170,7 @@ namespace BackOffice.ViewModels
         {
             if (SelectedVehicleBrand == null)
             {
-                UpdateStatus("Please select a vehicle brand to edit.");
+                UpdateStatus("Please select an object to edit.");
                 return;
             }
 
@@ -192,6 +187,7 @@ namespace BackOffice.ViewModels
             try
             {
                 IsBusy = true;
+
                 var newBrand = new CUVehicleBrandDTO
                 {
                     Name = Name,
@@ -212,6 +208,14 @@ namespace BackOffice.ViewModels
             finally
             {
                 IsBusy = false;
+
+                // Reset form fields for a new entry
+                Name = string.Empty;
+                Description = null;
+                Website = null;
+                LogoUrl = null;
+
+                Cancel();
             }
         }
 

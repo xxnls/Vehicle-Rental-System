@@ -13,6 +13,15 @@
         <vm:VehicleBrandsViewModel />
     </UserControl.DataContext>
 
+    <UserControl.Resources>
+        <ControlTemplate x:Key="ValidationErrorTemplate">
+            <DockPanel LastChildFill="True">
+                <!--<Image Source="error-icon.png" Width="16" Height="16" VerticalAlignment="Center" />-->
+                <TextBlock Foreground="Red" VerticalAlignment="Center" Margin="5,0,0,0" Text="Invalid input"/>
+            </DockPanel>
+        </ControlTemplate>
+    </UserControl.Resources>
+
     <StackPanel Orientation="Vertical">
 
         <Grid Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -20,27 +29,35 @@
                 <!-- Input Fields -->
                 <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                     <Label Content="Name:"/>
-                    <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
+                    <TextBlock Foreground="Red" Text="{Binding Error}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                     <Label Content="Description:"/>
-                    <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" 
+                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
+                    <TextBlock Foreground="Red" Text="{Binding Error}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                     <Label Content="Website:"/>
-                    <TextBox Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}" 
+                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
+                    <TextBlock Foreground="Red" Text="{Binding Error}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                     <Label Content="Logo URL:"/>
-                    <TextBox Text="{Binding LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding LogoUrl, UpdateSourceTrigger=PropertyChanged}" 
+                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
+                    <TextBlock Foreground="Red" Text="{Binding Error}" />
                 </StackPanel>
 
                 <!-- Action Buttons -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="Save" Command="{Binding AddVehicleBrandCommand}" />
+                    <Button Content="Save" Command="{Binding AddVehicleBrandCommand}"/> 
                     <!--IsEnabled="{Binding IsValid, UpdateSourceTrigger=PropertyChanged}"-->
                     <Button Content="Cancel" Command="{Binding SwitchToListModeCommand}" />
                 </StackPanel>
