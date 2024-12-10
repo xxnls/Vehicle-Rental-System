@@ -6,7 +6,7 @@
         <!-- Set basic styling -->
         <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
         <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="AutoGenerateColumns" Value="True"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
         <Setter Property="Margin" Value="10,0,10,10"/>
         <Setter Property="AlternatingRowBackground" Value="#f0f0f0"/>
         <Setter Property="RowBackground" Value="White"/>

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:BackOffice.Views.Vehicles"
              xmlns:cc="clr-namespace:BackOffice.Views.CustomControls"
              xmlns:vm="clr-namespace:BackOffice.ViewModels"
+             xmlns:helpers="clr-namespace:BackOffice.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -14,92 +15,72 @@
     </UserControl.DataContext>
 
     <UserControl.Resources>
-        <ControlTemplate x:Key="ValidationErrorTemplate">
-            <DockPanel LastChildFill="True">
-                <!--<Image Source="error-icon.png" Width="16" Height="16" VerticalAlignment="Center" />-->
-                <TextBlock Foreground="Red" VerticalAlignment="Center" Margin="5,0,0,0" Text="Invalid input"/>
-            </DockPanel>
-        </ControlTemplate>
+        <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </UserControl.Resources>
 
     <StackPanel Orientation="Vertical">
 
         <Grid Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
             <StackPanel Orientation="Vertical" Margin="10">
                 <!-- Input Fields -->
-                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
-                    <Label Content="Name:"/>
-                    <TextBox Text="{Binding NewVehicleBrand.Name, UpdateSourceTrigger=PropertyChanged}" 
-                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
-                    <TextBlock Foreground="Red" Text="{Binding Error}" />
-                </StackPanel>
+                <Label Content="Name:" />
+                <TextBox x:Name="NameField" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=NameField}" />
 
-                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
-                    <Label Content="Description:"/>
-                    <TextBox Text="{Binding NewVehicleBrand.Description, UpdateSourceTrigger=PropertyChanged}" 
-                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
-                    <TextBlock Foreground="Red" Text="{Binding Error}" />
-                </StackPanel>
+                <Label Content="Description: "/>
+                <TextBox x:Name="DescriptionField" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=DescriptionField}" />
 
-                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
-                    <Label Content="Website:"/>
-                    <TextBox Text="{Binding NewVehicleBrand.Website, UpdateSourceTrigger=PropertyChanged}" 
-                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
-                    <TextBlock Foreground="Red" Text="{Binding Error}" />
-                </StackPanel>
+                <Label Content="Website:" />
+                <TextBox x:Name="WebsiteField" Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=WebsiteField}" />
 
-                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
-                    <Label Content="Logo URL:"/>
-                    <TextBox Text="{Binding NewVehicleBrand.LogoUrl, UpdateSourceTrigger=PropertyChanged}" 
-                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
-                    <TextBlock Foreground="Red" Text="{Binding Error}" />
-                </StackPanel>
+                <Label Content="Logo URL:" />
+                <TextBox x:Name="LogoField" Text="{Binding LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=LogoField}" />
+            </StackPanel>
 
-                <!-- Action Buttons -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="Save" Command="{Binding AddVehicleBrandCommand}"/> 
-                    <!--IsEnabled="{Binding IsValid, UpdateSourceTrigger=PropertyChanged}"-->
-                    <Button Content="Cancel" Command="{Binding SwitchToListModeCommand}" />
-                </StackPanel>
+             <!-- Action Buttons -->
+             <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <Button Content="Save" Command="{Binding AddVehicleBrandCommand}" IsEnabled="{Binding HasErrors, Converter={StaticResource InverseBooleanConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                 <Button Content="Cancel" Command="{Binding SwitchToListModeCommand}" />
             </StackPanel>
         </Grid>
 
         <Grid Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
             <StackPanel Orientation="Vertical" Margin="10">
                 <!-- Input Fields -->
-                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
-                    <Label Content="Name:" />
-                    <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
-                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
-                    <TextBlock Foreground="Red" Text="{Binding Error}" />
-                </StackPanel>
+                <Label Content="Name:" />
+                <TextBox x:Name="EditNameField" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EditNameField}" />
 
-                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
-                    <Label Content="Description:" />
-                    <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" 
-                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
-                    <TextBlock Foreground="Red" Text="{Binding Error}" />
-                </StackPanel>
+                <Label Content="Description: "/>
+                <TextBox x:Name="EditDescriptionField" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EditDescriptionField}" />
 
-                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
-                    <Label Content="Website:" />
-                    <TextBox Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}" 
-                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
-                    <TextBlock Foreground="Red" Text="{Binding Error}" />
-                </StackPanel>
+                <Label Content="Website:" />
+                <TextBox x:Name="EditWebsiteField" Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EditWebsiteField}" />
 
-                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
-                    <Label Content="Logo URL:" />
-                    <TextBox Text="{Binding LogoUrl, UpdateSourceTrigger=PropertyChanged}" 
-                             Validation.ErrorTemplate="{StaticResource ValidationErrorTemplate}" />
-                    <TextBlock Foreground="Red" Text="{Binding Error}" />
-                </StackPanel>
+                <Label Content="Logo URL:" />
+                <TextBox x:Name="EditLogoField" Text="{Binding LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EditLogoField}" />
+            </StackPanel>
 
-                <!-- Action Buttons -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="Save" Command="{Binding UpdateVehicleBrandCommand}" />
-                    <Button Content="Cancel" Command="{Binding SwitchToListModeCommand}" />
-                </StackPanel>
+            <!-- Action Buttons -->
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <Button Content="Save" Command="{Binding UpdateVehicleBrandCommand}" IsEnabled="{Binding HasErrors, Converter={StaticResource InverseBooleanConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                <Button Content="Cancel" Command="{Binding SwitchToListModeCommand}" />
             </StackPanel>
         </Grid>
 
@@ -111,7 +92,17 @@
 
             <DataGrid ItemsSource="{Binding VehicleBrands}"
                       Style="{StaticResource DefaultDataGridStyle}"
-                      SelectedItem="{Binding SelectedVehicleBrand, Mode=TwoWay}"/>
+                      SelectedItem="{Binding SelectedVehicleBrand, Mode=TwoWay}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding VehicleBrandId}" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+                    <DataGridTextColumn Header="Website URL" Binding="{Binding Website}" />
+                    <DataGridTextColumn Header="Logo URL" Binding="{Binding LogoUrl}" />
+                    <DataGridTextColumn Header="Created Date" Binding="{Binding CreatedDate}"/>
+                    <DataGridTextColumn Header="Modified Date" Binding="{Binding ModifiedDate}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
 
 

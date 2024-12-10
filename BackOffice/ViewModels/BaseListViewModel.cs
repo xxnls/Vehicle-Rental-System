@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BackOffice.ViewModels
 {
-    public class BaseListViewModel : BaseViewModel, IDataErrorInfo
+    public class BaseListViewModel : BaseViewModel, INotifyDataErrorInfo
     {
         public BaseListViewModel()
         {
@@ -19,6 +20,12 @@ namespace BackOffice.ViewModels
         }
 
         #region Properties & Fields
+
+        private readonly Dictionary<string, List<string>> _validationErrors = new();
+
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+
+        public bool HasErrors => _validationErrors.Count > 0;
 
         // Visibility properties for switching between list, create, and edit modes
         private bool _isListVisible;
@@ -56,39 +63,74 @@ namespace BackOffice.ViewModels
 
         #endregion
 
-        #region Validation
+        #region INotifyDataErrorInfo Implementation
 
-        // Implement the IDataErrorInfo interface for property validation
-        public string Error => string.Join(Environment.NewLine, GetAllErrors().Select(e => e.ErrorMessage));
-
-        public string this[string propertyName]
+        public IEnumerable GetErrors(string? propertyName)
         {
-            get
+            if (propertyName != null && _validationErrors.ContainsKey(propertyName))
+                return _validationErrors[propertyName];
+
+            return Enumerable.Empty<string>();
+        }
+
+        protected void AddError(string propertyName, string errorMessage)
+        {
+            if (!_validationErrors.ContainsKey(propertyName))
+                _validationErrors[propertyName] = new List<string>();
+
+            if (!_validationErrors[propertyName].Contains(errorMessage))
             {
-                var validationResults = new List<ValidationResult>();
-                var context = new ValidationContext(this) { MemberName = propertyName };
-
-                // Validate the specific property
-                Validator.TryValidateProperty(
-                    this.GetType().GetProperty(propertyName)?.GetValue(this),
-                    context,
-                    validationResults
-                );
-
-                // Return the first validation error if any, else null
-                return validationResults.FirstOrDefault()?.ErrorMessage;
+                _validationErrors[propertyName].Add(errorMessage);
+                OnErrorsChanged(propertyName);
+                OnPropertyChanged(nameof(HasErrors)); // Notify UI of HasErrors change
             }
         }
 
-        private IEnumerable<ValidationResult> GetAllErrors()
+        protected void ClearErrors(string propertyName)
         {
-            var validationResults = new List<ValidationResult>();
-            var context = new ValidationContext(this);
+            if (_validationErrors.Remove(propertyName))
+            {
+                OnErrorsChanged(propertyName);
+                OnPropertyChanged(nameof(HasErrors)); // Notify UI of HasErrors change
+            }
+        }
 
-            // Validate all properties of the model
-            Validator.TryValidateObject(this, context, validationResults, true);
+        private void OnErrorsChanged(string propertyName)
+        {
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+        }
 
-            return validationResults;
+        #endregion
+
+        #region Validation
+
+        /// <summary>
+        /// Validates a single property using a validation function.
+        /// </summary>
+        /// <param name="propertyName">The name of the property being validated.</param>
+        /// <param name="validateFunc">The validation function to check the property.</param>
+        protected void ValidateProperty(string propertyName, Func<bool> validateFunc, string errorMessage)
+        {
+            if (validateFunc())
+            {
+                ClearErrors(propertyName);
+            }
+            else
+            {
+                AddError(propertyName, errorMessage);
+            }
+        }
+
+        /// <summary>
+        /// Clears all validation errors.
+        /// </summary>
+        protected void ClearAllErrors()
+        {
+            var propertyNames = new List<string>(_validationErrors.Keys);
+            foreach (var propertyName in propertyNames)
+            {
+                ClearErrors(propertyName);
+            }
         }
 
         #endregion

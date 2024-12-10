@@ -58,17 +58,6 @@ namespace BackOffice.ViewModels
             }
         }
 
-        private CUVehicleBrandDTO _newVehicleBrand = new CUVehicleBrandDTO();
-        public CUVehicleBrandDTO NewVehicleBrand
-        {
-            get => _newVehicleBrand;
-            set
-            {
-                _newVehicleBrand = value;
-                OnPropertyChanged(nameof(NewVehicleBrand));
-            }
-        }
-
         // Properties for binding input fields
         private string _name = string.Empty;
         public string Name
@@ -78,6 +67,7 @@ namespace BackOffice.ViewModels
             {
                 _name = value;
                 OnPropertyChanged(nameof(Name));
+                ValidateName();
             }
         }
 
@@ -89,6 +79,7 @@ namespace BackOffice.ViewModels
             {
                 _description = value;
                 OnPropertyChanged(nameof(Description));
+                ValidateDescription();
             }
         }
 
@@ -100,6 +91,7 @@ namespace BackOffice.ViewModels
             {
                 _website = value;
                 OnPropertyChanged(nameof(Website));
+                ValidateWebsite();
             }
         }
 
@@ -111,6 +103,7 @@ namespace BackOffice.ViewModels
             {
                 _logoUrl = value;
                 OnPropertyChanged(nameof(LogoUrl));
+                ValidateLogoUrl();
             }
         }
 
@@ -143,7 +136,7 @@ namespace BackOffice.ViewModels
                     VehicleBrands.Add(brand);
                 }
 
-                UpdateStatus("Vehicle brands loaded successfully.");
+                //UpdateStatus("Vehicle brands loaded successfully.");
             }
             catch (Exception ex)
             {
@@ -156,6 +149,15 @@ namespace BackOffice.ViewModels
             }
         }
 
+        // Clear all input fields
+        private void ClearInputFields()
+        {
+            Name = string.Empty;
+            Description = null;
+            Website = null;
+            LogoUrl = null;
+        }
+
         // Cancel the current operation and switch back to list mode
         private void Cancel()
         {
@@ -163,12 +165,14 @@ namespace BackOffice.ViewModels
             IsEditing = false;
             IsListVisible = true;
 
-            UpdateStatus("Switched back to list mode.");
+            ClearInputFields();
         }
 
         // Switch to create mode
         private void SwitchToCreateMode()
         {
+            ClearInputFields();
+
             IsEditing = false;
             IsListVisible = false;
             IsCreating = true;
@@ -199,13 +203,13 @@ namespace BackOffice.ViewModels
             {
                 IsBusy = true;
 
-                //var newBrand = new CUVehicleBrandDTO
-                //{
-                //    Name = Name,
-                //    Description = Description,
-                //    Website = Website,
-                //    LogoUrl = LogoUrl
-                //};
+                var NewVehicleBrand = new CUVehicleBrandDTO
+                {
+                    Name = Name,
+                    Description = Description,
+                    Website = Website,
+                    LogoUrl = LogoUrl
+                };
 
                 await _apiClient.PostAsync<CUVehicleBrandDTO, RVehicleBrandDTO>("VehicleBrands", NewVehicleBrand);
                 UpdateStatus("Vehicle brand added successfully.");
@@ -220,7 +224,7 @@ namespace BackOffice.ViewModels
             {
                 IsBusy = false;
 
-                NewVehicleBrand = new CUVehicleBrandDTO();
+                ClearInputFields();
 
                 Cancel();
             }
@@ -232,6 +236,7 @@ namespace BackOffice.ViewModels
             try
             {
                 IsBusy = true;
+
                 var updatedBrand = new CUVehicleBrandDTO
                 {
                     Name = Name,
@@ -278,9 +283,52 @@ namespace BackOffice.ViewModels
                 UpdateStatus($"Error deleting vehicle brand: {ex.Message}");
             }
             finally
-            {
+            {   
                 IsBusy = false;
             }
+        }
+
+        #endregion
+
+        #region Validation Rules
+
+        private void ValidateName()
+        {
+            ClearErrors(nameof(Name));
+
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                AddError(nameof(Name), "Name cannot be empty.");
+            }
+            else if (Name.Length < 3)
+            {
+                AddError(nameof(Name), "Name must be at least 3 characters long.");
+            }
+            else if (Name.Length >= 50)
+            {
+                AddError(nameof(Name), "Name cannot exceed 50 characters.");
+            }
+        }
+
+        private void ValidateDescription()
+        {
+            ValidateProperty(nameof(Description),
+                () => string.IsNullOrWhiteSpace(Description) || Description.Length <= 250,
+                "Description cannot exceed 250 characters.");
+        }
+
+        private void ValidateWebsite()
+        {
+            ValidateProperty(nameof(Website),
+                () => string.IsNullOrWhiteSpace(Website) || Uri.IsWellFormedUriString(Website, UriKind.Absolute),
+                "Invalid website URL.");
+        }
+
+        private void ValidateLogoUrl()
+        {
+            ValidateProperty(nameof(LogoUrl),
+                () => string.IsNullOrWhiteSpace(LogoUrl) || Uri.IsWellFormedUriString(LogoUrl, UriKind.Absolute),
+                "Invalid logo URL.");
         }
 
         #endregion
