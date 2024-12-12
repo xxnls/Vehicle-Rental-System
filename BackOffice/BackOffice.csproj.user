@@ -10,6 +10,12 @@
     <Compile Update="Views\CustomControls\CRUDButtonsControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\CustomControls\FilterButtonsControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\CustomControls\SearchControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Other\Locations\LocationsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,6 +31,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CustomControls\CRUDButtonsControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CustomControls\FilterButtonsControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CustomControls\SearchControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainWindow.xaml">

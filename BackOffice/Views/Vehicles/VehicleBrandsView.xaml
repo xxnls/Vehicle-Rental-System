@@ -85,10 +85,23 @@
         </Grid>
 
         <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <cc:CRUDButtonsControl LoadCommand="{Binding LoadVehicleBrandsCommand}"
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <cc:CRUDButtonsControl LoadCommand="{Binding LoadVehicleBrandsCommand}"
                                    AddCommand="{Binding SwitchToCreateModeCommand}"
                                    EditCommand="{Binding SwitchToEditModeCommand}"
-                                   DeleteCommand="{Binding DeleteVehicleBrandCommand}"/>
+                                   DeleteCommand="{Binding DeleteVehicleBrandCommand}"
+                                   Grid.Column="0"/>
+
+                <cc:SearchControl Grid.Column="1"/>
+
+                <cc:FilterButtonsControl Grid.Column="2" Margin="0,0,5,0"/>
+            </Grid>
 
             <DataGrid ItemsSource="{Binding VehicleBrands}"
                       Style="{StaticResource DefaultDataGridStyle}"

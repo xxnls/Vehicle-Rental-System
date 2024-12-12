@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="BackOffice.Views.CustomControls.FilterButtonsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BackOffice.Views.CustomControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="100">
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <Button Style="{StaticResource CRUDButtonStyle}">
+            <Image Source="/ViewResources/Icons/filter.png" />
+        </Button>
+        <Button Style="{StaticResource CRUDButtonStyle}">
+            <Image Source="/ViewResources/Icons/removed.png" />
+        </Button>
+    </StackPanel>
+</UserControl>
