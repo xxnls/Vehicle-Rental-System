@@ -28,6 +28,7 @@ namespace BackOffice.ViewModels
             SwitchToCreateModeCommand = new RelayCommand(SwitchToCreateMode);
             SwitchToEditModeCommand = new RelayCommand(SwitchToEditMode);
             SwitchToListModeCommand = new RelayCommand(Cancel);
+            SearchCommand = new AsyncRelayCommand<string>(Search);
 
             LoadVehicleBrandsAsync();
         }
@@ -118,6 +119,7 @@ namespace BackOffice.ViewModels
         public ICommand SwitchToListModeCommand { get; }
         public ICommand SwitchToCreateModeCommand { get; }
         public ICommand SwitchToEditModeCommand { get; }
+        public ICommand SearchCommand { get; }
 
         #endregion
 
@@ -194,6 +196,30 @@ namespace BackOffice.ViewModels
             IsEditing = true;
 
             UpdateStatus("Switched to edit mode.");
+        }
+
+        // Search for vehicle brands
+        private async Task Search(string? searchInput)
+        {
+            try
+            {
+                IsBusy = true;
+                var brands = await _apiClient.GetAsync<ObservableCollection<RVehicleBrandDTO>>("VehicleBrands?search=" + searchInput);
+                VehicleBrands.Clear();
+                foreach (var brand in brands)
+                {
+                    VehicleBrands.Add(brand);
+                }
+            }
+            catch (Exception ex)
+            {
+                UpdateStatus($"Error searching vehicle brands: {ex.Message}");
+            }
+            finally
+            {
+                UpdateStatus("Search completed (" + searchInput + ").");
+                IsBusy = false;
+            }
         }
 
         // Add a new vehicle brand

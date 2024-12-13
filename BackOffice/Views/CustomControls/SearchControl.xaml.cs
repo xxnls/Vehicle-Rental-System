@@ -24,5 +24,15 @@ namespace BackOffice.Views.CustomControls
         {
             InitializeComponent();
         }
+
+        // SearchCommand Dependency Property
+        public static readonly DependencyProperty SearchCommandProperty =
+            DependencyProperty.Register(nameof(SearchCommand), typeof(ICommand), typeof(SearchControl), new PropertyMetadata(null));
+
+        public ICommand SearchCommand
+        {
+            get { return (ICommand)GetValue(SearchCommandProperty); }
+            set { SetValue(SearchCommandProperty, value); }
+        }
     }
 }

@@ -23,11 +23,23 @@ namespace API.Controllers.Vehicles
         }
 
         // GET: api/VehicleBrands
+        // GET: api/VehicleBrands?search=...
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RVehicleBrandDTO>>> GetVehicleBrands()
+        public async Task<ActionResult<IEnumerable<RVehicleBrandDTO>>> GetVehicleBrands(string? search = null)
         {
-            var vehicleBrandDTOs = await _context.VehicleBrands
-                .Where(vb => vb.IsActive)
+            IQueryable<VehicleBrand> query = _context.VehicleBrands.Where(vb => vb.IsActive);
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                query = query.Where(vb =>
+                    vb.Name.Contains(search) ||
+                    (vb.Description != null && vb.Description.Contains(search)) ||
+                    (vb.Website != null && vb.Website.Contains(search)) ||
+                    (vb.LogoUrl != null && vb.LogoUrl.Contains(search))
+                );
+            }
+
+            var vehicleBrandDTOs = await query
                 .Select(vb => new RVehicleBrandDTO
                 {
                     VehicleBrandId = vb.VehicleBrandId,
@@ -56,7 +68,7 @@ namespace API.Controllers.Vehicles
                 return NotFound();
             }
 
-            var vehicleBrandDTO = new RVehicleBrandDTO
+            var vehicleBrandDTOs = new RVehicleBrandDTO
             {
                 VehicleBrandId = vehicleBrand.VehicleBrandId,
                 Name = vehicleBrand.Name,
@@ -69,7 +81,7 @@ namespace API.Controllers.Vehicles
                 IsActive = vehicleBrand.IsActive
             };
 
-            return Ok(vehicleBrandDTO);
+            return Ok(vehicleBrandDTOs);
         }
 
         // PUT: api/VehicleBrands/5

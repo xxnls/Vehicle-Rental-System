@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="75" d:DesignWidth="300">
 
-        <Grid Width="350" Margin="0,0,0,0" HorizontalAlignment="Center">
+        <Grid Width="350" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -30,7 +30,9 @@
             <Button x:Name="SearchButton"
                 Grid.Column="1"
                 Margin="5,0,0,0"
-                Style="{StaticResource CRUDButtonStyle}">
+                Style="{StaticResource CRUDButtonStyle}"
+                Command="{Binding SearchCommand, RelativeSource={RelativeSource AncestorType=local:SearchControl}}"
+                CommandParameter="{Binding Text, ElementName=SearchTextBox}">
 
                 <Image Source="/ViewResources/Icons/search.png" />
             </Button>
