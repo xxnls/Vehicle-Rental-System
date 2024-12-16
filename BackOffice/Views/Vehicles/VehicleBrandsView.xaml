@@ -118,11 +118,21 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <!-- Pagination Controls -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <Button Content="Previous" Command="{Binding PreviousPageCommand}" IsEnabled="{Binding CanLoadPreviousPage}" Margin="5"/>
+            <!-- Pagination -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2.5,0,0">
+                <Button Command="{Binding PreviousPageCommand}"
+                        IsEnabled="{Binding CanLoadPreviousPage}"
+                        Style="{StaticResource CRUDButtonStyle}"
+                        Margin="5">
+                    <Image Source="/ViewResources/Icons/arrow_left.png" />
+                </Button>
                 <TextBlock Text="{Binding CurrentPage}" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
-                <Button Content="Next" Command="{Binding NextPageCommand}" IsEnabled="{Binding CanLoadNextPage}" Margin="5"/>
+                <Button Command="{Binding NextPageCommand}"
+                        IsEnabled="{Binding CanLoadNextPage}"
+                        Style="{StaticResource CRUDButtonStyle}"
+                        Margin="5">
+                    <Image Source="/ViewResources/Icons/arrow_right.png" />
+                </Button>
             </StackPanel>
         </StackPanel>
 

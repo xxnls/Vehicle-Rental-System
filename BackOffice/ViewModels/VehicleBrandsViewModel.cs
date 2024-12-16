@@ -138,6 +138,7 @@ namespace BackOffice.ViewModels
                 IsBusy = true;
                 string endpoint = $"VehicleBrands?page={CurrentPage}&pageSize={PageSize}";
                 var brands = await _apiClient.GetAsync<PaginatedResult<RVehicleBrandDTO>>(endpoint);
+
                 VehicleBrands.Clear();
                 foreach (var brand in brands.Items)
                 {
@@ -232,12 +233,18 @@ namespace BackOffice.ViewModels
             try
             {
                 IsBusy = true;
-                var brands = await _apiClient.GetAsync<ObservableCollection<RVehicleBrandDTO>>("VehicleBrands?search=" + searchInput);
+                string endpoint = $"VehicleBrands?search={searchInput}&page={CurrentPage}&pageSize={PageSize}";
+                var brands = await _apiClient.GetAsync<PaginatedResult<RVehicleBrandDTO>>(endpoint);
+
                 VehicleBrands.Clear();
-                foreach (var brand in brands)
+                foreach (var brand in brands.Items)
                 {
                     VehicleBrands.Add(brand);
                 }
+
+                TotalItemCount = brands.TotalItemCount;
+
+                UpdateStatus($"Search completed for '{searchInput}' ({VehicleBrands.Count} results).");
             }
             catch (Exception ex)
             {
@@ -245,7 +252,6 @@ namespace BackOffice.ViewModels
             }
             finally
             {
-                UpdateStatus("Search completed (" + searchInput + ").");
                 IsBusy = false;
             }
         }

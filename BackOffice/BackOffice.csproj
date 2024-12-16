@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <None Remove="ViewResources\Icons\add.png" />
+    <None Remove="ViewResources\Icons\arrow_left.png" />
+    <None Remove="ViewResources\Icons\arrow_right.png" />
     <None Remove="ViewResources\Icons\delete.png" />
     <None Remove="ViewResources\Icons\edit.png" />
     <None Remove="ViewResources\Icons\filter.png" />
@@ -41,6 +43,8 @@
 
   <ItemGroup>
     <Resource Include="ViewResources\Icons\add.png" />
+    <Resource Include="ViewResources\Icons\arrow_left.png" />
+    <Resource Include="ViewResources\Icons\arrow_right.png" />
     <Resource Include="ViewResources\Icons\close.png" />
     <Resource Include="ViewResources\Icons\delete.png" />
     <Resource Include="ViewResources\Icons\edit.png" />
