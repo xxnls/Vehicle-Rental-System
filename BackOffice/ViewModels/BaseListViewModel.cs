@@ -63,6 +63,74 @@ namespace BackOffice.ViewModels
 
         #endregion
 
+        #region Pagination
+
+        private int _currentPage = 1;
+        public int CurrentPage
+        {
+            get => _currentPage;
+            set
+            {
+                _currentPage = value;
+                OnPropertyChanged(nameof(CurrentPage));
+                UpdatePaginationState();
+            }
+        }
+
+        private int _pageSize = 10;
+        public int PageSize
+        {
+            get => _pageSize;
+            set
+            {
+                _pageSize = value;
+                OnPropertyChanged(nameof(PageSize));
+                UpdatePaginationState();
+            }
+        }
+
+        private int _totalItemCount;
+        public int TotalItemCount
+        {
+            get => _totalItemCount;
+            set
+            {
+                _totalItemCount = value;
+                OnPropertyChanged(nameof(TotalItemCount));
+                UpdatePaginationState();
+            }
+        }
+
+        private bool _canLoadNextPage = true;
+        public bool CanLoadNextPage
+        {
+            get => _canLoadNextPage;
+            set
+            {
+                _canLoadNextPage = value; 
+                OnPropertyChanged(nameof(CanLoadNextPage));
+            }
+        }
+
+        private bool _canLoadPreviousPage = true;
+        public bool CanLoadPreviousPage
+        {
+            get => _canLoadPreviousPage;
+            set
+            {
+                _canLoadPreviousPage = value;
+                OnPropertyChanged(nameof(CanLoadPreviousPage));
+            }
+        }
+
+        private void UpdatePaginationState()
+        {
+            CanLoadNextPage = CurrentPage < (TotalItemCount + PageSize - 1) / PageSize;
+            CanLoadPreviousPage = CurrentPage > 1;
+        }
+
+        #endregion
+
         #region INotifyDataErrorInfo Implementation
 
         public IEnumerable GetErrors(string? propertyName)

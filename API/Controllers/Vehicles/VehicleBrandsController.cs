@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Context;
+using API.Models;
 using API.Models.Vehicles.VehicleBrands;
 using API.Models.Vehicles.VehicleBrands.DTOs;
+using Azure;
 
 namespace API.Controllers.Vehicles
 {
@@ -24,9 +26,15 @@ namespace API.Controllers.Vehicles
 
         // GET: api/VehicleBrands
         // GET: api/VehicleBrands?search=...
+        // GET: api/VehicleBrands?search=...&page=1&pageSize=10
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RVehicleBrandDTO>>> GetVehicleBrands(string? search = null)
+        public async Task<ActionResult<PaginatedResult<RVehicleBrandDTO>>> GetVehicleBrands(string? search = null, int page = 1, int pageSize = 10)
         {
+            if (page <= 0 || pageSize <= 0)
+            {
+                return BadRequest("Page and pageSize must be greater than 0.");
+            }
+
             IQueryable<VehicleBrand> query = _context.VehicleBrands.Where(vb => vb.IsActive);
 
             if (!string.IsNullOrWhiteSpace(search))
@@ -39,7 +47,13 @@ namespace API.Controllers.Vehicles
                 );
             }
 
+            // Get total count for pagination metadata
+            int totalItemCount = await query.CountAsync();
+
+            // Apply pagination
             var vehicleBrandDTOs = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .Select(vb => new RVehicleBrandDTO
                 {
                     VehicleBrandId = vb.VehicleBrandId,
@@ -54,7 +68,16 @@ namespace API.Controllers.Vehicles
                 })
                 .ToListAsync();
 
-            return Ok(vehicleBrandDTOs);
+            // Return paginated result
+            var result = new PaginatedResult<RVehicleBrandDTO>
+            {
+                Items = vehicleBrandDTOs,
+                TotalItemCount = totalItemCount,
+                CurrentPage = page,
+                PageSize = pageSize
+            };
+
+            return Ok(result);
         }
 
         // GET: api/VehicleBrands/5

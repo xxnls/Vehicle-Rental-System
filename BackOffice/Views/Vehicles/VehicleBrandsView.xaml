@@ -117,6 +117,13 @@
                     <DataGridTextColumn Header="Modified Date" Binding="{Binding ModifiedDate}"/>
                 </DataGrid.Columns>
             </DataGrid>
+
+            <!-- Pagination Controls -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button Content="Previous" Command="{Binding PreviousPageCommand}" IsEnabled="{Binding CanLoadPreviousPage}" Margin="5"/>
+                <TextBlock Text="{Binding CurrentPage}" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+                <Button Content="Next" Command="{Binding NextPageCommand}" IsEnabled="{Binding CanLoadNextPage}" Margin="5"/>
+            </StackPanel>
         </StackPanel>
 
 

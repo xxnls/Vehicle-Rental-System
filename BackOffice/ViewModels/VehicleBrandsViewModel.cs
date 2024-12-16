@@ -7,6 +7,7 @@ using BackOffice.Services;
 using CommunityToolkit.Mvvm.Input;
 using BackOffice.Models.Vehicles.VehicleBrands.DTOs;
 using BackOffice.Helpers;
+using BackOffice.Models;
 using CommunityToolkit.Mvvm.Messaging;
 
 namespace BackOffice.ViewModels
@@ -22,6 +23,8 @@ namespace BackOffice.ViewModels
             VehicleBrands = new ObservableCollection<RVehicleBrandDTO>();
 
             LoadVehicleBrandsCommand = new RelayCommand(async () => await LoadVehicleBrandsAsync());
+            NextPageCommand = new RelayCommand(async () => await LoadNextPageAsync(), () => CanLoadNextPage);
+            PreviousPageCommand = new RelayCommand(async () => await LoadPreviousPageAsync(), () => CanLoadPreviousPage);
             AddVehicleBrandCommand = new RelayCommand(async () => await AddVehicleBrandAsync());
             UpdateVehicleBrandCommand = new RelayCommand(async () => await UpdateVehicleBrandAsync());
             DeleteVehicleBrandCommand = new RelayCommand(async () => await DeleteVehicleBrandAsync());
@@ -113,6 +116,8 @@ namespace BackOffice.ViewModels
         #region Commands
 
         public ICommand LoadVehicleBrandsCommand { get; }
+        public ICommand NextPageCommand { get; }
+        public ICommand PreviousPageCommand { get; }
         public ICommand AddVehicleBrandCommand { get; }
         public ICommand UpdateVehicleBrandCommand { get; }
         public ICommand DeleteVehicleBrandCommand { get; }
@@ -131,14 +136,16 @@ namespace BackOffice.ViewModels
             try
             {
                 IsBusy = true;
-                var brands = await _apiClient.GetAsync<ObservableCollection<RVehicleBrandDTO>>("VehicleBrands");
+                string endpoint = $"VehicleBrands?page={CurrentPage}&pageSize={PageSize}";
+                var brands = await _apiClient.GetAsync<PaginatedResult<RVehicleBrandDTO>>(endpoint);
                 VehicleBrands.Clear();
-                foreach (var brand in brands)
+                foreach (var brand in brands.Items)
                 {
                     VehicleBrands.Add(brand);
                 }
 
                 //UpdateStatus("Vehicle brands loaded successfully.");
+                TotalItemCount = brands.TotalItemCount;
             }
             catch (Exception ex)
             {
@@ -150,6 +157,27 @@ namespace BackOffice.ViewModels
                 IsBusy = false;
             }
         }
+
+        #region Pagination
+        private async Task LoadNextPageAsync()
+        {
+            if (CurrentPage < (TotalItemCount + PageSize - 1) / PageSize) // Calculate total pages
+            {
+                CurrentPage++;
+                await LoadVehicleBrandsAsync();
+            }
+        }
+
+        private async Task LoadPreviousPageAsync()
+        {
+            if (CurrentPage > 1)
+            {
+                CurrentPage--;
+                await LoadVehicleBrandsAsync();
+            }
+        }
+
+        #endregion
 
         // Clear all input fields
         private void ClearInputFields()
