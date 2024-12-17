@@ -55,5 +55,17 @@ namespace BackOffice.Properties {
                 this["HideListWhenEditing"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int PageSize {
+            get {
+                return ((int)(this["PageSize"]));
+            }
+            set {
+                this["PageSize"] = value;
+            }
+        }
     }
 }

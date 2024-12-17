@@ -30,7 +30,7 @@
             <Button x:Name="SearchButton"
                 Grid.Column="1"
                 Margin="5,0,0,0"
-                Style="{StaticResource CRUDButtonStyle}"
+                Style="{StaticResource DefaultButtonStyle}"
                 Command="{Binding SearchCommand, RelativeSource={RelativeSource AncestorType=local:SearchControl}}"
                 CommandParameter="{Binding Text, ElementName=SearchTextBox}">
 

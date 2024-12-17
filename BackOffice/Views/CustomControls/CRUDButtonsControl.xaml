@@ -11,16 +11,16 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Left">
 
-            <Button Command="{Binding LoadCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource CRUDButtonStyle}">
+            <Button Command="{Binding LoadCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource DefaultButtonStyle}">
                 <Image Source="/ViewResources/Icons/reload.png" />
             </Button>
-            <Button Command="{Binding AddCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource CRUDButtonStyle}">
+            <Button Command="{Binding AddCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource DefaultButtonStyle}">
                 <Image Source="/ViewResources/Icons/add.png" />
             </Button>
-            <Button Command="{Binding EditCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource CRUDButtonStyle}">
+            <Button Command="{Binding EditCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource DefaultButtonStyle}">
                 <Image Source="/ViewResources/Icons/edit.png" />
             </Button>
-            <Button Command="{Binding DeleteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource CRUDButtonStyle}">
+            <Button Command="{Binding DeleteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource DefaultButtonStyle}">
                 <Image Source="/ViewResources/Icons/delete.png" />
             </Button>
         </StackPanel>

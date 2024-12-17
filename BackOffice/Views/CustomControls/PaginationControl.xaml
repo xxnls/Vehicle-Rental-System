@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="BackOffice.Views.CustomControls.PaginationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BackOffice.Views.CustomControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="150">
+    <!-- Pagination -->
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,2.5,0,0">
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding PreviousPageCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    IsEnabled="{Binding CanLoadPreviousPage, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    Margin="5">
+                <Image Source="/ViewResources/Icons/arrow_left.png" />
+            </Button>
+            <TextBlock Text="{Binding CurrentPage, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="5"/>
+            <Button Command="{Binding NextPageCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    IsEnabled="{Binding CanLoadNextPage, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    Margin="5">
+                <Image Source="/ViewResources/Icons/arrow_right.png" />
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Total Items: "/>
+            <TextBlock Text="{Binding TotalItemCount, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

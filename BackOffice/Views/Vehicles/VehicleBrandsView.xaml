@@ -104,6 +104,7 @@
                 <cc:FilterButtonsControl Grid.Column="2" Margin="0,0,5,0"/>
             </Grid>
 
+            <!-- Data Grid -->
             <DataGrid ItemsSource="{Binding VehicleBrands}"
                       Style="{StaticResource DefaultDataGridStyle}"
                       SelectedItem="{Binding SelectedVehicleBrand, Mode=TwoWay}">
@@ -119,23 +120,13 @@
             </DataGrid>
 
             <!-- Pagination -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2.5,0,0">
-                <Button Command="{Binding PreviousPageCommand}"
-                        IsEnabled="{Binding CanLoadPreviousPage}"
-                        Style="{StaticResource CRUDButtonStyle}"
-                        Margin="5">
-                    <Image Source="/ViewResources/Icons/arrow_left.png" />
-                </Button>
-                <TextBlock Text="{Binding CurrentPage}" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
-                <Button Command="{Binding NextPageCommand}"
-                        IsEnabled="{Binding CanLoadNextPage}"
-                        Style="{StaticResource CRUDButtonStyle}"
-                        Margin="5">
-                    <Image Source="/ViewResources/Icons/arrow_right.png" />
-                </Button>
-            </StackPanel>
+            <cc:PaginationControl CurrentPage="{Binding CurrentPage}" 
+                                  TotalItemCount="{Binding TotalItemCount}" 
+                                  CanLoadPreviousPage="{Binding CanLoadPreviousPage}" 
+                                  CanLoadNextPage="{Binding CanLoadNextPage}" 
+                                  PreviousPageCommand="{Binding PreviousPageCommand}" 
+                                  NextPageCommand="{Binding NextPageCommand}" />
+
         </StackPanel>
-
-
     </StackPanel>
 </UserControl>

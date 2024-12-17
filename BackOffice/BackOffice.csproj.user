@@ -13,6 +13,9 @@
     <Compile Update="Views\CustomControls\FilterButtonsControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\CustomControls\PaginationControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\CustomControls\SearchControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -34,6 +37,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CustomControls\FilterButtonsControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CustomControls\PaginationControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CustomControls\SearchControl.xaml">

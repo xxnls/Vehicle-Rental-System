@@ -7,10 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="100">
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-        <Button Style="{StaticResource CRUDButtonStyle}">
+        <Button Style="{StaticResource DefaultButtonStyle}">
             <Image Source="/ViewResources/Icons/filter.png" />
         </Button>
-        <Button Style="{StaticResource CRUDButtonStyle}">
+        <Button Style="{StaticResource DefaultButtonStyle}">
             <Image Source="/ViewResources/Icons/removed.png" />
         </Button>
     </StackPanel>

@@ -21,4 +21,8 @@
     <Color x:Key="ErrorColor">#DC3545</Color>
     <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource ErrorColor}" />
 
+    <!--Disabled-->
+    <Color x:Key="DisabledColor">#6C6C6C</Color>
+    <SolidColorBrush x:Key="DisabledBrush" Color="{StaticResource DisabledColor}"/>
+
 </ResourceDictionary>

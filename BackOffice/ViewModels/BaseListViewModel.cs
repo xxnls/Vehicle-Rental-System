@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BackOffice.Properties;
 
 namespace BackOffice.ViewModels
 {
@@ -77,7 +78,7 @@ namespace BackOffice.ViewModels
             }
         }
 
-        private int _pageSize = 10;
+        private int _pageSize = Settings.Default.PageSize;
         public int PageSize
         {
             get => _pageSize;
