@@ -12,34 +12,28 @@ using CommunityToolkit.Mvvm.Messaging;
 
 namespace BackOffice.ViewModels
 {
-    public class VehicleBrandsViewModel : BaseListViewModel
+    public class VehicleBrandsViewModel : BaseListViewModel<RVehicleBrandDTO>
     {
-        private readonly ApiClient _apiClient;
-
         public VehicleBrandsViewModel()
         {
-            _apiClient = new ApiClient();
+            EndPointName = "VehicleBrands";
 
-            VehicleBrands = new ObservableCollection<RVehicleBrandDTO>();
-
-            LoadVehicleBrandsCommand = new RelayCommand(async () => await LoadVehicleBrandsAsync());
-            NextPageCommand = new RelayCommand(async () => await LoadNextPageAsync(), () => CanLoadNextPage);
-            PreviousPageCommand = new RelayCommand(async () => await LoadPreviousPageAsync(), () => CanLoadPreviousPage);
             AddVehicleBrandCommand = new RelayCommand(async () => await AddVehicleBrandAsync());
             UpdateVehicleBrandCommand = new RelayCommand(async () => await UpdateVehicleBrandAsync());
             DeleteVehicleBrandCommand = new RelayCommand(async () => await DeleteVehicleBrandAsync());
             SwitchToCreateModeCommand = new RelayCommand(SwitchToCreateMode);
             SwitchToEditModeCommand = new RelayCommand(SwitchToEditMode);
             SwitchToListModeCommand = new RelayCommand(Cancel);
+
+            LoadModelsCommand = new RelayCommand(async () => await LoadModelsAsync());
+            LoadNextPageCommand = new RelayCommand(async () => await LoadNextPageAsync(), () => CanLoadNextPage);
+            LoadPreviousPageCommand = new RelayCommand(async () => await LoadPreviousPageAsync(), () => CanLoadPreviousPage);
             SearchCommand = new AsyncRelayCommand<string>(Search);
 
-            LoadVehicleBrandsAsync();
+            LoadModelsAsync();
         }
 
         #region Properties & Fields
-
-        // Observable collection for displaying a list of vehicle brands
-        public ObservableCollection<RVehicleBrandDTO> VehicleBrands { get; }
 
         // Selected vehicle brand for editing or details
         private RVehicleBrandDTO? _selectedVehicleBrand;
@@ -115,70 +109,16 @@ namespace BackOffice.ViewModels
 
         #region Commands
 
-        public ICommand LoadVehicleBrandsCommand { get; }
-        public ICommand NextPageCommand { get; }
-        public ICommand PreviousPageCommand { get; }
         public ICommand AddVehicleBrandCommand { get; }
         public ICommand UpdateVehicleBrandCommand { get; }
         public ICommand DeleteVehicleBrandCommand { get; }
         public ICommand SwitchToListModeCommand { get; }
         public ICommand SwitchToCreateModeCommand { get; }
         public ICommand SwitchToEditModeCommand { get; }
-        public ICommand SearchCommand { get; }
 
         #endregion
 
         #region Methods
-
-        // Load all vehicle brands
-        private async Task LoadVehicleBrandsAsync()
-        {
-            try
-            {
-                IsBusy = true;
-                string endpoint = $"VehicleBrands?page={CurrentPage}&pageSize={PageSize}";
-                var brands = await _apiClient.GetAsync<PaginatedResult<RVehicleBrandDTO>>(endpoint);
-
-                VehicleBrands.Clear();
-                foreach (var brand in brands.Items)
-                {
-                    VehicleBrands.Add(brand);
-                }
-
-                //UpdateStatus("Vehicle brands loaded successfully.");
-                TotalItemCount = brands.TotalItemCount;
-            }
-            catch (Exception ex)
-            {
-                // TODO: DO ERROR DIALOG
-                UpdateStatus($"Error loading vehicle brands: {ex.Message}");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        #region Pagination
-        private async Task LoadNextPageAsync()
-        {
-            if (CurrentPage < (TotalItemCount + PageSize - 1) / PageSize) // Calculate total pages
-            {
-                CurrentPage++;
-                await LoadVehicleBrandsAsync();
-            }
-        }
-
-        private async Task LoadPreviousPageAsync()
-        {
-            if (CurrentPage > 1)
-            {
-                CurrentPage--;
-                await LoadVehicleBrandsAsync();
-            }
-        }
-
-        #endregion
 
         // Clear all input fields
         private void ClearInputFields()
@@ -227,34 +167,7 @@ namespace BackOffice.ViewModels
             UpdateStatus("Switched to edit mode.");
         }
 
-        // Search for vehicle brands
-        private async Task Search(string? searchInput)
-        {
-            try
-            {
-                IsBusy = true;
-                string endpoint = $"VehicleBrands?search={searchInput}&page={CurrentPage}&pageSize={PageSize}";
-                var brands = await _apiClient.GetAsync<PaginatedResult<RVehicleBrandDTO>>(endpoint);
 
-                VehicleBrands.Clear();
-                foreach (var brand in brands.Items)
-                {
-                    VehicleBrands.Add(brand);
-                }
-
-                TotalItemCount = brands.TotalItemCount;
-
-                UpdateStatus($"Search completed for '{searchInput}' ({VehicleBrands.Count} results).");
-            }
-            catch (Exception ex)
-            {
-                UpdateStatus($"Error searching vehicle brands: {ex.Message}");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
 
         // Add a new vehicle brand
         private async Task AddVehicleBrandAsync()
@@ -273,7 +186,7 @@ namespace BackOffice.ViewModels
 
                 await _apiClient.PostAsync<CUVehicleBrandDTO, RVehicleBrandDTO>("VehicleBrands", NewVehicleBrand);
                 UpdateStatus("Vehicle brand added successfully.");
-                await LoadVehicleBrandsAsync();
+                await LoadModelsAsync();
             }
             catch (Exception ex)
             {
@@ -307,7 +220,7 @@ namespace BackOffice.ViewModels
 
                 await _apiClient.PutAsync($"VehicleBrands/{SelectedVehicleBrand.VehicleBrandId}", updatedBrand);
                 UpdateStatus("Vehicle brand updated successfully.");
-                await LoadVehicleBrandsAsync();
+                await LoadModelsAsync();
             }
             catch (Exception ex)
             {
@@ -335,7 +248,7 @@ namespace BackOffice.ViewModels
                 IsBusy = true;
                 await _apiClient.DeleteAsync($"VehicleBrands/{SelectedVehicleBrand.VehicleBrandId}");
                 UpdateStatus("Vehicle brand deleted successfully.");
-                await LoadVehicleBrandsAsync();
+                await LoadModelsAsync();
             }
             catch (Exception ex)
             {

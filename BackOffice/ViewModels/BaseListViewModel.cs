@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using BackOffice.Models;
 using BackOffice.Properties;
+using BackOffice.Services;
+using CommunityToolkit.Mvvm.Input;
 
 namespace BackOffice.ViewModels
 {
-    public class BaseListViewModel : BaseViewModel, INotifyDataErrorInfo
+    public class BaseListViewModel<T> : BaseViewModel, INotifyDataErrorInfo
     {
         public BaseListViewModel()
         {
@@ -18,14 +23,22 @@ namespace BackOffice.ViewModels
             IsListVisible = true;
             IsCreating = false;
             IsEditing = false;
+
+            _apiClient = new ApiClient();
+            Models = new ObservableCollection<T>();
+
         }
 
         #region Properties & Fields
 
+        protected readonly ApiClient _apiClient;
+
+        // Observable collection for displaying a list of vehicle brands
+        public ObservableCollection<T> Models { get; }
+        protected string EndPointName = string.Empty;
+
         private readonly Dictionary<string, List<string>> _validationErrors = new();
-
         public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
-
         public bool HasErrors => _validationErrors.Count > 0;
 
         // Visibility properties for switching between list, create, and edit modes
@@ -61,6 +74,99 @@ namespace BackOffice.ViewModels
                 OnPropertyChanged(nameof(IsEditing));
             }
         }
+
+        #endregion
+
+        #region Commands
+
+        public ICommand LoadModelsCommand { get; set; }
+        public ICommand LoadNextPageCommand { get; set; }
+        public ICommand LoadPreviousPageCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
+
+        #endregion
+
+        #region Core Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        protected async Task LoadModelsAsync()
+        {
+            try
+            {
+                IsBusy = true;
+                string endpoint = $"{EndPointName}?page={CurrentPage}&pageSize={PageSize}";
+                var results = await _apiClient.GetAsync<PaginatedResult<T>>(endpoint);
+
+                Models.Clear();
+                foreach (var result in results.Items)
+                {
+                    Models.Add(result);
+                }
+
+                //UpdateStatus("Vehicle brands loaded successfully.");
+                TotalItemCount = results.TotalItemCount;
+            }
+            catch (Exception ex)
+            {
+                // TODO: DO ERROR DIALOG
+                UpdateStatus($"Error while loading models: {ex.Message}");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        // Search for vehicle brands
+        protected async Task Search(string? searchInput)
+        {
+            try
+            {
+                IsBusy = true;
+                string endpoint = $"{EndPointName}?search={searchInput}&page={CurrentPage}&pageSize={PageSize}";
+                var results = await _apiClient.GetAsync<PaginatedResult<T>>(endpoint);
+
+                Models.Clear();
+                foreach (var result in results.Items)
+                {
+                    Models.Add(result);
+                }
+
+                TotalItemCount = results.TotalItemCount;
+
+                UpdateStatus($"Search completed for '{searchInput}' ({Models.Count} results).");
+            }
+            catch (Exception ex)
+            {
+                UpdateStatus($"Error searching while models: {ex.Message}");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        protected async Task LoadNextPageAsync()
+        {
+            if (CurrentPage < (TotalItemCount + PageSize - 1) / PageSize) // Calculate total pages
+            {
+                CurrentPage++;
+                await LoadModelsAsync();
+            }
+        }
+
+        protected async Task LoadPreviousPageAsync()
+        {
+            if (CurrentPage > 1)
+            {
+                CurrentPage--;
+                await LoadModelsAsync();
+            }
+        }
+
 
         #endregion
 

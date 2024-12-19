@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BackOffice.Views.Vehicles"
              xmlns:cc="clr-namespace:BackOffice.Views.CustomControls"
              xmlns:vm="clr-namespace:BackOffice.ViewModels"
              xmlns:helpers="clr-namespace:BackOffice.Helpers"
@@ -92,7 +91,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <cc:CRUDButtonsControl LoadCommand="{Binding LoadVehicleBrandsCommand}"
+                <cc:CRUDButtonsControl LoadCommand="{Binding LoadModelsCommand}"
                                    AddCommand="{Binding SwitchToCreateModeCommand}"
                                    EditCommand="{Binding SwitchToEditModeCommand}"
                                    DeleteCommand="{Binding DeleteVehicleBrandCommand}"
@@ -105,7 +104,7 @@
             </Grid>
 
             <!-- Data Grid -->
-            <DataGrid ItemsSource="{Binding VehicleBrands}"
+            <DataGrid ItemsSource="{Binding Models}"
                       Style="{StaticResource DefaultDataGridStyle}"
                       SelectedItem="{Binding SelectedVehicleBrand, Mode=TwoWay}">
                 <DataGrid.Columns>
@@ -124,8 +123,8 @@
                                   TotalItemCount="{Binding TotalItemCount}" 
                                   CanLoadPreviousPage="{Binding CanLoadPreviousPage}" 
                                   CanLoadNextPage="{Binding CanLoadNextPage}" 
-                                  PreviousPageCommand="{Binding PreviousPageCommand}" 
-                                  NextPageCommand="{Binding NextPageCommand}" />
+                                  PreviousPageCommand="{Binding LoadPreviousPageCommand}" 
+                                  NextPageCommand="{Binding LoadNextPageCommand}" />
 
         </StackPanel>
     </StackPanel>
