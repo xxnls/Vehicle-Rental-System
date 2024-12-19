@@ -184,7 +184,7 @@ namespace BackOffice.ViewModels
                     LogoUrl = LogoUrl
                 };
 
-                await _apiClient.PostAsync<CUVehicleBrandDTO, RVehicleBrandDTO>("VehicleBrands", NewVehicleBrand);
+                await ApiClient.PostAsync<CUVehicleBrandDTO, RVehicleBrandDTO>("VehicleBrands", NewVehicleBrand);
                 UpdateStatus("Vehicle brand added successfully.");
                 await LoadModelsAsync();
             }
@@ -218,7 +218,7 @@ namespace BackOffice.ViewModels
                     LogoUrl = LogoUrl
                 };
 
-                await _apiClient.PutAsync($"VehicleBrands/{SelectedVehicleBrand.VehicleBrandId}", updatedBrand);
+                await ApiClient.PutAsync($"VehicleBrands/{SelectedVehicleBrand.VehicleBrandId}", updatedBrand);
                 UpdateStatus("Vehicle brand updated successfully.");
                 await LoadModelsAsync();
             }
@@ -246,7 +246,7 @@ namespace BackOffice.ViewModels
             try
             {
                 IsBusy = true;
-                await _apiClient.DeleteAsync($"VehicleBrands/{SelectedVehicleBrand.VehicleBrandId}");
+                await ApiClient.DeleteAsync($"VehicleBrands/{SelectedVehicleBrand.VehicleBrandId}");
                 UpdateStatus("Vehicle brand deleted successfully.");
                 await LoadModelsAsync();
             }

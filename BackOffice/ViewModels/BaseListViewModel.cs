@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using BackOffice.Models;
 using BackOffice.Properties;
 using BackOffice.Services;
-using CommunityToolkit.Mvvm.Input;
 
 namespace BackOffice.ViewModels
 {
@@ -24,14 +17,14 @@ namespace BackOffice.ViewModels
             IsCreating = false;
             IsEditing = false;
 
-            _apiClient = new ApiClient();
-            Models = new ObservableCollection<T>();
+            ApiClient = new ApiClient();
+            Models = [];
 
         }
 
         #region Properties & Fields
 
-        protected readonly ApiClient _apiClient;
+        protected readonly ApiClient ApiClient;
 
         // Observable collection for displaying a list of vehicle brands
         public ObservableCollection<T> Models { get; }
@@ -49,7 +42,7 @@ namespace BackOffice.ViewModels
             set
             {
                 _isListVisible = value;
-                OnPropertyChanged(nameof(IsListVisible));
+                OnPropertyChanged();
             }
         }
 
@@ -60,7 +53,7 @@ namespace BackOffice.ViewModels
             set
             {
                 _isCreating = value;
-                OnPropertyChanged(nameof(IsCreating));
+                OnPropertyChanged();
             }
         }
 
@@ -71,7 +64,7 @@ namespace BackOffice.ViewModels
             set
             {
                 _isEditing = value;
-                OnPropertyChanged(nameof(IsEditing));
+                OnPropertyChanged();
             }
         }
 
@@ -79,26 +72,26 @@ namespace BackOffice.ViewModels
 
         #region Commands
 
-        public ICommand LoadModelsCommand { get; set; }
-        public ICommand LoadNextPageCommand { get; set; }
-        public ICommand LoadPreviousPageCommand { get; set; }
-        public ICommand SearchCommand { get; set; }
+        public ICommand? LoadModelsCommand { get; set; }
+        public ICommand? LoadNextPageCommand { get; set; }
+        public ICommand? LoadPreviousPageCommand { get; set; }
+        public ICommand? SearchCommand { get; set; }
 
         #endregion
 
         #region Core Methods
 
         /// <summary>
-        /// 
+        /// Loads data models asynchronously from the API based on the current page and page size.
+        /// Updates the <see cref="Models"/> collection with the fetched data and sets the <see cref="TotalItemCount"/> property.
         /// </summary>
-        /// <returns></returns>
         protected async Task LoadModelsAsync()
         {
             try
             {
                 IsBusy = true;
-                string endpoint = $"{EndPointName}?page={CurrentPage}&pageSize={PageSize}";
-                var results = await _apiClient.GetAsync<PaginatedResult<T>>(endpoint);
+                var endpoint = $"{EndPointName}?page={CurrentPage}&pageSize={PageSize}";
+                var results = await ApiClient.GetAsync<PaginatedResult<T>>(endpoint);
 
                 Models.Clear();
                 foreach (var result in results.Items)
@@ -111,7 +104,6 @@ namespace BackOffice.ViewModels
             }
             catch (Exception ex)
             {
-                // TODO: DO ERROR DIALOG
                 UpdateStatus($"Error while loading models: {ex.Message}");
             }
             finally
@@ -126,8 +118,8 @@ namespace BackOffice.ViewModels
             try
             {
                 IsBusy = true;
-                string endpoint = $"{EndPointName}?search={searchInput}&page={CurrentPage}&pageSize={PageSize}";
-                var results = await _apiClient.GetAsync<PaginatedResult<T>>(endpoint);
+                var endpoint = $"{EndPointName}?search={searchInput}&page={CurrentPage}&pageSize={PageSize}";
+                var results = await ApiClient.GetAsync<PaginatedResult<T>>(endpoint);
 
                 Models.Clear();
                 foreach (var result in results.Items)
@@ -149,6 +141,10 @@ namespace BackOffice.ViewModels
             }
         }
 
+        /// <summary>
+        /// Updates the <see cref="Models"/> collection and pagination properties.
+        /// Invokes <see cref="LoadModelsAsync"/> task to fetch data for next page.
+        /// </summary>
         protected async Task LoadNextPageAsync()
         {
             if (CurrentPage < (TotalItemCount + PageSize - 1) / PageSize) // Calculate total pages
@@ -158,6 +154,10 @@ namespace BackOffice.ViewModels
             }
         }
 
+        /// <summary>
+        /// Updates the <see cref="Models"/> collection and pagination properties.
+        /// Invokes <see cref="LoadModelsAsync"/> task to fetch data for previous page.
+        /// </summary>
         protected async Task LoadPreviousPageAsync()
         {
             if (CurrentPage > 1)
@@ -179,7 +179,7 @@ namespace BackOffice.ViewModels
             set
             {
                 _currentPage = value;
-                OnPropertyChanged(nameof(CurrentPage));
+                OnPropertyChanged();
                 UpdatePaginationState();
             }
         }
@@ -191,7 +191,7 @@ namespace BackOffice.ViewModels
             set
             {
                 _pageSize = value;
-                OnPropertyChanged(nameof(PageSize));
+                OnPropertyChanged();
                 UpdatePaginationState();
             }
         }
@@ -203,7 +203,7 @@ namespace BackOffice.ViewModels
             set
             {
                 _totalItemCount = value;
-                OnPropertyChanged(nameof(TotalItemCount));
+                OnPropertyChanged();
                 UpdatePaginationState();
             }
         }
@@ -215,7 +215,7 @@ namespace BackOffice.ViewModels
             set
             {
                 _canLoadNextPage = value; 
-                OnPropertyChanged(nameof(CanLoadNextPage));
+                OnPropertyChanged();
             }
         }
 
@@ -226,7 +226,7 @@ namespace BackOffice.ViewModels
             set
             {
                 _canLoadPreviousPage = value;
-                OnPropertyChanged(nameof(CanLoadPreviousPage));
+                OnPropertyChanged();
             }
         }
 
@@ -284,6 +284,7 @@ namespace BackOffice.ViewModels
         /// </summary>
         /// <param name="propertyName">The name of the property being validated.</param>
         /// <param name="validateFunc">The validation function to check the property.</param>
+        /// <param name="errorMessage">Error message to display in view.</param>
         protected void ValidateProperty(string propertyName, Func<bool> validateFunc, string errorMessage)
         {
             if (validateFunc())

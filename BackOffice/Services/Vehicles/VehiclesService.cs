@@ -23,17 +23,17 @@ namespace BackOffice.Services.Vehicles
 
         //public async Task<Vehicle> CreateVehicleAsync(CreateVehicleDTO newVehicle)
         //{
-        //    return await _apiClient.PostAsync<CreateVehicleDTO, Vehicle>("vehicles", newVehicle);
+        //    return await ApiClient.PostAsync<CreateVehicleDTO, Vehicle>("vehicles", newVehicle);
         //}
 
         //public async Task UpdateVehicleAsync(int id, UpdateVehicleDTO updatedVehicle)
         //{
-        //    await _apiClient.PutAsync($"vehicles/{id}", updatedVehicle);
+        //    await ApiClient.PutAsync($"vehicles/{id}", updatedVehicle);
         //}
 
         //public async Task DeleteVehicleAsync(int id)
         //{
-        //    await _apiClient.DeleteAsync($"vehicles/{id}");
+        //    await ApiClient.DeleteAsync($"vehicles/{id}");
         //}
     }
 }
