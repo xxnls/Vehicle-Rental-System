@@ -14,10 +14,8 @@ namespace BackOffice.ViewModels
 {
     public class VehicleBrandsViewModel : BaseListViewModel<RVehicleBrandDTO>
     {
-        public VehicleBrandsViewModel()
+        public VehicleBrandsViewModel() : base("VehicleBrands")
         {
-            EndPointName = "VehicleBrands";
-
             AddVehicleBrandCommand = new RelayCommand(async () => await AddVehicleBrandAsync());
             UpdateVehicleBrandCommand = new RelayCommand(async () => await UpdateVehicleBrandAsync());
             DeleteVehicleBrandCommand = new RelayCommand(async () => await DeleteVehicleBrandAsync());
@@ -28,7 +26,7 @@ namespace BackOffice.ViewModels
             LoadModelsCommand = new RelayCommand(async () => await LoadModelsAsync());
             LoadNextPageCommand = new RelayCommand(async () => await LoadNextPageAsync(), () => CanLoadNextPage);
             LoadPreviousPageCommand = new RelayCommand(async () => await LoadPreviousPageAsync(), () => CanLoadPreviousPage);
-            SearchCommand = new AsyncRelayCommand<string>(Search);
+            SearchCommand = new AsyncRelayCommand<string>(LoadModelsAsync);
 
             LoadModelsAsync();
         }

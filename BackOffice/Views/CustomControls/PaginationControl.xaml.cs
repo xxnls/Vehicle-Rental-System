@@ -43,6 +43,16 @@ namespace BackOffice.Views.CustomControls
         public static readonly DependencyProperty TotalItemCountProperty =
             DependencyProperty.Register(nameof(TotalItemCount), typeof(int), typeof(PaginationControl), new PropertyMetadata(0));
 
+        // ModelsPerPage Dependency Property
+        public int ModelsPerPage
+        {
+            get => (int)GetValue(ModelsPerPageProperty);
+            set => SetValue(ModelsPerPageProperty, value);
+        }
+
+        public static readonly DependencyProperty ModelsPerPageProperty =
+            DependencyProperty.Register(nameof(ModelsPerPage), typeof(int), typeof(PaginationControl), new PropertyMetadata(null));
+
         // CanLoadPreviousPage Dependency Property
         public bool CanLoadPreviousPage
         {

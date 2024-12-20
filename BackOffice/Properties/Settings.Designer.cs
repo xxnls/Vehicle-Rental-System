@@ -59,12 +59,12 @@ namespace BackOffice.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int PageSize {
+        public int ModelsPerPage {
             get {
-                return ((int)(this["PageSize"]));
+                return ((int)(this["ModelsPerPage"]));
             }
             set {
-                this["PageSize"] = value;
+                this["ModelsPerPage"] = value;
             }
         }
     }

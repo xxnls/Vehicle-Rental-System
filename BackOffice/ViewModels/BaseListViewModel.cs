@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net;
 using System.Windows.Input;
 using BackOffice.Models;
 using BackOffice.Properties;
@@ -10,12 +11,14 @@ namespace BackOffice.ViewModels
 {
     public class BaseListViewModel<T> : BaseViewModel, INotifyDataErrorInfo
     {
-        public BaseListViewModel()
+        public BaseListViewModel(string endPointName)
         {
             // Set the initial visibility
             IsListVisible = true;
             IsCreating = false;
             IsEditing = false;
+
+            EndPointName = endPointName;
 
             ApiClient = new ApiClient();
             Models = [];
@@ -68,6 +71,17 @@ namespace BackOffice.ViewModels
             }
         }
 
+        private string? _currentSearchInput;
+        public string? CurrentSearchInput
+        {
+            get => _currentSearchInput;
+            set
+            {
+                _currentSearchInput = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -82,45 +96,26 @@ namespace BackOffice.ViewModels
         #region Core Methods
 
         /// <summary>
-        /// Loads data models asynchronously from the API based on the current page and page size.
+        /// Loads data models asynchronously from the API based on the current page, page size, and optional search input.
         /// Updates the <see cref="Models"/> collection with the fetched data and sets the <see cref="TotalItemCount"/> property.
+        /// If a search input is provided, the API request includes it to filter results.
         /// </summary>
-        protected async Task LoadModelsAsync()
+        /// <param name="searchInput">
+        /// Optional. A string used to filter the results. If <c>null</c> or whitespace, all data is loaded without filtering.
+        /// </param>
+        protected async Task LoadModelsAsync(string? searchInput = null)
         {
             try
             {
                 IsBusy = true;
-                var endpoint = $"{EndPointName}?page={CurrentPage}&pageSize={PageSize}";
+                var endpoint = string.Empty;
+                CurrentSearchInput = searchInput;
+
+                endpoint = string.IsNullOrWhiteSpace(searchInput)
+                    ? $"{EndPointName}?page={CurrentPage}&pageSize={PageSize}"
+                    : $"{EndPointName}?search={CurrentSearchInput}&page={CurrentPage}&pageSize={PageSize}";
+
                 var results = await ApiClient.GetAsync<PaginatedResult<T>>(endpoint);
-
-                Models.Clear();
-                foreach (var result in results.Items)
-                {
-                    Models.Add(result);
-                }
-
-                //UpdateStatus("Vehicle brands loaded successfully.");
-                TotalItemCount = results.TotalItemCount;
-            }
-            catch (Exception ex)
-            {
-                UpdateStatus($"Error while loading models: {ex.Message}");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        // Search for vehicle brands
-        protected async Task Search(string? searchInput)
-        {
-            try
-            {
-                IsBusy = true;
-                var endpoint = $"{EndPointName}?search={searchInput}&page={CurrentPage}&pageSize={PageSize}";
-                var results = await ApiClient.GetAsync<PaginatedResult<T>>(endpoint);
-
                 Models.Clear();
                 foreach (var result in results.Items)
                 {
@@ -129,17 +124,22 @@ namespace BackOffice.ViewModels
 
                 TotalItemCount = results.TotalItemCount;
 
-                UpdateStatus($"Search completed for '{searchInput}' ({Models.Count} results).");
+                UpdateStatus(string.IsNullOrWhiteSpace(searchInput)
+                    ? "Vehicle brands loaded successfully."
+                    : $"Search completed for '{CurrentSearchInput}' ({TotalItemCount} results).");
             }
             catch (Exception ex)
             {
-                UpdateStatus($"Error searching while models: {ex.Message}");
+                UpdateStatus(string.IsNullOrWhiteSpace(searchInput)
+                    ? $"Error while loading models: {ex.Message}"
+                    : $"Error searching while models: {ex.Message}");
             }
             finally
             {
                 IsBusy = false;
             }
         }
+
 
         /// <summary>
         /// Updates the <see cref="Models"/> collection and pagination properties.
@@ -150,7 +150,7 @@ namespace BackOffice.ViewModels
             if (CurrentPage < (TotalItemCount + PageSize - 1) / PageSize) // Calculate total pages
             {
                 CurrentPage++;
-                await LoadModelsAsync();
+                await LoadModelsAsync(CurrentSearchInput);
             }
         }
 
@@ -163,7 +163,7 @@ namespace BackOffice.ViewModels
             if (CurrentPage > 1)
             {
                 CurrentPage--;
-                await LoadModelsAsync();
+                await LoadModelsAsync(CurrentSearchInput);
             }
         }
 
@@ -184,7 +184,7 @@ namespace BackOffice.ViewModels
             }
         }
 
-        private int _pageSize = Settings.Default.PageSize;
+        private int _pageSize = Settings.Default.ModelsPerPage;
         public int PageSize
         {
             get => _pageSize;

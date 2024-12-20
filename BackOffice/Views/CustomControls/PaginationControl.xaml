@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="150">
     <!-- Pagination -->
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,2.5,0,0">
-        <StackPanel Orientation="Horizontal">
+    <StackPanel Orientation="Vertical" Margin="0,2.5,0,0">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Command="{Binding PreviousPageCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     IsEnabled="{Binding CanLoadPreviousPage, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     Style="{StaticResource DefaultButtonStyle}"
@@ -26,9 +26,16 @@
                 <Image Source="/ViewResources/Icons/arrow_right.png" />
             </Button>
         </StackPanel>
+
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBlock Text="Total Items: "/>
-            <TextBlock Text="{Binding TotalItemCount, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+            <TextBlock Text="{Binding TotalItemCount, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Showing "/>
+            <TextBlock Text="{Binding ModelsPerPage, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            <TextBlock Text=" models per page."/>
         </StackPanel>
     </StackPanel>
 </UserControl>

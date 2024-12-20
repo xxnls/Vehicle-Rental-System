@@ -102,7 +102,7 @@
 
                 <cc:FilterButtonsControl Grid.Column="2" Margin="0,0,5,0"/>
             </Grid>
-
+            
             <!-- Data Grid -->
             <DataGrid ItemsSource="{Binding Models}"
                       Style="{StaticResource DefaultDataGridStyle}"
@@ -120,7 +120,8 @@
 
             <!-- Pagination -->
             <cc:PaginationControl CurrentPage="{Binding CurrentPage}" 
-                                  TotalItemCount="{Binding TotalItemCount}" 
+                                  TotalItemCount="{Binding TotalItemCount}"
+                                  ModelsPerPage="{Binding PageSize}"
                                   CanLoadPreviousPage="{Binding CanLoadPreviousPage}" 
                                   CanLoadNextPage="{Binding CanLoadNextPage}" 
                                   PreviousPageCommand="{Binding LoadPreviousPageCommand}" 

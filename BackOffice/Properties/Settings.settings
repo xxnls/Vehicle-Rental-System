@@ -11,7 +11,7 @@
     <Setting Name="HideListWhenEditing" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="PageSize" Type="System.Int32" Scope="User">
+    <Setting Name="ModelsPerPage" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
   </Settings>
