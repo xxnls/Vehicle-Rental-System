@@ -6,6 +6,8 @@
              xmlns:cc="clr-namespace:BackOffice.Views.CustomControls"
              xmlns:vm="clr-namespace:BackOffice.ViewModels"
              xmlns:helpers="clr-namespace:BackOffice.Helpers"
+             xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+             xmlns:res="clr-namespace:BackOffice.Resources.VehicleBrands"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -109,12 +111,12 @@
                       SelectedItem="{Binding SelectedVehicleBrand, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding VehicleBrandId}" />
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
-                    <DataGridTextColumn Header="Website URL" Binding="{Binding Website}" />
-                    <DataGridTextColumn Header="Logo URL" Binding="{Binding LogoUrl}" />
-                    <DataGridTextColumn Header="Created Date" Binding="{Binding CreatedDate}"/>
-                    <DataGridTextColumn Header="Modified Date" Binding="{Binding ModifiedDate}"/>
+                    <DataGridTextColumn Header="{x:Static generic:Resources.Name}" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="{x:Static generic:Resources.Description}" Binding="{Binding Description}" />
+                    <DataGridTextColumn Header="{x:Static res:Resources.WebsiteURL}" Binding="{Binding Website}" />
+                    <DataGridTextColumn Header="{x:Static res:Resources.LogoURL}" Binding="{Binding LogoUrl}" />
+                    <DataGridTextColumn Header="{x:Static generic:Resources.CreatedDate}" Binding="{Binding CreatedDate}"/>
+                    <DataGridTextColumn Header="{x:Static generic:Resources.ModifiedDate}" Binding="{Binding ModifiedDate}"/>
                 </DataGrid.Columns>
             </DataGrid>
 

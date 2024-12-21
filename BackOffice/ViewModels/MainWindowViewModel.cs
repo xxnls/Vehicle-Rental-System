@@ -4,10 +4,13 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BackOffice.Properties;
+using BackOffice.Views;
 
 namespace BackOffice.ViewModels
 {
@@ -56,6 +59,7 @@ namespace BackOffice.ViewModels
         #region Commands
         public ICommand ToggleSidebarCommand { get; }
         public ICommand ChangeWorkspaceCommand { get; }
+        public ICommand ChangeLanguageCommand { get; }
 
         #endregion
 
@@ -79,6 +83,7 @@ namespace BackOffice.ViewModels
 
             ToggleSidebarCommand = new RelayCommand(ToggleSidebar);
             ChangeWorkspaceCommand = new RelayCommand<object>(ChangeWorkspace);
+            ChangeLanguageCommand = new RelayCommand<string>(ChangeLanguage);
         }
 
         #region Methods
@@ -94,6 +99,17 @@ namespace BackOffice.ViewModels
                 CurrentWorkspace = _viewModelMappings[viewModelKey];
             }
         }
+
+
+        private void ChangeLanguage(string cultureName)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureName);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureName);
+
+            Settings.Default.Language = cultureName;
+            Settings.Default.Save();
+        }
+
         #endregion
     }
 }

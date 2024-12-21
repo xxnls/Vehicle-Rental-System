@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:BackOffice"
         xmlns:ViewModels="clr-namespace:BackOffice.ViewModels"
         xmlns:locations="clr-namespace:BackOffice.Views.Other.Locations"
+        xmlns:res="clr-namespace:BackOffice.Resources.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="1000">
 
@@ -47,7 +48,7 @@
             <!-- Menu Items -->
             <StackPanel Grid.Row="1" Margin="4,0">
                 <!-- Vehicles  -->
-                <Expander Header="Vehicles"
+                <Expander Header="{x:Static res:Resources.VehiclesSideMenu}"
                           Foreground="White"
                           Background="{StaticResource DarkerPrimaryBrush}"
                           Padding="3,5"
@@ -86,6 +87,20 @@
         <StatusBar Grid.Row="1" Grid.Column="1">
             <StatusBarItem>
                 <TextBlock Text="{Binding StatusMessage}" VerticalAlignment="Center" />
+            </StatusBarItem>
+
+            <StatusBarItem HorizontalAlignment="Right">
+                <Button Content="English"
+                        Command="{Binding ChangeLanguageCommand}"
+                        CommandParameter="en-US"
+                        Click="ChangeLanguage_OnClick"/>
+            </StatusBarItem>
+
+            <StatusBarItem HorizontalAlignment="Right">
+                <Button Content="Polish"
+                        Command="{Binding ChangeLanguageCommand}"
+                        CommandParameter="pl-PL"
+                        Click="ChangeLanguage_OnClick"/>
             </StatusBarItem>
         </StatusBar>
     </Grid>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BackOffice.Resources.MainWindow {
+namespace BackOffice.Resources.VehicleBrands {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace BackOffice.Resources.MainWindow {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BackOffice.Resources.MainWindow.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BackOffice.Resources.VehicleBrands.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,38 +61,20 @@ namespace BackOffice.Resources.MainWindow {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle Brands.
+        ///   Looks up a localized string similar to Logo URL.
         /// </summary>
-        public static string VehicleBrandsSideMenu {
+        public static string LogoURL {
             get {
-                return ResourceManager.GetString("VehicleBrandsSideMenu", resourceCulture);
+                return ResourceManager.GetString("LogoURL", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle Models.
+        ///   Looks up a localized string similar to Website URL.
         /// </summary>
-        public static string VehicleModelsSideMenu {
+        public static string WebsiteURL {
             get {
-                return ResourceManager.GetString("VehicleModelsSideMenu", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Vehicles.
-        /// </summary>
-        public static string VehiclesSideMenu {
-            get {
-                return ResourceManager.GetString("VehiclesSideMenu", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Vehicle Types.
-        /// </summary>
-        public static string VehicleTypesSideMenu {
-            get {
-                return ResourceManager.GetString("VehicleTypesSideMenu", resourceCulture);
+                return ResourceManager.GetString("WebsiteURL", resourceCulture);
             }
         }
     }

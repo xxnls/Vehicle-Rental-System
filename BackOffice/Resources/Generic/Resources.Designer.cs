@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BackOffice.Resources.MainWindow {
+namespace BackOffice.Resources.Generic {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace BackOffice.Resources.MainWindow {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BackOffice.Resources.MainWindow.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BackOffice.Resources.Generic.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,38 +61,47 @@ namespace BackOffice.Resources.MainWindow {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle Brands.
+        ///   Looks up a localized string similar to Created Date.
         /// </summary>
-        public static string VehicleBrandsSideMenu {
+        public static string CreatedDate {
             get {
-                return ResourceManager.GetString("VehicleBrandsSideMenu", resourceCulture);
+                return ResourceManager.GetString("CreatedDate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle Models.
+        ///   Looks up a localized string similar to Deleted Date.
         /// </summary>
-        public static string VehicleModelsSideMenu {
+        public static string DeletedDate {
             get {
-                return ResourceManager.GetString("VehicleModelsSideMenu", resourceCulture);
+                return ResourceManager.GetString("DeletedDate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicles.
+        ///   Looks up a localized string similar to Description.
         /// </summary>
-        public static string VehiclesSideMenu {
+        public static string Description {
             get {
-                return ResourceManager.GetString("VehiclesSideMenu", resourceCulture);
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle Types.
+        ///   Looks up a localized string similar to Modified Date.
         /// </summary>
-        public static string VehicleTypesSideMenu {
+        public static string ModifiedDate {
             get {
-                return ResourceManager.GetString("VehicleTypesSideMenu", resourceCulture);
+                return ResourceManager.GetString("ModifiedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
     }
