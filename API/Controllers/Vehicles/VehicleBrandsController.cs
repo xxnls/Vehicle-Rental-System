@@ -7,8 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Context;
 using API.Models;
-using API.Models.Vehicles.VehicleBrands;
-using API.Models.Vehicles.VehicleBrands.DTOs;
+using API.Models.DTOs;
 using Azure;
 
 namespace API.Controllers.Vehicles

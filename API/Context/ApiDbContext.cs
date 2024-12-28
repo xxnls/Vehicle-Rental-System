@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using API.Models.Customers;
-using API.Models.Documents;
-using API.Models.Employees;
-using API.Models.Other;
-using API.Models.Other.Addresses;
-using API.Models.Other.Locations;
-using API.Models.Other.News;
-using API.Models.Rentals;
-using API.Models.Vehicles;
-using API.Models.Vehicles.VehicleBrands;
+using API.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Context;
 
-public partial class ApiDbContext : DbContext
+public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, EmployeeRole, int>
 {
     public ApiDbContext()
     {
@@ -31,7 +24,7 @@ public partial class ApiDbContext : DbContext
 
     public virtual DbSet<Customer> Customers { get; set; }
 
-    public virtual DbSet<CustomerStatistics> CustomerStatistics { get; set; }
+    public virtual DbSet<CustomerStatistic> CustomerStatistics { get; set; }
 
     public virtual DbSet<CustomerType> CustomerTypes { get; set; }
 
@@ -45,7 +38,7 @@ public partial class ApiDbContext : DbContext
 
     public virtual DbSet<EmployeeAttendance> EmployeeAttendances { get; set; }
 
-    public virtual DbSet<EmployeeFinances> EmployeeFinances { get; set; }
+    public virtual DbSet<EmployeeFinance> EmployeeFinances { get; set; }
 
     public virtual DbSet<EmployeeLeave> EmployeeLeaves { get; set; }
 
@@ -59,7 +52,7 @@ public partial class ApiDbContext : DbContext
 
     public virtual DbSet<EmployeeShiftType> EmployeeShiftTypes { get; set; }
 
-    public virtual DbSet<EmployeeStatistics> EmployeeStatistics { get; set; }
+    public virtual DbSet<EmployeeStatistic> EmployeeStatistics { get; set; }
 
     public virtual DbSet<Location> Locations { get; set; }
 
@@ -81,7 +74,7 @@ public partial class ApiDbContext : DbContext
 
     public virtual DbSet<VehicleOptionalInformation> VehicleOptionalInformations { get; set; }
 
-    public virtual DbSet<VehicleStatistics> VehicleStatistics { get; set; }
+    public virtual DbSet<VehicleStatistic> VehicleStatistics { get; set; }
 
     public virtual DbSet<VehicleType> VehicleTypes { get; set; }
 
@@ -91,6 +84,8 @@ public partial class ApiDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Address>(entity =>
         {
             entity.HasKey(e => e.AddressId).HasName("Addresses_pk");
@@ -129,22 +124,19 @@ public partial class ApiDbContext : DbContext
 
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.CustomerId).HasName("Customers_pk");
+            entity.ToTable("Customers");
 
-            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+            //entity.HasKey(e => e.Id).HasName("Customers_pk");
+
+            //entity.Property(e => e.Id).HasColumnName("CustomerID");
             entity.Property(e => e.AddressId).HasColumnName("AddressID");
             entity.Property(e => e.CompanyName).HasMaxLength(50);
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.CustomerStatisticsId).HasColumnName("CustomerStatisticsID");
             entity.Property(e => e.CustomerTypeId).HasColumnName("CustomerTypeID");
-            entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.FirstName).HasMaxLength(50);
             entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.LastName).HasMaxLength(50);
-            entity.Property(e => e.PasswordHash).HasMaxLength(50);
-            entity.Property(e => e.PhoneNumber)
-                .HasMaxLength(20)
-                .IsUnicode(false);
 
             entity.HasOne(d => d.Address).WithMany(p => p.Customers)
                 .HasForeignKey(d => d.AddressId)
@@ -162,7 +154,7 @@ public partial class ApiDbContext : DbContext
                 .HasConstraintName("Customers_CustomerTypes");
         });
 
-        modelBuilder.Entity<CustomerStatistics>(entity =>
+        modelBuilder.Entity<CustomerStatistic>(entity =>
         {
             entity.HasKey(e => e.CustomerStatisticsId).HasName("CustomerStatistics_pk");
 
@@ -275,23 +267,18 @@ public partial class ApiDbContext : DbContext
 
         modelBuilder.Entity<Employee>(entity =>
         {
-            entity.HasKey(e => e.EmployeeId).HasName("Employees_pk");
+            entity.ToTable("Employees");
 
-            entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
-            entity.Property(e => e.AddressId).HasColumnName("AddressID");
+            //entity.HasKey(e => e.Id).HasName("Employees_pk");
+
+            //entity.Property(e => e.Id).HasColumnName("EmployeeID");
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.EmployeeFinancesId).HasColumnName("EmployeeFinancesID");
             entity.Property(e => e.EmployeePositionId).HasColumnName("EmployeePositionID");
-            entity.Property(e => e.EmployeeRoleId).HasColumnName("EmployeeRoleID");
             entity.Property(e => e.EmployeeStatisticsId).HasColumnName("EmployeeStatisticsID");
             entity.Property(e => e.FirstName).HasMaxLength(50);
             entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.LastName).HasMaxLength(50);
-            entity.Property(e => e.PasswordHash).HasMaxLength(50);
-            entity.Property(e => e.PhoneNumber)
-                .HasMaxLength(20)
-                .IsUnicode(false);
             entity.Property(e => e.RentalPlaceId).HasColumnName("RentalPlaceID");
             entity.Property(e => e.Status)
                 .HasMaxLength(20)
@@ -312,11 +299,6 @@ public partial class ApiDbContext : DbContext
                 .HasForeignKey(d => d.EmployeePositionId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Employees_EmployeePositions");
-
-            entity.HasOne(d => d.EmployeeRole).WithMany(p => p.Employees)
-                .HasForeignKey(d => d.EmployeeRoleId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("Employees_EmployeeRoles");
 
             entity.HasOne(d => d.EmployeeStatistics).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.EmployeeStatisticsId)
@@ -351,7 +333,7 @@ public partial class ApiDbContext : DbContext
                 .HasConstraintName("EmployeeAttendance_Employees");
         });
 
-        modelBuilder.Entity<EmployeeFinances>(entity =>
+        modelBuilder.Entity<EmployeeFinance>(entity =>
         {
             entity.HasKey(e => e.EmployeeFinancesId).HasName("EmployeeFinances_pk");
 
@@ -426,9 +408,10 @@ public partial class ApiDbContext : DbContext
 
         modelBuilder.Entity<EmployeeRole>(entity =>
         {
-            entity.HasKey(e => e.EmployeeRoleId).HasName("EmployeeRoles_pk");
+            entity.ToTable("EmployeeRoles");
 
-            entity.Property(e => e.EmployeeRoleId).HasColumnName("EmployeeRoleID");
+            entity.Property(e => e.Id).HasColumnName("EmployeeRoleID");
+
         });
 
         modelBuilder.Entity<EmployeeSchedule>(entity =>
@@ -478,7 +461,7 @@ public partial class ApiDbContext : DbContext
             entity.Property(e => e.Name).HasMaxLength(100);
         });
 
-        modelBuilder.Entity<EmployeeStatistics>(entity =>
+        modelBuilder.Entity<EmployeeStatistic>(entity =>
         {
             entity.HasKey(e => e.EmployeeStatisticsId).HasName("EmployeeStatistics_pk");
 
@@ -719,7 +702,7 @@ public partial class ApiDbContext : DbContext
             entity.Property(e => e.VehicleOptionalInformationId).HasColumnName("VehicleOptionalInformationID");
         });
 
-        modelBuilder.Entity<VehicleStatistics>(entity =>
+        modelBuilder.Entity<VehicleStatistic>(entity =>
         {
             entity.HasKey(e => e.VehicleStatisticsId).HasName("VehicleStatistics_pk");
 
@@ -743,6 +726,8 @@ public partial class ApiDbContext : DbContext
                 .HasMaxLength(20)
                 .HasDefaultValue("B");
         });
+
+        //modelBuilder.Ignore<IdentityUser<int>>();
 
         OnModelCreatingPartial(modelBuilder);
     }

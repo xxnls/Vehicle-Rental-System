@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Context;
-using API.Models.Vehicles;
+using API.Models;
+using API.Models.DTOs;
 
 namespace API.Controllers.Vehicles
 {

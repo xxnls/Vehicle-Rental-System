@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Context;
-using API.Models.Other.Locations.DTOs;
-using API.Models.Other.Locations;
+using API.Models;
+using API.Models.DTOs;
 
 namespace API.Controllers.Other
 {
