@@ -338,19 +338,8 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.HasKey(e => e.EmployeeFinancesId).HasName("EmployeeFinances_pk");
 
             entity.Property(e => e.EmployeeFinancesId).HasColumnName("EmployeeFinancesID");
-            entity.Property(e => e.Allowances).HasColumnType("money");
-            entity.Property(e => e.ApprovedById).HasColumnName("ApprovedByID");
             entity.Property(e => e.BaseSalary).HasColumnType("money");
-            entity.Property(e => e.Bonuses).HasColumnType("money");
-            entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.Deductions).HasColumnType("money");
             entity.Property(e => e.HourlyRate).HasColumnType("money");
-            entity.Property(e => e.IsActive).HasDefaultValue(true);
-
-            entity.HasOne(d => d.ApprovedBy).WithMany(p => p.EmployeeFinancesNavigation)
-                .HasForeignKey(d => d.ApprovedById)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("EmployeeFinances_Employees_ApprovedByID");
         });
 
         modelBuilder.Entity<EmployeeLeave>(entity =>

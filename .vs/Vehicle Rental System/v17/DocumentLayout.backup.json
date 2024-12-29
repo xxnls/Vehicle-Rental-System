@@ -3,90 +3,38 @@
   "WorkspaceRootPath": "G:\\Vehicle Rental System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\Vehicle Rental System\\API\\Migrations\\20241228205721_InitialMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:API\\Migrations\\20241228205721_InitialMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\controllers\\employees\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\controllers\\employees\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\employeerole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\employeerole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\Vehicle Rental System\\API\\Migrations\\20241228205027_InitialMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:API\\Migrations\\20241228205027_InitialMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\context\\apidbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\context\\apidbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\Vehicle Rental System\\API\\Migrations\\20241228204851_EmployeeRoleFix.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:API\\Migrations\\20241228204851_EmployeeRoleFix.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\Vehicle Rental System\\API\\Migrations\\20241228203123_InitialMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:API\\Migrations\\20241228203123_InitialMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\Vehicle Rental System\\API\\Migrations\\20241228202834_InitialMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:API\\Migrations\\20241228202834_InitialMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\employeesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\employeesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\controllers\\vehicles\\vehiclebrandscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\controllers\\vehicles\\vehiclebrandscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\controllers\\vehicles\\vehiclescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\controllers\\vehicles\\vehiclescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\dtos\\remployeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\dtos\\remployeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\controllers\\other\\locationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\controllers\\other\\locationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\dtos\\cuemployeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\dtos\\cuemployeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\dtos\\createlocationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\dtos\\createlocationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\dtos\\cuvehiclebranddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\dtos\\cuvehiclebranddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\dtos\\rvehiclebranddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\dtos\\rvehiclebranddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\api.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\paginatedresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\paginatedresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
-      "VerticalTabListWidth": 332,
+      "VerticalTabListWidth": 180,
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -94,249 +42,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20241228205721_InitialMigration.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Migrations\\20241228205721_InitialMigration.cs",
-              "RelativeDocumentMoniker": "API\\Migrations\\20241228205721_InitialMigration.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Migrations\\20241228205721_InitialMigration.cs",
-              "RelativeToolTip": "API\\Migrations\\20241228205721_InitialMigration.cs",
-              "ViewState": "AgIAAI8AAAAAAAAAAAAewKcAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T20:57:22.038Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "20241228205027_InitialMigration.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Migrations\\20241228205027_InitialMigration.cs",
-              "RelativeDocumentMoniker": "API\\Migrations\\20241228205027_InitialMigration.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Migrations\\20241228205027_InitialMigration.cs",
-              "RelativeToolTip": "API\\Migrations\\20241228205027_InitialMigration.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T20:50:28.015Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "20241228204851_EmployeeRoleFix.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Migrations\\20241228204851_EmployeeRoleFix.cs",
-              "RelativeDocumentMoniker": "API\\Migrations\\20241228204851_EmployeeRoleFix.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Migrations\\20241228204851_EmployeeRoleFix.cs",
-              "RelativeToolTip": "API\\Migrations\\20241228204851_EmployeeRoleFix.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T20:48:51.756Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "20241228203123_InitialMigration.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Migrations\\20241228203123_InitialMigration.cs",
-              "RelativeDocumentMoniker": "API\\Migrations\\20241228203123_InitialMigration.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Migrations\\20241228203123_InitialMigration.cs",
-              "RelativeToolTip": "API\\Migrations\\20241228203123_InitialMigration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T20:31:24.111Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "20241228202834_InitialMigration.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Migrations\\20241228202834_InitialMigration.cs",
-              "RelativeDocumentMoniker": "API\\Migrations\\20241228202834_InitialMigration.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Migrations\\20241228202834_InitialMigration.cs",
-              "RelativeToolTip": "API\\Migrations\\20241228202834_InitialMigration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T20:28:35.049Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "EmployeeRole.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\EmployeeRole.cs",
-              "RelativeDocumentMoniker": "API\\Models\\EmployeeRole.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\EmployeeRole.cs",
-              "RelativeToolTip": "API\\Models\\EmployeeRole.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:33:35.272Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Employee.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\Employee.cs",
-              "RelativeDocumentMoniker": "API\\Models\\Employee.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\Employee.cs",
-              "RelativeToolTip": "API\\Models\\Employee.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAADgvzYAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:28:13.625Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Customer.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\Customer.cs",
-              "RelativeDocumentMoniker": "API\\Models\\Customer.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\Customer.cs",
-              "RelativeToolTip": "API\\Models\\Customer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:27:43.73Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "RVehicleBrandDTO.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\RVehicleBrandDTO.cs",
-              "RelativeDocumentMoniker": "API\\Models\\DTOs\\RVehicleBrandDTO.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\RVehicleBrandDTO.cs",
-              "RelativeToolTip": "API\\Models\\DTOs\\RVehicleBrandDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:25:50.761Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "CUVehicleBrandDTO.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\CUVehicleBrandDTO.cs",
-              "RelativeDocumentMoniker": "API\\Models\\DTOs\\CUVehicleBrandDTO.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\CUVehicleBrandDTO.cs",
-              "RelativeToolTip": "API\\Models\\DTOs\\CUVehicleBrandDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:25:46.763Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "CreateLocationDTO.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\CreateLocationDTO.cs",
-              "RelativeDocumentMoniker": "API\\Models\\DTOs\\CreateLocationDTO.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\CreateLocationDTO.cs",
-              "RelativeToolTip": "API\\Models\\DTOs\\CreateLocationDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:25:32.442Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ApiDbContext.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Context\\ApiDbContext.cs",
-              "RelativeDocumentMoniker": "API\\Context\\ApiDbContext.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Context\\ApiDbContext.cs",
-              "RelativeToolTip": "API\\Context\\ApiDbContext.cs",
-              "ViewState": "AgIAAIoBAAAAAAAAAAAewJwBAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:21:59.479Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Program.cs",
-              "RelativeDocumentMoniker": "API\\Program.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Program.cs",
-              "RelativeToolTip": "API\\Program.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAQwCoAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:20:41.629Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "VehiclesController.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Controllers\\Vehicles\\VehiclesController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\Vehicles\\VehiclesController.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Controllers\\Vehicles\\VehiclesController.cs",
-              "RelativeToolTip": "API\\Controllers\\Vehicles\\VehiclesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:20:37.106Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "VehicleBrandsController.cs",
               "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Controllers\\Vehicles\\VehicleBrandsController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\Vehicles\\VehicleBrandsController.cs",
               "ToolTip": "G:\\Vehicle Rental System\\API\\Controllers\\Vehicles\\VehicleBrandsController.cs",
               "RelativeToolTip": "API\\Controllers\\Vehicles\\VehicleBrandsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAowJwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:20:33.038Z",
+              "WhenOpened": "2024-12-29T15:06:11.773Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "LocationsController.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Controllers\\Other\\LocationsController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\Other\\LocationsController.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Controllers\\Other\\LocationsController.cs",
-              "RelativeToolTip": "API\\Controllers\\Other\\LocationsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "REmployeeDTO.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\REmployeeDTO.cs",
+              "RelativeDocumentMoniker": "API\\Models\\DTOs\\REmployeeDTO.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\REmployeeDTO.cs",
+              "RelativeToolTip": "API\\Models\\DTOs\\REmployeeDTO.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:20:16.889Z",
+              "WhenOpened": "2024-12-29T14:35:13.697Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "PaginatedResult.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\PaginatedResult.cs",
-              "RelativeDocumentMoniker": "API\\Models\\PaginatedResult.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\PaginatedResult.cs",
-              "RelativeToolTip": "API\\Models\\PaginatedResult.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "EmployeesController.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Controllers\\Employees\\EmployeesController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\Employees\\EmployeesController.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Controllers\\Employees\\EmployeesController.cs*",
+              "RelativeToolTip": "API\\Controllers\\Employees\\EmployeesController.cs*",
+              "ViewState": "AgIAABgAAAAAAAAAAAAhwCYAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:11:55.456Z",
+              "WhenOpened": "2024-12-29T14:12:24.629Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "API.http",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\API.http",
-              "RelativeDocumentMoniker": "API\\API.http",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\API.http",
-              "RelativeToolTip": "API\\API.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2024-12-28T19:09:50.734Z",
+              "DocumentIndex": 1,
+              "Title": "EmployeesService.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\EmployeesService.cs",
+              "RelativeDocumentMoniker": "API\\Services\\EmployeesService.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\EmployeesService.cs",
+              "RelativeToolTip": "API\\Services\\EmployeesService.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAowHUAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-29T14:02:21.816Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\appsettings.json",
-              "RelativeDocumentMoniker": "API\\appsettings.json",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\appsettings.json",
-              "RelativeToolTip": "API\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-12-28T19:09:52.17Z",
+              "DocumentIndex": 5,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\Employee.cs",
+              "RelativeDocumentMoniker": "API\\Models\\Employee.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\Employee.cs",
+              "RelativeToolTip": "API\\Models\\Employee.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-29T13:45:25.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CUEmployeeDTO.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\CUEmployeeDTO.cs",
+              "RelativeDocumentMoniker": "API\\Models\\DTOs\\CUEmployeeDTO.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\CUEmployeeDTO.cs",
+              "RelativeToolTip": "API\\Models\\DTOs\\CUEmployeeDTO.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAgwBkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-29T13:45:22.756Z",
               "EditorCaption": ""
             }
           ]

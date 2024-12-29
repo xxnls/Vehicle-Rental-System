@@ -1,9 +1,13 @@
 //using API.Context;
 
+using System.Text;
 using API.Context;
 using API.Models;
+using API.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +20,9 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<ApiDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<EmployeeAuthService>();
+builder.Services.AddScoped<EmployeesService>();
+
 builder.Services.AddIdentityCore<Employee>(options => { })
     .AddRoles<EmployeeRole>()
     .AddEntityFrameworkStores<ApiDbContext>()
@@ -27,7 +34,22 @@ builder.Services.AddIdentityCore<Customer>(options => { })
     .AddDefaultTokenProviders()
     .AddApiEndpoints();
 
-builder.Services.AddAuthentication();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
+
 builder.Services.AddAuthorization();
 builder.Services.AddDataProtection();
 
@@ -40,9 +62,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapIdentityApi<Employee>();
+//app.MapIdentityApi<Employee>();
 //app.MapIdentityApi<Customer>();
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseHttpsRedirection();
 app.MapControllers();
 
