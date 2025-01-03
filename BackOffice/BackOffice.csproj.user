@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\CustomControls\BindablePasswordBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\CustomControls\CRUDButtonsControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -19,10 +22,10 @@
     <Compile Update="Views\CustomControls\SearchControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Other\Locations\LocationsView.xaml.cs">
+    <Compile Update="Views\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Other\LoginView.xaml.cs">
+    <Compile Update="Views\Other\Locations\LocationsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Vehicles\VehicleBrandsView.xaml.cs">
@@ -34,6 +37,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ViewResources\Styles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CustomControls\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CustomControls\CRUDButtonsControl.xaml">
@@ -48,6 +54,9 @@
     <Page Update="Views\CustomControls\SearchControl.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -55,9 +64,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Other\Locations\LocationsView.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Other\LoginView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Vehicles\VehicleBrandsView.xaml">
