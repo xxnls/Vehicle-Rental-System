@@ -18,7 +18,7 @@ namespace API.Controllers.Employees
 
         // GET: api/Employee
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetAllEmployees()
+        public async Task<ActionResult<IEnumerable<REmployeeDTO>>> GetAllEmployees()
         {
             var employees = await _employeesService.GetAllEmployeesAsync();
             return Ok(employees);
@@ -44,7 +44,7 @@ namespace API.Controllers.Employees
 
         // PUT: api/Employee/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<Employee>> UpdateEmployee(int id, Employee employee)
+        public async Task<ActionResult<REmployeeDTO>> UpdateEmployee(int id, Employee employee)
         {
             if (id != employee.Id)
                 return BadRequest();

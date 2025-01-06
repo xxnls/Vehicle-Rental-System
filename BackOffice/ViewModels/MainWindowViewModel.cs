@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using BackOffice.Properties;
 using BackOffice.Views;
+using BackOffice.Models.Employees.DTOs;
 
 namespace BackOffice.ViewModels
 {
@@ -18,6 +19,8 @@ namespace BackOffice.ViewModels
     {
         #region Properties & Fields
         private readonly Dictionary<string, object> _viewModelMappings;
+
+        public string FullName { get { return CurrentUser.FirstName + " " + CurrentUser.LastName; } }
 
         private double _sidebarWidth = 200;
         public double SidebarWidth
@@ -28,7 +31,7 @@ namespace BackOffice.ViewModels
                 if (_sidebarWidth != value)
                 {
                     _sidebarWidth = value;
-                    OnPropertyChanged(nameof(SidebarWidth));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -40,7 +43,7 @@ namespace BackOffice.ViewModels
             set
             {
                 _currentWorkspace = value;
-                OnPropertyChanged(nameof(CurrentWorkspace));
+                OnPropertyChanged();
             }
         }
 
@@ -51,7 +54,18 @@ namespace BackOffice.ViewModels
             set
             {
                 _statusMessage = value;
-                OnPropertyChanged(nameof(StatusMessage));
+                OnPropertyChanged();
+            }
+        }
+
+        private REmployeeDTO _currentUser;
+        public REmployeeDTO CurrentUser
+        {
+            get => _currentUser;
+            set
+            {
+                _currentUser = value;
+                OnPropertyChanged();
             }
         }
         #endregion
@@ -77,6 +91,9 @@ namespace BackOffice.ViewModels
                 { "VehicleBrandsViewModel", new VehicleBrandsViewModel() },
                 { "LocationsViewModel", new LocationsViewModel() }
             };
+
+            // Load user
+            CurrentUser = (REmployeeDTO)SessionManager.Get("User");
 
             // Set default workspace
             CurrentWorkspace = _viewModelMappings["VehicleBrandsViewModel"];

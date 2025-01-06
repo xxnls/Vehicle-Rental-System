@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BackOffice.Models.Employees;
 
 namespace BackOffice.Models.Employees;
 
