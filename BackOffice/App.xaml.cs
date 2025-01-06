@@ -28,10 +28,21 @@ namespace BackOffice
             {
                 if (m.Value == "LoginSuccessful")
                 {
-                    loginWindow.Close();
+                    //loginWindow.Close();
+                    Application.Current.Windows[0]?.Close();
 
                     var mainWindow = new MainWindow();
                     mainWindow.Show();
+                }
+
+                if (m.Value == "LogoutSuccessful")
+                {
+                    SessionManager.Clear();
+
+                    Application.Current.Windows[0]?.Close();
+
+                    LoginWindow loginWindow = new LoginWindow();
+                    loginWindow.Show();
                 }
             });
 

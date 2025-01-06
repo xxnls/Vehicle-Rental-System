@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using BackOffice.Properties;
 using BackOffice.Views;
@@ -72,6 +73,7 @@ namespace BackOffice.ViewModels
 
         #region Commands
         public ICommand ToggleSidebarCommand { get; }
+        public ICommand LogoutCommand { get; }
         public ICommand ChangeWorkspaceCommand { get; }
         public ICommand ChangeLanguageCommand { get; }
 
@@ -99,6 +101,7 @@ namespace BackOffice.ViewModels
             CurrentWorkspace = _viewModelMappings["VehicleBrandsViewModel"];
 
             ToggleSidebarCommand = new RelayCommand(ToggleSidebar);
+            LogoutCommand = new RelayCommand(Logout);
             ChangeWorkspaceCommand = new RelayCommand<object>(ChangeWorkspace);
             ChangeLanguageCommand = new RelayCommand<string>(ChangeLanguage);
         }
@@ -117,7 +120,6 @@ namespace BackOffice.ViewModels
             }
         }
 
-
         private void ChangeLanguage(string cultureName)
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureName);
@@ -125,6 +127,14 @@ namespace BackOffice.ViewModels
 
             Settings.Default.Language = cultureName;
             Settings.Default.Save();
+        }
+
+        /// <summary>
+        /// Send a message to log out the user
+        /// </summary>
+        private void Logout()
+        {
+            WeakReferenceMessenger.Default.Send(new Messenger("LogoutSuccessful"));
         }
 
         #endregion

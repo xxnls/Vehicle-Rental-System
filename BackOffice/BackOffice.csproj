@@ -16,6 +16,7 @@
     <None Remove="ViewResources\Icons\delete.png" />
     <None Remove="ViewResources\Icons\edit.png" />
     <None Remove="ViewResources\Icons\filter.png" />
+    <None Remove="ViewResources\Icons\logout.png" />
     <None Remove="ViewResources\Icons\menu.png" />
     <None Remove="ViewResources\Icons\reload.png" />
     <None Remove="ViewResources\Icons\removed.png" />
@@ -66,6 +67,7 @@
     <Resource Include="ViewResources\Icons\delete.png" />
     <Resource Include="ViewResources\Icons\edit.png" />
     <Resource Include="ViewResources\Icons\filter.png" />
+    <Resource Include="ViewResources\Icons\logout.png" />
     <Resource Include="ViewResources\Icons\menu.png" />
     <Resource Include="ViewResources\Icons\reload.png" />
     <Resource Include="ViewResources\Icons\removed.png" />

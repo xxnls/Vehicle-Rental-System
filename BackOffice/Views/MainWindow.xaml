@@ -108,7 +108,18 @@
             </StackPanel>
         </Grid>
 
-        <ContentControl Content="{Binding CurrentWorkspace}" Grid.Column="1" />
+        <ContentControl Grid.Row="0"
+                        Grid.Column="1"
+                        Content="{Binding CurrentWorkspace}" />
+
+        <Button Grid.Column="0" 
+                Grid.Row="1"
+                Style="{StaticResource SideBarButton}"
+                HorizontalAlignment="Right"
+                Command="{Binding LogoutCommand}"
+                Margin="0,0,5,5">
+            <Image Source="/ViewResources/Icons/logout.png" Height="24"/>
+        </Button>
 
         <StatusBar Grid.Row="1" Grid.Column="1">
             <StatusBarItem>
