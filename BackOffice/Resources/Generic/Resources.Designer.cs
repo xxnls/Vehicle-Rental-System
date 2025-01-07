@@ -61,6 +61,24 @@ namespace BackOffice.Resources.Generic {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created after:.
+        /// </summary>
+        public static string CreatedAfter {
+            get {
+                return ResourceManager.GetString("CreatedAfter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created before:.
+        /// </summary>
+        public static string CreatedBefore {
+            get {
+                return ResourceManager.GetString("CreatedBefore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created Date.
         /// </summary>
         public static string CreatedDate {
@@ -88,6 +106,33 @@ namespace BackOffice.Resources.Generic {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modified after:.
+        /// </summary>
+        public static string ModifiedAfter {
+            get {
+                return ResourceManager.GetString("ModifiedAfter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modified before:.
+        /// </summary>
+        public static string ModifiedBefore {
+            get {
+                return ResourceManager.GetString("ModifiedBefore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modified Date.
         /// </summary>
         public static string ModifiedDate {
@@ -102,6 +147,15 @@ namespace BackOffice.Resources.Generic {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string Reset {
+            get {
+                return ResourceManager.GetString("Reset", resourceCulture);
             }
         }
     }

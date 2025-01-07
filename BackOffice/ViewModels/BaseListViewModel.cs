@@ -82,6 +82,57 @@ namespace BackOffice.ViewModels
             }
         }
 
+        #region Filter
+
+        // Filters for created date
+        private DateTime? _createdBefore;
+        public DateTime? CreatedBefore
+        {
+            get => _createdBefore;
+            set
+            {
+                _createdBefore = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime? _createdAfter;
+        public DateTime? CreatedAfter
+        {
+            get => _createdAfter;
+            set
+            {
+                _createdAfter = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // Filters for modified date
+        private DateTime? _modifiedBefore;
+        public DateTime? ModifiedBefore
+        {
+            get => _modifiedBefore;
+            set
+            {
+                _modifiedBefore = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime? _modifiedAfter;
+        public DateTime? ModifiedAfter
+        {
+            get => _modifiedAfter;
+            set
+            {
+                _modifiedAfter = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        #endregion
+
         #endregion
 
         #region Commands
@@ -114,6 +165,15 @@ namespace BackOffice.ViewModels
                 endpoint = string.IsNullOrWhiteSpace(searchInput)
                     ? $"{EndPointName}?page={CurrentPage}&pageSize={PageSize}"
                     : $"{EndPointName}?search={CurrentSearchInput}&page={CurrentPage}&pageSize={PageSize}";
+
+                if (CreatedBefore.HasValue)
+                    endpoint += $"&createdBefore={CreatedBefore.Value:yyyy-MM-dd}";
+                if (CreatedAfter.HasValue)
+                    endpoint += $"&createdAfter={CreatedAfter.Value:yyyy-MM-dd}";
+                if (ModifiedBefore.HasValue)
+                    endpoint += $"&modifiedBefore={ModifiedBefore.Value:yyyy-MM-dd}";
+                if (ModifiedAfter.HasValue)
+                    endpoint += $"&modifiedAfter={ModifiedAfter.Value:yyyy-MM-dd}";
 
                 var results = await ApiClient.GetAsync<PaginatedResult<T>>(endpoint);
                 Models.Clear();
@@ -166,8 +226,6 @@ namespace BackOffice.ViewModels
                 await LoadModelsAsync(CurrentSearchInput);
             }
         }
-
-
         #endregion
 
         #region Pagination

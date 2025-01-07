@@ -27,7 +27,14 @@ namespace API.Controllers.Vehicles
         // GET: api/VehicleBrands?search=...
         // GET: api/VehicleBrands?search=...&page=1&pageSize=10
         [HttpGet]
-        public async Task<ActionResult<PaginatedResult<RVehicleBrandDTO>>> GetVehicleBrands(string? search = null, int page = 1, int pageSize = 10)
+        public async Task<ActionResult<PaginatedResult<RVehicleBrandDTO>>> GetVehicleBrands(
+            string? search = null,
+            int page = 1,
+            DateTime? createdBefore = null,
+            DateTime? createdAfter = null,
+            DateTime? modifiedBefore = null,
+            DateTime? modifiedAfter = null,
+            int pageSize = 10)
         {
             if (page <= 0 || pageSize <= 0)
             {
@@ -46,11 +53,33 @@ namespace API.Controllers.Vehicles
                 );
             }
 
+            // Apply date filters if provided
+            if (createdBefore.HasValue)
+            {
+                query = query.Where(vb => vb.CreatedDate <= createdBefore.Value);
+            }
+
+            if (createdAfter.HasValue)
+            {
+                query = query.Where(vb => vb.CreatedDate >= createdAfter.Value);
+            }
+
+            if (modifiedBefore.HasValue)
+            {
+                query = query.Where(vb => vb.ModifiedDate <= modifiedBefore.Value);
+            }
+
+            if (modifiedAfter.HasValue)
+            {
+                query = query.Where(vb => vb.ModifiedDate >= modifiedAfter.Value);
+            }
+
             // Get total count for pagination metadata
             int totalItemCount = await query.CountAsync();
 
             // Apply pagination
             var vehicleBrandDTOs = await query
+                .OrderBy(vb => vb.VehicleBrandId)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .Select(vb => new RVehicleBrandDTO

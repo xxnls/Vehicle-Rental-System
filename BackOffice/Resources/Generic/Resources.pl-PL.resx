@@ -112,4 +112,22 @@
   <data name="DeletedDate" xml:space="preserve">
     <value>Data usunięcia</value>
   </data>
+  <data name="CreatedBefore" xml:space="preserve">
+    <value>Utworzono przed:</value>
+  </data>
+  <data name="CreatedAfter" xml:space="preserve">
+    <value>Utworzono po:</value>
+  </data>
+  <data name="ModifiedBefore" xml:space="preserve">
+    <value>Zmodyfikowano przed:</value>
+  </data>
+  <data name="ModifiedAfter" xml:space="preserve">
+    <value>Zmodyfikowano po:</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filtruj</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Resetuj</value>
+  </data>
 </root>

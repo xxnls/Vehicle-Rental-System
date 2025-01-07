@@ -85,6 +85,12 @@
             </StackPanel>
         </Grid>
 
+        <cc:FilterOptionsControl CreatedBefore="{Binding CreatedBefore, Mode=TwoWay}"
+                                 CreatedAfter="{Binding CreatedAfter, Mode=TwoWay}"
+                                 ModifiedBefore="{Binding ModifiedBefore, Mode=TwoWay}"
+                                 ModifiedAfter="{Binding ModifiedAfter, Mode=TwoWay}"
+                                 FilterCommand="{Binding LoadModelsCommand}"/>
+
         <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -130,5 +136,6 @@
                                   NextPageCommand="{Binding LoadNextPageCommand}" />
 
         </StackPanel>
+
     </StackPanel>
 </UserControl>

@@ -16,6 +16,9 @@
     <Compile Update="Views\CustomControls\FilterButtonsControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\CustomControls\FilterOptionsControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\CustomControls\PaginationControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -46,6 +49,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CustomControls\FilterButtonsControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CustomControls\FilterOptionsControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CustomControls\PaginationControl.xaml">
