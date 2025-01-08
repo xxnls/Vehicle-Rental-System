@@ -130,4 +130,13 @@
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="PaginationTotalItems" xml:space="preserve">
+    <value>Total items: </value>
+  </data>
+  <data name="PaginationShowing1" xml:space="preserve">
+    <value>Showing </value>
+  </data>
+  <data name="PaginationShowing2" xml:space="preserve">
+    <value> items per page.</value>
+  </data>
 </root>

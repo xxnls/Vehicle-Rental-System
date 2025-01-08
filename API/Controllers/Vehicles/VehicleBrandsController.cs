@@ -30,6 +30,7 @@ namespace API.Controllers.Vehicles
         public async Task<ActionResult<PaginatedResult<RVehicleBrandDTO>>> GetVehicleBrands(
             string? search = null,
             int page = 1,
+            bool showDeleted = false,
             DateTime? createdBefore = null,
             DateTime? createdAfter = null,
             DateTime? modifiedBefore = null,
@@ -41,7 +42,8 @@ namespace API.Controllers.Vehicles
                 return BadRequest("Page and pageSize must be greater than 0.");
             }
 
-            IQueryable<VehicleBrand> query = _context.VehicleBrands.Where(vb => vb.IsActive);
+            // Apply filter based on showDeleted
+            IQueryable<VehicleBrand> query = !showDeleted ? _context.VehicleBrands.Where(vb => vb.IsActive) : _context.VehicleBrands.Where(vb => vb.IsActive == false);
 
             if (!string.IsNullOrWhiteSpace(search))
             {

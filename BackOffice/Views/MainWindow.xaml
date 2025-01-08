@@ -9,7 +9,7 @@
         xmlns:res="clr-namespace:BackOffice.Resources.MainWindow"
         xmlns:other="clr-namespace:BackOffice.Views.Other"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="1000">
+        Title="MainWindow" Height="720" Width="1280">
 
     <Window.Resources>
         <ResourceDictionary Source="MainWindowResources.xaml"/>

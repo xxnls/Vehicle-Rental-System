@@ -14,7 +14,7 @@ namespace BackOffice.ViewModels
 {
     public class VehicleBrandsViewModel : BaseListViewModel<RVehicleBrandDTO>
     {
-        public VehicleBrandsViewModel() : base("VehicleBrands")
+        public VehicleBrandsViewModel() : base("VehicleBrands", "Vehicle Brands")
         {
             AddVehicleBrandCommand = new RelayCommand(async () => await AddVehicleBrandAsync());
             UpdateVehicleBrandCommand = new RelayCommand(async () => await UpdateVehicleBrandAsync());
@@ -22,6 +22,7 @@ namespace BackOffice.ViewModels
             SwitchToCreateModeCommand = new RelayCommand(SwitchToCreateMode);
             SwitchToEditModeCommand = new RelayCommand(SwitchToEditMode);
             ShowFilterOptionsCommand = new RelayCommand(ShowFilterOptions);
+            ShowDeletedModelsCommand = new RelayCommand(ShowDeletedModels);
             SwitchToListModeCommand = new RelayCommand(Cancel);
 
             LoadModelsCommand = new RelayCommand(async () => await LoadModelsAsync());
@@ -115,6 +116,7 @@ namespace BackOffice.ViewModels
         public ICommand SwitchToCreateModeCommand { get; }
         public ICommand SwitchToEditModeCommand { get; }
         public ICommand ShowFilterOptionsCommand { get; }
+        public ICommand ShowDeletedModelsCommand { get; }
 
         #endregion
 
@@ -170,6 +172,13 @@ namespace BackOffice.ViewModels
         private void ShowFilterOptions()
         {
             IsFiltering = !IsFiltering;
+        }
+
+        private void ShowDeletedModels()
+        {
+            ShowDeleted = !ShowDeleted;
+
+            LoadModelsAsync();
         }
 
         // Add a new vehicle brand

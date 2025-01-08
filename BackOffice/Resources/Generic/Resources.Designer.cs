@@ -151,6 +151,33 @@ namespace BackOffice.Resources.Generic {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Showing .
+        /// </summary>
+        public static string PaginationShowing1 {
+            get {
+                return ResourceManager.GetString("PaginationShowing1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  items per page..
+        /// </summary>
+        public static string PaginationShowing2 {
+            get {
+                return ResourceManager.GetString("PaginationShowing2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total items: .
+        /// </summary>
+        public static string PaginationTotalItems {
+            get {
+                return ResourceManager.GetString("PaginationTotalItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset.
         /// </summary>
         public static string Reset {

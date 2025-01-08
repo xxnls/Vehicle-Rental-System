@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BackOffice.Views.CustomControls"
+             xmlns:res="clr-namespace:BackOffice.Resources.Generic"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="150">
     <!-- Pagination -->
@@ -28,14 +29,14 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Text="Total Items: "/>
+            <TextBlock Text="{x:Static res:Resources.PaginationTotalItems}"/>
             <TextBlock Text="{Binding TotalItemCount, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Text="Showing "/>
+            <TextBlock Text="{x:Static res:Resources.PaginationShowing1}"/>
             <TextBlock Text="{Binding ModelsPerPage, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-            <TextBlock Text=" models per page."/>
+            <TextBlock Text="{x:Static res:Resources.PaginationShowing2}"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

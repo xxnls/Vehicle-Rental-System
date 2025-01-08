@@ -60,7 +60,7 @@ namespace BackOffice.ViewModels.Other
         public ICommand LoginCommand { get; }
 
         // Constructor
-        public LoginViewModel() : base("EmployeeAuth")
+        public LoginViewModel() : base("EmployeeAuth", "Login")
         {
             ApiClient = new ApiClient();
 

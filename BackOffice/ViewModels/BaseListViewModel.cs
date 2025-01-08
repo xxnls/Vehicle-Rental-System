@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net;
+using System.Windows;
 using System.Windows.Input;
 using BackOffice.Models;
 using BackOffice.Properties;
@@ -11,7 +12,7 @@ namespace BackOffice.ViewModels
 {
     public class BaseListViewModel<T> : BaseViewModel, INotifyDataErrorInfo
     {
-        public BaseListViewModel(string endPointName)
+        public BaseListViewModel(string endPointName, string displayName)
         {
             // Set the initial visibility
             IsListVisible = true;
@@ -20,6 +21,7 @@ namespace BackOffice.ViewModels
             IsFiltering = false;
 
             EndPointName = endPointName;
+            DisplayName = displayName;
 
             ApiClient = new ApiClient();
             Models = [];
@@ -33,6 +35,7 @@ namespace BackOffice.ViewModels
         // Observable collection for displaying a list of vehicle brands
         public ObservableCollection<T> Models { get; }
         protected string EndPointName = string.Empty;
+        protected string DisplayName = string.Empty;
 
         private readonly Dictionary<string, List<string>> _validationErrors = new();
         public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
@@ -79,6 +82,17 @@ namespace BackOffice.ViewModels
             set
             {
                 _isFiltering = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _showDeleted;
+        public bool ShowDeleted
+        {
+            get => _showDeleted;
+            set
+            {
+                _showDeleted = value;
                 OnPropertyChanged();
             }
         }
@@ -154,13 +168,6 @@ namespace BackOffice.ViewModels
         public ICommand? LoadPreviousPageCommand { get; set; }
         public ICommand? SearchCommand { get; set; }
 
-        #endregion
-
-        #region Core Methods
-
-        /// <summary>
-        /// Loads data models asynchronously from the API based on the current page, page size, and optional search input.
-        /// Updates the <see cref="Models"/> collection with the fetched data and sets the <see cref="TotalItemCount"/> property.
         /// If a search input is provided, the API request includes it to filter results.
         /// </summary>
         /// <param name="searchInput">
@@ -178,6 +185,8 @@ namespace BackOffice.ViewModels
                     ? $"{EndPointName}?page={CurrentPage}&pageSize={PageSize}"
                     : $"{EndPointName}?search={CurrentSearchInput}&page={CurrentPage}&pageSize={PageSize}";
 
+                if (ShowDeleted)
+                    endpoint += "&showDeleted=true";
                 if (CreatedBefore.HasValue)
                     endpoint += $"&createdBefore={CreatedBefore.Value:yyyy-MM-dd}";
                 if (CreatedAfter.HasValue)
@@ -196,9 +205,16 @@ namespace BackOffice.ViewModels
 
                 TotalItemCount = results.TotalItemCount;
 
-                UpdateStatus(string.IsNullOrWhiteSpace(searchInput)
-                    ? "Vehicle brands loaded successfully."
-                    : $"Search completed for '{CurrentSearchInput}' ({TotalItemCount} results).");
+                if (ShowDeleted)
+                {
+                    UpdateStatus($"Showing only deleted {DisplayName}.");
+                }
+                else
+                {
+                    UpdateStatus(string.IsNullOrWhiteSpace(searchInput)
+                        ? $"{DisplayName} loaded successfully."
+                        : $"Search completed for '{CurrentSearchInput}' ({TotalItemCount} results).");
+                }
             }
             catch (Exception ex)
             {
