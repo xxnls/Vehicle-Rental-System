@@ -24,5 +24,23 @@ namespace BackOffice.Views.CustomControls
         {
             InitializeComponent();
         }
+
+        public ICommand ShowFilterOptionsCommand
+        {
+            get => (ICommand)GetValue(ShowFilterOptionsCommandProperty);
+            set => SetValue(ShowFilterOptionsCommandProperty, value);
+        }
+
+        public ICommand ShowDeletedModelsCommand
+        {
+            get => (ICommand)GetValue(ShowDeletedModelsCommandProperty);
+            set => SetValue(ShowDeletedModelsCommandProperty, value);
+        }
+
+        public static readonly DependencyProperty ShowFilterOptionsCommandProperty =
+            DependencyProperty.Register(nameof(ShowFilterOptionsCommand), typeof(ICommand), typeof(FilterButtonsControl), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty ShowDeletedModelsCommandProperty =
+            DependencyProperty.Register(nameof(ShowDeletedModelsCommand), typeof(ICommand), typeof(FilterButtonsControl), new PropertyMetadata(null));
     }
 }

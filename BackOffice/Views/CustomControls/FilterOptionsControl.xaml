@@ -11,7 +11,7 @@
     <Border BorderThickness="1"
             BorderBrush="{StaticResource PrimaryBrush}"
             CornerRadius="5"
-            Margin="10,5,10,5">
+            Margin="10,2,10,6">
         <StackPanel Orientation="Horizontal" Height="75">
             <StackPanel Orientation="Vertical">
                 <Label Content="{x:Static generic:Resources.CreatedAfter}" />

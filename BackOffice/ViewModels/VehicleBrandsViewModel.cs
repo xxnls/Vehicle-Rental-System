@@ -21,6 +21,7 @@ namespace BackOffice.ViewModels
             DeleteVehicleBrandCommand = new RelayCommand(async () => await DeleteVehicleBrandAsync());
             SwitchToCreateModeCommand = new RelayCommand(SwitchToCreateMode);
             SwitchToEditModeCommand = new RelayCommand(SwitchToEditMode);
+            ShowFilterOptionsCommand = new RelayCommand(ShowFilterOptions);
             SwitchToListModeCommand = new RelayCommand(Cancel);
 
             LoadModelsCommand = new RelayCommand(async () => await LoadModelsAsync());
@@ -113,6 +114,7 @@ namespace BackOffice.ViewModels
         public ICommand SwitchToListModeCommand { get; }
         public ICommand SwitchToCreateModeCommand { get; }
         public ICommand SwitchToEditModeCommand { get; }
+        public ICommand ShowFilterOptionsCommand { get; }
 
         #endregion
 
@@ -165,7 +167,10 @@ namespace BackOffice.ViewModels
             UpdateStatus("Switched to edit mode.");
         }
 
-
+        private void ShowFilterOptions()
+        {
+            IsFiltering = !IsFiltering;
+        }
 
         // Add a new vehicle brand
         private async Task AddVehicleBrandAsync()

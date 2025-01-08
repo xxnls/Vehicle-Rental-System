@@ -85,11 +85,7 @@
             </StackPanel>
         </Grid>
 
-        <cc:FilterOptionsControl CreatedBefore="{Binding CreatedBefore, Mode=TwoWay}"
-                                 CreatedAfter="{Binding CreatedAfter, Mode=TwoWay}"
-                                 ModifiedBefore="{Binding ModifiedBefore, Mode=TwoWay}"
-                                 ModifiedAfter="{Binding ModifiedAfter, Mode=TwoWay}"
-                                 FilterCommand="{Binding LoadModelsCommand}"/>
+
 
         <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid>
@@ -108,9 +104,18 @@
                 <cc:SearchControl Grid.Column="1"
                                   SearchCommand="{Binding SearchCommand}"/>
 
-                <cc:FilterButtonsControl Grid.Column="2" Margin="0,0,5,0"/>
+                <cc:FilterButtonsControl ShowFilterOptionsCommand="{Binding ShowFilterOptionsCommand}"
+                                         Grid.Column="2"
+                                         Margin="0,0,5,0"/>
             </Grid>
-            
+
+            <cc:FilterOptionsControl Visibility="{Binding IsFiltering, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     CreatedBefore="{Binding CreatedBefore, Mode=TwoWay}"
+                                     CreatedAfter="{Binding CreatedAfter, Mode=TwoWay}"
+                                     ModifiedBefore="{Binding ModifiedBefore, Mode=TwoWay}"
+                                     ModifiedAfter="{Binding ModifiedAfter, Mode=TwoWay}"
+                                     FilterCommand="{Binding LoadModelsCommand}"/>
+
             <!-- Data Grid -->
             <DataGrid ItemsSource="{Binding Models}"
                       Style="{StaticResource DefaultDataGridStyle}"

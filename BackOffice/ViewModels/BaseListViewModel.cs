@@ -17,6 +17,7 @@ namespace BackOffice.ViewModels
             IsListVisible = true;
             IsCreating = false;
             IsEditing = false;
+            IsFiltering = false;
 
             EndPointName = endPointName;
 
@@ -67,6 +68,17 @@ namespace BackOffice.ViewModels
             set
             {
                 _isEditing = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isFiltering;
+        public bool IsFiltering
+        {
+            get => _isFiltering;
+            set
+            {
+                _isFiltering = value;
                 OnPropertyChanged();
             }
         }

@@ -36,7 +36,7 @@ namespace API.Services
             {
                 BaseSalary = null,
                 HourlyRate = null,
-                ModifiedDate = DateTime.UtcNow
+                ModifiedDate = null
             };
 
             // Save the related entities first
