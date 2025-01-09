@@ -7,12 +7,36 @@
       "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\baselistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\vehicles\\vehiclebrandsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\vehicles\\vehiclebrandsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewmodels\\vehiclebrandsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\vehiclebrandsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\models\\vehicles\\vehiclebrands\\dtos\\rvehiclebranddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\models\\vehicles\\vehiclebrands\\dtos\\rvehiclebranddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\models\\vehicles\\vehiclebrands\\dtos\\cuvehiclebranddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\models\\vehicles\\vehiclebrands\\dtos\\cuvehiclebranddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewmodels\\other\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\other\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\interfaces\\ieditablemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\interfaces\\ieditablemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\baseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\interfaces\\ilistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\interfaces\\ilistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,21 +46,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BaseViewModel.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\BaseViewModel.cs",
-              "RelativeDocumentMoniker": "BackOffice\\ViewModels\\BaseViewModel.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\BaseViewModel.cs",
-              "RelativeToolTip": "BackOffice\\ViewModels\\BaseViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T11:38:21.446Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -45,22 +56,112 @@
               "RelativeDocumentMoniker": "BackOffice\\ViewModels\\BaseListViewModel.cs",
               "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\BaseListViewModel.cs*",
               "RelativeToolTip": "BackOffice\\ViewModels\\BaseListViewModel.cs*",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAowHIAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAC4BAAAAAAAAAAAAwDkBAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-09T11:38:20.729Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "VehicleBrandsViewModel.cs",
               "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\VehicleBrandsViewModel.cs",
               "RelativeDocumentMoniker": "BackOffice\\ViewModels\\VehicleBrandsViewModel.cs",
               "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\VehicleBrandsViewModel.cs",
               "RelativeToolTip": "BackOffice\\ViewModels\\VehicleBrandsViewModel.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAlwBYAAABJAAAAAAAAAA==",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAcwGEAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-09T11:38:12.325Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VehicleBrandsView.xaml",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\Vehicles\\VehicleBrandsView.xaml",
+              "RelativeDocumentMoniker": "BackOffice\\Views\\Vehicles\\VehicleBrandsView.xaml",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Vehicles\\VehicleBrandsView.xaml",
+              "RelativeToolTip": "BackOffice\\Views\\Vehicles\\VehicleBrandsView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-09T16:03:35.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IEditableModel.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Interfaces\\IEditableModel.cs",
+              "RelativeDocumentMoniker": "BackOffice\\Interfaces\\IEditableModel.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Interfaces\\IEditableModel.cs",
+              "RelativeToolTip": "BackOffice\\Interfaces\\IEditableModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T14:56:53.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RVehicleBrandDTO.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Models\\Vehicles\\VehicleBrands\\DTOs\\RVehicleBrandDTO.cs",
+              "RelativeDocumentMoniker": "BackOffice\\Models\\Vehicles\\VehicleBrands\\DTOs\\RVehicleBrandDTO.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Models\\Vehicles\\VehicleBrands\\DTOs\\RVehicleBrandDTO.cs",
+              "RelativeToolTip": "BackOffice\\Models\\Vehicles\\VehicleBrands\\DTOs\\RVehicleBrandDTO.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAqwCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T14:57:18.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CUVehicleBrandDTO.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Models\\Vehicles\\VehicleBrands\\DTOs\\CUVehicleBrandDTO.cs",
+              "RelativeDocumentMoniker": "BackOffice\\Models\\Vehicles\\VehicleBrands\\DTOs\\CUVehicleBrandDTO.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Models\\Vehicles\\VehicleBrands\\DTOs\\CUVehicleBrandDTO.cs",
+              "RelativeToolTip": "BackOffice\\Models\\Vehicles\\VehicleBrands\\DTOs\\CUVehicleBrandDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T15:24:22.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoginViewModel.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Other\\LoginViewModel.cs",
+              "RelativeDocumentMoniker": "BackOffice\\ViewModels\\Other\\LoginViewModel.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Other\\LoginViewModel.cs",
+              "RelativeToolTip": "BackOffice\\ViewModels\\Other\\LoginViewModel.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAowBMAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T15:06:55.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BaseViewModel.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\BaseViewModel.cs",
+              "RelativeDocumentMoniker": "BackOffice\\ViewModels\\BaseViewModel.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\BaseViewModel.cs",
+              "RelativeToolTip": "BackOffice\\ViewModels\\BaseViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T11:38:21.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IListViewModel.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Interfaces\\IListViewModel.cs",
+              "RelativeDocumentMoniker": "BackOffice\\Interfaces\\IListViewModel.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Interfaces\\IListViewModel.cs",
+              "RelativeToolTip": "BackOffice\\Interfaces\\IListViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T14:24:57.574Z",
               "EditorCaption": ""
             }
           ]

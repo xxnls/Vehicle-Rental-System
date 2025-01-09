@@ -7,6 +7,7 @@ using BackOffice.Services;
 using CommunityToolkit.Mvvm.Input;
 using BackOffice.Models.Vehicles.VehicleBrands.DTOs;
 using BackOffice.Helpers;
+using BackOffice.Interfaces;
 using BackOffice.Models;
 using CommunityToolkit.Mvvm.Messaging;
 
@@ -19,9 +20,6 @@ namespace BackOffice.ViewModels
             AddVehicleBrandCommand = new RelayCommand(async () => await AddVehicleBrandAsync());
             UpdateVehicleBrandCommand = new RelayCommand(async () => await UpdateVehicleBrandAsync());
             DeleteVehicleBrandCommand = new RelayCommand(async () => await DeleteVehicleBrandAsync());
-            SwitchToCreateModeCommand = new RelayCommand(SwitchToCreateMode);
-            SwitchToEditModeCommand = new RelayCommand(SwitchToEditMode);
-            SwitchToListModeCommand = new RelayCommand(Cancel);
 
             LoadModelsCommand = new RelayCommand(async () => await LoadModelsAsync());
             LoadNextPageCommand = new RelayCommand(async () => await LoadNextPageAsync(), () => CanLoadNextPage);
@@ -32,27 +30,6 @@ namespace BackOffice.ViewModels
         }
 
         #region Properties & Fields
-
-        // Selected vehicle brand for editing or details
-        private RVehicleBrandDTO? _selectedVehicleBrand;
-        public RVehicleBrandDTO? SelectedVehicleBrand
-        {
-            get => _selectedVehicleBrand;
-            set
-            {
-                _selectedVehicleBrand = value;
-                OnPropertyChanged(nameof(SelectedVehicleBrand));
-
-                // Populate editable properties when selecting an item
-                if (_selectedVehicleBrand != null)
-                {
-                    Name = _selectedVehicleBrand.Name;
-                    Description = _selectedVehicleBrand.Description;
-                    Website = _selectedVehicleBrand.Website;
-                    LogoUrl = _selectedVehicleBrand.LogoUrl;
-                }
-            }
-        }
 
         // Properties for binding input fields
         private string _name = string.Empty;
@@ -110,61 +87,11 @@ namespace BackOffice.ViewModels
         public ICommand AddVehicleBrandCommand { get; }
         public ICommand UpdateVehicleBrandCommand { get; }
         public ICommand DeleteVehicleBrandCommand { get; }
-        public ICommand SwitchToListModeCommand { get; }
-        public ICommand SwitchToCreateModeCommand { get; }
-        public ICommand SwitchToEditModeCommand { get; }
+
 
         #endregion
 
         #region Methods
-
-        // Clear all input fields
-        private void ClearInputFields()
-        {
-            Name = string.Empty;
-            Description = null;
-            Website = null;
-            LogoUrl = null;
-        }
-
-        // Cancel the current operation and switch back to list mode
-        private void Cancel()
-        {
-            IsCreating = false;
-            IsEditing = false;
-            IsListVisible = true;
-
-            ClearInputFields();
-        }
-
-        // Switch to create mode
-        private void SwitchToCreateMode()
-        {
-            ClearInputFields();
-
-            IsEditing = false;
-            IsListVisible = false;
-            IsCreating = true;
-
-            UpdateStatus("Switched to create mode.");
-        }
-
-        // Switch to edit mode
-        private void SwitchToEditMode()
-        {
-            if (SelectedVehicleBrand == null)
-            {
-                UpdateStatus("Please select an object to edit.");
-                return;
-            }
-
-            IsListVisible = false;
-            IsCreating = false;
-            IsEditing = true;
-
-            UpdateStatus("Switched to edit mode.");
-        }
-
 
         // Add a new vehicle brand
         private async Task AddVehicleBrandAsync()
@@ -173,12 +100,18 @@ namespace BackOffice.ViewModels
             {
                 IsBusy = true;
 
+                if (EditableModel == null)
+                {
+                    UpdateStatus("Error while adding a new model.");
+                    return;
+                }
+
                 var NewVehicleBrand = new CUVehicleBrandDTO
                 {
-                    Name = Name,
-                    Description = Description,
-                    Website = Website,
-                    LogoUrl = LogoUrl
+                    Name = EditableModel.Name,
+                    Description = EditableModel.Description,
+                    Website = EditableModel.Website,
+                    LogoUrl = EditableModel.LogoUrl
                 };
 
                 await ApiClient.PostAsync<CUVehicleBrandDTO, RVehicleBrandDTO>("VehicleBrands", NewVehicleBrand);
@@ -194,9 +127,7 @@ namespace BackOffice.ViewModels
             {
                 IsBusy = false;
 
-                ClearInputFields();
-
-                Cancel();
+                SwitchViewMode(ViewMode.List);
             }
         }
 
@@ -207,15 +138,21 @@ namespace BackOffice.ViewModels
             {
                 IsBusy = true;
 
+                if (EditableModel == null)
+                {
+                    UpdateStatus("Please select a vehicle brand to edit.");
+                    return;
+                }
+
                 var updatedBrand = new CUVehicleBrandDTO
                 {
-                    Name = Name,
-                    Description = Description,
-                    Website = Website,
-                    LogoUrl = LogoUrl
+                    Name = EditableModel.Name,
+                    Description = EditableModel.Description,
+                    Website = EditableModel.Website,
+                    LogoUrl = EditableModel.LogoUrl
                 };
 
-                await ApiClient.PutAsync($"VehicleBrands/{SelectedVehicleBrand.VehicleBrandId}", updatedBrand);
+                await ApiClient.PutAsync($"VehicleBrands/{EditableModel.VehicleBrandId}", updatedBrand);
                 UpdateStatus("Vehicle brand updated successfully.");
                 await LoadModelsAsync();
             }
@@ -227,14 +164,15 @@ namespace BackOffice.ViewModels
             finally
             {
                 IsBusy = false;
-                Cancel();
+
+                SwitchViewMode(ViewMode.List);
             }
         }
 
         // Delete a vehicle brand
         private async Task DeleteVehicleBrandAsync()
         {
-            if (SelectedVehicleBrand == null)
+            if (EditableModel == null)
             {
                 UpdateStatus("Please select a vehicle brand to delete.");
                 return;
@@ -243,7 +181,7 @@ namespace BackOffice.ViewModels
             try
             {
                 IsBusy = true;
-                await ApiClient.DeleteAsync($"VehicleBrands/{SelectedVehicleBrand.VehicleBrandId}");
+                await ApiClient.DeleteAsync($"VehicleBrands/{EditableModel.VehicleBrandId}");
                 UpdateStatus("Vehicle brand deleted successfully.");
                 await LoadModelsAsync();
             }
@@ -282,22 +220,22 @@ namespace BackOffice.ViewModels
 
         private void ValidateDescription()
         {
-            ValidateProperty(nameof(Description),
-                () => string.IsNullOrWhiteSpace(Description) || Description.Length <= 250,
+            ValidateProperty(nameof(EditableModel.Description),
+                () => string.IsNullOrWhiteSpace(EditableModel.Description) || EditableModel.Description.Length <= 250,
                 "Description cannot exceed 250 characters.");
         }
 
         private void ValidateWebsite()
         {
-            ValidateProperty(nameof(Website),
-                () => string.IsNullOrWhiteSpace(Website) || Uri.IsWellFormedUriString(Website, UriKind.Absolute),
+            ValidateProperty(nameof(EditableModel.Website),
+                () => string.IsNullOrWhiteSpace(EditableModel.Website) || Uri.IsWellFormedUriString(EditableModel.Website, UriKind.Absolute),
                 "Invalid website URL.");
         }
 
         private void ValidateLogoUrl()
         {
-            ValidateProperty(nameof(LogoUrl),
-                () => string.IsNullOrWhiteSpace(LogoUrl) || Uri.IsWellFormedUriString(LogoUrl, UriKind.Absolute),
+            ValidateProperty(nameof(EditableModel.LogoUrl),
+                () => string.IsNullOrWhiteSpace(EditableModel.LogoUrl) || Uri.IsWellFormedUriString(EditableModel.LogoUrl, UriKind.Absolute),
                 "Invalid logo URL.");
         }
 

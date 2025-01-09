@@ -30,19 +30,19 @@
             <StackPanel Orientation="Vertical" Margin="10">
                 <!-- Input Fields -->
                 <Label Content="Name:" />
-                <TextBox x:Name="NameField" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox x:Name="NameField" Text="{Binding EditableModel.Name, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=NameField}" />
 
                 <Label Content="Description: "/>
-                <TextBox x:Name="DescriptionField" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox x:Name="DescriptionField" Text="{Binding EditableModel.Description, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=DescriptionField}" />
 
                 <Label Content="Website:" />
-                <TextBox x:Name="WebsiteField" Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox x:Name="WebsiteField" Text="{Binding EditableModel.Website, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=WebsiteField}" />
 
                 <Label Content="Logo URL:" />
-                <TextBox x:Name="LogoField" Text="{Binding LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox x:Name="LogoField" Text="{Binding EditableModel.LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=LogoField}" />
             </StackPanel>
 
@@ -62,19 +62,19 @@
             <StackPanel Orientation="Vertical" Margin="10">
                 <!-- Input Fields -->
                 <Label Content="Name:" />
-                <TextBox x:Name="EditNameField" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox x:Name="EditNameField" Text="{Binding EditableModel.Name, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EditNameField}" />
 
                 <Label Content="Description: "/>
-                <TextBox x:Name="EditDescriptionField" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox x:Name="EditDescriptionField" Text="{Binding EditableModel.Description, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EditDescriptionField}" />
 
                 <Label Content="Website:" />
-                <TextBox x:Name="EditWebsiteField" Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox x:Name="EditWebsiteField" Text="{Binding EditableModel.Website, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EditWebsiteField}" />
 
                 <Label Content="Logo URL:" />
-                <TextBox x:Name="EditLogoField" Text="{Binding LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox x:Name="EditLogoField" Text="{Binding EditableModel.LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EditLogoField}" />
             </StackPanel>
 
@@ -118,7 +118,7 @@
             <!-- Data Grid -->
             <DataGrid ItemsSource="{Binding Models}"
                       Style="{StaticResource DefaultDataGridStyle}"
-                      SelectedItem="{Binding SelectedVehicleBrand, Mode=TwoWay}">
+                      SelectedItem="{Binding EditableModel, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding VehicleBrandId}" />
                     <DataGridTextColumn Header="{x:Static generic:Resources.Name}" Binding="{Binding Name}" />

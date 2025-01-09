@@ -1,6 +1,8 @@
-﻿namespace BackOffice.Models.Vehicles.VehicleBrands.DTOs
+﻿using BackOffice.Interfaces;
+
+namespace BackOffice.Models.Vehicles.VehicleBrands.DTOs
 {
-    public class RVehicleBrandDTO
+    public class RVehicleBrandDTO : IEditableModel
     {
         public int VehicleBrandId { get; set; }
 
@@ -19,5 +21,13 @@
         public DateTime? DeletedDate { get; set; }
 
         public bool IsActive { get; set; }
+
+        public void ClearProperties()
+        {
+            Name = string.Empty;
+            Description = null;
+            Website = null;
+            LogoUrl = null;
+        }
     }
 }

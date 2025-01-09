@@ -13,10 +13,11 @@ using BackOffice.Helpers;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Net;
 using BackOffice.Models.Employees.DTOs;
+using BackOffice.Models.Vehicles.VehicleBrands.DTOs;
 
 namespace BackOffice.ViewModels.Other
 {
-    public class LoginViewModel : BaseListViewModel<object>
+    public class LoginViewModel : BaseListViewModel<RVehicleBrandDTO>
     {
         #region Properties & Fields
 

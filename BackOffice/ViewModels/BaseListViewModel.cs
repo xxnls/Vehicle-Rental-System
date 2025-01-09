@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Net;
 using System.Windows;
 using System.Windows.Input;
+using BackOffice.Interfaces;
 using BackOffice.Models;
 using BackOffice.Properties;
 using BackOffice.Services;
@@ -11,7 +12,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace BackOffice.ViewModels
 {
-    public class BaseListViewModel<T> : BaseViewModel, INotifyDataErrorInfo
+    public class BaseListViewModel<T> : BaseViewModel, INotifyDataErrorInfo where T : class, IEditableModel, new()
     {
         public BaseListViewModel(string endPointName, string displayName)
         {
@@ -26,6 +27,9 @@ namespace BackOffice.ViewModels
 
             ShowFilterOptionsCommand = new RelayCommand(ShowFilterOptions);
             ShowDeletedModelsCommand = new RelayCommand(ShowDeletedModels);
+            SwitchToCreateModeCommand = new RelayCommand(() => SwitchViewMode(ViewMode.Create));
+            SwitchToEditModeCommand = new RelayCommand(() => SwitchViewMode(ViewMode.Edit));
+            SwitchToListModeCommand = new RelayCommand(() => SwitchViewMode(ViewMode.List));
 
             ApiClient = new ApiClient();
             Models = [];
@@ -40,6 +44,17 @@ namespace BackOffice.ViewModels
         public ObservableCollection<T> Models { get; }
         protected string EndPointName = string.Empty;
         protected string DisplayName = string.Empty;
+
+        private T? _editableModel;
+        public T? EditableModel
+        {
+            get => _editableModel;
+            set
+            {
+                _editableModel = value;
+                OnPropertyChanged();
+            }
+        }
 
         private readonly Dictionary<string, List<string>> _validationErrors = new();
         public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
@@ -171,6 +186,9 @@ namespace BackOffice.ViewModels
         public ICommand? LoadNextPageCommand { get; set; }
         public ICommand? LoadPreviousPageCommand { get; set; }
         public ICommand? SearchCommand { get; set; }
+        public ICommand SwitchToListModeCommand { get; }
+        public ICommand SwitchToCreateModeCommand { get; }
+        public ICommand SwitchToEditModeCommand { get; }
         public ICommand ShowFilterOptionsCommand { get; }
         public ICommand ShowDeletedModelsCommand { get; }
 
@@ -276,6 +294,47 @@ namespace BackOffice.ViewModels
             ShowDeleted = !ShowDeleted;
 
             LoadModelsAsync();
+        }
+
+        public void ClearInputFields()
+        {
+            EditableModel?.ClearProperties();
+            OnPropertyChanged(nameof(EditableModel));
+        }
+
+        public void SwitchViewMode(ViewMode mode)
+        {
+            // Prevent entering Edit mode if no item is selected
+            if (mode == ViewMode.Edit && EditableModel == null)
+            {
+                UpdateStatus("Please select an item to edit.");
+                return;
+            }
+
+            // Create new editable model for Create mode
+            if (mode == ViewMode.Create)
+            {
+                EditableModel = new T();
+            }
+
+            // Clear EditableModel when switching to List mode
+            if (mode == ViewMode.List)
+            {
+                EditableModel = null;
+            }
+
+            IsCreating = mode == ViewMode.Create;
+            IsEditing = mode == ViewMode.Edit;
+            IsListVisible = mode == ViewMode.List;
+
+            UpdateStatus($"Switched to {mode.ToString().ToLower()} mode.");
+        }
+
+        public enum ViewMode
+        {
+            List,
+            Create,
+            Edit
         }
         #endregion
 
