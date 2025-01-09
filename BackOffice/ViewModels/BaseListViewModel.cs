@@ -7,6 +7,7 @@ using System.Windows.Input;
 using BackOffice.Models;
 using BackOffice.Properties;
 using BackOffice.Services;
+using CommunityToolkit.Mvvm.Input;
 
 namespace BackOffice.ViewModels
 {
@@ -22,6 +23,9 @@ namespace BackOffice.ViewModels
 
             EndPointName = endPointName;
             DisplayName = displayName;
+
+            ShowFilterOptionsCommand = new RelayCommand(ShowFilterOptions);
+            ShowDeletedModelsCommand = new RelayCommand(ShowDeletedModels);
 
             ApiClient = new ApiClient();
             Models = [];
@@ -108,6 +112,8 @@ namespace BackOffice.ViewModels
             }
         }
 
+        #endregion
+
         #region Filter
 
         // Filters for created date
@@ -159,15 +165,20 @@ namespace BackOffice.ViewModels
 
         #endregion
 
-        #endregion
-
         #region Commands
 
         public ICommand? LoadModelsCommand { get; set; }
         public ICommand? LoadNextPageCommand { get; set; }
         public ICommand? LoadPreviousPageCommand { get; set; }
         public ICommand? SearchCommand { get; set; }
+        public ICommand ShowFilterOptionsCommand { get; }
+        public ICommand ShowDeletedModelsCommand { get; }
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
         /// If a search input is provided, the API request includes it to filter results.
         /// </summary>
         /// <param name="searchInput">
@@ -253,6 +264,18 @@ namespace BackOffice.ViewModels
                 CurrentPage--;
                 await LoadModelsAsync(CurrentSearchInput);
             }
+        }
+
+        private void ShowFilterOptions()
+        {
+            IsFiltering = !IsFiltering;
+        }
+
+        private void ShowDeletedModels()
+        {
+            ShowDeleted = !ShowDeleted;
+
+            LoadModelsAsync();
         }
         #endregion
 

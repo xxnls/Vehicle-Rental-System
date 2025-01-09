@@ -21,8 +21,6 @@ namespace BackOffice.ViewModels
             DeleteVehicleBrandCommand = new RelayCommand(async () => await DeleteVehicleBrandAsync());
             SwitchToCreateModeCommand = new RelayCommand(SwitchToCreateMode);
             SwitchToEditModeCommand = new RelayCommand(SwitchToEditMode);
-            ShowFilterOptionsCommand = new RelayCommand(ShowFilterOptions);
-            ShowDeletedModelsCommand = new RelayCommand(ShowDeletedModels);
             SwitchToListModeCommand = new RelayCommand(Cancel);
 
             LoadModelsCommand = new RelayCommand(async () => await LoadModelsAsync());
@@ -64,7 +62,7 @@ namespace BackOffice.ViewModels
             set
             {
                 _name = value;
-                OnPropertyChanged(nameof(Name));
+                OnPropertyChanged();
                 ValidateName();
             }
         }
@@ -76,7 +74,7 @@ namespace BackOffice.ViewModels
             set
             {
                 _description = value;
-                OnPropertyChanged(nameof(Description));
+                OnPropertyChanged();
                 ValidateDescription();
             }
         }
@@ -88,7 +86,7 @@ namespace BackOffice.ViewModels
             set
             {
                 _website = value;
-                OnPropertyChanged(nameof(Website));
+                OnPropertyChanged();
                 ValidateWebsite();
             }
         }
@@ -100,7 +98,7 @@ namespace BackOffice.ViewModels
             set
             {
                 _logoUrl = value;
-                OnPropertyChanged(nameof(LogoUrl));
+                OnPropertyChanged();
                 ValidateLogoUrl();
             }
         }
@@ -115,8 +113,6 @@ namespace BackOffice.ViewModels
         public ICommand SwitchToListModeCommand { get; }
         public ICommand SwitchToCreateModeCommand { get; }
         public ICommand SwitchToEditModeCommand { get; }
-        public ICommand ShowFilterOptionsCommand { get; }
-        public ICommand ShowDeletedModelsCommand { get; }
 
         #endregion
 
@@ -169,17 +165,6 @@ namespace BackOffice.ViewModels
             UpdateStatus("Switched to edit mode.");
         }
 
-        private void ShowFilterOptions()
-        {
-            IsFiltering = !IsFiltering;
-        }
-
-        private void ShowDeletedModels()
-        {
-            ShowDeleted = !ShowDeleted;
-
-            LoadModelsAsync();
-        }
 
         // Add a new vehicle brand
         private async Task AddVehicleBrandAsync()
