@@ -29,65 +29,13 @@ namespace BackOffice.ViewModels
             LoadModelsAsync();
         }
 
-        #region Properties & Fields
 
-        // Properties for binding input fields
-        private string _name = string.Empty;
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                _name = value;
-                OnPropertyChanged();
-                ValidateName();
-            }
-        }
-
-        private string? _description;
-        public string? Description
-        {
-            get => _description;
-            set
-            {
-                _description = value;
-                OnPropertyChanged();
-                ValidateDescription();
-            }
-        }
-
-        private string? _website;
-        public string? Website
-        {
-            get => _website;
-            set
-            {
-                _website = value;
-                OnPropertyChanged();
-                ValidateWebsite();
-            }
-        }
-
-        private string? _logoUrl;
-        public string? LogoUrl
-        {
-            get => _logoUrl;
-            set
-            {
-                _logoUrl = value;
-                OnPropertyChanged();
-                ValidateLogoUrl();
-            }
-        }
-
-        #endregion
 
         #region Commands
 
         public ICommand AddVehicleBrandCommand { get; }
         public ICommand UpdateVehicleBrandCommand { get; }
         public ICommand DeleteVehicleBrandCommand { get; }
-
 
         #endregion
 
@@ -202,19 +150,19 @@ namespace BackOffice.ViewModels
 
         private void ValidateName()
         {
-            ClearErrors(nameof(Name));
+            ClearErrors(nameof(EditableModel.Name));
 
-            if (string.IsNullOrWhiteSpace(Name))
+            if (string.IsNullOrWhiteSpace(EditableModel.Name))
             {
-                AddError(nameof(Name), "Name cannot be empty.");
+                AddError(nameof(EditableModel.Name), "Name cannot be empty.");
             }
-            else if (Name.Length < 3)
+            else if (EditableModel.Name.Length < 3)
             {
-                AddError(nameof(Name), "Name must be at least 3 characters long.");
+                AddError(nameof(EditableModel.Name), "Name must be at least 3 characters long.");
             }
-            else if (Name.Length >= 50)
+            else if (EditableModel.Name.Length >= 50)
             {
-                AddError(nameof(Name), "Name cannot exceed 50 characters.");
+                AddError(nameof(EditableModel.Name), "Name cannot exceed 50 characters.");
             }
         }
 

@@ -42,8 +42,8 @@ namespace BackOffice.ViewModels
 
         // Observable collection for displaying a list of vehicle brands
         public ObservableCollection<T> Models { get; }
-        protected string EndPointName = string.Empty;
-        protected string DisplayName = string.Empty;
+        protected string EndPointName;
+        protected string DisplayName;
 
         private T? _editableModel;
         public T? EditableModel
