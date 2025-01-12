@@ -148,6 +148,16 @@ namespace BackOffice.ViewModels
 
         #region Validation Rules
 
+        protected override void ValidateEditableModel()
+        {
+            if (EditableModel == null) return;
+
+            ValidateName();
+            ValidateDescription();
+            ValidateWebsite();
+            ValidateLogoUrl();
+        }
+
         private void ValidateName()
         {
             ClearErrors(nameof(EditableModel.Name));
@@ -176,15 +186,15 @@ namespace BackOffice.ViewModels
         private void ValidateWebsite()
         {
             ValidateProperty(nameof(EditableModel.Website),
-                () => string.IsNullOrWhiteSpace(EditableModel.Website) || Uri.IsWellFormedUriString(EditableModel.Website, UriKind.Absolute),
-                "Invalid website URL.");
+                () => !string.IsNullOrWhiteSpace(EditableModel.Website) && Uri.IsWellFormedUriString(EditableModel.Website, UriKind.Absolute),
+                "Website URL is required and must be a valid URL.");
         }
 
         private void ValidateLogoUrl()
         {
             ValidateProperty(nameof(EditableModel.LogoUrl),
-                () => string.IsNullOrWhiteSpace(EditableModel.LogoUrl) || Uri.IsWellFormedUriString(EditableModel.LogoUrl, UriKind.Absolute),
-                "Invalid logo URL.");
+                () => !string.IsNullOrWhiteSpace(EditableModel.LogoUrl) && Uri.IsWellFormedUriString(EditableModel.LogoUrl, UriKind.Absolute),
+                "Logo URL is required and must be a valid URL.");
         }
 
         #endregion

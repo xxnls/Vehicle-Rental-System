@@ -12,7 +12,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace BackOffice.ViewModels
 {
-    public class BaseListViewModel<T> : BaseViewModel, INotifyDataErrorInfo where T : class, IEditableModel, new()
+    public class BaseListViewModel<T> : BaseViewModel, INotifyDataErrorInfo where T : class, new()
     {
         public BaseListViewModel(string endPointName, string displayName)
         {
@@ -44,6 +44,9 @@ namespace BackOffice.ViewModels
         public ObservableCollection<T> Models { get; }
         protected string EndPointName;
         protected string DisplayName;
+        private readonly Dictionary<string, List<string>> _validationErrors = new();
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+        public bool HasErrors => _validationErrors.Count > 0;
 
         private T? _editableModel;
         public T? EditableModel
@@ -51,14 +54,21 @@ namespace BackOffice.ViewModels
             get => _editableModel;
             set
             {
+                if (_editableModel is INotifyPropertyChanged oldModel)
+                {
+                    oldModel.PropertyChanged -= EditableModel_PropertyChanged;
+                }
+
                 _editableModel = value;
+
+                if (_editableModel is INotifyPropertyChanged newModel)
+                {
+                    newModel.PropertyChanged += EditableModel_PropertyChanged;
+                }
+
                 OnPropertyChanged();
             }
         }
-
-        private readonly Dictionary<string, List<string>> _validationErrors = new();
-        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
-        public bool HasErrors => _validationErrors.Count > 0;
 
         // Visibility properties for switching between list, create, and edit modes
         private bool _isListVisible;
@@ -127,6 +137,66 @@ namespace BackOffice.ViewModels
             }
         }
 
+        #region Pagination
+
+        private int _currentPage = 1;
+        public int CurrentPage
+        {
+            get => _currentPage;
+            set
+            {
+                _currentPage = value;
+                OnPropertyChanged();
+                UpdatePaginationState();
+            }
+        }
+
+        private int _pageSize = Settings.Default.ModelsPerPage;
+        public int PageSize
+        {
+            get => _pageSize;
+            set
+            {
+                _pageSize = value;
+                OnPropertyChanged();
+                UpdatePaginationState();
+            }
+        }
+
+        private int _totalItemCount;
+        public int TotalItemCount
+        {
+            get => _totalItemCount;
+            set
+            {
+                _totalItemCount = value;
+                OnPropertyChanged();
+                UpdatePaginationState();
+            }
+        }
+
+        private bool _canLoadNextPage = true;
+        public bool CanLoadNextPage
+        {
+            get => _canLoadNextPage;
+            set
+            {
+                _canLoadNextPage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _canLoadPreviousPage = true;
+        public bool CanLoadPreviousPage
+        {
+            get => _canLoadPreviousPage;
+            set
+            {
+                _canLoadPreviousPage = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Filter
@@ -177,6 +247,8 @@ namespace BackOffice.ViewModels
             }
         }
 
+
+        #endregion
 
         #endregion
 
@@ -296,12 +368,6 @@ namespace BackOffice.ViewModels
             LoadModelsAsync();
         }
 
-        public void ClearInputFields()
-        {
-            EditableModel?.ClearProperties();
-            OnPropertyChanged(nameof(EditableModel));
-        }
-
         public void SwitchViewMode(ViewMode mode)
         {
             // Prevent entering Edit mode if no item is selected
@@ -315,6 +381,7 @@ namespace BackOffice.ViewModels
             if (mode == ViewMode.Create)
             {
                 EditableModel = new T();
+                ValidateEditableModel();
             }
 
             // Clear EditableModel when switching to List mode
@@ -336,66 +403,15 @@ namespace BackOffice.ViewModels
             Create,
             Edit
         }
-        #endregion
 
-        #region Pagination
-
-        private int _currentPage = 1;
-        public int CurrentPage
+        private void EditableModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            get => _currentPage;
-            set
-            {
-                _currentPage = value;
-                OnPropertyChanged();
-                UpdatePaginationState();
-            }
+            ValidateEditableModel();
         }
 
-        private int _pageSize = Settings.Default.ModelsPerPage;
-        public int PageSize
+        protected virtual void ValidateEditableModel()
         {
-            get => _pageSize;
-            set
-            {
-                _pageSize = value;
-                OnPropertyChanged();
-                UpdatePaginationState();
-            }
-        }
-
-        private int _totalItemCount;
-        public int TotalItemCount
-        {
-            get => _totalItemCount;
-            set
-            {
-                _totalItemCount = value;
-                OnPropertyChanged();
-                UpdatePaginationState();
-            }
-        }
-
-        private bool _canLoadNextPage = true;
-        public bool CanLoadNextPage
-        {
-            get => _canLoadNextPage;
-            set
-            {
-                _canLoadNextPage = value; 
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _canLoadPreviousPage = true;
-        public bool CanLoadPreviousPage
-        {
-            get => _canLoadPreviousPage;
-            set
-            {
-                _canLoadPreviousPage = value;
-                OnPropertyChanged();
-            }
+            // To be overridden in derived classes
         }
 
         private void UpdatePaginationState()
@@ -404,9 +420,7 @@ namespace BackOffice.ViewModels
             CanLoadPreviousPage = CurrentPage > 1;
         }
 
-        #endregion
-
-        #region INotifyDataErrorInfo Implementation
+        #region Validation
 
         public IEnumerable GetErrors(string? propertyName)
         {
@@ -443,10 +457,6 @@ namespace BackOffice.ViewModels
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
 
-        #endregion
-
-        #region Validation
-
         /// <summary>
         /// Validates a single property using a validation function.
         /// </summary>
@@ -478,5 +488,8 @@ namespace BackOffice.ViewModels
         }
 
         #endregion
+
+        #endregion
+
     }
 }

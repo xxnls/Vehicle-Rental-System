@@ -22,6 +22,7 @@ namespace BackOffice.Views
         public LoginWindow()
         {
             InitializeComponent();
+            LoginField.Text = "albert.nugat855";
         }
     }
 }

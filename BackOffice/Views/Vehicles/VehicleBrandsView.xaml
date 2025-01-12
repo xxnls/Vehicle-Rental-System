@@ -31,19 +31,27 @@
                 <!-- Input Fields -->
                 <Label Content="Name:" />
                 <TextBox x:Name="NameField" Text="{Binding EditableModel.Name, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=NameField}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}"
+                           helpers:ValidationHelper.PropertyName="Name"
+                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                 <Label Content="Description: "/>
                 <TextBox x:Name="DescriptionField" Text="{Binding EditableModel.Description, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=DescriptionField}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}"
+                           helpers:ValidationHelper.PropertyName="Description"
+                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                 <Label Content="Website:" />
                 <TextBox x:Name="WebsiteField" Text="{Binding EditableModel.Website, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=WebsiteField}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}"
+                           helpers:ValidationHelper.PropertyName="Website"
+                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                 <Label Content="Logo URL:" />
                 <TextBox x:Name="LogoField" Text="{Binding EditableModel.LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=LogoField}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}"
+                           helpers:ValidationHelper.PropertyName="LogoUrl"
+                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
             </StackPanel>
 
              <!-- Action Buttons -->
@@ -63,19 +71,27 @@
                 <!-- Input Fields -->
                 <Label Content="Name:" />
                 <TextBox x:Name="EditNameField" Text="{Binding EditableModel.Name, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EditNameField}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}"
+                           helpers:ValidationHelper.PropertyName="Name"
+                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                 <Label Content="Description: "/>
                 <TextBox x:Name="EditDescriptionField" Text="{Binding EditableModel.Description, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EditDescriptionField}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}"
+                           helpers:ValidationHelper.PropertyName="Description"
+                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                 <Label Content="Website:" />
                 <TextBox x:Name="EditWebsiteField" Text="{Binding EditableModel.Website, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EditWebsiteField}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}"
+                           helpers:ValidationHelper.PropertyName="Website"
+                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                 <Label Content="Logo URL:" />
                 <TextBox x:Name="EditLogoField" Text="{Binding EditableModel.LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=EditLogoField}" />
+                <TextBlock Foreground="{StaticResource ErrorBrush}"
+                           helpers:ValidationHelper.PropertyName="LogoUrl"
+                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
             </StackPanel>
 
             <!-- Action Buttons -->
