@@ -92,6 +92,7 @@ namespace BackOffice.ViewModels
 
                 var updatedBrand = new VehicleBrandDto
                 {
+                    VehicleBrandId = EditableModel.VehicleBrandId, // There is need for id because of check in controller
                     Name = EditableModel.Name,
                     Description = EditableModel.Description,
                     Website = EditableModel.Website,

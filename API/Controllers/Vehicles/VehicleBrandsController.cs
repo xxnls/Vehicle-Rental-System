@@ -15,12 +15,8 @@ namespace API.Controllers.Vehicles
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VehicleBrandsController : BaseApiController<VehicleBrand, VehicleBrandDto, VehicleBrandDto>
+    public class VehicleBrandsController(VehicleBrandsService service) : BaseApiController<VehicleBrand, VehicleBrandDto, VehicleBrandDto>(service)
     {
-        public VehicleBrandsController(VehicleBrandsService service) : base(service)
-        {
-        }
-
         protected override int GetEntityId(VehicleBrandDto entity)
         {
             return entity.VehicleBrandId;

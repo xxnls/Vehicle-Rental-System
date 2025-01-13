@@ -6,17 +6,12 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public abstract class BaseApiController<TEntity, TCreateDto, TResponseDto> : ControllerBase
+    public abstract class BaseApiController<TEntity, TCreateDto, TResponseDto>(IBaseService<TEntity, TCreateDto, TResponseDto> service) : ControllerBase
         where TEntity : class
         where TCreateDto : class
         where TResponseDto : class
     {
-        protected readonly IBaseService<TEntity, TCreateDto, TResponseDto> _service;
-
-        protected BaseApiController(IBaseService<TEntity, TCreateDto, TResponseDto> service)
-        {
-            _service = service;
-        }
+        protected readonly IBaseService<TEntity, TCreateDto, TResponseDto> _service = service;
 
         // GET: api/[controller]
         [HttpGet]
@@ -39,6 +34,7 @@ namespace API.Controllers
                 modifiedBefore, 
                 modifiedAfter,
                 pageSize);
+
             return Ok(entities);
         }
 
@@ -65,8 +61,8 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public virtual async Task<ActionResult<TResponseDto>> Update(int id, TCreateDto entity)
         {
-            //if (id != GetEntityId(entity))
-            //    return BadRequest(); NAPRAWIC
+            if (id != GetEntityId(entity))
+                return BadRequest();
 
             var updated = await _service.UpdateAsync(id, entity);
             if (updated == null)
