@@ -17,7 +17,7 @@ using BackOffice.Models.Vehicles.VehicleBrands.DTOs;
 
 namespace BackOffice.ViewModels.Other
 {
-    public class LoginViewModel : BaseListViewModel<RVehicleBrandDTO>
+    public class LoginViewModel : BaseListViewModel<VehicleBrandDto>
     {
         #region Properties & Fields
 

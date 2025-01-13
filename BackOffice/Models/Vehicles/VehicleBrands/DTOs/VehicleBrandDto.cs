@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace BackOffice.Models.Vehicles.VehicleBrands.DTOs
 {
-    public class RVehicleBrandDTO : BaseDtoModel
+    public class VehicleBrandDto : BaseDtoModel
     {
         public int VehicleBrandId { get; set; }
 

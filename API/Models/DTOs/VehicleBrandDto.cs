@@ -1,6 +1,6 @@
 ﻿namespace API.Models.DTOs
 {
-    public class RVehicleBrandDTO
+    public class VehicleBrandDto
     {
         public int VehicleBrandId { get; set; }
 

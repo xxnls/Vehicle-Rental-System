@@ -22,6 +22,7 @@ builder.Services.AddDbContext<ApiDbContext>(options =>
 
 builder.Services.AddScoped<EmployeeAuthService>();
 builder.Services.AddScoped<EmployeesService>();
+builder.Services.AddScoped<VehicleBrandsService>();
 
 builder.Services.AddIdentityCore<Employee>(options => { })
     .AddRoles<EmployeeRole>()

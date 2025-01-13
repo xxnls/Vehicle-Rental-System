@@ -13,7 +13,7 @@ using CommunityToolkit.Mvvm.Messaging;
 
 namespace BackOffice.ViewModels
 {
-    public class VehicleBrandsViewModel : BaseListViewModel<RVehicleBrandDTO>
+    public class VehicleBrandsViewModel : BaseListViewModel<VehicleBrandDto>
     {
         public VehicleBrandsViewModel() : base("VehicleBrands", "Vehicle Brands")
         {
@@ -28,8 +28,6 @@ namespace BackOffice.ViewModels
 
             LoadModelsAsync();
         }
-
-
 
         #region Commands
 
@@ -54,7 +52,7 @@ namespace BackOffice.ViewModels
                     return;
                 }
 
-                var NewVehicleBrand = new CUVehicleBrandDTO
+                var NewVehicleBrand = new VehicleBrandDto()
                 {
                     Name = EditableModel.Name,
                     Description = EditableModel.Description,
@@ -62,7 +60,7 @@ namespace BackOffice.ViewModels
                     LogoUrl = EditableModel.LogoUrl
                 };
 
-                await ApiClient.PostAsync<CUVehicleBrandDTO, RVehicleBrandDTO>("VehicleBrands", NewVehicleBrand);
+                await ApiClient.PostAsync<VehicleBrandDto, VehicleBrandDto>("VehicleBrands", NewVehicleBrand);
                 UpdateStatus("Vehicle brand added successfully.");
                 await LoadModelsAsync();
             }
@@ -92,7 +90,7 @@ namespace BackOffice.ViewModels
                     return;
                 }
 
-                var updatedBrand = new CUVehicleBrandDTO
+                var updatedBrand = new VehicleBrandDto
                 {
                     Name = EditableModel.Name,
                     Description = EditableModel.Description,
