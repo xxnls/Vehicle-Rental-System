@@ -19,6 +19,8 @@ namespace BackOffice
         {
             base.OnStartup(e);
 
+            LocalizationHelper.SetLanguage(Settings.Default.Language);
+
             // Show LoginWindow on startup
             var loginWindow = new LoginWindow();
             loginWindow.Show();
@@ -45,10 +47,6 @@ namespace BackOffice
                     loginWindow.Show();
                 }
             });
-
-            string savedLanguage = Settings.Default.Language;
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(savedLanguage);
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(savedLanguage);
         }
     }
 

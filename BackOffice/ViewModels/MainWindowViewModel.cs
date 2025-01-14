@@ -103,7 +103,7 @@ namespace BackOffice.ViewModels
             ToggleSidebarCommand = new RelayCommand(ToggleSidebar);
             LogoutCommand = new RelayCommand(Logout);
             ChangeWorkspaceCommand = new RelayCommand<object>(ChangeWorkspace);
-            ChangeLanguageCommand = new RelayCommand<string>(ChangeLanguage);
+            ChangeLanguageCommand = new RelayCommand<string>(LocalizationHelper.SetLanguage);
         }
 
         #region Methods
@@ -118,15 +118,6 @@ namespace BackOffice.ViewModels
             {
                 CurrentWorkspace = _viewModelMappings[viewModelKey];
             }
-        }
-
-        private void ChangeLanguage(string cultureName)
-        {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureName);
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureName);
-
-            Settings.Default.Language = cultureName;
-            Settings.Default.Save();
         }
 
         /// <summary>

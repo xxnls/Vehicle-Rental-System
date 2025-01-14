@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using BackOffice.Properties;
+using System.Globalization;
 using System.Resources;
 
 namespace BackOffice.Helpers
@@ -26,6 +27,21 @@ namespace BackOffice.Helpers
             var resourceManager = new ResourceManager(resourceName, typeof(LocalizationHelper).Assembly);
 
             return resourceManager.GetString(key, CultureInfo.CurrentUICulture) ?? key;
+        }
+
+        /// <summary>
+        /// Sets the language of the application
+        /// </summary>
+        /// <param name="language">
+        /// The language to set the application to.
+        /// </param>
+        public static void SetLanguage(string language)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
+
+            Settings.Default.Language = language;
+            Settings.Default.Save();
         }
     }
 }
