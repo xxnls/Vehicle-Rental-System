@@ -1,12 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Net;
-using System.Windows;
 using System.Windows.Input;
-using BackOffice.Interfaces;
 using BackOffice.Models;
-using BackOffice.Models.Vehicles.VehicleBrands.DTOs;
 using BackOffice.Properties;
 using BackOffice.Services;
 using CommunityToolkit.Mvvm.Input;
@@ -278,6 +274,51 @@ namespace BackOffice.ViewModels
         #region Methods
 
         /// <summary>
+        /// Enum for switching between List, Create, and Edit view modes.
+        /// </summary>
+        public enum ViewMode
+        {
+            List,
+            Create,
+            Edit
+        }
+
+        /// <summary>
+        /// Switches the view mode between List, Create, and Edit.
+        /// </summary>
+        /// <param name="mode">
+        /// Chosen mode to switch to.
+        /// </param>
+        public void SwitchViewMode(ViewMode mode)
+        {
+            // Prevent entering Edit mode if no item is selected
+            if (mode == ViewMode.Edit && EditableModel == null)
+            {
+                UpdateStatus("Please select an item to edit.");
+                return;
+            }
+
+            // Create new editable model for Create mode
+            if (mode == ViewMode.Create)
+            {
+                EditableModel = new T();
+                ValidateEditableModel();
+            }
+
+            // Clear EditableModel when switching to List mode
+            if (mode == ViewMode.List)
+            {
+                EditableModel = null;
+            }
+
+            IsCreating = mode == ViewMode.Create;
+            IsEditing = mode == ViewMode.Edit;
+            IsListVisible = mode == ViewMode.List;
+
+            UpdateStatus($"Switched to {mode.ToString().ToLower()} mode.");
+        }
+
+        /// <summary>
         /// Loads a list of models, optionally filtered by a search input. It also handles pagination and various filter options such as created and modified dates.
         /// </summary>
         /// <param name="searchInput">
@@ -472,62 +513,28 @@ namespace BackOffice.ViewModels
             }
         }
 
+        protected virtual void ValidateEditableModel()
+        {
+            // To be overridden in derived classes
+        }
+
+        /// <summary>
+        /// Toggles the visibility of the filter options.
+        /// </summary>
         private void ShowFilterOptions()
         {
             IsFiltering = !IsFiltering;
         }
 
+        /// <summary>
+        /// Toggles the visibility of deleted models.
+        /// </summary>
         private void ShowDeletedModels()
         {
             ShowDeleted = !ShowDeleted;
+            CurrentPage = 1;
 
             LoadModelsAsync();
-        }
-
-        public void SwitchViewMode(ViewMode mode)
-        {
-            // Prevent entering Edit mode if no item is selected
-            if (mode == ViewMode.Edit && EditableModel == null)
-            {
-                UpdateStatus("Please select an item to edit.");
-                return;
-            }
-
-            // Create new editable model for Create mode
-            if (mode == ViewMode.Create)
-            {
-                EditableModel = new T();
-                ValidateEditableModel();
-            }
-
-            // Clear EditableModel when switching to List mode
-            if (mode == ViewMode.List)
-            {
-                EditableModel = null;
-            }
-
-            IsCreating = mode == ViewMode.Create;
-            IsEditing = mode == ViewMode.Edit;
-            IsListVisible = mode == ViewMode.List;
-
-            UpdateStatus($"Switched to {mode.ToString().ToLower()} mode.");
-        }
-
-        public enum ViewMode
-        {
-            List,
-            Create,
-            Edit
-        }
-
-        private void EditableModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
-        {
-            ValidateEditableModel();
-        }
-
-        protected virtual void ValidateEditableModel()
-        {
-            // To be overridden in derived classes
         }
 
         private void UpdatePaginationState()
@@ -536,41 +543,24 @@ namespace BackOffice.ViewModels
             CanLoadPreviousPage = CurrentPage > 1;
         }
 
+        private void EditableModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            ValidateEditableModel();
+        }
+
         #region Validation
 
+        /// <summary>
+        /// Gets the errors for a specific property.
+        /// </summary>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
         public IEnumerable GetErrors(string? propertyName)
         {
             if (propertyName != null && _validationErrors.ContainsKey(propertyName))
                 return _validationErrors[propertyName];
 
             return Enumerable.Empty<string>();
-        }
-
-        protected void AddError(string propertyName, string errorMessage)
-        {
-            if (!_validationErrors.ContainsKey(propertyName))
-                _validationErrors[propertyName] = new List<string>();
-
-            if (!_validationErrors[propertyName].Contains(errorMessage))
-            {
-                _validationErrors[propertyName].Add(errorMessage);
-                OnErrorsChanged(propertyName);
-                OnPropertyChanged(nameof(HasErrors)); // Notify UI of HasErrors change
-            }
-        }
-
-        protected void ClearErrors(string propertyName)
-        {
-            if (_validationErrors.Remove(propertyName))
-            {
-                OnErrorsChanged(propertyName);
-                OnPropertyChanged(nameof(HasErrors)); // Notify UI of HasErrors change
-            }
-        }
-
-        private void OnErrorsChanged(string propertyName)
-        {
-            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
 
         /// <summary>
@@ -592,15 +582,45 @@ namespace BackOffice.ViewModels
         }
 
         /// <summary>
-        /// Clears all validation errors.
+        /// Adds an error message to the validation errors collection.
         /// </summary>
-        protected void ClearAllErrors()
+        /// <param name="propertyName">
+        /// The name of the property that has an error.
+        /// </param>
+        /// <param name="errorMessage">
+        /// The error message to display.
+        /// </param>
+        protected void AddError(string propertyName, string errorMessage)
         {
-            var propertyNames = new List<string>(_validationErrors.Keys);
-            foreach (var propertyName in propertyNames)
+            if (!_validationErrors.ContainsKey(propertyName))
+                _validationErrors[propertyName] = new List<string>();
+
+            if (!_validationErrors[propertyName].Contains(errorMessage))
             {
-                ClearErrors(propertyName);
+                _validationErrors[propertyName].Add(errorMessage);
+                OnErrorsChanged(propertyName);
+                OnPropertyChanged(nameof(HasErrors)); // Notify UI of HasErrors change
             }
+        }
+
+        /// <summary>
+        /// Clears the errors for a specific property.
+        /// </summary>
+        /// <param name="propertyName">
+        /// The name of the property to clear errors for.
+        /// </param>
+        protected void ClearErrors(string propertyName)
+        {
+            if (_validationErrors.Remove(propertyName))
+            {
+                OnErrorsChanged(propertyName);
+                OnPropertyChanged(nameof(HasErrors)); // Notify UI of HasErrors change
+            }
+        }
+
+        private void OnErrorsChanged(string propertyName)
+        {
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
 
         #endregion
