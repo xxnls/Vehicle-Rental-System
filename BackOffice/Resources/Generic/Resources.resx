@@ -139,4 +139,55 @@
   <data name="PaginationShowing2" xml:space="preserve">
     <value> items per page.</value>
   </data>
+  <data name="USEditSelect" xml:space="preserve">
+    <value>Please select an item to edit.</value>
+  </data>
+  <data name="USLoadShowingDeleted" xml:space="preserve">
+    <value>Showing only deleted </value>
+  </data>
+  <data name="USLoadSuccess" xml:space="preserve">
+    <value> loaded successfully.</value>
+  </data>
+  <data name="USLoadSearchCompleted1" xml:space="preserve">
+    <value>Search for </value>
+  </data>
+  <data name="USLoadSearchCompleted2" xml:space="preserve">
+    <value> completed </value>
+  </data>
+  <data name="USLoadSearchCompleted3" xml:space="preserve">
+    <value>results</value>
+  </data>
+  <data name="USLoadError1" xml:space="preserve">
+    <value>Error while loading models: </value>
+  </data>
+  <data name="USLoadError2" xml:space="preserve">
+    <value>Error while searching models: </value>
+  </data>
+  <data name="USCreateError1" xml:space="preserve">
+    <value>Error while creating a model.</value>
+  </data>
+  <data name="USCreateSuccess" xml:space="preserve">
+    <value> created successfully.</value>
+  </data>
+  <data name="USCreateError2" xml:space="preserve">
+    <value>Error while creating</value>
+  </data>
+  <data name="USUpdateSelect" xml:space="preserve">
+    <value>Please select an item to edit.</value>
+  </data>
+  <data name="USUpdateSuccess" xml:space="preserve">
+    <value> updated successfully.</value>
+  </data>
+  <data name="USUpdateError" xml:space="preserve">
+    <value>Error while updating</value>
+  </data>
+  <data name="USDeleteSelect" xml:space="preserve">
+    <value>Please select an item to delete.</value>
+  </data>
+  <data name="USDeleteSuccess" xml:space="preserve">
+    <value> deleted successfully.</value>
+  </data>
+  <data name="USDeleteError" xml:space="preserve">
+    <value>Error while deleting</value>
+  </data>
 </root>

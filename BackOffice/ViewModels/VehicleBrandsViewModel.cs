@@ -15,7 +15,7 @@ namespace BackOffice.ViewModels
 {
     public class VehicleBrandsViewModel : BaseListViewModel<VehicleBrandDto>, IListViewModel
     {
-        public VehicleBrandsViewModel() : base("VehicleBrands", "Vehicle Brands")
+        public VehicleBrandsViewModel() : base("VehicleBrands", LocalizationHelper.GetString("VehicleBrands", "DisplayName"))
         {
             CreateModelCommand = new AsyncRelayCommand(CreateModelAsync);
             UpdateModelCommand = new AsyncRelayCommand(UpdateModelAsync);
@@ -75,15 +75,15 @@ namespace BackOffice.ViewModels
 
             if (string.IsNullOrWhiteSpace(EditableModel.Name))
             {
-                AddError(nameof(EditableModel.Name), "Name cannot be empty.");
+                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("VehicleBrands", "ErrorName1"));
             }
             else if (EditableModel.Name.Length < 3)
             {
-                AddError(nameof(EditableModel.Name), "Name must be at least 3 characters long.");
+                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("VehicleBrands", "ErrorName2"));
             }
             else if (EditableModel.Name.Length >= 50)
             {
-                AddError(nameof(EditableModel.Name), "Name cannot exceed 50 characters.");
+                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("VehicleBrands", "ErrorName3"));
             }
         }
 
@@ -91,21 +91,21 @@ namespace BackOffice.ViewModels
         {
             ValidateProperty(nameof(EditableModel.Description),
                 () => string.IsNullOrWhiteSpace(EditableModel.Description) || EditableModel.Description.Length <= 250,
-                "Description cannot exceed 250 characters.");
+                LocalizationHelper.GetString("VehicleBrands", "ErrorDescription1"));
         }
 
         private void ValidateWebsite()
         {
             ValidateProperty(nameof(EditableModel.Website),
                 () => !string.IsNullOrWhiteSpace(EditableModel.Website) && Uri.IsWellFormedUriString(EditableModel.Website, UriKind.Absolute),
-                "Website URL is required and must be a valid URL.");
+                LocalizationHelper.GetString("VehicleBrands", "ErrorWebsiteURL"));
         }
 
         private void ValidateLogoUrl()
         {
             ValidateProperty(nameof(EditableModel.LogoUrl),
                 () => !string.IsNullOrWhiteSpace(EditableModel.LogoUrl) && Uri.IsWellFormedUriString(EditableModel.LogoUrl, UriKind.Absolute),
-                "Logo URL is required and must be a valid URL.");
+                LocalizationHelper.GetString("VehicleBrands", "ErrorLogoURL"));
         }
 
         #endregion

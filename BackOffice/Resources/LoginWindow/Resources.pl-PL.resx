@@ -97,97 +97,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Name" xml:space="preserve">
-    <value>Nazwa</value>
+  <data name="Changes" xml:space="preserve">
+    <value>Zmiany</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Opis</value>
+  <data name="Username" xml:space="preserve">
+    <value>Nazwa użytkownika</value>
   </data>
-  <data name="CreatedDate" xml:space="preserve">
-    <value>Data utworzenia</value>
+  <data name="Password" xml:space="preserve">
+    <value>Hasło</value>
   </data>
-  <data name="ModifiedDate" xml:space="preserve">
-    <value>Data zmodyfikowania</value>
+  <data name="Login" xml:space="preserve">
+    <value>Zaloguj</value>
   </data>
-  <data name="DeletedDate" xml:space="preserve">
-    <value>Data usunięcia</value>
+  <data name="ErrorAuth1" xml:space="preserve">
+    <value>Błędna nazwa użytkownika lub hasło. Spróbuj ponownie.</value>
   </data>
-  <data name="CreatedBefore" xml:space="preserve">
-    <value>Utworzono przed:</value>
+  <data name="ErrorAuth2" xml:space="preserve">
+    <value>Błąd logowania</value>
   </data>
-  <data name="CreatedAfter" xml:space="preserve">
-    <value>Utworzono po:</value>
+  <data name="ErrorUsername" xml:space="preserve">
+    <value>Nazwa użytkownika nie może być pusta.</value>
   </data>
-  <data name="ModifiedBefore" xml:space="preserve">
-    <value>Zmodyfikowano przed:</value>
-  </data>
-  <data name="ModifiedAfter" xml:space="preserve">
-    <value>Zmodyfikowano po:</value>
-  </data>
-  <data name="Filter" xml:space="preserve">
-    <value>Filtruj</value>
-  </data>
-  <data name="Reset" xml:space="preserve">
-    <value>Resetuj</value>
-  </data>
-  <data name="PaginationTotalItems" xml:space="preserve">
-    <value>Łączna ilość elementów: </value>
-  </data>
-  <data name="PaginationShowing1" xml:space="preserve">
-    <value>Wyświetlam </value>
-  </data>
-  <data name="PaginationShowing2" xml:space="preserve">
-    <value> elementów na stronę.</value>
-  </data>
-  <data name="USEditSelect" xml:space="preserve">
-    <value>Proszę wybrać element do edycji.</value>
-  </data>
-  <data name="USLoadShowingDeleted" xml:space="preserve">
-    <value>Wyświetlam tylko usunięte </value>
-  </data>
-  <data name="USLoadSuccess" xml:space="preserve">
-    <value> załadowano pomyślnie.</value>
-  </data>
-  <data name="USLoadSearchCompleted1" xml:space="preserve">
-    <value>Wyszukiwanie </value>
-  </data>
-  <data name="USLoadSearchCompleted2" xml:space="preserve">
-    <value> zakończone </value>
-  </data>
-  <data name="USLoadSearchCompleted3" xml:space="preserve">
-    <value>wyników</value>
-  </data>
-  <data name="USLoadError1" xml:space="preserve">
-    <value>Błąd podczas ładowania elementów: </value>
-  </data>
-  <data name="USLoadError2" xml:space="preserve">
-    <value>Błąd podczas wyszukiwania elementów: </value>
-  </data>
-  <data name="USCreateError1" xml:space="preserve">
-    <value>Błąd podczas tworzenia nowego elementu.</value>
-  </data>
-  <data name="USCreateSuccess" xml:space="preserve">
-    <value> stworzony/a pomyślnie.</value>
-  </data>
-  <data name="USCreateError2" xml:space="preserve">
-    <value>Błąd podczas tworzenia</value>
-  </data>
-  <data name="USUpdateSelect" xml:space="preserve">
-    <value>Proszę wybrać element do edycji.</value>
-  </data>
-  <data name="USUpdateSuccess" xml:space="preserve">
-    <value> zmodyfikowany/a pomyślnie.</value>
-  </data>
-  <data name="USUpdateError" xml:space="preserve">
-    <value>Bład podczas modyfikowania</value>
-  </data>
-  <data name="USDeleteSelect" xml:space="preserve">
-    <value>Proszę wybrać element do usunięcia.</value>
-  </data>
-  <data name="USDeleteSuccess" xml:space="preserve">
-    <value> usunięty pomyślnie.</value>
-  </data>
-  <data name="USDeleteError" xml:space="preserve">
-    <value>Błąd podczas usuwania</value>
+  <data name="ErrorPassword" xml:space="preserve">
+    <value>Hasło musi posiadać przynajmniej 3 znaki.</value>
   </data>
 </root>

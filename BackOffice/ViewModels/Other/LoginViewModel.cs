@@ -99,7 +99,8 @@ namespace BackOffice.ViewModels.Other
             }
             catch (HttpRequestException ex) when (ex.Message.Contains("401"))
             {
-                MessageBox.Show("Invalid username or password. Please try again.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(LocalizationHelper.GetString("LoginWindow", "ErrorAuth1"),
+                    LocalizationHelper.GetString("LoginWindow", "ErrorAuth2"), MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
@@ -118,8 +119,7 @@ namespace BackOffice.ViewModels.Other
             ValidateProperty(
                 nameof(Username),
                 () => !string.IsNullOrWhiteSpace(Username),
-                "Username cannot be empty."
-            );
+                LocalizationHelper.GetString("LoginWindow", "ErrorUsername"));
         }
 
         private void ValidatePassword()
@@ -127,8 +127,7 @@ namespace BackOffice.ViewModels.Other
             ValidateProperty(
                 nameof(Password),
                 () => !string.IsNullOrWhiteSpace(Password) && Password.Length >= 3,
-                "Password must be at least 3 characters long."
-            );
+                LocalizationHelper.GetString("LoginWindow", "ErrorPassword"));
         }
 
         private bool CanLogin()

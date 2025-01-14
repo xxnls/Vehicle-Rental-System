@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BackOffice.Resources.VehicleBrands {
+namespace BackOffice.Resources.LoginWindow {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace BackOffice.Resources.VehicleBrands {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BackOffice.Resources.VehicleBrands.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BackOffice.Resources.LoginWindow.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,83 +61,74 @@ namespace BackOffice.Resources.VehicleBrands {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vehicle Brands.
+        ///   Looks up a localized string similar to Changes.
         /// </summary>
-        public static string DisplayName {
+        public static string Changes {
             get {
-                return ResourceManager.GetString("DisplayName", resourceCulture);
+                return ResourceManager.GetString("Changes", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description cannot exceed 250 characters..
+        ///   Looks up a localized string similar to Invalid username or password. Please try again..
         /// </summary>
-        public static string ErrorDescription1 {
+        public static string ErrorAuth1 {
             get {
-                return ResourceManager.GetString("ErrorDescription1", resourceCulture);
+                return ResourceManager.GetString("ErrorAuth1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logo URL is required and must be a valid URL..
+        ///   Looks up a localized string similar to Login Failed.
         /// </summary>
-        public static string ErrorLogoURL {
+        public static string ErrorAuth2 {
             get {
-                return ResourceManager.GetString("ErrorLogoURL", resourceCulture);
+                return ResourceManager.GetString("ErrorAuth2", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name cannot be empty..
+        ///   Looks up a localized string similar to Password must be at least 3 characters long..
         /// </summary>
-        public static string ErrorName1 {
+        public static string ErrorPassword {
             get {
-                return ResourceManager.GetString("ErrorName1", resourceCulture);
+                return ResourceManager.GetString("ErrorPassword", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name must be at least 3 characters long..
+        ///   Looks up a localized string similar to Username cannot be empty..
         /// </summary>
-        public static string ErrorName2 {
+        public static string ErrorUsername {
             get {
-                return ResourceManager.GetString("ErrorName2", resourceCulture);
+                return ResourceManager.GetString("ErrorUsername", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name cannot exceed 50 characters..
+        ///   Looks up a localized string similar to Login.
         /// </summary>
-        public static string ErrorName3 {
+        public static string Login {
             get {
-                return ResourceManager.GetString("ErrorName3", resourceCulture);
+                return ResourceManager.GetString("Login", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Website URL is required and must be a valid URL..
+        ///   Looks up a localized string similar to Password.
         /// </summary>
-        public static string ErrorWebsiteURL {
+        public static string Password {
             get {
-                return ResourceManager.GetString("ErrorWebsiteURL", resourceCulture);
+                return ResourceManager.GetString("Password", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logo URL.
+        ///   Looks up a localized string similar to Username.
         /// </summary>
-        public static string LogoURL {
+        public static string Username {
             get {
-                return ResourceManager.GetString("LogoURL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Website URL.
-        /// </summary>
-        public static string WebsiteURL {
-            get {
-                return ResourceManager.GetString("WebsiteURL", resourceCulture);
+                return ResourceManager.GetString("Username", resourceCulture);
             }
         }
     }

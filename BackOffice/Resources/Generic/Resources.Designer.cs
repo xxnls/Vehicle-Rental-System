@@ -185,5 +185,158 @@ namespace BackOffice.Resources.Generic {
                 return ResourceManager.GetString("Reset", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while creating a model..
+        /// </summary>
+        public static string USCreateError1 {
+            get {
+                return ResourceManager.GetString("USCreateError1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while creating.
+        /// </summary>
+        public static string USCreateError2 {
+            get {
+                return ResourceManager.GetString("USCreateError2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  created successfully..
+        /// </summary>
+        public static string USCreateSuccess {
+            get {
+                return ResourceManager.GetString("USCreateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while deleting.
+        /// </summary>
+        public static string USDeleteError {
+            get {
+                return ResourceManager.GetString("USDeleteError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select an item to delete..
+        /// </summary>
+        public static string USDeleteSelect {
+            get {
+                return ResourceManager.GetString("USDeleteSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  deleted successfully..
+        /// </summary>
+        public static string USDeleteSuccess {
+            get {
+                return ResourceManager.GetString("USDeleteSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select an item to edit..
+        /// </summary>
+        public static string USEditSelect {
+            get {
+                return ResourceManager.GetString("USEditSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while loading models: .
+        /// </summary>
+        public static string USLoadError1 {
+            get {
+                return ResourceManager.GetString("USLoadError1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while searching models: .
+        /// </summary>
+        public static string USLoadError2 {
+            get {
+                return ResourceManager.GetString("USLoadError2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search for .
+        /// </summary>
+        public static string USLoadSearchCompleted1 {
+            get {
+                return ResourceManager.GetString("USLoadSearchCompleted1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  completed .
+        /// </summary>
+        public static string USLoadSearchCompleted2 {
+            get {
+                return ResourceManager.GetString("USLoadSearchCompleted2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to results.
+        /// </summary>
+        public static string USLoadSearchCompleted3 {
+            get {
+                return ResourceManager.GetString("USLoadSearchCompleted3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Showing only deleted .
+        /// </summary>
+        public static string USLoadShowingDeleted {
+            get {
+                return ResourceManager.GetString("USLoadShowingDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  loaded successfully..
+        /// </summary>
+        public static string USLoadSuccess {
+            get {
+                return ResourceManager.GetString("USLoadSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while updating.
+        /// </summary>
+        public static string USUpdateError {
+            get {
+                return ResourceManager.GetString("USUpdateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select an item to edit..
+        /// </summary>
+        public static string USUpdateSelect {
+            get {
+                return ResourceManager.GetString("USUpdateSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  updated successfully..
+        /// </summary>
+        public static string USUpdateSuccess {
+            get {
+                return ResourceManager.GetString("USUpdateSuccess", resourceCulture);
+            }
+        }
     }
 }

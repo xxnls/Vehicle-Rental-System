@@ -2,9 +2,11 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
+using BackOffice.Helpers;
 using BackOffice.Models;
 using BackOffice.Properties;
 using BackOffice.Services;
+using BackOffice.Resources;
 using CommunityToolkit.Mvvm.Input;
 
 namespace BackOffice.ViewModels
@@ -294,7 +296,7 @@ namespace BackOffice.ViewModels
             // Prevent entering Edit mode if no item is selected
             if (mode == ViewMode.Edit && EditableModel == null)
             {
-                UpdateStatus("Please select an item to edit.");
+                UpdateStatus(LocalizationHelper.GetString("Generic", "USEditSelect"));
                 return;
             }
 
@@ -315,7 +317,7 @@ namespace BackOffice.ViewModels
             IsEditing = mode == ViewMode.Edit;
             IsListVisible = mode == ViewMode.List;
 
-            UpdateStatus($"Switched to {mode.ToString().ToLower()} mode.");
+            // UpdateStatus($"Switched to {mode.ToString().ToLower()} mode.");
         }
 
         /// <summary>
@@ -358,20 +360,22 @@ namespace BackOffice.ViewModels
 
                 if (ShowDeleted)
                 {
-                    UpdateStatus($"Showing only deleted {DisplayName}.");
+                    UpdateStatus(LocalizationHelper.GetString("Generic", "USLoadShowingDeleted") + $"{DisplayName}.");
                 }
                 else
                 {
                     UpdateStatus(string.IsNullOrWhiteSpace(searchInput)
-                        ? $"{DisplayName} loaded successfully."
-                        : $"Search completed for '{CurrentSearchInput}' ({TotalItemCount} results).");
+                        ? $"{DisplayName}" + LocalizationHelper.GetString("Generic", "USLoadSuccess")
+                        : LocalizationHelper.GetString("Generic", "USLoadSearchCompleted1") + $"'{CurrentSearchInput}'"
+                        + LocalizationHelper.GetString("Generic", "USLoadSearchCompleted2") + $"({TotalItemCount} "
+                        + LocalizationHelper.GetString("Generic", "USLoadSearchCompleted3") + ").");
                 }
             }
             catch (Exception ex)
             {
                 UpdateStatus(string.IsNullOrWhiteSpace(searchInput)
-                    ? $"Error while loading models: {ex.Message}"
-                    : $"Error searching while models: {ex.Message}");
+                    ? LocalizationHelper.GetString("Generic", "USLoadError1") + $"{ex.Message}"
+                    : LocalizationHelper.GetString("Generic", "USLoadError2") + $"{ex.Message}");
             }
             finally
             {
@@ -394,18 +398,18 @@ namespace BackOffice.ViewModels
 
                 if (EditableModel == null)
                 {
-                    UpdateStatus("Error while adding a new model.");
+                    UpdateStatus(LocalizationHelper.GetString("Generic", "USCreateError1"));
                     return;
                 }
 
                 await ApiClient.PostAsync<T, T>(EndPointName, model);
-                UpdateStatus($"{DisplayName} created successfully.");
+                UpdateStatus(DisplayName + LocalizationHelper.GetString("Generic", "USCreateSuccess"));
 
                 await LoadModelsAsync();
             }
             catch (Exception ex)
             {
-                UpdateStatus($"Error while creating {DisplayName}: {ex.Message}");
+                UpdateStatus(LocalizationHelper.GetString("Generic", "USCreateError2") + $" {DisplayName}: {ex.Message}");
             }
             finally
             {
@@ -432,18 +436,18 @@ namespace BackOffice.ViewModels
 
                 if (EditableModel == null)
                 {
-                    UpdateStatus("Please select an item to edit.");
+                    UpdateStatus(LocalizationHelper.GetString("Generic", "USUpdateSelect"));
                     return;
                 }
 
                 await ApiClient.PutAsync($"{EndPointName}/{id}", model);
-                UpdateStatus($"{DisplayName} updated successfully.");
+                UpdateStatus(DisplayName + LocalizationHelper.GetString("Generic", "USUpdateSuccess"));
 
                 await LoadModelsAsync();
             }
             catch (Exception ex)
             {
-                UpdateStatus($"Error updating {DisplayName}: {ex.Message}");
+                UpdateStatus(LocalizationHelper.GetString("Generic", "USUpdateError") + $" {DisplayName}: {ex.Message}");
             }
             finally
             {
@@ -467,18 +471,18 @@ namespace BackOffice.ViewModels
 
                 if (EditableModel == null)
                 {
-                    UpdateStatus("Please select an item to delete.");
+                    UpdateStatus(LocalizationHelper.GetString("Generic", "USDeleteSelect"));
                     return;
                 }
 
                 await ApiClient.DeleteAsync($"VehicleBrands/{id}");
-                UpdateStatus($"{DisplayName} deleted successfully.");
+                UpdateStatus(DisplayName + LocalizationHelper.GetString("Generic", "USDeleteSuccess"));
 
                 await LoadModelsAsync();
             }
             catch (Exception ex)
             {
-                UpdateStatus($"Error deleting {DisplayName}: {ex.Message}");
+                UpdateStatus(LocalizationHelper.GetString("Generic", "USDeleteError") + $" {DisplayName}: {ex.Message}");
             }
             finally
             {

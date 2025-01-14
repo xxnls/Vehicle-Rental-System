@@ -103,4 +103,25 @@
   <data name="LogoURL" xml:space="preserve">
     <value>URL Logo</value>
   </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Marki pojazdów</value>
+  </data>
+  <data name="ErrorName1" xml:space="preserve">
+    <value>Nazwa nie może być pusta.</value>
+  </data>
+  <data name="ErrorName2" xml:space="preserve">
+    <value>Nazwa musi mieć przynajmniej 3 znaki.</value>
+  </data>
+  <data name="ErrorName3" xml:space="preserve">
+    <value>Nazwa nie może mieć więcej niż 50 znaków.</value>
+  </data>
+  <data name="ErrorDescription1" xml:space="preserve">
+    <value>Opis nie może mieć więcej niż 250 znaków.</value>
+  </data>
+  <data name="ErrorWebsiteURL" xml:space="preserve">
+    <value>URL strony marki jest wymagane i musi być poprawnym URL.</value>
+  </data>
+  <data name="ErrorLogoURL" xml:space="preserve">
+    <value>URL logo marki jest wymagane i musi być poprawnym URL.</value>
+  </data>
 </root>

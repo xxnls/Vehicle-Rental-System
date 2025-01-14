@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BackOffice.Views"
         xmlns:vm="clr-namespace:BackOffice.ViewModels.Other"
+        xmlns:res="clr-namespace:BackOffice.Resources.LoginWindow"
         xmlns:v="clr-namespace:BackOffice.Views.Other"
         xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
         mc:Ignorable="d"
@@ -36,12 +37,12 @@
                        Background="Transparent"/>
 
             <StackPanel Width="150">
-                <Label Content="Username" />
+                <Label Content="{x:Static res:Resources.Username}" />
                 <TextBox x:Name="LoginField"
                          Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=LoginField}" />
 
-                <Label Content="Password" />
+                <Label Content="{x:Static res:Resources.Password}" />
                 <customControls:BindablePasswordBox x:Name="PasswordField"
                              Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 <TextBlock Foreground="{StaticResource ErrorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=PasswordField}" />
@@ -50,9 +51,8 @@
                            Background="Transparent"/>
 
                 <Button Width="75"
-                        Command="{Binding LoginCommand}">
-                    Login
-                </Button>
+                        Command="{Binding LoginCommand}"
+                        Content="{x:Static res:Resources.Login}" />
             </StackPanel>
 
         </StackPanel>
@@ -65,7 +65,7 @@
                        Background="Transparent"/>
 
             <StackPanel Orientation="Vertical">
-                <Label Content="Changes" 
+                <Label Content="{x:Static res:Resources.Changes}" 
                    Height="100"
                    VerticalContentAlignment="Center"
                    FontSize="24"
