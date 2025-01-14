@@ -35,7 +35,7 @@ namespace BackOffice.ViewModels
             ApiClient = new ApiClient();
             Models = [];
 
-            LoadModelsAsync();
+            _ = LoadModelsAsync();
         }
 
         #region Properties & Fields
@@ -329,10 +329,10 @@ namespace BackOffice.ViewModels
             try
             {
                 IsBusy = true;
-                var endpoint = string.Empty;
+
                 CurrentSearchInput = searchInput;
 
-                endpoint = string.IsNullOrWhiteSpace(searchInput)
+                var endpoint = string.IsNullOrWhiteSpace(searchInput)
                     ? $"{EndPointName}?page={CurrentPage}&pageSize={PageSize}"
                     : $"{EndPointName}?search={CurrentSearchInput}&page={CurrentPage}&pageSize={PageSize}";
 
@@ -436,7 +436,7 @@ namespace BackOffice.ViewModels
                     return;
                 }
 
-                await ApiClient.PutAsync<T>($"{EndPointName}/{id}", model);
+                await ApiClient.PutAsync($"{EndPointName}/{id}", model);
                 UpdateStatus($"{DisplayName} updated successfully.");
 
                 await LoadModelsAsync();
@@ -534,7 +534,7 @@ namespace BackOffice.ViewModels
             ShowDeleted = !ShowDeleted;
             CurrentPage = 1;
 
-            LoadModelsAsync();
+            _ = LoadModelsAsync();
         }
 
         private void UpdatePaginationState()
@@ -557,8 +557,8 @@ namespace BackOffice.ViewModels
         /// <returns></returns>
         public IEnumerable GetErrors(string? propertyName)
         {
-            if (propertyName != null && _validationErrors.ContainsKey(propertyName))
-                return _validationErrors[propertyName];
+            if (propertyName != null && _validationErrors.TryGetValue(propertyName, out List<string>? value))
+                return value;
 
             return Enumerable.Empty<string>();
         }
