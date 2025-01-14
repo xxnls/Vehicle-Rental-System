@@ -8,10 +8,7 @@ namespace BackOffice.Interfaces
 {
     public interface IListViewModel
     {
-        protected void ClearInputFields();
-        protected void Cancel();
-        protected void SwitchToCreateMode();
-        protected void SwitchToEditMode();
-
+        protected Task CreateModelAsync();
+        protected Task UpdateModelAsync();
     }
 }

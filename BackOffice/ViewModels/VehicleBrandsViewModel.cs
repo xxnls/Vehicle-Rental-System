@@ -13,134 +13,46 @@ using CommunityToolkit.Mvvm.Messaging;
 
 namespace BackOffice.ViewModels
 {
-    public class VehicleBrandsViewModel : BaseListViewModel<VehicleBrandDto>
+    public class VehicleBrandsViewModel : BaseListViewModel<VehicleBrandDto>, IListViewModel
     {
         public VehicleBrandsViewModel() : base("VehicleBrands", "Vehicle Brands")
         {
-            AddVehicleBrandCommand = new RelayCommand(async () => await AddVehicleBrandAsync());
-            UpdateVehicleBrandCommand = new RelayCommand(async () => await UpdateVehicleBrandAsync());
-            DeleteVehicleBrandCommand = new RelayCommand(async () => await DeleteVehicleBrandAsync());
-
-            LoadModelsCommand = new RelayCommand(async () => await LoadModelsAsync());
-            LoadNextPageCommand = new RelayCommand(async () => await LoadNextPageAsync(), () => CanLoadNextPage);
-            LoadPreviousPageCommand = new RelayCommand(async () => await LoadPreviousPageAsync(), () => CanLoadPreviousPage);
-            SearchCommand = new AsyncRelayCommand<string>(LoadModelsAsync);
-
-            LoadModelsAsync();
+            CreateModelCommand = new AsyncRelayCommand(CreateModelAsync);
+            UpdateModelCommand = new AsyncRelayCommand(UpdateModelAsync);
+            DeleteModelCommand = new AsyncRelayCommand(() => DeleteModelAsync(EditableModel.VehicleBrandId));
         }
-
-        #region Commands
-
-        public ICommand AddVehicleBrandCommand { get; }
-        public ICommand UpdateVehicleBrandCommand { get; }
-        public ICommand DeleteVehicleBrandCommand { get; }
-
-        #endregion
 
         #region Methods
 
-        // Add a new vehicle brand
-        private async Task AddVehicleBrandAsync()
+        // Create a new vehicle brand
+        public async Task CreateModelAsync()
         {
-            try
+            var model = new VehicleBrandDto
             {
-                IsBusy = true;
+                Name = EditableModel.Name,
+                Description = EditableModel.Description,
+                Website = EditableModel.Website,
+                LogoUrl = EditableModel.LogoUrl
+            };
 
-                if (EditableModel == null)
-                {
-                    UpdateStatus("Error while adding a new model.");
-                    return;
-                }
-
-                var NewVehicleBrand = new VehicleBrandDto()
-                {
-                    Name = EditableModel.Name,
-                    Description = EditableModel.Description,
-                    Website = EditableModel.Website,
-                    LogoUrl = EditableModel.LogoUrl
-                };
-
-                await ApiClient.PostAsync<VehicleBrandDto, VehicleBrandDto>("VehicleBrands", NewVehicleBrand);
-                UpdateStatus("Vehicle brand added successfully.");
-                await LoadModelsAsync();
-            }
-            catch (Exception ex)
-            {
-                // TODO: DO ERROR DIALOG
-                UpdateStatus($"Error adding vehicle brand: {ex.Message}");
-            }
-            finally
-            {
-                IsBusy = false;
-
-                SwitchViewMode(ViewMode.List);
-            }
+            await CreateModelAsync(model);
         }
 
         // Update the selected vehicle brand
-        private async Task UpdateVehicleBrandAsync()
+        public async Task UpdateModelAsync()
         {
-            try
-            {
-                IsBusy = true;
+            var id = EditableModel.VehicleBrandId;
 
-                if (EditableModel == null)
-                {
-                    UpdateStatus("Please select a vehicle brand to edit.");
-                    return;
-                }
-
-                var updatedBrand = new VehicleBrandDto
-                {
-                    VehicleBrandId = EditableModel.VehicleBrandId, // There is need for id because of check in controller
-                    Name = EditableModel.Name,
-                    Description = EditableModel.Description,
-                    Website = EditableModel.Website,
-                    LogoUrl = EditableModel.LogoUrl
-                };
-
-                await ApiClient.PutAsync($"VehicleBrands/{EditableModel.VehicleBrandId}", updatedBrand);
-                UpdateStatus("Vehicle brand updated successfully.");
-                await LoadModelsAsync();
-            }
-            catch (Exception ex)
+            var model = new VehicleBrandDto
             {
-                // TODO: DO ERROR DIALOG
-                UpdateStatus($"Error updating vehicle brand: {ex.Message}");
-            }
-            finally
-            {
-                IsBusy = false;
+                VehicleBrandId = EditableModel.VehicleBrandId, // There is a need for id because of check in controller
+                Name = EditableModel.Name,
+                Description = EditableModel.Description,
+                Website = EditableModel.Website,
+                LogoUrl = EditableModel.LogoUrl
+            };
 
-                SwitchViewMode(ViewMode.List);
-            }
-        }
-
-        // Delete a vehicle brand
-        private async Task DeleteVehicleBrandAsync()
-        {
-            if (EditableModel == null)
-            {
-                UpdateStatus("Please select a vehicle brand to delete.");
-                return;
-            }
-
-            try
-            {
-                IsBusy = true;
-                await ApiClient.DeleteAsync($"VehicleBrands/{EditableModel.VehicleBrandId}");
-                UpdateStatus("Vehicle brand deleted successfully.");
-                await LoadModelsAsync();
-            }
-            catch (Exception ex)
-            {
-                // TODO: DO ERROR DIALOG
-                UpdateStatus($"Error deleting vehicle brand: {ex.Message}");
-            }
-            finally
-            {   
-                IsBusy = false;
-            }
+            await UpdateModelAsync(id, model);
         }
 
         #endregion

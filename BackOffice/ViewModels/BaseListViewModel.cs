@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 using BackOffice.Interfaces;
 using BackOffice.Models;
+using BackOffice.Models.Vehicles.VehicleBrands.DTOs;
 using BackOffice.Properties;
 using BackOffice.Services;
 using CommunityToolkit.Mvvm.Input;
@@ -30,10 +31,15 @@ namespace BackOffice.ViewModels
             SwitchToCreateModeCommand = new RelayCommand(() => SwitchViewMode(ViewMode.Create));
             SwitchToEditModeCommand = new RelayCommand(() => SwitchViewMode(ViewMode.Edit));
             SwitchToListModeCommand = new RelayCommand(() => SwitchViewMode(ViewMode.List));
+            LoadModelsCommand = new RelayCommand(async () => await LoadModelsAsync());
+            LoadNextPageCommand = new RelayCommand(async () => await LoadNextPageAsync(), () => CanLoadNextPage);
+            LoadPreviousPageCommand = new RelayCommand(async () => await LoadPreviousPageAsync(), () => CanLoadPreviousPage);
+            SearchCommand = new AsyncRelayCommand<string>(LoadModelsAsync);
 
             ApiClient = new ApiClient();
             Models = [];
 
+            LoadModelsAsync();
         }
 
         #region Properties & Fields
@@ -254,10 +260,13 @@ namespace BackOffice.ViewModels
 
         #region Commands
 
-        public ICommand? LoadModelsCommand { get; set; }
-        public ICommand? LoadNextPageCommand { get; set; }
-        public ICommand? LoadPreviousPageCommand { get; set; }
-        public ICommand? SearchCommand { get; set; }
+        public ICommand LoadModelsCommand { get; set; }
+        public ICommand? CreateModelCommand { get; set; }
+        public ICommand? UpdateModelCommand { get; set; }
+        public ICommand? DeleteModelCommand { get; set; }
+        public ICommand LoadNextPageCommand { get; set; }
+        public ICommand LoadPreviousPageCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
         public ICommand SwitchToListModeCommand { get; }
         public ICommand SwitchToCreateModeCommand { get; }
         public ICommand SwitchToEditModeCommand { get; }
@@ -269,7 +278,7 @@ namespace BackOffice.ViewModels
         #region Methods
 
         /// <summary>
-        /// If a search input is provided, the API request includes it to filter results.
+        /// Loads a list of models, optionally filtered by a search input. It also handles pagination and various filter options such as created and modified dates.
         /// </summary>
         /// <param name="searchInput">
         /// Optional. A string used to filter the results. If <c>null</c> or whitespace, all data is loaded without filtering.
@@ -322,6 +331,113 @@ namespace BackOffice.ViewModels
                 UpdateStatus(string.IsNullOrWhiteSpace(searchInput)
                     ? $"Error while loading models: {ex.Message}"
                     : $"Error searching while models: {ex.Message}");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        /// <summary>
+        /// Creates a new model by sending a POST request to the API.
+        /// After the creation, it reloads the list of models.
+        /// </summary>
+        /// <param name="model">
+        /// The model object to be created. It is passed as a generic parameter to represent the model type.
+        /// </param>
+        protected async Task CreateModelAsync(T model)
+        {
+            try
+            {
+                IsBusy = true;
+
+                if (EditableModel == null)
+                {
+                    UpdateStatus("Error while adding a new model.");
+                    return;
+                }
+
+                await ApiClient.PostAsync<T, T>(EndPointName, model);
+                UpdateStatus($"{DisplayName} created successfully.");
+
+                await LoadModelsAsync();
+            }
+            catch (Exception ex)
+            {
+                UpdateStatus($"Error while creating {DisplayName}: {ex.Message}");
+            }
+            finally
+            {
+                IsBusy = false;
+                SwitchViewMode(ViewMode.List);
+            }
+        }
+
+        /// <summary>
+        /// Updates an existing model by sending a PUT request to the API with the model's updated data.
+        /// After the update, it reloads the list of models.
+        /// </summary>
+        /// <param name="id">
+        /// The unique identifier of the model to be updated.
+        /// </param>
+        /// <param name="model">
+        /// The updated model object to be sent to the API.
+        /// </param>
+        protected async Task UpdateModelAsync(int id, T model)
+        {
+            try
+            {
+                IsBusy = true;
+
+                if (EditableModel == null)
+                {
+                    UpdateStatus("Please select an item to edit.");
+                    return;
+                }
+
+                await ApiClient.PutAsync<T>($"{EndPointName}/{id}", model);
+                UpdateStatus($"{DisplayName} updated successfully.");
+
+                await LoadModelsAsync();
+            }
+            catch (Exception ex)
+            {
+                UpdateStatus($"Error updating {DisplayName}: {ex.Message}");
+            }
+            finally
+            {
+                IsBusy = false;
+                SwitchViewMode(ViewMode.List);
+            }
+        }
+
+        /// <summary>
+        /// Deletes a model by sending a DELETE request to the API using the model's unique identifier.
+        /// After the deletion, it reloads the list of models.
+        /// </summary>
+        /// <param name="id">
+        /// The unique identifier of the model to be deleted.
+        /// </param>
+        protected async Task DeleteModelAsync(int id)
+        {
+            try
+            {
+                IsBusy = true;
+
+                if (EditableModel == null)
+                {
+                    UpdateStatus("Please select an item to delete.");
+                    return;
+                }
+
+                await ApiClient.DeleteAsync($"VehicleBrands/{id}");
+                UpdateStatus($"{DisplayName} deleted successfully.");
+
+                await LoadModelsAsync();
+            }
+            catch (Exception ex)
+            {
+                UpdateStatus($"Error deleting {DisplayName}: {ex.Message}");
             }
             finally
             {

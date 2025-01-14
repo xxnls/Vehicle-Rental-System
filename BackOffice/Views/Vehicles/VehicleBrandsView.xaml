@@ -56,7 +56,7 @@
 
              <!-- Action Buttons -->
              <StackPanel Orientation="Horizontal" Grid.Row="1">
-                <Button Content="Save" Command="{Binding AddVehicleBrandCommand}" IsEnabled="{Binding HasErrors, Converter={StaticResource InverseBooleanConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                <Button Content="Save" Command="{Binding CreateModelCommand}" IsEnabled="{Binding HasErrors, Converter={StaticResource InverseBooleanConverter}, UpdateSourceTrigger=PropertyChanged}" />
                  <Button Content="Cancel" Command="{Binding SwitchToListModeCommand}" />
             </StackPanel>
         </Grid>
@@ -96,7 +96,7 @@
 
             <!-- Action Buttons -->
             <StackPanel Orientation="Horizontal" Grid.Row="1">
-                <Button Content="Save" Command="{Binding UpdateVehicleBrandCommand}" IsEnabled="{Binding HasErrors, Converter={StaticResource InverseBooleanConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                <Button Content="Save" Command="{Binding UpdateModelCommand}" IsEnabled="{Binding HasErrors, Converter={StaticResource InverseBooleanConverter}, UpdateSourceTrigger=PropertyChanged}" />
                 <Button Content="Cancel" Command="{Binding SwitchToListModeCommand}" />
             </StackPanel>
         </Grid>
@@ -112,7 +112,7 @@
                 <cc:CRUDButtonsControl LoadCommand="{Binding LoadModelsCommand}"
                                    AddCommand="{Binding SwitchToCreateModeCommand}"
                                    EditCommand="{Binding SwitchToEditModeCommand}"
-                                   DeleteCommand="{Binding DeleteVehicleBrandCommand}"
+                                   DeleteCommand="{Binding DeleteModelCommand}"
                                    Grid.Column="0"/>
 
                 <cc:SearchControl Grid.Column="1"
