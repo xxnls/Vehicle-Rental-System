@@ -8,6 +8,7 @@ using BackOffice.Properties;
 using BackOffice.Services;
 using BackOffice.Resources;
 using CommunityToolkit.Mvvm.Input;
+using System.Windows.Controls;
 
 namespace BackOffice.ViewModels
 {
@@ -48,6 +49,7 @@ namespace BackOffice.ViewModels
         public ObservableCollection<T> Models { get; }
         protected string EndPointName;
         protected string DisplayName;
+        protected Dictionary<string, Action> ValidationRules;
         private readonly Dictionary<string, List<string>> _validationErrors = new();
         public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
         public bool HasErrors => _validationErrors.Count > 0;
@@ -517,9 +519,14 @@ namespace BackOffice.ViewModels
             }
         }
 
-        protected virtual void ValidateEditableModel()
+        private void ValidateEditableModel()
         {
-            // To be overridden in derived classes
+            if (EditableModel == null) return;
+
+            foreach (var validate in ValidationRules.Values)
+            {
+                validate.Invoke();
+            }
         }
 
         /// <summary>

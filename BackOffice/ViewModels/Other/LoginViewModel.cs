@@ -64,8 +64,13 @@ namespace BackOffice.ViewModels.Other
         public LoginViewModel() : base("EmployeeAuth", "Login")
         {
             ApiClient = new ApiClient();
-
             LoginCommand = new RelayCommand(async () => await LoginAsync(), CanLogin);
+
+            ValidationRules = new Dictionary<string, Action>
+            {
+                { nameof(Username), ValidateUsername },
+                { nameof(Password), ValidatePassword }
+            };
         }
 
         // Methods

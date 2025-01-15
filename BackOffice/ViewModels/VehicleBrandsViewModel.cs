@@ -20,6 +20,14 @@ namespace BackOffice.ViewModels
             CreateModelCommand = new AsyncRelayCommand(CreateModelAsync);
             UpdateModelCommand = new AsyncRelayCommand(UpdateModelAsync);
             DeleteModelCommand = new AsyncRelayCommand(() => DeleteModelAsync(EditableModel.VehicleBrandId));
+
+            ValidationRules = new Dictionary<string, Action>
+            {
+                { nameof(EditableModel.Name), ValidateName },
+                { nameof(EditableModel.Description), ValidateDescription },
+                { nameof(EditableModel.Website), ValidateWebsite },
+                { nameof(EditableModel.LogoUrl), ValidateLogoUrl }
+            };
         }
 
         #region Methods
@@ -58,16 +66,6 @@ namespace BackOffice.ViewModels
         #endregion
 
         #region Validation Rules
-
-        protected override void ValidateEditableModel()
-        {
-            if (EditableModel == null) return;
-
-            ValidateName();
-            ValidateDescription();
-            ValidateWebsite();
-            ValidateLogoUrl();
-        }
 
         private void ValidateName()
         {
