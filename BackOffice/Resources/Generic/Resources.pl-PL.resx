@@ -190,4 +190,10 @@
   <data name="USDeleteError" xml:space="preserve">
     <value>Błąd podczas usuwania</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Zapisz</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
 </root>

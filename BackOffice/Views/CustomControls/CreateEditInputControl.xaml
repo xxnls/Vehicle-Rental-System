@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="BackOffice.Views.CustomControls.CreateEditInputControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BackOffice.Views.CustomControls"
+             xmlns:helpers="clr-namespace:BackOffice.Helpers"
+             mc:Ignorable="d" 
+             d:DesignHeight="70" d:DesignWidth="300">
+    <StackPanel>
+        <!-- Label displaying dynamic label text -->
+        <Label Content="{Binding LabelText, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+
+        <!-- TextBox for user input -->
+        <TextBox Text="{Binding Text, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+
+        <!-- Validation error message -->
+        <TextBlock Foreground="{StaticResource ErrorBrush}"
+                   helpers:ValidationHelper.PropertyName="{Binding ValidationPropertyName, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                   Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource AncestorType=UserControl}}" />
+    </StackPanel>
+</UserControl>

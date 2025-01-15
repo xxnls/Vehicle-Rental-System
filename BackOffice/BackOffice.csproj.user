@@ -10,6 +10,12 @@
     <Compile Update="Views\CustomControls\BindablePasswordBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\CustomControls\CreateEditInputControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\CustomControls\CreateEditSaveCancelControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\CustomControls\CRUDButtonsControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +49,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CustomControls\BindablePasswordBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CustomControls\CreateEditInputControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CustomControls\CreateEditSaveCancelControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CustomControls\CRUDButtonsControl.xaml">

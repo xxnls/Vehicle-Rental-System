@@ -15,10 +15,6 @@
         <vm:VehicleBrandsViewModel x:Name="DataContext"/>
     </UserControl.DataContext>
 
-    <UserControl.Resources>
-        <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter" />
-    </UserControl.Resources>
-
     <StackPanel Orientation="Vertical">
 
         <Grid Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -27,38 +23,40 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Vertical" Margin="10">
-                <!-- Input Fields -->
-                <Label Content="Name:" />
-                <TextBox x:Name="NameField" Text="{Binding EditableModel.Name, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}"
-                           helpers:ValidationHelper.PropertyName="Name"
-                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+            <Border Style="{StaticResource CreateEditBorderStyle}">
+                <StackPanel Orientation="Vertical">
+                    <!-- Input Fields -->
+                    <Label Content="{x:Static generic:Resources.Name}" ContentStringFormat="{}{0}:"/>
+                    <TextBox x:Name="NameField" Text="{Binding EditableModel.Name, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Foreground="{StaticResource ErrorBrush}"
+                               helpers:ValidationHelper.PropertyName="Name"
+                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                <Label Content="Description: "/>
-                <TextBox x:Name="DescriptionField" Text="{Binding EditableModel.Description, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}"
-                           helpers:ValidationHelper.PropertyName="Description"
-                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                    <Label Content="{x:Static generic:Resources.Description}" ContentStringFormat="{}{0}:"/>
+                    <TextBox x:Name="DescriptionField" Text="{Binding EditableModel.Description, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Foreground="{StaticResource ErrorBrush}"
+                               helpers:ValidationHelper.PropertyName="Description"
+                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                <Label Content="Website:" />
-                <TextBox x:Name="WebsiteField" Text="{Binding EditableModel.Website, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}"
-                           helpers:ValidationHelper.PropertyName="Website"
-                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                    <Label Content="{x:Static res:Resources.WebsiteURL}" ContentStringFormat="{}{0}:"/>
+                    <TextBox x:Name="WebsiteField" Text="{Binding EditableModel.Website, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Foreground="{StaticResource ErrorBrush}"
+                               helpers:ValidationHelper.PropertyName="Website"
+                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                <Label Content="Logo URL:" />
-                <TextBox x:Name="LogoField" Text="{Binding EditableModel.LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}"
-                           helpers:ValidationHelper.PropertyName="LogoUrl"
-                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
-            </StackPanel>
+                    <Label Content="{x:Static res:Resources.LogoURL}" ContentStringFormat="{}{0}:"/>
+                    <TextBox x:Name="LogoField" Text="{Binding EditableModel.LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Foreground="{StaticResource ErrorBrush}"
+                               helpers:ValidationHelper.PropertyName="LogoUrl"
+                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                </StackPanel>
+            </Border>
 
-             <!-- Action Buttons -->
-             <StackPanel Orientation="Horizontal" Grid.Row="1">
-                <Button Content="Save" Command="{Binding CreateModelCommand}" IsEnabled="{Binding HasErrors, Converter={StaticResource InverseBooleanConverter}, UpdateSourceTrigger=PropertyChanged}" />
-                 <Button Content="Cancel" Command="{Binding SwitchToListModeCommand}" />
-            </StackPanel>
+            <!-- Action Buttons -->
+             <cc:CreateEditSaveCancelControl Grid.Row="1"
+                                             SaveCommand="{Binding CreateModelCommand}"
+                                             CancelCommand="{Binding SwitchToListModeCommand}"
+                                             HasErrors="{Binding HasErrors}"/>
         </Grid>
 
         <Grid Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -67,38 +65,40 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Vertical" Margin="10">
-                <!-- Input Fields -->
-                <Label Content="Name:" />
-                <TextBox x:Name="EditNameField" Text="{Binding EditableModel.Name, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}"
-                           helpers:ValidationHelper.PropertyName="Name"
-                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+            <Border Style="{StaticResource CreateEditBorderStyle}">
+                <StackPanel Orientation="Vertical">
+                    <!-- Input Fields -->
+                    <Label Content="{x:Static generic:Resources.Name}" ContentStringFormat="{}{0}:"/>
+                    <TextBox x:Name="EditNameField" Text="{Binding EditableModel.Name, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Foreground="{StaticResource ErrorBrush}"
+                               helpers:ValidationHelper.PropertyName="Name"
+                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                <Label Content="Description: "/>
-                <TextBox x:Name="EditDescriptionField" Text="{Binding EditableModel.Description, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}"
-                           helpers:ValidationHelper.PropertyName="Description"
-                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                    <Label Content="{x:Static generic:Resources.Description}" ContentStringFormat="{}{0}:"/>
+                    <TextBox x:Name="EditDescriptionField" Text="{Binding EditableModel.Description, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Foreground="{StaticResource ErrorBrush}"
+                               helpers:ValidationHelper.PropertyName="Description"
+                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                <Label Content="Website:" />
-                <TextBox x:Name="EditWebsiteField" Text="{Binding EditableModel.Website, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}"
-                           helpers:ValidationHelper.PropertyName="Website"
-                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                    <Label Content="{x:Static res:Resources.WebsiteURL}" ContentStringFormat="{}{0}:"/>
+                    <TextBox x:Name="EditWebsiteField" Text="{Binding EditableModel.Website, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Foreground="{StaticResource ErrorBrush}"
+                               helpers:ValidationHelper.PropertyName="Website"
+                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                <Label Content="Logo URL:" />
-                <TextBox x:Name="EditLogoField" Text="{Binding EditableModel.LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock Foreground="{StaticResource ErrorBrush}"
-                           helpers:ValidationHelper.PropertyName="LogoUrl"
-                           Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
-            </StackPanel>
+                    <Label Content="{x:Static res:Resources.LogoURL}" ContentStringFormat="{}{0}:"/>
+                    <TextBox x:Name="EditLogoField" Text="{Binding EditableModel.LogoUrl, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Foreground="{StaticResource ErrorBrush}"
+                               helpers:ValidationHelper.PropertyName="LogoUrl"
+                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                </StackPanel>
+            </Border>
 
             <!-- Action Buttons -->
-            <StackPanel Orientation="Horizontal" Grid.Row="1">
-                <Button Content="Save" Command="{Binding UpdateModelCommand}" IsEnabled="{Binding HasErrors, Converter={StaticResource InverseBooleanConverter}, UpdateSourceTrigger=PropertyChanged}" />
-                <Button Content="Cancel" Command="{Binding SwitchToListModeCommand}" />
-            </StackPanel>
+            <cc:CreateEditSaveCancelControl Grid.Row="1"
+                                            SaveCommand="{Binding UpdateModelCommand}"
+                                            CancelCommand="{Binding SwitchToListModeCommand}"
+                                            HasErrors="{Binding HasErrors}"/>
         </Grid>
 
         <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -131,7 +131,7 @@
                                      ModifiedAfter="{Binding ModifiedAfter, Mode=TwoWay}"
                                      FilterCommand="{Binding LoadModelsCommand}"/>
 
-            <!-- Data Grid -->
+            <!--Data Grid--> 
             <DataGrid ItemsSource="{Binding Models}"
                       Style="{StaticResource DefaultDataGridStyle}"
                       SelectedItem="{Binding EditableModel, Mode=TwoWay}">
