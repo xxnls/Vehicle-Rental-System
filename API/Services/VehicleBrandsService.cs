@@ -165,6 +165,13 @@ namespace API.Services
             existingVehicleBrand.LogoUrl = vehicleBrandDto.LogoUrl;
             existingVehicleBrand.ModifiedDate = DateTime.UtcNow;
 
+            // Restoring deleted model
+            if (vehicleBrandDto.IsActive)
+            {
+                existingVehicleBrand.DeletedDate = vehicleBrandDto.DeletedDate;
+                existingVehicleBrand.IsActive = vehicleBrandDto.IsActive;
+            }
+
             await _context.SaveChangesAsync();
 
             return new VehicleBrandDto

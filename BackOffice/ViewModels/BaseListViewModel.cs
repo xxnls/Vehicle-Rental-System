@@ -12,7 +12,7 @@ using System.Windows.Controls;
 
 namespace BackOffice.ViewModels
 {
-    public class BaseListViewModel<T> : BaseViewModel, INotifyDataErrorInfo where T : class, new()
+    public class BaseListViewModel<T> : BaseViewModel, INotifyDataErrorInfo where T : BaseDtoModel, new()
     {
         public BaseListViewModel(string endPointName, string displayName)
         {
@@ -31,6 +31,7 @@ namespace BackOffice.ViewModels
             SwitchToEditModeCommand = new RelayCommand(() => SwitchViewMode(ViewMode.Edit));
             SwitchToListModeCommand = new RelayCommand(() => SwitchViewMode(ViewMode.List));
             LoadModelsCommand = new RelayCommand(async () => await LoadModelsAsync());
+            RestoreModelCommand = new RelayCommand<int>(async id => await RestoreModelAsync(id, EditableModel));
             LoadNextPageCommand = new RelayCommand(async () => await LoadNextPageAsync(), () => CanLoadNextPage);
             LoadPreviousPageCommand = new RelayCommand(async () => await LoadPreviousPageAsync(), () => CanLoadPreviousPage);
             SearchCommand = new AsyncRelayCommand<string>(LoadModelsAsync);
@@ -272,6 +273,7 @@ namespace BackOffice.ViewModels
         public ICommand SwitchToEditModeCommand { get; }
         public ICommand ShowFilterOptionsCommand { get; }
         public ICommand ShowDeletedModelsCommand { get; }
+        public ICommand RestoreModelCommand { get; }
 
         #endregion
 
@@ -477,7 +479,7 @@ namespace BackOffice.ViewModels
                     return;
                 }
 
-                await ApiClient.DeleteAsync($"VehicleBrands/{id}");
+                await ApiClient.DeleteAsync($"{EndPointName}/{id}");
                 UpdateStatus(DisplayName + LocalizationHelper.GetString("Generic", "USDeleteSuccess"));
 
                 await LoadModelsAsync();
@@ -492,6 +494,28 @@ namespace BackOffice.ViewModels
             }
         }
 
+        /// <summary>
+        /// Restores a deleted model by sending a PUT request to the API with the model's updated data.
+        /// </summary>
+        /// <param name="id">
+        /// The unique identifier of the model to be restored.
+        /// </param>
+        /// <param name="model">
+        /// The model object to be restored.
+        /// </param>
+        protected async Task RestoreModelAsync(int id, T? model)
+        {
+            if (model == null)
+            {
+                UpdateStatus(LocalizationHelper.GetString("Generic", "USRestoreSelect"));
+                return;
+            }
+
+            model.DeletedDate = null;
+            model.IsActive = true;
+
+            await UpdateModelAsync(id, model);
+        }
 
         /// <summary>
         /// Updates the <see cref="Models"/> collection and pagination properties.

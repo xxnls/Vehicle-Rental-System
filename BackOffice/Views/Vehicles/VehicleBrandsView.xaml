@@ -113,6 +113,10 @@
                                    AddCommand="{Binding SwitchToCreateModeCommand}"
                                    EditCommand="{Binding SwitchToEditModeCommand}"
                                    DeleteCommand="{Binding DeleteModelCommand}"
+                                   DeleteVisibility="{Binding ShowDeleted, Converter={StaticResource InverseBooleanConverter}}"
+                                   RestoreCommand="{Binding RestoreModelCommand}"
+                                   RestoreCommandParameter="{Binding EditableModel.VehicleBrandId}"
+                                   RestoreVisibility="{Binding ShowDeleted}"
                                    Grid.Column="0"/>
 
                 <cc:SearchControl Grid.Column="1"

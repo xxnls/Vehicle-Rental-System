@@ -10,6 +10,9 @@ namespace BackOffice.Models
 {
     public class BaseDtoModel : INotifyPropertyChanged
     {
+        public DateTime? DeletedDate { get; set; }
+        public bool IsActive { get; set; }
+
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {

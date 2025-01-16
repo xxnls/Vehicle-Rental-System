@@ -64,5 +64,45 @@ namespace BackOffice.Views.CustomControls
 
         public static readonly DependencyProperty DeleteCommandProperty =
             DependencyProperty.Register(nameof(DeleteCommand), typeof(ICommand), typeof(CRUDButtonsControl));
+
+        // DeleteVisibility Dependency Property
+        public bool DeleteVisibility
+        {
+            get => (bool)GetValue(DeleteVisibilityProperty);
+            set => SetValue(DeleteVisibilityProperty, value);
+        }
+
+        public static readonly DependencyProperty DeleteVisibilityProperty =
+            DependencyProperty.Register(nameof(DeleteVisibility), typeof(bool), typeof(CRUDButtonsControl));
+
+        // RestoreCommand Dependency Property
+        public ICommand RestoreCommand
+        {
+            get => (ICommand)GetValue(RestoreCommandProperty);
+            set => SetValue(RestoreCommandProperty, value);
+        }
+
+        public static readonly DependencyProperty RestoreCommandProperty =
+            DependencyProperty.Register(nameof(RestoreCommand), typeof(ICommand), typeof(CRUDButtonsControl));
+
+        // RestoreCommandParameter Dependency Property
+        public int RestoreCommandParameter
+        {
+            get => (int)GetValue(RestoreCommandParameterProperty);
+            set => SetValue(RestoreCommandParameterProperty, value);
+        }
+
+        public static readonly DependencyProperty RestoreCommandParameterProperty =
+            DependencyProperty.Register(nameof(RestoreCommandParameter), typeof(int), typeof(CRUDButtonsControl));
+
+        // RestoreVisibility Dependency Property
+        public bool RestoreVisibility
+        {
+            get => (bool)GetValue(RestoreVisibilityProperty);
+            set => SetValue(RestoreVisibilityProperty, value);
+        }
+
+        public static readonly DependencyProperty RestoreVisibilityProperty =
+            DependencyProperty.Register(nameof(RestoreVisibility), typeof(bool), typeof(CRUDButtonsControl));
     }
 }

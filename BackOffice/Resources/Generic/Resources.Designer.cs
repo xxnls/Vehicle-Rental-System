@@ -331,6 +331,15 @@ namespace BackOffice.Resources.Generic {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select an item to restore..
+        /// </summary>
+        public static string USRestoreSelect {
+            get {
+                return ResourceManager.GetString("USRestoreSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error while updating.
         /// </summary>
         public static string USUpdateError {

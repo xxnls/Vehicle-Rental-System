@@ -20,8 +20,15 @@
             <Button Command="{Binding EditCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource DefaultButtonStyle}">
                 <Image Source="/ViewResources/Icons/edit.png" />
             </Button>
-            <Button Command="{Binding DeleteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource DefaultButtonStyle}">
+            <Button Command="{Binding DeleteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" Style="{StaticResource DefaultButtonStyle}"
+                    Visibility="{Binding DeleteVisibility, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Image Source="/ViewResources/Icons/delete.png" />
+            </Button>
+            <Button Command="{Binding RestoreCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    CommandParameter="{Binding RestoreCommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    Visibility="{Binding RestoreVisibility, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Image Source="/ViewResources/Icons/restore.png" />
             </Button>
         </StackPanel>
     </Border>

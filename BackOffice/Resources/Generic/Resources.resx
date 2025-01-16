@@ -196,4 +196,7 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="USRestoreSelect" xml:space="preserve">
+    <value>Please select an item to restore.</value>
+  </data>
 </root>
