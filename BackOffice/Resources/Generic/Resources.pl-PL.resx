@@ -199,4 +199,7 @@
   <data name="USRestoreSelect" xml:space="preserve">
     <value>Proszę wybrać element do przywrócenia.</value>
   </data>
+  <data name="NoData" xml:space="preserve">
+    <value>&lt;brak danych&gt;</value>
+  </data>
 </root>

@@ -31,6 +31,9 @@
     <Compile Update="Views\CustomControls\SearchControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\DetailedInfoWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -70,6 +73,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CustomControls\SearchControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\DetailedInfoWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\LoginWindow.xaml">

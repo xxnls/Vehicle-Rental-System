@@ -160,6 +160,15 @@ namespace BackOffice.Resources.Generic {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;no data&gt;.
+        /// </summary>
+        public static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Showing .
         /// </summary>
         public static string PaginationShowing1 {

@@ -199,4 +199,7 @@
   <data name="USRestoreSelect" xml:space="preserve">
     <value>Please select an item to restore.</value>
   </data>
+  <data name="NoData" xml:space="preserve">
+    <value>&lt;no data&gt;</value>
+  </data>
 </root>

@@ -1,0 +1,43 @@
+﻿<Window x:Class="BackOffice.Views.DetailedInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BackOffice.Views"
+        mc:Ignorable="d"
+        Title="Detailed Information" 
+        Width="500" 
+        SizeToContent="Height"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+
+    <Border Style="{StaticResource CreateEditBorderStyle}">
+        <StackPanel x:Name="InfoPanel">
+            <ItemsControl ItemsSource="{Binding ColumnValuePairs}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0,5">
+                            <Label Content="{Binding Header}"/>
+                            <TextBox Text="{Binding Value}"
+                                     IsReadOnly="True"
+                                     Visibility="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Button Style="{StaticResource DefaultButtonStyle}"
+                    Content="Close" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,10,0,0" 
+                    Width="50"
+                    Click="CloseButton_Click"/>
+        </StackPanel>
+    </Border>
+</Window>

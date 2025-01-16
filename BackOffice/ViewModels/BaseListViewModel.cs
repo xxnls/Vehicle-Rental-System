@@ -9,6 +9,8 @@ using BackOffice.Services;
 using BackOffice.Resources;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows.Controls;
+using CommunityToolkit.Mvvm.Messaging;
+using BackOffice.Views;
 
 namespace BackOffice.ViewModels
 {
@@ -34,7 +36,7 @@ namespace BackOffice.ViewModels
             RestoreModelCommand = new RelayCommand<int>(async id => await RestoreModelAsync(id, EditableModel));
             LoadNextPageCommand = new RelayCommand(async () => await LoadNextPageAsync(), () => CanLoadNextPage);
             LoadPreviousPageCommand = new RelayCommand(async () => await LoadPreviousPageAsync(), () => CanLoadPreviousPage);
-            ShowDetailedInfoCommand = new RelayCommand(ShowDetailedInfo);
+            ShowDetailedInfoCommand = new RelayCommand<DataGrid>(ShowDetailedInfo);
             SearchCommand = new AsyncRelayCommand<string>(LoadModelsAsync);
 
             ApiClient = new ApiClient();
@@ -574,12 +576,18 @@ namespace BackOffice.ViewModels
             _ = LoadModelsAsync();
         }
 
-        private void ShowDetailedInfo()
+        /// <summary>
+        /// Shows detailed information about a selected item in a DataGrid.
+        /// </summary>
+        /// <param name="dataGrid">
+        /// The DataGrid containing the selected item.
+        /// </param>
+        private void ShowDetailedInfo(DataGrid dataGrid)
         {
-            if (EditableModel != null)
-            {
-                UpdateStatus("SSSADASDDS");
-            }
+            if (EditableModel == null) return;
+
+            var dialog = new DetailedInfoWindow(dataGrid);
+            dialog.Show();
         }
 
         private void UpdatePaginationState()

@@ -135,12 +135,14 @@
                                      ModifiedAfter="{Binding ModifiedAfter, Mode=TwoWay}"
                                      FilterCommand="{Binding LoadModelsCommand}"/>
 
-            <!--Data Grid--> 
-            <DataGrid ItemsSource="{Binding Models}"
+            <!--Data Grid-->
+            <DataGrid x:Name="MainDataGrid" 
+                      ItemsSource="{Binding Models}"
                       Style="{StaticResource DefaultDataGridStyle}"
                       SelectedItem="{Binding EditableModel, Mode=TwoWay}">
                 <DataGrid.InputBindings>
-                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowDetailedInfoCommand}" />
+                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowDetailedInfoCommand}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Mode=OneWay}" />
                 </DataGrid.InputBindings>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding VehicleBrandId}" />
