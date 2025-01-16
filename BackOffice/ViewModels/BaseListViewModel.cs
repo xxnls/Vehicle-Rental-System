@@ -34,6 +34,7 @@ namespace BackOffice.ViewModels
             RestoreModelCommand = new RelayCommand<int>(async id => await RestoreModelAsync(id, EditableModel));
             LoadNextPageCommand = new RelayCommand(async () => await LoadNextPageAsync(), () => CanLoadNextPage);
             LoadPreviousPageCommand = new RelayCommand(async () => await LoadPreviousPageAsync(), () => CanLoadPreviousPage);
+            ShowDetailedInfoCommand = new RelayCommand(ShowDetailedInfo);
             SearchCommand = new AsyncRelayCommand<string>(LoadModelsAsync);
 
             ApiClient = new ApiClient();
@@ -274,6 +275,7 @@ namespace BackOffice.ViewModels
         public ICommand ShowFilterOptionsCommand { get; }
         public ICommand ShowDeletedModelsCommand { get; }
         public ICommand RestoreModelCommand { get; }
+        public ICommand ShowDetailedInfoCommand { get; }
 
         #endregion
 
@@ -570,6 +572,14 @@ namespace BackOffice.ViewModels
             CurrentPage = 1;
 
             _ = LoadModelsAsync();
+        }
+
+        private void ShowDetailedInfo()
+        {
+            if (EditableModel != null)
+            {
+                UpdateStatus("SSSADASDDS");
+            }
         }
 
         private void UpdatePaginationState()

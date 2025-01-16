@@ -139,6 +139,9 @@
             <DataGrid ItemsSource="{Binding Models}"
                       Style="{StaticResource DefaultDataGridStyle}"
                       SelectedItem="{Binding EditableModel, Mode=TwoWay}">
+                <DataGrid.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowDetailedInfoCommand}" />
+                </DataGrid.InputBindings>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding VehicleBrandId}" />
                     <DataGridTextColumn Header="{x:Static generic:Resources.Name}" Binding="{Binding Name}" />
