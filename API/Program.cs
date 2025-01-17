@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using API.Services.Vehicles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,7 @@ builder.Services.AddDbContext<ApiDbContext>(options =>
 builder.Services.AddScoped<EmployeeAuthService>();
 builder.Services.AddScoped<EmployeesService>();
 builder.Services.AddScoped<VehicleBrandsService>();
+builder.Services.AddScoped<VehicleModelsService>();
 
 builder.Services.AddIdentityCore<Employee>(options => { })
     .AddRoles<EmployeeRole>()

@@ -13,6 +13,7 @@ using System.Windows.Input;
 using BackOffice.Properties;
 using BackOffice.Views;
 using BackOffice.Models.Employees.DTOs;
+using BackOffice.ViewModels.Vehicles;
 
 namespace BackOffice.ViewModels
 {
@@ -91,14 +92,15 @@ namespace BackOffice.ViewModels
             _viewModelMappings = new Dictionary<string, object>
             {
                 { "VehicleBrandsViewModel", new VehicleBrandsViewModel() },
-                { "LocationsViewModel", new LocationsViewModel() }
+                { "VehicleModelsViewModel", new VehicleModelsViewModel() },
+                { "LocationsViewModel", new LocationsViewModel() },
             };
 
             // Load user
             CurrentUser = (REmployeeDTO)SessionManager.Get("User");
 
             // Set default workspace
-            CurrentWorkspace = _viewModelMappings["VehicleBrandsViewModel"];
+            CurrentWorkspace = _viewModelMappings["VehicleModelsViewModel"];
 
             ToggleSidebarCommand = new RelayCommand(ToggleSidebar);
             LogoutCommand = new RelayCommand(Logout);

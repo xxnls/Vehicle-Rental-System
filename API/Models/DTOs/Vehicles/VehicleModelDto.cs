@@ -1,16 +1,20 @@
-﻿namespace API.Models.DTOs
+﻿namespace API.Models.DTOs.Vehicles
 {
-    public class VehicleBrandDto
+    public class VehicleModelDto
     {
+        public int VehicleModelId { get; set; }
+
         public int VehicleBrandId { get; set; }
 
         public string Name { get; set; } = null!;
 
+        public double? EngineSize { get; set; }
+
+        public int? HorsePower { get; set; }
+
+        public string FuelType { get; set; } = null!;
+
         public string? Description { get; set; }
-
-        public string? Website { get; set; }
-
-        public string? LogoUrl { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

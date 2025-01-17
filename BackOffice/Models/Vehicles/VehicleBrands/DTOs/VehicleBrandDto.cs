@@ -51,8 +51,5 @@ namespace BackOffice.Models.Vehicles.VehicleBrands.DTOs
                 OnPropertyChanged();
             }
         }
-
-        public DateTime CreatedDate { get; set; }
-        public DateTime? ModifiedDate { get; set; }
     }
 }

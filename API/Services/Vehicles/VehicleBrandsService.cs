@@ -1,7 +1,7 @@
 ﻿using API.Context;
 using API.Interfaces;
 using API.Models;
-using API.Models.DTOs;
+using API.Models.DTOs.Vehicles;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Services
@@ -106,7 +106,9 @@ namespace API.Services
                 .FirstOrDefaultAsync(vb => vb.VehicleBrandId == id);
 
             if (vehicleBrand == null)
-                return null;
+            {
+                throw new KeyNotFoundException("Vehicle model not found");
+            }
 
             return new VehicleBrandDto
             {
@@ -157,7 +159,9 @@ namespace API.Services
                 .FirstOrDefaultAsync(vb => vb.VehicleBrandId == id);
 
             if (existingVehicleBrand == null)
-                return null;
+            {
+                throw new KeyNotFoundException("Vehicle model not found");
+            }
 
             existingVehicleBrand.Name = vehicleBrandDto.Name;
             existingVehicleBrand.Description = vehicleBrandDto.Description;
