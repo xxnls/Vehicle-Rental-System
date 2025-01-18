@@ -39,6 +39,14 @@ namespace BackOffice.Services
             return await response.Content.ReadFromJsonAsync<T>(_jsonOptions);
         }
 
+
+        public async Task<T> GetAsync<T>(string endpoint, int? id)
+        {
+            var response = await _httpClient.GetAsync($"{endpoint}/{id}");
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<T>(_jsonOptions);
+        }
+
         /// <summary>
         /// Sends a POST request with data as JSON.
         /// </summary>

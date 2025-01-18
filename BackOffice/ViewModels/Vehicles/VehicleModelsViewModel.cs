@@ -81,6 +81,7 @@ namespace BackOffice.ViewModels.Vehicles
                 HorsePower = EditableModel.HorsePower,
                 FuelType = EditableModel.FuelType
             };
+
             await UpdateModelAsync(id, model);
         }
 

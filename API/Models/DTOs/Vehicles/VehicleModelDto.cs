@@ -5,6 +5,7 @@
         public int VehicleModelId { get; set; }
 
         public int VehicleBrandId { get; set; }
+        public string? VehicleBrandName { get; set; }
 
         public string Name { get; set; } = null!;
 

@@ -142,4 +142,7 @@
   <data name="SelectVehicleBrandTitle" xml:space="preserve">
     <value>Select vehicle brand</value>
   </data>
+  <data name="BrandName" xml:space="preserve">
+    <value>Brand</value>
+  </data>
 </root>

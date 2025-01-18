@@ -142,4 +142,7 @@
   <data name="SelectVehicleBrandTitle" xml:space="preserve">
     <value>Wybierz markę pojazdu</value>
   </data>
+  <data name="BrandName" xml:space="preserve">
+    <value>Marka</value>
+  </data>
 </root>

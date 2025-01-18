@@ -4,13 +4,24 @@
     {
         public int VehicleModelId { get; set; }
 
-        private int? _vehicleBrandId;
+        private int? _vehicleBrandId ;
         public int? VehicleBrandId
         {
             get => _vehicleBrandId;
             set
             {
                 _vehicleBrandId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string? _vehicleBrandName;
+        public string? VehicleBrandName
+        {
+            get => _vehicleBrandName;
+            set
+            {
+                _vehicleBrandName = value;
                 OnPropertyChanged();
             }
         }

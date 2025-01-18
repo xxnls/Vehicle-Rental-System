@@ -193,6 +193,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding VehicleModelId}" />
                     <DataGridTextColumn Header="{x:Static generic:Resources.Name}" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="{x:Static res:Resources.BrandName}" Binding="{Binding VehicleBrandName}" />
                     <DataGridTextColumn Header="{x:Static generic:Resources.Description}" Binding="{Binding Description}" />
                     <DataGridTextColumn Header="{x:Static res:Resources.EngineSize}" Binding="{Binding EngineSize}" />
                     <DataGridTextColumn Header="{x:Static res:Resources.HorsePower}" Binding="{Binding HorsePower}" />

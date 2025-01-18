@@ -27,63 +27,64 @@ namespace API.Services.Vehicles
         {
             // Apply filter based on showDeleted
             IQueryable<VehicleModel> query = !showDeleted ?
-                _context.VehicleModels.Where(vb => vb.IsActive) :
-                _context.VehicleModels.Where(vb => vb.IsActive == false);
+                _context.VehicleModels.Where(vm => vm.IsActive) :
+                _context.VehicleModels.Where(vm => vm.IsActive == false);
 
             if (!string.IsNullOrWhiteSpace(search))
             {
-                query = query.Where(vb =>
-                    vb.VehicleModelId.ToString().Contains(search) ||
-                    vb.EngineSize != null && vb.EngineSize.ToString().Contains(search) ||
-                    vb.HorsePower != null && vb.HorsePower.ToString().Contains(search) ||
-                    vb.VehicleBrandId.ToString().Contains(search) ||
-                    vb.FuelType.Contains(search) ||
-                    vb.Name.Contains(search) ||
-                    vb.Description != null && vb.Description.Contains(search)
+                query = query.Where(vm =>
+                    vm.VehicleModelId.ToString().Contains(search) ||
+                    vm.EngineSize != null && vm.EngineSize.ToString().Contains(search) ||
+                    vm.HorsePower != null && vm.HorsePower.ToString().Contains(search) ||
+                    vm.VehicleBrandId.ToString().Contains(search) ||
+                    vm.FuelType.Contains(search) ||
+                    vm.Name.Contains(search) ||
+                    vm.Description != null && vm.Description.Contains(search)
                 );
             }
 
             // Apply date filters if provided
             if (createdBefore.HasValue)
             {
-                query = query.Where(vb => vb.CreatedDate <= createdBefore.Value);
+                query = query.Where(vm => vm.CreatedDate <= createdBefore.Value);
             }
 
             if (createdAfter.HasValue)
             {
-                query = query.Where(vb => vb.CreatedDate >= createdAfter.Value);
+                query = query.Where(vm => vm.CreatedDate >= createdAfter.Value);
             }
 
             if (modifiedBefore.HasValue)
             {
-                query = query.Where(vb => vb.ModifiedDate <= modifiedBefore.Value);
+                query = query.Where(vm => vm.ModifiedDate <= modifiedBefore.Value);
             }
 
             if (modifiedAfter.HasValue)
             {
-                query = query.Where(vb => vb.ModifiedDate >= modifiedAfter.Value);
+                query = query.Where(vm => vm.ModifiedDate >= modifiedAfter.Value);
             }
 
             // Get total count for pagination metadata
             int totalItemCount = await query.CountAsync();
 
             var vehicleModelDTOs = await query
-                .OrderBy(vb => vb.VehicleBrandId)
+                .OrderBy(vm => vm.VehicleModelId)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
-                .Select(vb => new VehicleModelDto
+                .Select(vm => new VehicleModelDto
                 {
-                    VehicleModelId = vb.VehicleModelId,
-                    VehicleBrandId = vb.VehicleBrandId,
-                    Name = vb.Name,
-                    Description = vb.Description,
-                    EngineSize = vb.EngineSize,
-                    HorsePower = vb.HorsePower,
-                    FuelType = vb.FuelType,
-                    CreatedDate = vb.CreatedDate,
-                    ModifiedDate = vb.ModifiedDate,
-                    DeletedDate = vb.DeletedDate,
-                    IsActive = vb.IsActive
+                    VehicleModelId = vm.VehicleModelId,
+                    VehicleBrandId = vm.VehicleBrandId,
+                    VehicleBrandName = vm.VehicleBrand.Name,
+                    Name = vm.Name,
+                    Description = vm.Description,
+                    EngineSize = vm.EngineSize,
+                    HorsePower = vm.HorsePower,
+                    FuelType = vm.FuelType,
+                    CreatedDate = vm.CreatedDate,
+                    ModifiedDate = vm.ModifiedDate,
+                    DeletedDate = vm.DeletedDate,
+                    IsActive = vm.IsActive
                 })
                 .ToListAsync();
 
@@ -112,6 +113,7 @@ namespace API.Services.Vehicles
             {
                 VehicleModelId = vehicleModel.VehicleModelId,
                 VehicleBrandId = vehicleModel.VehicleBrandId,
+                VehicleBrandName = vehicleModel.VehicleBrand.Name,
                 Name = vehicleModel.Name,
                 Description = vehicleModel.Description,
                 EngineSize = vehicleModel.EngineSize,
