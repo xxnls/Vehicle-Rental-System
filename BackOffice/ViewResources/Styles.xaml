@@ -25,17 +25,18 @@
                     <Setter Property="Foreground" Value="White"/>
                     <Setter Property="Padding" Value="5"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="MaxWidth" Value="250"/>
                 </Style>
             </Setter.Value>
         </Setter>
 
-        <!--<Setter Property="CellStyle">
+        <Setter Property="CellStyle">
             <Setter.Value>
                 <Style TargetType="DataGridCell">
-                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="MaxWidth" Value="250"/>
                 </Style>
             </Setter.Value>
-        </Setter>-->
+        </Setter>
 
         <!-- Style for the rows -->
         <Setter Property="RowStyle">

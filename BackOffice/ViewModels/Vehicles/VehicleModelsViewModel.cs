@@ -77,7 +77,7 @@ namespace BackOffice.ViewModels.Vehicles
 
         private void ShowSelectorDialog()
         {
-            var dialog = new DialogWindow();
+            var dialog = new SelectWindow();
             var viewModel = new VehicleBrandsViewModel();
             var view = new VehicleBrandsView();
             dialog.DataContext = viewModel;
@@ -85,13 +85,22 @@ namespace BackOffice.ViewModels.Vehicles
             var originalGrid = view.FindName("MainDataGrid") as DataGrid;
             if (originalGrid == null) return;
 
+            // Create a new grid
             var newGrid = new DataGrid
             {
-                ItemsSource = originalGrid.ItemsSource,
                 Style = originalGrid.Style,
                 AutoGenerateColumns = originalGrid.AutoGenerateColumns
             };
 
+            // Set up binding for ItemsSource
+            var binding = new Binding("Models")
+            {
+                Source = viewModel,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
+            newGrid.SetBinding(DataGrid.ItemsSourceProperty, binding);
+
+            // Copy columns from original grid
             foreach (var column in originalGrid.Columns)
             {
                 var newColumn = new DataGridTextColumn
@@ -102,6 +111,7 @@ namespace BackOffice.ViewModels.Vehicles
                 newGrid.Columns.Add(newColumn);
             }
 
+            // Add double click event
             newGrid.MouseDoubleClick += (sender, e) =>
             {
                 if (newGrid.SelectedItem != null)
@@ -113,32 +123,6 @@ namespace BackOffice.ViewModels.Vehicles
                     dialog.Close();
                 }
             };
-
-            viewModel.PropertyChanged += (sender, args) =>
-            {
-                if (args.PropertyName == nameof(viewModel.CurrentPage))
-                {
-                    // Reload the content of the dialog when the page changes
-                    // RefreshDialog(dialog, newGrid, viewModel);
-                }
-            };
-
-            // Create and set the PaginationControl, if necessary
-            //var paginationControl = new PaginationControl();
-            //paginationControl.DataContext = viewModel;  // Set the same DataContext to bind commands and properties
-            //paginationControl.CurrentPage = viewModel.CurrentPage;
-            //paginationControl.TotalItemCount = viewModel.TotalItemCount;
-            //paginationControl.ModelsPerPage = viewModel.PageSize;
-            //paginationControl.CanLoadPreviousPage = viewModel.CanLoadPreviousPage;
-            //paginationControl.CanLoadNextPage = viewModel.CanLoadNextPage;
-            //paginationControl.PreviousPageCommand = viewModel.LoadPreviousPageCommand;
-            //paginationControl.NextPageCommand = viewModel.LoadNextPageCommand;
-
-
-            // Set ContentPresenter content to both DataGrid and PaginationControl
-            //var stackPanel = new StackPanel();
-            //stackPanel.Children.Add(newGrid);
-            //stackPanel.Children.Add(paginationControl);
 
             dialog.ContentPresenter.Content = newGrid;
             dialog.ShowDialog();

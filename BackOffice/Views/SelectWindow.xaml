@@ -1,4 +1,4 @@
-﻿<Window x:Class="BackOffice.Views.DialogWindow"
+﻿<Window x:Class="BackOffice.Views.SelectWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,21 +8,43 @@
         mc:Ignorable="d"
         Title="Select" 
         Height="600" 
-        Width="1000"
+        Width="1200"
         WindowStartupLocation="CenterOwner">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <customControls:SearchControl Grid.Column="0"
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Row="0"
+                Grid.Column="0"
+                Command="{Binding LoadModelsCommand}"
+                Style="{StaticResource DefaultButtonStyle}"
+                Margin="10,0,0,0">
+            <Image Source="/ViewResources/Icons/reload.png" />
+        </Button>
+
+        <customControls:SearchControl Grid.Column="1"
+                                      Grid.Row="0"
+                                      Margin="0,5,0,5"
                                       SearchCommand="{Binding SearchCommand}"/>
 
-        <ContentPresenter x:Name="ContentPresenter" Grid.Row="1"/>
+        <ContentPresenter x:Name="ContentPresenter"
+                          Grid.Row="1"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"/>
 
         <customControls:PaginationControl Grid.Row="2"
+                                          Grid.Column="0"
+                                          Grid.ColumnSpan="2"
+                                          Margin="0,0,0,5"
                                           CurrentPage="{Binding CurrentPage}" 
                                           TotalItemCount="{Binding TotalItemCount}"
                                           ModelsPerPage="{Binding PageSize}"

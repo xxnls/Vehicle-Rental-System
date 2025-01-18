@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace BackOffice.Views
 {
     /// <summary>
-    /// Interaction logic for DialogWindow.xaml
+    /// Interaction logic for SelectWindow.xaml
     /// </summary>
-    public partial class DialogWindow : Window
+    public partial class SelectWindow : Window
     {
-        public DialogWindow()
+        public SelectWindow()
         {
             InitializeComponent();
         }
