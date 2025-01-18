@@ -139,4 +139,7 @@
   <data name="ErrorVehicleBrandId" xml:space="preserve">
     <value>Marka jest wymagana.</value>
   </data>
+  <data name="SelectVehicleBrandTitle" xml:space="preserve">
+    <value>Wybierz markę pojazdu</value>
+  </data>
 </root>

@@ -54,9 +54,11 @@
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                     <Button Content="Select Brand" 
                             Command="{Binding ShowSelectorDialogCommand}"
+                            CommandParameter="{Binding SelectVehicleBrandIdParameters}"
                             Style="{StaticResource DefaultButtonStyle}"
                             Width="100"
-                            HorizontalAlignment="Left"/>
+                            HorizontalAlignment="Left">
+                    </Button>
 
                     <Label Content="{x:Static res:Resources.EngineSize}"/>
                     <TextBox x:Name="EngineSizeField" Text="{Binding EditableModel.EngineSize, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"

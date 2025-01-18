@@ -6,15 +6,15 @@ using BackOffice.Helpers;
 using BackOffice.Models;
 using BackOffice.Properties;
 using BackOffice.Services;
-using BackOffice.Resources;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows.Controls;
-using CommunityToolkit.Mvvm.Messaging;
 using BackOffice.Views;
+using System.Windows.Data;
+using BackOffice.Interfaces;
 
 namespace BackOffice.ViewModels
-{
-    public class BaseListViewModel<T> : BaseViewModel, INotifyDataErrorInfo where T : BaseDtoModel, new()
+{ 
+    public class BaseListViewModel<T> : BaseViewModel, INotifyDataErrorInfo, IBaseListViewModel where T : BaseDtoModel, new()
     {
         public BaseListViewModel(string endPointName, string displayName)
         {
@@ -38,6 +38,7 @@ namespace BackOffice.ViewModels
             LoadPreviousPageCommand = new RelayCommand(async () => await LoadPreviousPageAsync(), () => CanLoadPreviousPage);
             ShowDetailedInfoCommand = new RelayCommand<DataGrid>(ShowDetailedInfo);
             SearchCommand = new AsyncRelayCommand<string>(LoadModelsAsync);
+            ShowSelectorDialogCommand = new RelayCommand<SelectorDialogParameters>(ShowSelectorDialog);
 
             ApiClient = new ApiClient();
             Models = [];
@@ -278,6 +279,7 @@ namespace BackOffice.ViewModels
         public ICommand ShowDeletedModelsCommand { get; }
         public ICommand RestoreModelCommand { get; }
         public ICommand ShowDetailedInfoCommand { get; }
+        public ICommand ShowSelectorDialogCommand { get; }
 
         #endregion
 
@@ -522,10 +524,81 @@ namespace BackOffice.ViewModels
         }
 
         /// <summary>
+        /// Shows a dialog window with a DataGrid containing a list of selectable items.
+        /// </summary>
+        /// <param name="parameters">
+        /// The parameters for the selector dialog.
+        /// </param>
+        protected void ShowSelectorDialog(SelectorDialogParameters parameters)
+        {
+            // Ensure the type is a BaseViewModel
+            if (!typeof(BaseViewModel).IsAssignableFrom(parameters.SelectorViewModelType))
+                throw new ArgumentException($"Type {parameters.SelectorViewModelType} must inherit from BaseViewModel.", nameof(parameters.SelectorViewModelType));
+
+            // Dynamically create an instance of the ViewModel
+            var viewModel = (BaseViewModel)Activator.CreateInstance(parameters.SelectorViewModelType);
+
+            var dialog = new SelectWindow
+            {
+                DataContext = viewModel,
+                Title = parameters.Title
+            };
+
+            var originalGrid = parameters.SelectorView.FindName("MainDataGrid") as DataGrid;
+            if (originalGrid == null) return;
+
+            // Create a new grid
+            var newGrid = new DataGrid
+            {
+                Style = originalGrid.Style,
+                AutoGenerateColumns = originalGrid.AutoGenerateColumns
+            };
+
+            // Set up binding for ItemsSource
+            var binding = new Binding("Models")
+            {
+                Source = viewModel,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
+            newGrid.SetBinding(DataGrid.ItemsSourceProperty, binding);
+
+            // Copy columns from original grid
+            foreach (var column in originalGrid.Columns)
+            {
+                var newColumn = new DataGridTextColumn
+                {
+                    Header = column.Header,
+                    Binding = ((DataGridTextColumn)column).Binding
+                };
+                newGrid.Columns.Add(newColumn);
+            }
+
+            // Add double click event
+            newGrid.MouseDoubleClick += (sender, e) =>
+            {
+                if (newGrid.SelectedItem == null) return;
+
+                var selectedItem = newGrid.SelectedItem;
+                var property = selectedItem.GetType().GetProperty(parameters.PropertyForSelection);
+
+                if (property != null)
+                {
+                    var value = property.GetValue(selectedItem);
+                    parameters.TargetProperty?.Invoke(value);
+                }
+
+                dialog.Close();
+            };
+
+            dialog.ContentPresenter.Content = newGrid;
+            dialog.ShowDialog();
+        }
+
+        /// <summary>
         /// Updates the <see cref="Models"/> collection and pagination properties.
         /// Invokes <see cref="LoadModelsAsync"/> task to fetch data for next page.
         /// </summary>
-        protected async Task LoadNextPageAsync()
+        public async Task LoadNextPageAsync()
         {
             if (CurrentPage < (TotalItemCount + PageSize - 1) / PageSize) // Calculate total pages
             {
@@ -538,7 +611,7 @@ namespace BackOffice.ViewModels
         /// Updates the <see cref="Models"/> collection and pagination properties.
         /// Invokes <see cref="LoadModelsAsync"/> task to fetch data for previous page.
         /// </summary>
-        protected async Task LoadPreviousPageAsync()
+        public async Task LoadPreviousPageAsync()
         {
             if (CurrentPage > 1)
             {
@@ -590,10 +663,10 @@ namespace BackOffice.ViewModels
             dialog.Show();
         }
 
-        private void UpdatePaginationState()
+        public void UpdatePaginationState()
         {
-            CanLoadNextPage = CurrentPage < (TotalItemCount + PageSize - 1) / PageSize;
             CanLoadPreviousPage = CurrentPage > 1;
+            CanLoadNextPage = CurrentPage < (TotalItemCount + PageSize - 1) / PageSize;
         }
 
         private void EditableModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)

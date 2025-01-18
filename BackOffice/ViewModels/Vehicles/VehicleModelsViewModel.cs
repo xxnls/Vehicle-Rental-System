@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using BackOffice.Helpers;
 using BackOffice.Interfaces;
+using BackOffice.Models;
 using BackOffice.Models.DTOs.Vehicles;
 using BackOffice.Models.Vehicles.VehicleBrands;
 using BackOffice.Models.Vehicles.VehicleBrands.DTOs;
@@ -21,14 +22,22 @@ namespace BackOffice.ViewModels.Vehicles
 {
     public class VehicleModelsViewModel : BaseListViewModel<VehicleModelDto>, IListViewModel
     {
-        public ICommand ShowSelectorDialogCommand { get; }
+        public SelectorDialogParameters SelectVehicleBrandIdParameters { get; set; }
 
         public VehicleModelsViewModel() : base("VehicleModels", LocalizationHelper.GetString("VehicleModels", "DisplayName"))
         {
+            SelectVehicleBrandIdParameters = new SelectorDialogParameters
+            {
+                SelectorViewModelType = typeof(VehicleBrandsViewModel),
+                SelectorView = new VehicleBrandsView(),
+                TargetProperty = result => EditableModel.VehicleBrandId = (int)result,
+                PropertyForSelection = "VehicleBrandId",
+                Title = LocalizationHelper.GetString("VehicleModels", "SelectVehicleBrandTitle")
+            };
+
             CreateModelCommand = new AsyncRelayCommand(CreateModelAsync);
             UpdateModelCommand = new AsyncRelayCommand(UpdateModelAsync);
             DeleteModelCommand = new AsyncRelayCommand(() => DeleteModelAsync(EditableModel.VehicleModelId));
-            ShowSelectorDialogCommand = new RelayCommand(ShowSelectorDialog);
 
             ValidationRules = new Dictionary<string, Action>
             {
@@ -73,59 +82,6 @@ namespace BackOffice.ViewModels.Vehicles
                 FuelType = EditableModel.FuelType
             };
             await UpdateModelAsync(id, model);
-        }
-
-        private void ShowSelectorDialog()
-        {
-            var dialog = new SelectWindow();
-            var viewModel = new VehicleBrandsViewModel();
-            var view = new VehicleBrandsView();
-            dialog.DataContext = viewModel;
-
-            var originalGrid = view.FindName("MainDataGrid") as DataGrid;
-            if (originalGrid == null) return;
-
-            // Create a new grid
-            var newGrid = new DataGrid
-            {
-                Style = originalGrid.Style,
-                AutoGenerateColumns = originalGrid.AutoGenerateColumns
-            };
-
-            // Set up binding for ItemsSource
-            var binding = new Binding("Models")
-            {
-                Source = viewModel,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            };
-            newGrid.SetBinding(DataGrid.ItemsSourceProperty, binding);
-
-            // Copy columns from original grid
-            foreach (var column in originalGrid.Columns)
-            {
-                var newColumn = new DataGridTextColumn
-                {
-                    Header = column.Header,
-                    Binding = ((DataGridTextColumn)column).Binding
-                };
-                newGrid.Columns.Add(newColumn);
-            }
-
-            // Add double click event
-            newGrid.MouseDoubleClick += (sender, e) =>
-            {
-                if (newGrid.SelectedItem != null)
-                {
-                    EditableModel.VehicleBrandId = (int)newGrid.SelectedItem.GetType()
-                        .GetProperty("VehicleBrandId")
-                        .GetValue(newGrid.SelectedItem);
-
-                    dialog.Close();
-                }
-            };
-
-            dialog.ContentPresenter.Content = newGrid;
-            dialog.ShowDialog();
         }
 
         #endregion

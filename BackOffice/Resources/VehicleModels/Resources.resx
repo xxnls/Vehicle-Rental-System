@@ -139,4 +139,7 @@
   <data name="ErrorVehicleBrandId" xml:space="preserve">
     <value>Brand is required.</value>
   </data>
+  <data name="SelectVehicleBrandTitle" xml:space="preserve">
+    <value>Select vehicle brand</value>
+  </data>
 </root>

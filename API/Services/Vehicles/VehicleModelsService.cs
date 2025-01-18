@@ -173,6 +173,13 @@ namespace API.Services.Vehicles
             existingEntity.FuelType = entity.FuelType;
             existingEntity.ModifiedDate = DateTime.UtcNow;
 
+            // Restoring deleted model
+            if (entity.IsActive)
+            {
+                existingEntity.DeletedDate = entity.DeletedDate;
+                existingEntity.IsActive = entity.IsActive;
+            }
+
             await _context.SaveChangesAsync();
 
             return new VehicleModelDto
