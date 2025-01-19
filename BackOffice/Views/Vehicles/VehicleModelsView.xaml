@@ -52,7 +52,7 @@
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
                                helpers:ValidationHelper.PropertyName="VehicleBrandId"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
-                    <Button Content="Select Brand" 
+                    <Button Content="{x:Static res:Resources.SelectBrand}" 
                             Command="{Binding ShowSelectorDialogCommand}"
                             CommandParameter="{Binding SelectVehicleBrandIdParameters}"
                             Style="{StaticResource DefaultButtonStyle}"
@@ -108,32 +108,55 @@
             <Border Style="{StaticResource CreateEditBorderStyle}">
                 <StackPanel Orientation="Vertical">
                     <!-- Input Fields -->
-                    <Label Content="{x:Static generic:Resources.Name}" ContentStringFormat="{}{0}:"/>
+                    <Label Content="{x:Static generic:Resources.Name}"/>
                     <TextBox x:Name="EditNameField" Text="{Binding EditableModel.Name, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
                                helpers:ValidationHelper.PropertyName="Name"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static generic:Resources.Description}" ContentStringFormat="{}{0}:"/>
+                    <Label Content="{x:Static generic:Resources.Description}"/>
                     <TextBox x:Name="EditDescriptionField" Text="{Binding EditableModel.Description, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
                                helpers:ValidationHelper.PropertyName="Description"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.EngineSize}" ContentStringFormat="{}{0}:"/>
+                    <Label Content="{x:Static res:Resources.VehicleBrand}"/>
+                    <TextBox Text="{Binding EditableModel.VehicleBrandId, UpdateSourceTrigger=PropertyChanged}" 
+                             IsReadOnly="True"/>
+                    <TextBlock Foreground="{StaticResource ErrorBrush}"
+                               helpers:ValidationHelper.PropertyName="VehicleBrandId"
+                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                    <Button Content="{x:Static res:Resources.SelectBrand}" 
+                            Command="{Binding ShowSelectorDialogCommand}"
+                            CommandParameter="{Binding SelectVehicleBrandIdParameters}"
+                            Style="{StaticResource DefaultButtonStyle}"
+                            Width="100"
+                            HorizontalAlignment="Left">
+                    </Button>
+
+                    <Label Content="{x:Static res:Resources.EngineSize}"/>
                     <TextBox x:Name="EditEngineSizeField" Text="{Binding EditableModel.EngineSize, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
                                helpers:ValidationHelper.PropertyName="EngineSize"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.HorsePower}" ContentStringFormat="{}{0}:"/>
+                    <Label Content="{x:Static res:Resources.HorsePower}"/>
                     <TextBox x:Name="EditHorsePowerField" Text="{Binding EditableModel.HorsePower, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
                                helpers:ValidationHelper.PropertyName="HorsePower"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.FuelType}" ContentStringFormat="{}{0}:"/>
-                    <TextBox x:Name="EditFuelTypeField" Text="{Binding EditableModel.FuelType, UpdateSourceTrigger=PropertyChanged}" />
+                    <Label Content="{x:Static res:Resources.FuelType}"/>
+                    <ComboBox SelectedItem="{Binding EditableModel.FuelType, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBox.ItemsSource>
+                            <x:Array Type="system:String">
+                                <system:String>Petrol</system:String>
+                                <system:String>Diesel</system:String>
+                                <system:String>Electric</system:String>
+                                <system:String>Hybrid</system:String>
+                            </x:Array>
+                        </ComboBox.ItemsSource>
+                    </ComboBox>
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
                                helpers:ValidationHelper.PropertyName="FuelType"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />

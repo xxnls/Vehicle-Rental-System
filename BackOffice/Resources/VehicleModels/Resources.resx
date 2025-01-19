@@ -145,4 +145,7 @@
   <data name="BrandName" xml:space="preserve">
     <value>Brand</value>
   </data>
+  <data name="SelectBrand" xml:space="preserve">
+    <value>Select Brand</value>
+  </data>
 </root>

@@ -187,6 +187,15 @@ namespace BackOffice.Resources.VehicleModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Brand.
+        /// </summary>
+        public static string SelectBrand {
+            get {
+                return ResourceManager.GetString("SelectBrand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select vehicle brand.
         /// </summary>
         public static string SelectVehicleBrandTitle {
