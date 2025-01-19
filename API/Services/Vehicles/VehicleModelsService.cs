@@ -45,6 +45,7 @@ namespace API.Services.Vehicles
                 EngineSize = model.EngineSize,
                 HorsePower = model.HorsePower,
                 FuelType = model.FuelType,
+                CreatedDate = model.CreatedDate,
                 ModifiedDate = model.ModifiedDate,
                 DeletedDate = model.DeletedDate,
                 IsActive = model.IsActive
@@ -70,7 +71,6 @@ namespace API.Services.Vehicles
             };
         }
 
-        // Keep a separate method for single entity mapping
         protected override VehicleModelDto MapSingleEntityToDto(VehicleModel entity)
         {
             return new VehicleModelDto
@@ -117,7 +117,6 @@ namespace API.Services.Vehicles
             }
         }
 
-        // Override FindEntityById to include VehicleBrand
         protected override async Task<VehicleModel> FindEntityById(int id)
         {
             return await _apiDbContext.VehicleModels

@@ -19,7 +19,10 @@ namespace BackOffice.ViewModels
         {
             CreateModelCommand = new AsyncRelayCommand(CreateModelAsync);
             UpdateModelCommand = new AsyncRelayCommand(UpdateModelAsync);
-            DeleteModelCommand = new AsyncRelayCommand(() => DeleteModelAsync(EditableModel.VehicleBrandId));
+            DeleteModelCommand = new AsyncRelayCommand(
+                () => DeleteModelAsync(EditableModel.VehicleBrandId),
+                () => EditableModel != null
+            );
 
             ValidationRules = new Dictionary<string, Action>
             {

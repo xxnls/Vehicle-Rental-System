@@ -135,13 +135,14 @@ namespace API.Services
             // Get total count for pagination
             int totalItemCount = await query.CountAsync();
 
-            // Apply pagination
+            // Get paginated items, order by primary key
             var items = await query
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .Select(MapToDto())
                 .ToListAsync();
 
+            // Return paginated result
             return new PaginatedResult<TResponseDto>
             {
                 Items = items,

@@ -30,10 +30,11 @@ namespace BackOffice.ViewModels
             ShowFilterOptionsCommand = new RelayCommand(ShowFilterOptions);
             ShowDeletedModelsCommand = new RelayCommand(ShowDeletedModels);
             SwitchToCreateModeCommand = new RelayCommand(() => SwitchViewMode(ViewMode.Create));
-            SwitchToEditModeCommand = new RelayCommand(() => SwitchViewMode(ViewMode.Edit));
+            SwitchToEditModeCommand = new RelayCommand(() => SwitchViewMode(ViewMode.Edit), () => EditableModel != null);
             SwitchToListModeCommand = new RelayCommand(() => SwitchViewMode(ViewMode.List));
             LoadModelsCommand = new RelayCommand(async () => await LoadModelsAsync());
-            RestoreModelCommand = new RelayCommand<int>(async id => await RestoreModelAsync(id, EditableModel));
+            RestoreModelCommand = new AsyncRelayCommand<int>(
+                async id => await RestoreModelAsync(id, EditableModel), id => EditableModel != null);
             LoadNextPageCommand = new RelayCommand(async () => await LoadNextPageAsync(), () => CanLoadNextPage);
             LoadPreviousPageCommand = new RelayCommand(async () => await LoadPreviousPageAsync(), () => CanLoadPreviousPage);
             ShowDetailedInfoCommand = new RelayCommand<DataGrid>(ShowDetailedInfo);
@@ -78,6 +79,9 @@ namespace BackOffice.ViewModels
                 }
 
                 OnPropertyChanged();
+                DeleteModelCommand?.NotifyCanExecuteChanged();
+                SwitchToEditModeCommand.NotifyCanExecuteChanged();
+                RestoreModelCommand.NotifyCanExecuteChanged();
             }
         }
 
@@ -268,16 +272,16 @@ namespace BackOffice.ViewModels
         public ICommand LoadModelsCommand { get; set; }
         public ICommand? CreateModelCommand { get; set; }
         public ICommand? UpdateModelCommand { get; set; }
-        public ICommand? DeleteModelCommand { get; set; }
+        public AsyncRelayCommand? DeleteModelCommand { get; set; }
         public ICommand LoadNextPageCommand { get; set; }
         public ICommand LoadPreviousPageCommand { get; set; }
         public ICommand SearchCommand { get; set; }
         public ICommand SwitchToListModeCommand { get; }
         public ICommand SwitchToCreateModeCommand { get; }
-        public ICommand SwitchToEditModeCommand { get; }
+        public RelayCommand SwitchToEditModeCommand { get; }
         public ICommand ShowFilterOptionsCommand { get; }
         public ICommand ShowDeletedModelsCommand { get; }
-        public ICommand RestoreModelCommand { get; }
+        public AsyncRelayCommand<int> RestoreModelCommand { get; }
         public ICommand ShowDetailedInfoCommand { get; }
         public ICommand ShowSelectorDialogCommand { get; }
 
