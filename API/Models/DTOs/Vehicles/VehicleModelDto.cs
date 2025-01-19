@@ -1,6 +1,8 @@
-﻿namespace API.Models.DTOs.Vehicles
+﻿using API.Interfaces;
+
+namespace API.Models.DTOs.Vehicles
 {
-    public class VehicleModelDto
+    public class VehicleModelDto : IBaseModel
     {
         public int VehicleModelId { get; set; }
 

@@ -473,7 +473,7 @@ namespace BackOffice.ViewModels
         /// <param name="id">
         /// The unique identifier of the model to be deleted.
         /// </param>
-        protected async Task DeleteModelAsync(int id)
+        protected async Task DeleteModelAsync(int? id)
         {
             try
             {

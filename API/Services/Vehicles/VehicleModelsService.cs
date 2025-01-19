@@ -3,215 +3,127 @@ using API.Interfaces;
 using API.Models;
 using API.Models.DTOs.Vehicles;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace API.Services.Vehicles
 {
-    public class VehicleModelsService : IBaseService<VehicleModel, VehicleModelDto, VehicleModelDto>
+    public class VehicleModelsService : BaseApiService<VehicleModel, VehicleModelDto, VehicleModelDto>
     {
-        private readonly ApiDbContext _context;
+        private readonly ApiDbContext _apiDbContext;
 
-        public VehicleModelsService(ApiDbContext context)
+        public VehicleModelsService(ApiDbContext context) : base(context)
         {
-            _context = context;
+            _apiDbContext = context;
         }
 
-        public async Task<PaginatedResult<VehicleModelDto>> GetAllAsync(
-            string? search,
-            int page,
-            bool showDeleted,
-            DateTime? createdBefore,
-            DateTime? createdAfter,
-            DateTime? modifiedBefore,
-            DateTime? modifiedAfter,
-            int pageSize)
+        protected override Expression<Func<VehicleModel, bool>> BuildSearchQuery(string search)
         {
-            // Apply filter based on showDeleted
-            IQueryable<VehicleModel> query = !showDeleted ?
-                _context.VehicleModels.Where(vm => vm.IsActive) :
-                _context.VehicleModels.Where(vm => vm.IsActive == false);
+            return vm =>
+                vm.VehicleModelId.ToString().Contains(search) ||
+                (vm.EngineSize != null && vm.EngineSize.ToString().Contains(search)) ||
+                (vm.HorsePower != null && vm.HorsePower.ToString().Contains(search)) ||
+                vm.VehicleBrandId.ToString().Contains(search) ||
+                vm.VehicleBrand.Name.Contains(search) ||
+                vm.FuelType.Contains(search) ||
+                vm.Name.Contains(search) ||
+                (vm.Description != null && vm.Description.Contains(search));
+        }
 
-            if (!string.IsNullOrWhiteSpace(search))
+        protected override Expression<Func<VehicleModel, bool>> GetActiveFilter(bool showDeleted)
+        {
+            return vm => vm.IsActive != showDeleted;
+        }
+
+        protected override VehicleModel MapToEntity(VehicleModelDto model)
+        {
+            return new VehicleModel
             {
-                query = query.Where(vm =>
-                    vm.VehicleModelId.ToString().Contains(search) ||
-                    vm.EngineSize != null && vm.EngineSize.ToString().Contains(search) ||
-                    vm.HorsePower != null && vm.HorsePower.ToString().Contains(search) ||
-                    vm.VehicleBrandId.ToString().Contains(search) ||
-                    vm.FuelType.Contains(search) ||
-                    vm.Name.Contains(search) ||
-                    vm.Description != null && vm.Description.Contains(search)
-                );
-            }
-
-            // Apply date filters if provided
-            if (createdBefore.HasValue)
-            {
-                query = query.Where(vm => vm.CreatedDate <= createdBefore.Value);
-            }
-
-            if (createdAfter.HasValue)
-            {
-                query = query.Where(vm => vm.CreatedDate >= createdAfter.Value);
-            }
-
-            if (modifiedBefore.HasValue)
-            {
-                query = query.Where(vm => vm.ModifiedDate <= modifiedBefore.Value);
-            }
-
-            if (modifiedAfter.HasValue)
-            {
-                query = query.Where(vm => vm.ModifiedDate >= modifiedAfter.Value);
-            }
-
-            // Get total count for pagination metadata
-            int totalItemCount = await query.CountAsync();
-
-            var vehicleModelDTOs = await query
-                .OrderBy(vm => vm.VehicleModelId)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .Select(vm => new VehicleModelDto
-                {
-                    VehicleModelId = vm.VehicleModelId,
-                    VehicleBrandId = vm.VehicleBrandId,
-                    VehicleBrandName = vm.VehicleBrand.Name,
-                    Name = vm.Name,
-                    Description = vm.Description,
-                    EngineSize = vm.EngineSize,
-                    HorsePower = vm.HorsePower,
-                    FuelType = vm.FuelType,
-                    CreatedDate = vm.CreatedDate,
-                    ModifiedDate = vm.ModifiedDate,
-                    DeletedDate = vm.DeletedDate,
-                    IsActive = vm.IsActive
-                })
-                .ToListAsync();
-
-            // Return paginated result
-            return new PaginatedResult<VehicleModelDto>
-            {
-                Items = vehicleModelDTOs,
-                TotalItemCount = totalItemCount,
-                CurrentPage = page,
-                PageSize = pageSize
+                VehicleModelId = model.VehicleModelId,
+                VehicleBrandId = model.VehicleBrandId,
+                Name = model.Name,
+                Description = model.Description,
+                EngineSize = model.EngineSize,
+                HorsePower = model.HorsePower,
+                FuelType = model.FuelType,
+                ModifiedDate = model.ModifiedDate,
+                DeletedDate = model.DeletedDate,
+                IsActive = model.IsActive
             };
         }
 
-        public async Task<VehicleModelDto> GetByIdAsync(int id)
+        protected override Expression<Func<VehicleModel, VehicleModelDto>> MapToDto()
         {
-            var vehicleModel = await _context.VehicleModels
-                .Include(vb => vb.VehicleBrand)
-                .FirstOrDefaultAsync(vb => vb.VehicleModelId == id);
-
-            if (vehicleModel == null)
+            return vm => new VehicleModelDto
             {
-                throw new KeyNotFoundException("Vehicle model not found");
-            }
+                VehicleModelId = vm.VehicleModelId,
+                VehicleBrandId = vm.VehicleBrandId,
+                VehicleBrandName = vm.VehicleBrand.Name,
+                Name = vm.Name,
+                Description = vm.Description,
+                EngineSize = vm.EngineSize,
+                HorsePower = vm.HorsePower,
+                FuelType = vm.FuelType,
+                CreatedDate = vm.CreatedDate,
+                ModifiedDate = vm.ModifiedDate,
+                DeletedDate = vm.DeletedDate,
+                IsActive = vm.IsActive
+            };
+        }
 
+        // Keep a separate method for single entity mapping
+        protected override VehicleModelDto MapSingleEntityToDto(VehicleModel entity)
+        {
             return new VehicleModelDto
             {
-                VehicleModelId = vehicleModel.VehicleModelId,
-                VehicleBrandId = vehicleModel.VehicleBrandId,
-                VehicleBrandName = vehicleModel.VehicleBrand.Name,
-                Name = vehicleModel.Name,
-                Description = vehicleModel.Description,
-                EngineSize = vehicleModel.EngineSize,
-                HorsePower = vehicleModel.HorsePower,
-                FuelType = vehicleModel.FuelType,
-                CreatedDate = vehicleModel.CreatedDate,
-                ModifiedDate = vehicleModel.ModifiedDate,
-                DeletedDate = vehicleModel.DeletedDate,
-                IsActive = vehicleModel.IsActive
+                VehicleModelId = entity.VehicleModelId,
+                VehicleBrandId = entity.VehicleBrandId,
+                VehicleBrandName = entity.VehicleBrand?.Name,
+                Name = entity.Name,
+                Description = entity.Description,
+                EngineSize = entity.EngineSize,
+                HorsePower = entity.HorsePower,
+                FuelType = entity.FuelType,
+                CreatedDate = entity.CreatedDate,
+                ModifiedDate = entity.ModifiedDate,
+                DeletedDate = entity.DeletedDate,
+                IsActive = entity.IsActive
             };
         }
 
-        public async Task<VehicleModelDto> CreateAsync(VehicleModelDto vehicleModelDto)
+        public override async Task<VehicleModelDto> GetByIdAsync(int id)
         {
-            var vehicleModel = new VehicleModel
-            {
-                VehicleBrandId = vehicleModelDto.VehicleBrandId,
-                Name = vehicleModelDto.Name,
-                Description = vehicleModelDto.Description,
-                EngineSize = vehicleModelDto.EngineSize,
-                HorsePower = vehicleModelDto.HorsePower,
-                FuelType = vehicleModelDto.FuelType,
-                CreatedDate = DateTime.UtcNow,
-                IsActive = true
-            };
-
-            _context.VehicleModels.Add(vehicleModel);
-            await _context.SaveChangesAsync();
-
-            return new VehicleModelDto
-            {
-                VehicleModelId = vehicleModel.VehicleModelId,
-                VehicleBrandId = vehicleModel.VehicleBrandId,
-                Name = vehicleModel.Name,
-                Description = vehicleModel.Description,
-                EngineSize = vehicleModel.EngineSize,
-                HorsePower = vehicleModel.HorsePower,
-                FuelType = vehicleModel.FuelType,
-                CreatedDate = vehicleModel.CreatedDate,
-                IsActive = vehicleModel.IsActive
-            };
-        }
-
-        public async Task<VehicleModelDto> UpdateAsync(int id, VehicleModelDto entity)
-        {
-            var existingEntity = await _context.VehicleModels
-                .FirstOrDefaultAsync(vb => vb.VehicleModelId == id);
-
+            var entity = await FindEntityById(id);
             if (entity == null)
             {
-                throw new KeyNotFoundException("Vehicle model not found");
+                throw new KeyNotFoundException($"{typeof(VehicleModel).Name} not found");
             }
 
-            existingEntity.VehicleBrandId = entity.VehicleBrandId;
-            existingEntity.Name = entity.Name;
-            existingEntity.Description = entity.Description;
-            existingEntity.EngineSize = entity.EngineSize;
-            existingEntity.HorsePower = entity.HorsePower;
-            existingEntity.FuelType = entity.FuelType;
-            existingEntity.ModifiedDate = DateTime.UtcNow;
-
-            // Restoring deleted model
-            if (entity.IsActive)
-            {
-                existingEntity.DeletedDate = entity.DeletedDate;
-                existingEntity.IsActive = entity.IsActive;
-            }
-
-            await _context.SaveChangesAsync();
-
-            return new VehicleModelDto
-            {
-                VehicleModelId = existingEntity.VehicleModelId,
-                VehicleBrandId = existingEntity.VehicleBrandId,
-                Name = existingEntity.Name,
-                Description = existingEntity.Description,
-                EngineSize = existingEntity.EngineSize,
-                HorsePower = existingEntity.HorsePower,
-                FuelType = existingEntity.FuelType,
-                CreatedDate = existingEntity.CreatedDate,
-                ModifiedDate = existingEntity.ModifiedDate,
-                IsActive = existingEntity.IsActive
-            };
+            return MapSingleEntityToDto(entity);
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        protected override void UpdateEntity(VehicleModel entity, VehicleModelDto model)
         {
-            var existingEntity = await _context.VehicleModels
-                .FirstOrDefaultAsync(vb => vb.VehicleModelId == id);
+            entity.VehicleBrandId = model.VehicleBrandId;
+            entity.Name = model.Name;
+            entity.Description = model.Description;
+            entity.EngineSize = model.EngineSize;
+            entity.HorsePower = model.HorsePower;
+            entity.FuelType = model.FuelType;
 
-            if (existingEntity == null)
-                return false;
-
-            existingEntity.DeletedDate = DateTime.UtcNow;
-            existingEntity.IsActive = false;
-            await _context.SaveChangesAsync();
-
-            return true;
+            if (model.IsActive)
+            {
+                entity.DeletedDate = model.DeletedDate;
+                entity.IsActive = model.IsActive;
+            }
         }
+
+        // Override FindEntityById to include VehicleBrand
+        protected override async Task<VehicleModel> FindEntityById(int id)
+        {
+            return await _apiDbContext.VehicleModels
+                .Include(vm => vm.VehicleBrand)
+                .FirstOrDefaultAsync(vm => vm.VehicleModelId == id);
+        }
+
     }
 }
