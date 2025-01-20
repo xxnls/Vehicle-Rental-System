@@ -1,10 +1,11 @@
 ﻿using API.Models.Other;
 using System;
 using System.Collections.Generic;
+using API.Interfaces;
 
 namespace API.Models;
 
-public partial class Address
+public partial class Address : IBaseModel
 {
     public int AddressId { get; set; }
 

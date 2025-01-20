@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BackOffice"
         xmlns:ViewModels="clr-namespace:BackOffice.ViewModels"
-        xmlns:locations="clr-namespace:BackOffice.Views.Other.Locations"
         xmlns:res="clr-namespace:BackOffice.Resources.MainWindow"
         xmlns:other="clr-namespace:BackOffice.Views.Other"
         mc:Ignorable="d"
@@ -103,8 +102,8 @@
                         <Style TargetType="Button" BasedOn="{StaticResource SideBarButton}" />
                     </Expander.Resources>
                     <StackPanel>
-                        <Button Content="Locations" Command="{Binding ChangeWorkspaceCommand}"
-                                CommandParameter="LocationsViewModel" />
+                        <Button Content="Rental Places" Command="{Binding ChangeWorkspaceCommand}"
+                                CommandParameter="RentalPlacesViewModel" />
                         <Button Content="Settings" />
                         <Button Content="Help" />
                     </StackPanel>

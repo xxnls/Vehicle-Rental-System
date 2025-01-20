@@ -1,6 +1,8 @@
 ﻿using BackOffice.Helpers;
 using BackOffice.Interfaces;
+using BackOffice.Models;
 using BackOffice.Models.DTOs.Other;
+using BackOffice.Views.Vehicles;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
@@ -12,8 +14,7 @@ namespace BackOffice.ViewModels.Other
 {
     public class RentalPlacesViewModel : BaseListViewModel<RentalPlaceDto>, IListViewModel
     {
-        public RentalPlacesViewModel()
-            : base("RentalPlaces", LocalizationHelper.GetString("RentalPlaces", "DisplayName"))
+        public RentalPlacesViewModel() : base("RentalPlaces", LocalizationHelper.GetString("RentalPlaces", "DisplayName"))
         {
             CreateModelCommand = new AsyncRelayCommand(CreateModelAsync);
             UpdateModelCommand = new AsyncRelayCommand(UpdateModelAsync);
@@ -32,7 +33,7 @@ namespace BackOffice.ViewModels.Other
             //    { nameof(EditableModel.FirstLine), ValidateFirstLine },
             //    { nameof(EditableModel.SecondLine), ValidateSecondLine }
             //};
-        }
+        } 
 
         #region Methods
 

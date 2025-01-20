@@ -3,14 +3,8 @@
                     xmlns:vm="clr-namespace:BackOffice.ViewModels"
 
                     xmlns:vw="clr-namespace:BackOffice.Views"
-                    xmlns:vwo="clr-namespace:BackOffice.Views.Other"
                     xmlns:vwv="clr-namespace:BackOffice.Views.Vehicles"
-                    xmlns:vwol="clr-namespace:BackOffice.Views.Other.Locations"
                     xmlns:vehicles="clr-namespace:BackOffice.ViewModels.Vehicles">
-
-    <DataTemplate DataType="{x:Type vm:Other.Locations.LocationsViewModel}">
-        <vwol:LocationsView />
-    </DataTemplate>
 
     <DataTemplate DataType="{x:Type vm:VehicleBrandsViewModel}">
         <vwv:VehicleBrandsView />

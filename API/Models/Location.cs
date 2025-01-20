@@ -2,10 +2,11 @@
 using API.Models.Vehicles;
 using System;
 using System.Collections.Generic;
+using API.Interfaces;
 
 namespace API.Models;
 
-public partial class Location
+public partial class Location : ILocation
 {
     public int LocationId { get; set; }
 

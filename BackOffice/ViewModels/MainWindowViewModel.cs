@@ -1,5 +1,4 @@
 ﻿using BackOffice.Helpers;
-using BackOffice.ViewModels.Other.Locations;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
@@ -13,6 +12,7 @@ using System.Windows.Input;
 using BackOffice.Properties;
 using BackOffice.Views;
 using BackOffice.Models.Employees.DTOs;
+using BackOffice.ViewModels.Other;
 using BackOffice.ViewModels.Vehicles;
 
 namespace BackOffice.ViewModels
@@ -94,7 +94,7 @@ namespace BackOffice.ViewModels
                 { "VehicleBrandsViewModel", new VehicleBrandsViewModel() },
                 { "VehicleModelsViewModel", new VehicleModelsViewModel() },
                 { "VehicleTypesViewModel", new VehicleTypesViewModel() },
-                { "LocationsViewModel", new LocationsViewModel() },
+                { "RentalPlacesViewModel", new RentalPlacesViewModel() },
             };
 
             // Load user

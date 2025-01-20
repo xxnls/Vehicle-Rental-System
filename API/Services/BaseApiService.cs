@@ -174,11 +174,17 @@ namespace API.Services
         {
             var entity = MapToEntity(createDto);
 
-            // Set base model properties if implemented
-            if (entity is IBaseModel baseModel)
+            switch (entity)
             {
-                baseModel.CreatedDate = DateTime.UtcNow;
-                baseModel.IsActive = true;
+                // Set base model properties if implemented
+                case IBaseModel baseModel:
+                    baseModel.CreatedDate = DateTime.UtcNow;
+                    baseModel.IsActive = true;
+                    break;
+                case ILocation baseLocation:
+                    baseLocation.IsActive = true;
+                    baseLocation.DateTime = DateTime.UtcNow;
+                    break;
             }
 
             _dbSet.Add(entity);
@@ -209,9 +215,14 @@ namespace API.Services
 
             UpdateEntity(entity, updateDto);
 
-            if (entity is IBaseModel baseModel)
+            switch (entity)
             {
-                baseModel.ModifiedDate = DateTime.UtcNow;
+                case IBaseModel baseModel:
+                    baseModel.ModifiedDate = DateTime.UtcNow;
+                    break;
+                case ILocation baseLocation:
+                    baseLocation.DateTime = DateTime.UtcNow;
+                    break;
             }
 
             await _context.SaveChangesAsync();
@@ -236,6 +247,10 @@ namespace API.Services
             {
                 case null:
                     return false;
+                case ILocation baseLocation:
+                    baseLocation.IsActive = false;
+                    await _context.SaveChangesAsync();
+                    return true;
                 case IBaseModel baseModel:
                     baseModel.DeletedDate = DateTime.UtcNow;
                     baseModel.IsActive = false;

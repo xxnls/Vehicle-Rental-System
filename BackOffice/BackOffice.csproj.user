@@ -34,13 +34,13 @@
     <Compile Update="Views\DetailedInfoWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Other\AddressesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SelectWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\LoginWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Other\Locations\LocationsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Vehicles\VehicleBrandsView.xaml.cs">
@@ -87,6 +87,9 @@
     <Page Update="Views\DetailedInfoWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Other\AddressesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\SelectWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -97,9 +100,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainWindowResources.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Other\Locations\LocationsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Vehicles\VehicleBrandsView.xaml">

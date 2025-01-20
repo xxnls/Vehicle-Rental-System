@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BackOffice.Views.Other.Locations
+namespace BackOffice.Views.Other
 {
     /// <summary>
-    /// Interaction logic for LocationsView.xaml
+    /// Interaction logic for AddressesView.xaml
     /// </summary>
-    public partial class LocationsView : UserControl
+    public partial class AddressesView : UserControl
     {
-        public LocationsView()
+        public AddressesView()
         {
             InitializeComponent();
         }

@@ -5,7 +5,6 @@ using System.Globalization;
 using BackOffice.Properties;
 using BackOffice.Helpers;
 using BackOffice.Views;
-using BackOffice.Views.Other;
 using CommunityToolkit.Mvvm.Messaging;
 
 namespace BackOffice
