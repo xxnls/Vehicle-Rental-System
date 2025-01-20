@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API.Models.Other;
+using System;
 using System.Collections.Generic;
 
 namespace API.Models;

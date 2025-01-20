@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using API.Interfaces;
+using API.Models.Other;
 
 namespace API.Models.Vehicles;
 

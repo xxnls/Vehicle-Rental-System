@@ -77,7 +77,7 @@ namespace API.Services.Vehicles
             {
                 VehicleModelId = entity.VehicleModelId,
                 VehicleBrandId = entity.VehicleBrandId,
-                VehicleBrandName = entity.VehicleBrand?.Name,
+                VehicleBrandName = entity.VehicleBrand.Name,
                 Name = entity.Name,
                 Description = entity.Description,
                 EngineSize = entity.EngineSize,
