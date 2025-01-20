@@ -29,6 +29,7 @@ builder.Services.AddScoped<VehicleTypesService>();
 builder.Services.AddScoped<CountriesService>();
 builder.Services.AddScoped<RentalPlacesService>();
 builder.Services.AddScoped<LocationsService>();
+builder.Services.AddScoped<AddressesService>();
 
 builder.Services.AddIdentityCore<Employee>(options => { })
     .AddRoles<EmployeeRole>()
