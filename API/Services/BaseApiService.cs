@@ -31,17 +31,6 @@ namespace API.Services
         protected abstract Expression<Func<TEntity, bool>> BuildSearchQuery(string search);
 
         /// <summary>
-        /// Get the active filter for entities.
-        /// </summary>
-        /// <param name="showDeleted">
-        /// Whether to show deleted entities.
-        /// </param>
-        /// <returns>
-        /// An expression to filter entities by active status.
-        /// </returns>
-        protected abstract Expression<Func<TEntity, bool>> GetActiveFilter(bool showDeleted);
-
-        /// <summary>
         /// Find an entity by its ID.
         /// </summary>
         /// <param name="id">
@@ -100,7 +89,7 @@ namespace API.Services
         /// A paginated result of entities.
         /// </returns>
         public virtual async Task<PaginatedResult<TResponseDto>> GetAllAsync(
-            string? search,
+            string? search = null,
             int page = 1,
             bool showDeleted = false,
             DateTime? createdBefore = null,
@@ -257,6 +246,20 @@ namespace API.Services
             _dbSet.Remove(entity);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        /// <summary>
+        /// Get the active filter for entities.
+        /// </summary>
+        /// <param name="showDeleted">
+        /// Whether to show deleted entities.
+        /// </param>
+        /// <returns>
+        /// An expression to filter entities by active status.
+        /// </returns>
+        protected virtual Expression<Func<TEntity, bool>> GetActiveFilter(bool showDeleted)
+        {
+            return entity => true; // This would return all entities, no filter.
         }
 
         /// <summary>

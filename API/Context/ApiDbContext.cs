@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using API.Models.Vehicles;
+using API.Models.Other;
 
 namespace API.Context;
 
@@ -114,10 +115,10 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
 
             entity.Property(e => e.CountryId).HasColumnName("CountryID");
             entity.Property(e => e.Abbreviation)
-                .HasMaxLength(5)
+                .HasMaxLength(10)
                 .IsUnicode(false);
             entity.Property(e => e.DialingCode)
-                .HasMaxLength(5)
+                .HasMaxLength(30)
                 .IsUnicode(false);
             entity.Property(e => e.FullName).HasMaxLength(100);
             entity.Property(e => e.Name).HasMaxLength(50);

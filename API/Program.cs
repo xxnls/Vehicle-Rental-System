@@ -4,16 +4,16 @@ using System.Text;
 using API.Context;
 using API.Models;
 using API.Services;
+using API.Services.Other;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using API.Services.Vehicles;
+using API.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
@@ -26,6 +26,7 @@ builder.Services.AddScoped<EmployeesService>();
 builder.Services.AddScoped<VehicleBrandsService>();
 builder.Services.AddScoped<VehicleModelsService>();
 builder.Services.AddScoped<VehicleTypesService>();
+builder.Services.AddScoped<CountriesService>();
 
 builder.Services.AddIdentityCore<Employee>(options => { })
     .AddRoles<EmployeeRole>()
@@ -67,6 +68,13 @@ builder.Services.AddAuthorization();
 builder.Services.AddDataProtection();
 
 var app = builder.Build();
+
+// Ensure the database is created and seeded
+using (var scope = app.Services.CreateScope())
+{
+    var countriesService = scope.ServiceProvider.GetRequiredService<CountriesService>();
+    await CountrySeeder.SeedAsync(countriesService);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

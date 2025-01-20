@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace API.Models;
+namespace API.Models.Other;
 
-public partial class Country
+public partial class Country 
 {
     public short CountryId { get; set; }
 
