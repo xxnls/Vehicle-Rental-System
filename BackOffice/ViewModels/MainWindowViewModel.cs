@@ -93,6 +93,7 @@ namespace BackOffice.ViewModels
             {
                 { "VehicleBrandsViewModel", new VehicleBrandsViewModel() },
                 { "VehicleModelsViewModel", new VehicleModelsViewModel() },
+                { "VehicleTypesViewModel", new VehicleTypesViewModel() },
                 { "LocationsViewModel", new LocationsViewModel() },
             };
 

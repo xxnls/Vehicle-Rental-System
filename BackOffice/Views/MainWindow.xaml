@@ -84,7 +84,8 @@
                     </Expander.Resources>
                     <StackPanel>
                         <Button Content="Vehicles" />
-                        <Button Content="Vehicle Types" />
+                        <Button Content="Vehicle Types" Command="{Binding ChangeWorkspaceCommand}"
+                                CommandParameter="VehicleTypesViewModel"/>
                         <Button Content="Vehicle Brands" Command="{Binding ChangeWorkspaceCommand}"
                                 CommandParameter="VehicleBrandsViewModel" />
                         <Button Content="Vehicle Models" Command="{Binding ChangeWorkspaceCommand}"

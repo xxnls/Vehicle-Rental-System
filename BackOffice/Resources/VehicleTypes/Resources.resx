@@ -98,63 +98,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DisplayName" xml:space="preserve">
-    <value>Vehicle Models</value>
+    <value>Vehicle Types</value>
   </data>
   <data name="ErrorName" xml:space="preserve">
     <value>Name is required and must be at least 3 characters long.</value>
   </data>
   <data name="ErrorDescription" xml:space="preserve">
-    <value>Description cannot exceed 250 characters.</value>
+    <value>Description cannot exceed 150 characters.</value>
   </data>
-  <data name="ErrorEngineSize" xml:space="preserve">
-    <value>Engine size must be a number.</value>
+  <data name="ErrorBaseDailyRate" xml:space="preserve">
+    <value>Base daily rate must be a number.</value>
   </data>
-  <data name="ErrorHorsePower" xml:space="preserve">
-    <value>Horse power must be a number.</value>
+  <data name="ErrorBaseWeeklyRate" xml:space="preserve">
+    <value>Base weekly rate must be a number.</value>
   </data>
-  <data name="ErrorFuelType" xml:space="preserve">
-    <value>Fuel type is required.</value>
+  <data name="ErrorBaseDeposit" xml:space="preserve">
+    <value>Base deposit must be a number.</value>
   </data>
-  <data name="EngineSize" xml:space="preserve">
-    <value>Engine size</value>
+  <data name="ErrorRequiredLicenseType" xml:space="preserve">
+    <value>Required license field is mandatory.</value>
   </data>
-  <data name="HorsePower" xml:space="preserve">
-    <value>Horse power</value>
+  <data name="BaseDailyRate" xml:space="preserve">
+    <value>Base daily rate</value>
   </data>
-  <data name="FuelType" xml:space="preserve">
-    <value>Fuel type</value>
+  <data name="BaseWeeklyRate" xml:space="preserve">
+    <value>Base weekly rate</value>
   </data>
-  <data name="Petrol" xml:space="preserve">
-    <value>Petrol</value>
+  <data name="BaseDeposit" xml:space="preserve">
+    <value>Base deposit</value>
   </data>
-  <data name="Electric" xml:space="preserve">
-    <value>Electric</value>
-  </data>
-  <data name="Hybrid" xml:space="preserve">
-    <value>Hybrid</value>
-  </data>
-  <data name="VehicleBrand" xml:space="preserve">
-    <value>Vehicle brand</value>
-  </data>
-  <data name="ErrorVehicleBrandId" xml:space="preserve">
-    <value>Brand is required.</value>
-  </data>
-  <data name="SelectVehicleBrandTitle" xml:space="preserve">
-    <value>Select vehicle brand</value>
-  </data>
-  <data name="BrandName" xml:space="preserve">
-    <value>Brand</value>
-  </data>
-  <data name="SelectBrand" xml:space="preserve">
-    <value>Select Brand</value>
-  </data>
-  <data name="FuelTypePetrol" xml:space="preserve">
-    <value>Petrol</value>
-  </data>
-  <data name="FuelTypeElectric" xml:space="preserve">
-    <value>Electric</value>
-  </data>
-  <data name="FuelTypeHybrid" xml:space="preserve">
-    <value>Hybrid</value>
+  <data name="RequiredLicenseType" xml:space="preserve">
+    <value>Required license type</value>
   </data>
 </root>

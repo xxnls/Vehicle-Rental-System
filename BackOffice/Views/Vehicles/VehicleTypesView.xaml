@@ -1,20 +1,19 @@
-﻿<UserControl x:Class="BackOffice.Views.Vehicles.VehicleModelsView"
+﻿<UserControl x:Class="BackOffice.Views.Vehicles.VehicleTypesView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BackOffice.Views.Vehicles"
+             xmlns:res="clr-namespace:BackOffice.Resources.VehicleTypes"
+             xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
              xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
              xmlns:helpers="clr-namespace:BackOffice.Helpers"
-             xmlns:res="clr-namespace:BackOffice.Resources.VehicleModels"
-             xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
              xmlns:vehicles="clr-namespace:BackOffice.ViewModels.Vehicles"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-
     <UserControl.DataContext>
-        <vehicles:VehicleModelsViewModel x:Name="DataContext"/>
+        <vehicles:VehicleTypesViewModel x:Name="DataContext"/>
     </UserControl.DataContext>
 
     <UserControl.Resources>
@@ -23,8 +22,8 @@
         </Style>
     </UserControl.Resources>
 
-
     <StackPanel Orientation="Vertical">
+        <!-- Creating or Editing Vehicle Type -->
         <Grid Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -46,49 +45,39 @@
                                helpers:ValidationHelper.PropertyName="Description"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.VehicleBrand}"/>
-                    <TextBox Text="{Binding EditableModel.VehicleBrandId, UpdateSourceTrigger=PropertyChanged}" 
-                             IsReadOnly="True"/>
-                    <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="VehicleBrandId"
-                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
-                    <Button Content="{x:Static res:Resources.SelectBrand}" 
-                            Command="{Binding ShowSelectorDialogCommand}"
-                            CommandParameter="{Binding SelectVehicleBrandIdParameters}"
-                            Style="{StaticResource DefaultButtonStyle}"
-                            Width="100"
-                            HorizontalAlignment="Left">
-                    </Button>
-
-                    <Label Content="{x:Static res:Resources.EngineSize}"/>
-                    <TextBox x:Name="EngineSizeField" Text="{Binding EditableModel.EngineSize, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"
+                    <Label Content="{x:Static res:Resources.BaseDailyRate}"/>
+                    <TextBox x:Name="BaseDailyRateField" Text="{Binding EditableModel.BaseDailyRate, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"
                              PreviewTextInput="IntegerValidationTextBox"/>
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="EngineSize"
+                               helpers:ValidationHelper.PropertyName="BaseDailyRate"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.HorsePower}"/>
-                    <TextBox x:Name="HorsePowerField" Text="{Binding EditableModel.HorsePower, UpdateSourceTrigger=PropertyChanged}"
+                    <Label Content="{x:Static res:Resources.BaseWeeklyRate}"/>
+                    <TextBox x:Name="BaseWeeklyRateField" Text="{Binding EditableModel.BaseWeeklyRate, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"
                              PreviewTextInput="IntegerValidationTextBox"/>
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="HorsePower"
+                               helpers:ValidationHelper.PropertyName="BaseWeeklyRate"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.FuelType}"/>
-                    <ComboBox x:Name="FuelTypeComboBox"
-                              SelectedItem="{Binding EditableModel.FuelType, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Content="{x:Static res:Resources.BaseDeposit}"/>
+                    <TextBox x:Name="BaseDepositField" Text="{Binding EditableModel.BaseDeposit, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"
+                             PreviewTextInput="IntegerValidationTextBox"/>
+                    <TextBlock Foreground="{StaticResource ErrorBrush}"
+                               helpers:ValidationHelper.PropertyName="BaseDeposit"
+                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                    <Label Content="{x:Static res:Resources.RequiredLicenseType}"/>
+                    <ComboBox SelectedItem="{Binding EditableModel.RequiredLicenseType, UpdateSourceTrigger=PropertyChanged}">
                         <ComboBox.ItemsSource>
                             <x:Array Type="system:String">
-                                <!--<x:Static Member="res:Resources.Petrol" />-->
-                                <system:String>Petrol</system:String>
-                                <system:String>Diesel</system:String>
-                                <system:String>Electric</system:String>
-                                <system:String>Hybrid</system:String>
+                                <system:String>A</system:String>
+                                <system:String>B</system:String>
+                                <system:String>C</system:String>
                             </x:Array>
                         </ComboBox.ItemsSource>
                     </ComboBox>
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="FuelType"
+                               helpers:ValidationHelper.PropertyName="RequiredLicenseType"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                 </StackPanel>
             </Border>
@@ -121,45 +110,36 @@
                                helpers:ValidationHelper.PropertyName="Description"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.VehicleBrand}"/>
-                    <TextBox Text="{Binding EditableModel.VehicleBrandId, UpdateSourceTrigger=PropertyChanged}" 
-                             IsReadOnly="True"/>
+                    <Label Content="{x:Static res:Resources.BaseDailyRate}"/>
+                    <TextBox x:Name="EditBaseDailyRateField" Text="{Binding EditableModel.BaseDailyRate, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"/>
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="VehicleBrandId"
-                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
-                    <Button Content="{x:Static res:Resources.SelectBrand}" 
-                            Command="{Binding ShowSelectorDialogCommand}"
-                            CommandParameter="{Binding SelectVehicleBrandIdParameters}"
-                            Style="{StaticResource DefaultButtonStyle}"
-                            Width="100"
-                            HorizontalAlignment="Left">
-                    </Button>
-
-                    <Label Content="{x:Static res:Resources.EngineSize}"/>
-                    <TextBox x:Name="EditEngineSizeField" Text="{Binding EditableModel.EngineSize, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="EngineSize"
+                               helpers:ValidationHelper.PropertyName="BaseDailyRate"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.HorsePower}"/>
-                    <TextBox x:Name="EditHorsePowerField" Text="{Binding EditableModel.HorsePower, UpdateSourceTrigger=PropertyChanged}" />
+                    <Label Content="{x:Static res:Resources.BaseWeeklyRate}"/>
+                    <TextBox x:Name="EditBaseWeeklyRateField" Text="{Binding EditableModel.BaseWeeklyRate, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"/>
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="HorsePower"
+                               helpers:ValidationHelper.PropertyName="BaseWeeklyRate"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.FuelType}"/>
-                    <ComboBox SelectedItem="{Binding EditableModel.FuelType, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Content="{x:Static res:Resources.BaseDeposit}"/>
+                    <TextBox x:Name="EditBaseDepositField" Text="{Binding EditableModel.BaseDeposit, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}"/>
+                    <TextBlock Foreground="{StaticResource ErrorBrush}"
+                               helpers:ValidationHelper.PropertyName="BaseDeposit"
+                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                    <Label Content="{x:Static res:Resources.RequiredLicenseType}"/>
+                    <ComboBox SelectedItem="{Binding EditableModel.RequiredLicenseType, UpdateSourceTrigger=PropertyChanged}">
                         <ComboBox.ItemsSource>
                             <x:Array Type="system:String">
-                                <system:String>Petrol</system:String>
-                                <system:String>Diesel</system:String>
-                                <system:String>Electric</system:String>
-                                <system:String>Hybrid</system:String>
+                                <system:String>A</system:String>
+                                <system:String>B</system:String>
+                                <system:String>C</system:String>
                             </x:Array>
                         </ComboBox.ItemsSource>
                     </ComboBox>
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="FuelType"
+                               helpers:ValidationHelper.PropertyName="RequiredLicenseType"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                 </StackPanel>
             </Border>
@@ -185,7 +165,7 @@
                                    DeleteCommand="{Binding DeleteModelCommand}"
                                    DeleteVisibility="{Binding ShowDeleted, Converter={StaticResource InverseBooleanConverter}}"
                                    RestoreCommand="{Binding RestoreModelCommand}"
-                                   RestoreCommandParameter="{Binding EditableModel.VehicleModelId}"
+                                   RestoreCommandParameter="{Binding EditableModel.VehicleTypeId}"
                                    RestoreVisibility="{Binding ShowDeleted}"
                                    Grid.Column="0"/>
 
@@ -215,30 +195,19 @@
                                   CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Mode=OneWay}" />
                 </DataGrid.InputBindings>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding VehicleModelId}" />
+                    <DataGridTextColumn Header="ID" Binding="{Binding VehicleTypeId}" />
                     <DataGridTextColumn Header="{x:Static generic:Resources.Name}" Binding="{Binding Name}" />
-                    <DataGridTextColumn Header="{x:Static res:Resources.BrandName}" Binding="{Binding VehicleBrandName}" />
                     <DataGridTextColumn Header="{x:Static generic:Resources.Description}" Binding="{Binding Description}" />
-                    <DataGridTextColumn Header="{x:Static res:Resources.EngineSize}" Binding="{Binding EngineSize, StringFormat=N2}" />
-                    <DataGridTextColumn Header="{x:Static res:Resources.HorsePower}" Binding="{Binding HorsePower}" />
-                    <DataGridTextColumn Header="{x:Static res:Resources.FuelType}" Binding="{Binding FuelType}" />
+                    <DataGridTextColumn Header="{x:Static res:Resources.BaseDailyRate}" Binding="{Binding BaseDailyRate, StringFormat=N2}" />
+                    <DataGridTextColumn Header="{x:Static res:Resources.BaseWeeklyRate}" Binding="{Binding BaseWeeklyRate, StringFormat=N2}" />
+                    <DataGridTextColumn Header="{x:Static res:Resources.BaseDeposit}" Binding="{Binding BaseDeposit, StringFormat=N2}" />
+                    <DataGridTextColumn Header="{x:Static res:Resources.RequiredLicenseType}" Binding="{Binding RequiredLicenseType}" />
                     <DataGridTextColumn Header="{x:Static generic:Resources.CreatedDate}" Binding="{Binding CreatedDate}"/>
                     <DataGridTextColumn Header="{x:Static generic:Resources.ModifiedDate}" Binding="{Binding ModifiedDate}"/>
                     <DataGridTextColumn Header="{x:Static generic:Resources.DeletedDate}" Binding="{Binding DeletedDate}"
                                         Visibility="{Binding ShowDeleted, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference Name=DataContext}}"/>
                 </DataGrid.Columns>
             </DataGrid>
-
-            <!-- Pagination -->
-            <customControls:PaginationControl CurrentPage="{Binding CurrentPage}" 
-                                  TotalItemCount="{Binding TotalItemCount}"
-                                  ModelsPerPage="{Binding PageSize}"
-                                  CanLoadPreviousPage="{Binding CanLoadPreviousPage}" 
-                                  CanLoadNextPage="{Binding CanLoadNextPage}" 
-                                  PreviousPageCommand="{Binding LoadPreviousPageCommand}" 
-                                  NextPageCommand="{Binding LoadNextPageCommand}" />
-
         </StackPanel>
-
     </StackPanel>
 </UserControl>

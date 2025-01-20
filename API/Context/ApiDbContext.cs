@@ -4,6 +4,7 @@ using API.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using API.Models.Vehicles;
 
 namespace API.Context;
 

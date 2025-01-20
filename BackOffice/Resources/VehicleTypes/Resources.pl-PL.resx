@@ -98,63 +98,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DisplayName" xml:space="preserve">
-    <value>Vehicle Models</value>
+    <value>Rodzaje pojazdów</value>
   </data>
   <data name="ErrorName" xml:space="preserve">
-    <value>Name is required and must be at least 3 characters long.</value>
+    <value>Nazwa jest wymagana i musi mieć przynajmniej 3 znaki.</value>
   </data>
   <data name="ErrorDescription" xml:space="preserve">
-    <value>Description cannot exceed 250 characters.</value>
+    <value>Opis nie może mieć więcej niż 150 znaków.</value>
   </data>
-  <data name="ErrorEngineSize" xml:space="preserve">
-    <value>Engine size must be a number.</value>
+  <data name="ErrorBaseDailyRate" xml:space="preserve">
+    <value>Bazowa stawka za dzień musi być liczbą.</value>
   </data>
-  <data name="ErrorHorsePower" xml:space="preserve">
-    <value>Horse power must be a number.</value>
+  <data name="ErrorBaseWeeklyRate" xml:space="preserve">
+    <value>Bazowa stawka za tydzień musi być liczbą.</value>
   </data>
-  <data name="ErrorFuelType" xml:space="preserve">
-    <value>Fuel type is required.</value>
+  <data name="ErrorBaseDeposit" xml:space="preserve">
+    <value>Bazowa kaucja musi być liczbą.</value>
   </data>
-  <data name="EngineSize" xml:space="preserve">
-    <value>Engine size</value>
+  <data name="ErrorRequiredLicenseType" xml:space="preserve">
+    <value>Pole wymagana licencja jest wymagane.</value>
   </data>
-  <data name="HorsePower" xml:space="preserve">
-    <value>Horse power</value>
+  <data name="BaseDailyRate" xml:space="preserve">
+    <value>Bazowa stawka za dzień</value>
   </data>
-  <data name="FuelType" xml:space="preserve">
-    <value>Fuel type</value>
+  <data name="BaseWeeklyRate" xml:space="preserve">
+    <value>Bazowa stawka za tydzień</value>
   </data>
-  <data name="Petrol" xml:space="preserve">
-    <value>Petrol</value>
+  <data name="BaseDeposit" xml:space="preserve">
+    <value>Bazowa kaucja</value>
   </data>
-  <data name="Electric" xml:space="preserve">
-    <value>Electric</value>
-  </data>
-  <data name="Hybrid" xml:space="preserve">
-    <value>Hybrid</value>
-  </data>
-  <data name="VehicleBrand" xml:space="preserve">
-    <value>Vehicle brand</value>
-  </data>
-  <data name="ErrorVehicleBrandId" xml:space="preserve">
-    <value>Brand is required.</value>
-  </data>
-  <data name="SelectVehicleBrandTitle" xml:space="preserve">
-    <value>Select vehicle brand</value>
-  </data>
-  <data name="BrandName" xml:space="preserve">
-    <value>Brand</value>
-  </data>
-  <data name="SelectBrand" xml:space="preserve">
-    <value>Select Brand</value>
-  </data>
-  <data name="FuelTypePetrol" xml:space="preserve">
-    <value>Petrol</value>
-  </data>
-  <data name="FuelTypeElectric" xml:space="preserve">
-    <value>Electric</value>
-  </data>
-  <data name="FuelTypeHybrid" xml:space="preserve">
-    <value>Hybrid</value>
+  <data name="RequiredLicenseType" xml:space="preserve">
+    <value>Rodzaj wymaganej licencji</value>
   </data>
 </root>

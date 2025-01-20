@@ -160,6 +160,33 @@ namespace BackOffice.Resources.VehicleModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Electric.
+        /// </summary>
+        public static string FuelTypeElectric {
+            get {
+                return ResourceManager.GetString("FuelTypeElectric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hybrid.
+        /// </summary>
+        public static string FuelTypeHybrid {
+            get {
+                return ResourceManager.GetString("FuelTypeHybrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Petrol.
+        /// </summary>
+        public static string FuelTypePetrol {
+            get {
+                return ResourceManager.GetString("FuelTypePetrol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Horse power.
         /// </summary>
         public static string HorsePower {

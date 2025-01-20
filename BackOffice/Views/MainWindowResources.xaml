@@ -20,6 +20,10 @@
         <vwv:VehicleModelsView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vehicles:VehicleTypesViewModel}">
+        <vwv:VehicleTypesView />
+    </DataTemplate>
+
 
     <Storyboard x:Key="ExpandSidebar">
         <DoubleAnimation Storyboard.TargetName="Sidebar" 

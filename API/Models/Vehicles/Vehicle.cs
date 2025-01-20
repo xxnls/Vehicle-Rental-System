@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using API.Interfaces;
 
-namespace API.Models;
+namespace API.Models.Vehicles;
 
-public partial class Vehicle
+public partial class Vehicle : IBaseModel
 {
     public int VehicleId { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API.Models.Vehicles;
+using System;
 using System.Collections.Generic;
 
 namespace API.Models;
