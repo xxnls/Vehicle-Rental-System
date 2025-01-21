@@ -31,7 +31,7 @@ namespace API.Services
             return vb => vb.IsActive != showDeleted;
         }
 
-        protected override VehicleBrand MapToEntity(VehicleBrandDto model)
+        public override VehicleBrand MapToEntity(VehicleBrandDto model)
         {
             return new VehicleBrand
             {
@@ -47,7 +47,7 @@ namespace API.Services
             };
         }
 
-        protected override Expression<Func<VehicleBrand, VehicleBrandDto>> MapToDto()
+        public override Expression<Func<VehicleBrand, VehicleBrandDto>> MapToDto()
         {
             return vb => new VehicleBrandDto
             {
@@ -63,7 +63,7 @@ namespace API.Services
             };
         }
 
-        protected override VehicleBrandDto MapSingleEntityToDto(VehicleBrand entity)
+        public override VehicleBrandDto MapSingleEntityToDto(VehicleBrand entity)
         {
             return new VehicleBrandDto
             {
@@ -104,7 +104,7 @@ namespace API.Services
             }
         }
 
-        protected override async Task<VehicleBrand> FindEntityById(int id)
+        public override async Task<VehicleBrand> FindEntityById(int id)
         {
             return await _apiDbContext.VehicleBrands
                 .FirstOrDefaultAsync(vb => vb.VehicleBrandId == id);

@@ -61,11 +61,110 @@ namespace BackOffice.Resources.RentalPlaces {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string AddressFields {
+            get {
+                return ResourceManager.GetString("AddressFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Coordinates.
+        /// </summary>
+        public static string CoordinatesFields {
+            get {
+                return ResourceManager.GetString("CoordinatesFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rental places.
         /// </summary>
         public static string DisplayName {
             get {
                 return ResourceManager.GetString("DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First line.
+        /// </summary>
+        public static string FirstLine {
+            get {
+                return ResourceManager.GetString("FirstLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latitude.
+        /// </summary>
+        public static string GpsLatitude {
+            get {
+                return ResourceManager.GetString("GpsLatitude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logitude.
+        /// </summary>
+        public static string GpsLongitude {
+            get {
+                return ResourceManager.GetString("GpsLongitude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Second line.
+        /// </summary>
+        public static string SecondLine {
+            get {
+                return ResourceManager.GetString("SecondLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Country.
+        /// </summary>
+        public static string SelectCountry {
+            get {
+                return ResourceManager.GetString("SelectCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a country..
+        /// </summary>
+        public static string SelectCountryTitle {
+            get {
+                return ResourceManager.GetString("SelectCountryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zip code.
+        /// </summary>
+        public static string ZipCode {
+            get {
+                return ResourceManager.GetString("ZipCode", resourceCulture);
             }
         }
     }

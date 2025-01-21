@@ -24,6 +24,49 @@ namespace BackOffice.Models.DTOs.Other
             }
         }
 
+        private short _countryId;
+        public short CountryId
+        {
+            get => _countryId;
+            set
+            {
+                if (_countryId != value)
+                {
+                    _countryId = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string? _countryName { get; set; } = null!;
+        public string? CountryName
+        {
+            get => _countryName;
+            set
+            {
+                if (_countryName != value)
+                {
+                    _countryName = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+        private string _zipCode;
+        public string ZipCode
+        {
+            get => _zipCode;
+            set
+            {
+                if (_zipCode != value)
+                {
+                    _zipCode = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private double? _gpsLatitude;
         public double? GpsLatitude
         {
@@ -107,5 +150,7 @@ namespace BackOffice.Models.DTOs.Other
                 }
             }
         }
+
+
     }
 }

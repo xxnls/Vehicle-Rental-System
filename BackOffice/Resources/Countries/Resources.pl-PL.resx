@@ -98,39 +98,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DisplayName" xml:space="preserve">
-    <value>Punkty wynajmu</value>
+    <value>Kraje</value>
   </data>
-  <data name="SelectCountryTitle" xml:space="preserve">
-    <value>Proszę wybrać kraj.</value>
+  <data name="FullName" xml:space="preserve">
+    <value>Pełna nazwa</value>
   </data>
-  <data name="SelectCountry" xml:space="preserve">
-    <value>Wybierz Kraj</value>
+  <data name="Abbreviation" xml:space="preserve">
+    <value>Skrót</value>
   </data>
-  <data name="FirstLine" xml:space="preserve">
-    <value>Linia pierwsza</value>
-  </data>
-  <data name="SecondLine" xml:space="preserve">
-    <value>Linia druga</value>
-  </data>
-  <data name="ZipCode" xml:space="preserve">
-    <value>Kod pocztowy</value>
-  </data>
-  <data name="GpsLatitude" xml:space="preserve">
-    <value>Szerokość geograficzna</value>
-  </data>
-  <data name="GpsLongitude" xml:space="preserve">
-    <value>Długość geograficzna</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>Miasto</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>Kraj</value>
-  </data>
-  <data name="AddressFields" xml:space="preserve">
-    <value>Adres</value>
-  </data>
-  <data name="CoordinatesFields" xml:space="preserve">
-    <value>Współrzędne</value>
+  <data name="DialingCode" xml:space="preserve">
+    <value>Numer kierunkowy</value>
   </data>
 </root>

@@ -24,7 +24,7 @@ namespace API.Services.Other
                 c.DialingCode.Contains(search);
         }
 
-        protected override Country MapToEntity(CountryDto model)
+        public override Country MapToEntity(CountryDto model)
         {
             return new Country
             {
@@ -36,7 +36,7 @@ namespace API.Services.Other
             };
         }
 
-        protected override Expression<Func<Country, CountryDto>> MapToDto()
+        public override Expression<Func<Country, CountryDto>> MapToDto()
         {
             return c => new CountryDto
             {
@@ -48,7 +48,7 @@ namespace API.Services.Other
             };
         }
 
-        protected override CountryDto MapSingleEntityToDto(Country entity)
+        public override CountryDto MapSingleEntityToDto(Country entity)
         {
             return new CountryDto
             {
@@ -79,7 +79,7 @@ namespace API.Services.Other
             entity.DialingCode = model.DialingCode;
         }
 
-        protected override async Task<Country> FindEntityById(int id)
+        public override async Task<Country> FindEntityById(int id)
         {
             return await _apiDbContext.Countries
                 .FirstOrDefaultAsync(c => c.CountryId == id);

@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="BackOffice.Views.Other.CountriesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BackOffice.Views.Other"
+             xmlns:other="clr-namespace:BackOffice.ViewModels.Other"
+             xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
+             xmlns:res="clr-namespace:BackOffice.Resources.Countries"
+             xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="400">
+
+    <UserControl.DataContext>
+        <other:CountriesViewModel x:Name="DataContext"/>
+    </UserControl.DataContext>
+
+        <!--Data Grid-->
+        <DataGrid x:Name="MainDataGrid" 
+                      ItemsSource="{Binding Models}"
+                      Style="{StaticResource DefaultDataGridStyle}"
+                      SelectedItem="{Binding EditableModel, Mode=TwoWay}">
+            <DataGrid.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowDetailedInfoCommand}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Mode=OneWay}" />
+            </DataGrid.InputBindings>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding CountryId}" />
+                <DataGridTextColumn Header="{x:Static generic:Resources.Name}" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="{x:Static res:Resources.FullName}" Binding="{Binding FullName}" />
+                <DataGridTextColumn Header="{x:Static res:Resources.Abbreviation}" Binding="{Binding Abbreviation}" />
+                <DataGridTextColumn Header="{x:Static res:Resources.DialingCode}" Binding="{Binding DialingCode}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+</UserControl>

@@ -37,6 +37,12 @@
     <Compile Update="Views\Other\AddressesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Other\CountriesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Other\RentalPlacesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SelectWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,6 +94,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Other\AddressesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Other\CountriesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Other\RentalPlacesView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SelectWindow.xaml">

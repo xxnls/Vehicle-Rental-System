@@ -31,7 +31,7 @@ namespace API.Services.Other
             return a => a.IsActive != showDeleted;
         }
 
-        protected override Address MapToEntity(AddressDto model)
+        public override Address MapToEntity(AddressDto model)
         {
             return new Address
             {
@@ -48,7 +48,7 @@ namespace API.Services.Other
             };
         }
 
-        protected override Expression<Func<Address, AddressDto>> MapToDto()
+        public override Expression<Func<Address, AddressDto>> MapToDto()
         {
             return a => new AddressDto
             {
@@ -66,13 +66,13 @@ namespace API.Services.Other
             };
         }
 
-        protected override AddressDto MapSingleEntityToDto(Address entity)
+        public override AddressDto MapSingleEntityToDto(Address entity)
         {
             return new AddressDto
             {
                 AddressId = entity.AddressId,
                 CountryId = entity.CountryId,
-                CountryName = entity.Country.Name,
+                CountryName = entity.Country?.Name,
                 FirstLine = entity.FirstLine,
                 SecondLine = entity.SecondLine,
                 ZipCode = entity.ZipCode,
@@ -110,7 +110,7 @@ namespace API.Services.Other
             }
         }
 
-        protected override async Task<Address> FindEntityById(int id)
+        public override async Task<Address> FindEntityById(int id)
         {
             return await _apiDbContext.Addresses
                 .Include(a => a.Country)

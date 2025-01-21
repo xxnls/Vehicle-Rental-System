@@ -29,7 +29,7 @@ namespace API.Services.Other
             return l => l.IsActive != showDeleted;
         }
 
-        protected override Location MapToEntity(LocationDto model)
+        public override Location MapToEntity(LocationDto model)
         {
             return new Location
             {
@@ -43,7 +43,7 @@ namespace API.Services.Other
             };
         }
 
-        protected override Expression<Func<Location, LocationDto>> MapToDto()
+        public override Expression<Func<Location, LocationDto>> MapToDto()
         {
             return l => new LocationDto
             {
@@ -57,7 +57,7 @@ namespace API.Services.Other
             };
         }
 
-        protected override LocationDto MapSingleEntityToDto(Location entity)
+        public override LocationDto MapSingleEntityToDto(Location entity)
         {
             return new LocationDto
             {
@@ -92,7 +92,7 @@ namespace API.Services.Other
             entity.IsActive = model.IsActive;
         }
 
-        protected override async Task<Location> FindEntityById(int id)
+        public override async Task<Location> FindEntityById(int id)
         {
             return await _apiDbContext.Locations
                 .FirstOrDefaultAsync(l => l.LocationId == id);

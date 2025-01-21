@@ -39,7 +39,7 @@ namespace API.Services
         /// <returns>
         /// The entity with the given ID, or null if not found.
         /// </returns>
-        protected abstract Task<TEntity> FindEntityById(int id);
+        public abstract Task<TEntity> FindEntityById(int id);
 
         /// <summary>
         /// Map a DTO to an entity.
@@ -50,7 +50,7 @@ namespace API.Services
         /// <returns>
         /// The entity created from the DTO.
         /// </returns>
-        protected abstract TEntity MapToEntity(TCreateDto dto);
+        public abstract TEntity MapToEntity(TCreateDto dto);
 
         /// <summary>
         /// Map an entity to a DTO.
@@ -58,7 +58,7 @@ namespace API.Services
         /// <returns>
         /// An expression to map an entity to a DTO.
         /// </returns>
-        protected abstract Expression<Func<TEntity, TResponseDto>> MapToDto();
+        public abstract Expression<Func<TEntity, TResponseDto>> MapToDto();
 
         /// <summary>
         /// Map a single entity to a DTO.
@@ -69,7 +69,7 @@ namespace API.Services
         /// <returns>
         /// The DTO created from the entity.
         /// </returns>
-        protected abstract TResponseDto MapSingleEntityToDto(TEntity entity);
+        public abstract TResponseDto MapSingleEntityToDto(TEntity entity);
 
         /// <summary>
         /// Update an entity with data from a DTO.

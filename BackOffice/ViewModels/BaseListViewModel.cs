@@ -624,7 +624,7 @@ namespace BackOffice.ViewModels
             }
         }
 
-        private void ValidateEditableModel()
+        protected void ValidateEditableModel()
         {
             if (EditableModel == null) return;
 

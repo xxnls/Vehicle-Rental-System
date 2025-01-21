@@ -34,7 +34,7 @@ namespace API.Services.Vehicles
             return vm => vm.IsActive != showDeleted;
         }
 
-        protected override VehicleModel MapToEntity(VehicleModelDto model)
+        public override VehicleModel MapToEntity(VehicleModelDto model)
         {
             return new VehicleModel
             {
@@ -52,7 +52,7 @@ namespace API.Services.Vehicles
             };
         }
 
-        protected override Expression<Func<VehicleModel, VehicleModelDto>> MapToDto()
+        public override Expression<Func<VehicleModel, VehicleModelDto>> MapToDto()
         {
             return vm => new VehicleModelDto
             {
@@ -71,13 +71,13 @@ namespace API.Services.Vehicles
             };
         }
 
-        protected override VehicleModelDto MapSingleEntityToDto(VehicleModel entity)
+        public override VehicleModelDto MapSingleEntityToDto(VehicleModel entity)
         {
             return new VehicleModelDto
             {
                 VehicleModelId = entity.VehicleModelId,
                 VehicleBrandId = entity.VehicleBrandId,
-                VehicleBrandName = entity.VehicleBrand.Name,
+                VehicleBrandName = entity.VehicleBrand?.Name,
                 Name = entity.Name,
                 Description = entity.Description,
                 EngineSize = entity.EngineSize,
@@ -117,7 +117,7 @@ namespace API.Services.Vehicles
             }
         }
 
-        protected override async Task<VehicleModel> FindEntityById(int id)
+        public override async Task<VehicleModel> FindEntityById(int id)
         {
             return await _apiDbContext.VehicleModels
                 .Include(vm => vm.VehicleBrand)

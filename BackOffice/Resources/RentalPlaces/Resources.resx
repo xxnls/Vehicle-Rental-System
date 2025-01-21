@@ -100,4 +100,37 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Rental places</value>
   </data>
+  <data name="SelectCountryTitle" xml:space="preserve">
+    <value>Select a country.</value>
+  </data>
+  <data name="SelectCountry" xml:space="preserve">
+    <value>Select Country</value>
+  </data>
+  <data name="FirstLine" xml:space="preserve">
+    <value>First line</value>
+  </data>
+  <data name="SecondLine" xml:space="preserve">
+    <value>Second line</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Zip code</value>
+  </data>
+  <data name="GpsLatitude" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="GpsLongitude" xml:space="preserve">
+    <value>Logitude</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="AddressFields" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="CoordinatesFields" xml:space="preserve">
+    <value>Coordinates</value>
+  </data>
 </root>
