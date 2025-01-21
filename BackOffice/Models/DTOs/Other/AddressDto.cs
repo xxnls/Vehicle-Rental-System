@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BackOffice.Models.DTOs.Other
 {
-    public class AddressDto
+    public class AddressDto : BaseDtoModel
     {
         public int AddressId { get; set; }
 
@@ -21,13 +21,5 @@ namespace BackOffice.Models.DTOs.Other
         public string ZipCode { get; set; } = null!;
 
         public string City { get; set; } = null!;
-
-        public DateTime CreatedDate { get; set; }
-
-        public DateTime? ModifiedDate { get; set; }
-
-        public DateTime? DeletedDate { get; set; }
-
-        public bool IsActive { get; set; }
     }
 }

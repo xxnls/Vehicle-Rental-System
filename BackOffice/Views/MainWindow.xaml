@@ -104,6 +104,8 @@
                     <StackPanel>
                         <Button Content="Rental Places" Command="{Binding ChangeWorkspaceCommand}"
                                 CommandParameter="RentalPlacesViewModel" />
+                        <Button Content="Addresses" Command="{Binding ChangeWorkspaceCommand}"
+                                CommandParameter="AddressesViewModel" />
                         <Button Content="Settings" />
                         <Button Content="Help" />
                     </StackPanel>

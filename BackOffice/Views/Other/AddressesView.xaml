@@ -4,9 +4,83 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BackOffice.Views.Other"
+             xmlns:other="clr-namespace:BackOffice.ViewModels.Other"
+             xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
+             xmlns:res="clr-namespace:BackOffice.Resources.RentalPlaces"
+             xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <UserControl.DataContext>
+        <other:AddressesViewModel x:Name="DataContext"/>
+    </UserControl.DataContext>
+
+
+    <!-- List Mode -->
+    <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <!-- CRUD Buttons -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <customControls:CRUDButtonsControl LoadCommand="{Binding LoadModelsCommand}"
+                                   AddCommand="{Binding SwitchToCreateModeCommand}"
+                                   EditCommand="{Binding SwitchToEditModeCommand}"
+                                   DeleteCommand="{Binding DeleteModelCommand}"
+                                   DeleteVisibility="{Binding ShowDeleted, Converter={StaticResource InverseBooleanConverter}}"
+                                   RestoreCommand="{Binding RestoreModelCommand}"
+                                   RestoreCommandParameter="{Binding EditableModel.RentalPlaceId}"
+                                   RestoreVisibility="{Binding ShowDeleted}"
+                                   Grid.Column="0"/>
+
+            <customControls:SearchControl Grid.Column="1"
+                                  SearchCommand="{Binding SearchCommand}"/>
+
+            <customControls:FilterButtonsControl ShowFilterOptionsCommand="{Binding ShowFilterOptionsCommand}"
+                                         ShowDeletedModelsCommand="{Binding ShowDeletedModelsCommand}"
+                                         Grid.Column="2"
+                                         Margin="0,0,5,0"/>
+        </Grid>
+
+        <!-- Filter Options -->
+        <customControls:FilterOptionsControl Visibility="{Binding IsFiltering, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     CreatedBefore="{Binding CreatedBefore, Mode=TwoWay}"
+                                     CreatedAfter="{Binding CreatedAfter, Mode=TwoWay}"
+                                     ModifiedBefore="{Binding ModifiedBefore, Mode=TwoWay}"
+                                     ModifiedAfter="{Binding ModifiedAfter, Mode=TwoWay}"
+                                     FilterCommand="{Binding LoadModelsCommand}"/>
+
+        <!-- Data Grid -->
+        <DataGrid ItemsSource="{Binding Models}"
+                      Style="{StaticResource DefaultDataGridStyle}"
+                      SelectedItem="{Binding EditableModel, Mode=TwoWay}">
+            <DataGrid.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ShowDetailedInfoCommand}"
+                                  CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Mode=OneWay}" />
+            </DataGrid.InputBindings>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding AddressId}" />
+                <DataGridTextColumn Header="{x:Static res:Resources.City}" Binding="{Binding City}" />
+                <DataGridTextColumn Header="{x:Static res:Resources.FirstLine}" Binding="{Binding FirstLine}" />
+                <DataGridTextColumn Header="{x:Static res:Resources.SecondLine}" Binding="{Binding SecondLine}" />
+                <DataGridTextColumn Header="{x:Static res:Resources.ZipCode}" Binding="{Binding ZipCode}" />
+                <DataGridTextColumn Header="{x:Static res:Resources.Country}" Binding="{Binding CountryName}" />
+                <DataGridTextColumn Header="{x:Static generic:Resources.CreatedDate}" Binding="{Binding CreatedDate}"/>
+                <DataGridTextColumn Header="{x:Static generic:Resources.ModifiedDate}" Binding="{Binding ModifiedDate}"/>
+                <DataGridTextColumn Header="{x:Static generic:Resources.DeletedDate}" Binding="{Binding DeletedDate}"
+                                      Visibility="{Binding ShowDeleted, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference Name=DataContext}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Pagination -->
+        <customControls:PaginationControl CurrentPage="{Binding CurrentPage}" 
+                                  TotalItemCount="{Binding TotalItemCount}"
+                                  ModelsPerPage="{Binding PageSize}"
+                                  CanLoadPreviousPage="{Binding CanLoadPreviousPage}" 
+                                  CanLoadNextPage="{Binding CanLoadNextPage}" 
+                                  PreviousPageCommand="{Binding LoadPreviousPageCommand}" 
+                                  NextPageCommand="{Binding LoadNextPageCommand}" />
+    </StackPanel>
 </UserControl>

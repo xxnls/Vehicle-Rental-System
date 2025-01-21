@@ -27,6 +27,10 @@
         <otherviews:RentalPlacesView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type other:AddressesViewModel}">
+        <otherviews:AddressesView />
+    </DataTemplate>
+
 
     <Storyboard x:Key="ExpandSidebar">
         <DoubleAnimation Storyboard.TargetName="Sidebar" 

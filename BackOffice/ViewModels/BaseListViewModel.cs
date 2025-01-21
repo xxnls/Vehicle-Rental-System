@@ -277,8 +277,8 @@ namespace BackOffice.ViewModels
         public ICommand LoadPreviousPageCommand { get; set; }
         public ICommand SearchCommand { get; set; }
         public ICommand SwitchToListModeCommand { get; }
-        public ICommand SwitchToCreateModeCommand { get; }
-        public RelayCommand SwitchToEditModeCommand { get; }
+        public ICommand SwitchToCreateModeCommand { get; set; }
+        public RelayCommand SwitchToEditModeCommand { get; set; }
         public ICommand ShowFilterOptionsCommand { get; }
         public ICommand ShowDeletedModelsCommand { get; }
         public AsyncRelayCommand<int> RestoreModelCommand { get; }
