@@ -7,20 +7,20 @@
       "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\vehicles\\vehiclesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\other\\rentalplacesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\other\\rentalplacesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\baseapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\baseapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\dtos\\vehicles\\vehicledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\dtos\\vehicles\\vehicledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\vehicles\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\vehicles\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\other\\rentalplacesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\other\\rentalplacesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\baseapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\baseapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\dtos\\other\\locationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,9 +42,9 @@
               "Title": "VehiclesService.cs",
               "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\Vehicles\\VehiclesService.cs",
               "RelativeDocumentMoniker": "API\\Services\\Vehicles\\VehiclesService.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\Vehicles\\VehiclesService.cs",
-              "RelativeToolTip": "API\\Services\\Vehicles\\VehiclesService.cs",
-              "ViewState": "AgIAAOYAAAAAAAAAAAAowCMBAAAOAAAAAAAAAA==",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\Vehicles\\VehiclesService.cs*",
+              "RelativeToolTip": "API\\Services\\Vehicles\\VehiclesService.cs*",
+              "ViewState": "AgIAAOoAAAAAAAAAAAAqwE4AAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-22T01:35:34.53Z",
               "IsPinned": true,
@@ -52,13 +52,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "VehicleDto.cs",
               "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\Vehicles\\VehicleDto.cs",
               "RelativeDocumentMoniker": "API\\Models\\DTOs\\Vehicles\\VehicleDto.cs",
               "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\Vehicles\\VehicleDto.cs",
               "RelativeToolTip": "API\\Models\\DTOs\\Vehicles\\VehicleDto.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAQwAwAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAA6wCQAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-22T01:39:37.567Z",
               "IsPinned": true,
@@ -66,20 +66,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Vehicle.cs",
               "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\Vehicles\\Vehicle.cs",
               "RelativeDocumentMoniker": "API\\Models\\Vehicles\\Vehicle.cs",
               "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\Vehicles\\Vehicle.cs",
               "RelativeToolTip": "API\\Models\\Vehicles\\Vehicle.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAowBUAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAADoAAAAAAAAAAAAAwBUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-22T01:58:41.258Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "BaseApiService.cs",
               "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\BaseApiService.cs",
               "RelativeDocumentMoniker": "API\\Services\\BaseApiService.cs",
@@ -92,7 +92,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "RentalPlacesService.cs",
               "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\Other\\RentalPlacesService.cs",
               "RelativeDocumentMoniker": "API\\Services\\Other\\RentalPlacesService.cs",

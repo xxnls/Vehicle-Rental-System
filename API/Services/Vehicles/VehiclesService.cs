@@ -15,87 +15,109 @@ namespace API.Services.Vehicles
         private readonly VehicleOptionalInformationService _optionalInformationService;
         private readonly VehicleStatisticsService _statisticsService;
         private readonly LocationsService _locationsService;
+        private readonly VehicleTypesService _vehicleTypesService;
+        private readonly VehicleModelsService _vehicleModelsService;
 
         public VehiclesService(
             ApiDbContext context,
             VehicleOptionalInformationService optionalInformationService,
             VehicleStatisticsService statisticsService,
-            LocationsService locationsService)
+            LocationsService locationsService,
+            VehicleTypesService vehicleTypesService,
+            VehicleModelsService vehicleModelsService)
             : base(context)
         {
             _apiDbContext = context;
             _optionalInformationService = optionalInformationService;
             _statisticsService = statisticsService;
             _locationsService = locationsService;
+            _vehicleTypesService = vehicleTypesService;
+            _vehicleModelsService = vehicleModelsService;
         }
 
         public override async Task<VehicleDto> CreateAsync(VehicleDto createDto)
         {
-            // Create the related VehicleOptionalInformation, VehicleStatistics, Location first
-            var vehicleOptionalInfoDto = new VehicleOptionalInformationDto
+            // Validate input
+            if (createDto == null)
+                throw new ArgumentNullException(nameof(createDto));
+
+            using var transaction = await _apiDbContext.Database.BeginTransactionAsync();
+            try
             {
-                HasNavigation = createDto.OptionalInformation?.HasNavigation ?? false,
-                HasBluetooth = createDto.OptionalInformation?.HasBluetooth ?? false,
-                HasAirConditioning = createDto.OptionalInformation?.HasAirConditioning ?? false,
-                HasAutomaticTransmission = createDto.OptionalInformation?.HasAutomaticTransmission ?? false,
-                HasParkingSensors = createDto.OptionalInformation?.HasParkingSensors ?? false,
-                HasCruiseControl = createDto.OptionalInformation?.HasCruiseControl ?? false
-            };
+                // Create the related VehicleOptionalInformation, VehicleStatistics, Location first
+                var vehicleOptionalInfoDto = new VehicleOptionalInformationDto
+                {
+                    HasNavigation = createDto.OptionalInformation?.HasNavigation ?? false,
+                    HasBluetooth = createDto.OptionalInformation?.HasBluetooth ?? false,
+                    HasAirConditioning = createDto.OptionalInformation?.HasAirConditioning ?? false,
+                    HasAutomaticTransmission = createDto.OptionalInformation?.HasAutomaticTransmission ?? false,
+                    HasParkingSensors = createDto.OptionalInformation?.HasParkingSensors ?? false,
+                    HasCruiseControl = createDto.OptionalInformation?.HasCruiseControl ?? false
+                };
 
-            var vehicleStatisticsDto = new VehicleStatisticsDto
+                var vehicleStatisticsDto = new VehicleStatisticsDto
+                {
+                    TotalRentals = 0,
+                    RentalRevenue = 0.0m,
+                    FirstRentalDate = null,
+                    LastRentalDate = null
+                };
+
+                var locationDto = new LocationDto
+                {
+                    Gpslatitude = 0.0,
+                    Gpslongitude = 0.0
+                };
+
+                // Create the Optional Information and Statistics in the database
+                var createdOptionalInformation =
+                    await _optionalInformationService.CreateAsync(vehicleOptionalInfoDto);
+                var createdStatistics = await _statisticsService.CreateAsync(vehicleStatisticsDto);
+                var createdLocation = await _locationsService.CreateAsync(locationDto);
+
+                // Now create the Vehicle entity and link the created Optional Information and Statistics
+                var vehicle = new VehicleDto
+                {
+                    VehicleTypeId = createDto.VehicleTypeId,
+                    VehicleModelId = createDto.VehicleModelId,
+                    VehicleStatisticsId = createdStatistics.VehicleStatisticsId,
+                    VehicleOptionalInformationId = createdOptionalInformation.VehicleOptionalInformationId,
+                    RentalPlaceId = createDto.RentalPlaceId,
+                    LocationId = createdLocation.LocationId,
+                    Vin = createDto.Vin,
+                    LicensePlate = createDto.LicensePlate,
+                    Color = createDto.Color,
+                    ManufactureYear = createDto.ManufactureYear,
+                    CurrentMileage = createDto.CurrentMileage,
+                    LastMaintenanceMileage = createDto.LastMaintenanceMileage,
+                    LastMaintenanceDate = createDto.LastMaintenanceDate,
+                    NextMaintenanceDate = createDto.NextMaintenanceDate,
+                    PurchaseDate = createDto.PurchaseDate,
+                    PurchasePrice = createDto.PurchasePrice,
+                    Status = createDto.Status,
+                    CustomDailyRate = createDto.CustomDailyRate,
+                    CustomWeeklyRate = createDto.CustomWeeklyRate,
+                    CustomDeposit = createDto.CustomDeposit,
+                    IsAvailableForRent = createDto.IsAvailableForRent,
+                    Notes = createDto.Notes,
+                };
+
+                var createdVehicle = await base.CreateAsync(vehicle);
+
+                var locationEntity = await _locationsService.FindEntityById(createdLocation.LocationId);
+                locationEntity.VehicleId = createdVehicle.VehicleId;
+                await _locationsService.UpdateAsync(locationEntity.LocationId,
+                    _locationsService.MapSingleEntityToDto(locationEntity));
+
+                // Return the created Vehicle DTO
+                await transaction.CommitAsync();
+                return createdVehicle;
+            }
+            catch (Exception ex)
             {
-                TotalRentals = 0,
-                RentalRevenue = 0.0m,
-                FirstRentalDate = null,
-                LastRentalDate = null
-            };
-
-            var locationDto = new LocationDto
-            {
-                Gpslatitude = 0.0,
-                Gpslongitude = 0.0
-            };
-
-            // Create the Optional Information and Statistics in the database
-            var createdOptionalInformation = await _optionalInformationService.CreateAsync(vehicleOptionalInfoDto);
-            var createdStatistics = await _statisticsService.CreateAsync(vehicleStatisticsDto);
-            var createdLocation = await _locationsService.CreateAsync(locationDto);
-
-            // Now create the Vehicle entity and link the created Optional Information and Statistics
-            var vehicle = new VehicleDto
-            {
-                VehicleTypeId = createDto.VehicleTypeId,
-                VehicleModelId = createDto.VehicleModelId,
-                VehicleStatisticsId = createdStatistics.VehicleStatisticsId,
-                VehicleOptionalInformationId = createdOptionalInformation.VehicleOptionalInformationId,
-                RentalPlaceId = createDto.RentalPlaceId,
-                LocationId = createdLocation.LocationId,
-                Vin = createDto.Vin,
-                LicensePlate = createDto.LicensePlate,
-                Color = createDto.Color,
-                ManufactureYear = createDto.ManufactureYear,
-                CurrentMileage = createDto.CurrentMileage,
-                LastMaintenanceMileage = createDto.LastMaintenanceMileage,
-                LastMaintenanceDate = createDto.LastMaintenanceDate,
-                NextMaintenanceDate = createDto.NextMaintenanceDate,
-                PurchaseDate = createDto.PurchaseDate,
-                PurchasePrice = createDto.PurchasePrice,
-                Status = createDto.Status,
-                CustomDailyRate = createDto.CustomDailyRate,
-                CustomWeeklyRate = createDto.CustomWeeklyRate,
-                CustomDeposit = createDto.CustomDeposit,
-                IsAvailableForRent = createDto.IsAvailableForRent,
-                Notes = createDto.Notes,
-            };
-
-            var createdVehicle = await base.CreateAsync(vehicle);
-
-            var locationEntity = await _locationsService.FindEntityById(createdLocation.LocationId);
-            locationEntity.VehicleId = createdVehicle.VehicleId;
-            await _locationsService.UpdateAsync(locationEntity.LocationId, _locationsService.MapSingleEntityToDto(locationEntity));
-
-            // Return the created Vehicle DTO
-            return createdVehicle;
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
 
         protected override Expression<Func<Vehicle, bool>> BuildSearchQuery(string search)
