@@ -287,7 +287,7 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "VehicleOptionalInformation",
+                name: "VehicleOptionalInformationDto",
                 columns: table => new
                 {
                     VehicleOptionalInformationID = table.Column<int>(type: "int", nullable: false)
@@ -625,7 +625,7 @@ namespace API.Migrations
                     table.ForeignKey(
                         name: "Vehicles_VehicleOptionalInformation",
                         column: x => x.VehicleOptionalInformationID,
-                        principalTable: "VehicleOptionalInformation",
+                        principalTable: "VehicleOptionalInformationDto",
                         principalColumn: "VehicleOptionalInformationID");
                     table.ForeignKey(
                         name: "Vehicles_VehicleStatistics",
@@ -1419,7 +1419,7 @@ namespace API.Migrations
                 name: "VehicleModels");
 
             migrationBuilder.DropTable(
-                name: "VehicleOptionalInformation");
+                name: "VehicleOptionalInformationDto");
 
             migrationBuilder.DropTable(
                 name: "VehicleStatistics");

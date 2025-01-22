@@ -55,6 +55,9 @@
     <Compile Update="Views\Vehicles\VehicleModelsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Vehicles\VehiclesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Vehicles\VehicleTypesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -118,6 +121,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Vehicles\VehicleModelsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Vehicles\VehiclesView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Vehicles\VehicleTypesView.xaml">

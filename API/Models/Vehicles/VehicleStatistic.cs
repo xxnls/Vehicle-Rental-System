@@ -1,8 +1,7 @@
-﻿using API.Models.Vehicles;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace API.Models;
+namespace API.Models.Vehicles;
 
 public partial class VehicleStatistic
 {

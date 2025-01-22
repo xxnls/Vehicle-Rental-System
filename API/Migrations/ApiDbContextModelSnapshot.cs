@@ -1201,7 +1201,7 @@ namespace API.Migrations
                     b.ToTable("VehicleModels");
                 });
 
-            modelBuilder.Entity("API.Models.VehicleOptionalInformation", b =>
+            modelBuilder.Entity("API.Models.VehicleOptionalInformationDto", b =>
                 {
                     b.Property<int>("VehicleOptionalInformationId")
                         .ValueGeneratedOnAdd()
@@ -1231,7 +1231,7 @@ namespace API.Migrations
                     b.HasKey("VehicleOptionalInformationId")
                         .HasName("VehicleOptionalInformation_pk");
 
-                    b.ToTable("VehicleOptionalInformation", (string)null);
+                    b.ToTable("VehicleOptionalInformationDto", (string)null);
                 });
 
             modelBuilder.Entity("API.Models.VehicleStatistic", b =>
@@ -2066,7 +2066,7 @@ namespace API.Migrations
                         .IsRequired()
                         .HasConstraintName("Vehicles_VehicleModels");
 
-                    b.HasOne("API.Models.VehicleOptionalInformation", "VehicleOptionalInformation")
+                    b.HasOne("API.Models.VehicleOptionalInformationDto", "VehicleOptionalInformationDto")
                         .WithMany("Vehicles")
                         .HasForeignKey("VehicleOptionalInformationId")
                         .IsRequired()
@@ -2090,7 +2090,7 @@ namespace API.Migrations
 
                     b.Navigation("VehicleModel");
 
-                    b.Navigation("VehicleOptionalInformation");
+                    b.Navigation("VehicleOptionalInformationDto");
 
                     b.Navigation("VehicleStatistics");
 
@@ -2346,7 +2346,7 @@ namespace API.Migrations
                     b.Navigation("Vehicles");
                 });
 
-            modelBuilder.Entity("API.Models.VehicleOptionalInformation", b =>
+            modelBuilder.Entity("API.Models.VehicleOptionalInformationDto", b =>
                 {
                     b.Navigation("Vehicles");
                 });

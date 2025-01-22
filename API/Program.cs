@@ -23,13 +23,17 @@ builder.Services.AddDbContext<ApiDbContext>(options =>
 
 builder.Services.AddScoped<EmployeeAuthService>();
 builder.Services.AddScoped<EmployeesService>();
+builder.Services.AddScoped<VehiclesService>();
 builder.Services.AddScoped<VehicleBrandsService>();
 builder.Services.AddScoped<VehicleModelsService>();
 builder.Services.AddScoped<VehicleTypesService>();
+builder.Services.AddScoped<VehicleStatisticsService>();
+builder.Services.AddScoped<VehicleOptionalInformationService>();
 builder.Services.AddScoped<CountriesService>();
 builder.Services.AddScoped<RentalPlacesService>();
 builder.Services.AddScoped<LocationsService>();
 builder.Services.AddScoped<AddressesService>();
+
 
 builder.Services.AddIdentityCore<Employee>(options => { })
     .AddRoles<EmployeeRole>()
