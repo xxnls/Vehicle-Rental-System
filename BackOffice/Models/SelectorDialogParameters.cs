@@ -16,7 +16,7 @@ namespace BackOffice.Models
         public Type SelectorViewModelType { get; set; }
         public UserControl SelectorView { get; set; }   
         public Action<object> TargetProperty { get; set; }
-        public string PropertyForSelection { get; set; }
+        public string? PropertyForSelection { get; set; }
         public string Title { get; set; }
     }
 }

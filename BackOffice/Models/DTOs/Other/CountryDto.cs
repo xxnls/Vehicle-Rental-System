@@ -10,7 +10,7 @@ namespace BackOffice.Models.DTOs.Other
     {
         public short CountryId { get; set; }
 
-        public string Name { get; set; } = null!;
+        public string Name { get; set; }
 
         public string FullName { get; set; } = null!;
 

@@ -8,7 +8,7 @@ namespace BackOffice.Interfaces
 {
     public interface IListViewModel
     {
-        protected Task CreateModelAsync();
-        protected Task UpdateModelAsync();
+        //protected Task CreateModelAsync();
+        //protected Task UpdateModelAsync();
     }
 }

@@ -6,10 +6,6 @@ namespace API.Models.DTOs.Other
     {
         public int AddressId { get; set; }
 
-        public short CountryId { get; set; }
-
-        public string? CountryName { get; set; } = null!;
-
         public string FirstLine { get; set; } = null!;
 
         public string? SecondLine { get; set; }

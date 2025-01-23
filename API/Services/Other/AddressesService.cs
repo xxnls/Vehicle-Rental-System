@@ -16,7 +16,6 @@ namespace API.Services.Other
         {
             _apiDbContext = context;
             _countriesService = countriesService;
-
         }
 
         protected override Expression<Func<Address, bool>> BuildSearchQuery(string search)
@@ -40,7 +39,6 @@ namespace API.Services.Other
             return new Address
             {
                 AddressId = model.AddressId,
-                CountryId = model.CountryId,
                 FirstLine = model.FirstLine,
                 SecondLine = model.SecondLine,
                 ZipCode = model.ZipCode,
@@ -48,7 +46,8 @@ namespace API.Services.Other
                 CreatedDate = model.CreatedDate,
                 ModifiedDate = model.ModifiedDate,
                 DeletedDate = model.DeletedDate,
-                IsActive = model.IsActive
+                IsActive = model.IsActive,
+                Country = _countriesService.MapToEntity(model.Country)
             };
         }
 
@@ -57,8 +56,6 @@ namespace API.Services.Other
             return a => new AddressDto
             {
                 AddressId = a.AddressId,
-                CountryId = a.CountryId,
-                CountryName = a.Country.Name,
                 FirstLine = a.FirstLine,
                 SecondLine = a.SecondLine,
                 ZipCode = a.ZipCode,
@@ -77,8 +74,6 @@ namespace API.Services.Other
             return new AddressDto
             {
                 AddressId = entity.AddressId,
-                CountryId = entity.CountryId,
-                CountryName = entity.Country?.Name,
                 FirstLine = entity.FirstLine,
                 SecondLine = entity.SecondLine,
                 ZipCode = entity.ZipCode,
@@ -105,11 +100,11 @@ namespace API.Services.Other
 
         protected override void UpdateEntity(Address entity, AddressDto model)
         {
-            entity.CountryId = model.CountryId;
             entity.FirstLine = model.FirstLine;
             entity.SecondLine = model.SecondLine;
             entity.ZipCode = model.ZipCode;
             entity.City = model.City;
+            entity.Country = _countriesService.MapToEntity(model.Country);
 
             if (model.IsActive)
             {

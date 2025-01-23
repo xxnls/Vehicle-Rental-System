@@ -10,10 +10,6 @@ namespace BackOffice.Models.DTOs.Other
     {
         public int AddressId { get; set; }
 
-        public string? CountryName { get; set; } = null!;
-
-        public short CountryId { get; set; }
-
         public string FirstLine { get; set; } = null!;
 
         public string? SecondLine { get; set; }
@@ -21,5 +17,17 @@ namespace BackOffice.Models.DTOs.Other
         public string ZipCode { get; set; } = null!;
 
         public string City { get; set; } = null!;
+
+        // Navigation properties
+        private CountryDto? _country;
+        public CountryDto? Country
+        {
+            get => _country;
+            set
+            {
+                _country = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

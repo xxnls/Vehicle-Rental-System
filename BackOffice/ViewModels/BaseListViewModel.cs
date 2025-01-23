@@ -281,7 +281,7 @@ namespace BackOffice.ViewModels
         public RelayCommand SwitchToEditModeCommand { get; set; }
         public ICommand ShowFilterOptionsCommand { get; }
         public ICommand ShowDeletedModelsCommand { get; }
-        public AsyncRelayCommand<int> RestoreModelCommand { get; }
+        public AsyncRelayCommand<int> RestoreModelCommand { get; set; }
         public ICommand ShowDetailedInfoCommand { get; }
         public ICommand ShowSelectorDialogCommand { get; }
 
@@ -533,6 +533,9 @@ namespace BackOffice.ViewModels
         /// <param name="parameters">
         /// The parameters for the selector dialog.
         /// </param>
+        /// <remarks>
+        /// If the selected item has a property to be set, it will be set using the <see cref="SelectorDialogParameters.TargetProperty"/> action.
+        /// </remarks>
         protected void ShowSelectorDialog(SelectorDialogParameters parameters)
         {
             // Ensure the type is a BaseViewModel
@@ -583,12 +586,27 @@ namespace BackOffice.ViewModels
                 if (newGrid.SelectedItem == null) return;
 
                 var selectedItem = newGrid.SelectedItem;
-                var property = selectedItem.GetType().GetProperty(parameters.PropertyForSelection);
 
-                if (property != null)
+                //var property = selectedItem.GetType().GetProperty(parameters.PropertyForSelection);
+
+                //if (property != null)
+                //{
+                //    var value = property.GetValue(selectedItem);
+                //    parameters.TargetProperty?.Invoke(value);
+                //}
+
+                if (string.IsNullOrEmpty(parameters.PropertyForSelection))
                 {
-                    var value = property.GetValue(selectedItem);
-                    parameters.TargetProperty?.Invoke(value);
+                    parameters.TargetProperty?.Invoke(selectedItem);
+                }
+                else
+                {
+                    var property = selectedItem.GetType().GetProperty(parameters.PropertyForSelection);
+                    if (property != null)
+                    {
+                        var value = property.GetValue(selectedItem);
+                        parameters.TargetProperty?.Invoke(value);
+                    }
                 }
 
                 dialog.Close();

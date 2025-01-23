@@ -100,4 +100,25 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Addresses</value>
   </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="FirstLine" xml:space="preserve">
+    <value>First line</value>
+  </data>
+  <data name="SecondLine" xml:space="preserve">
+    <value>Second line</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Zip code</value>
+  </data>
+  <data name="SelectCountryTitle" xml:space="preserve">
+    <value>Please choose a country</value>
+  </data>
+  <data name="SelectCountry" xml:space="preserve">
+    <value>Select Country</value>
+  </data>
 </root>

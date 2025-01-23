@@ -34,7 +34,7 @@ namespace API.Services.Other
                 FirstLine = createDto.FirstLine,
                 SecondLine = createDto.SecondLine,
                 ZipCode = createDto.ZipCode,
-                CountryId = createDto.CountryId
+                //CountryId = createDto.CountryId
             };
 
             var createdLocation = await _locationsService.CreateAsync(location);
@@ -189,7 +189,7 @@ namespace API.Services.Other
                 FirstLine = updateDto.FirstLine,
                 SecondLine = updateDto.SecondLine,
                 ZipCode = updateDto.ZipCode,
-                CountryId = updateDto.CountryId,
+                // CountryId = updateDto.CountryId,
                 IsActive = updateDto.IsActive,
                 DeletedDate = updateDto.DeletedDate
             };
