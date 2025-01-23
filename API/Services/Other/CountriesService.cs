@@ -50,6 +50,11 @@ namespace API.Services.Other
 
         public override CountryDto MapSingleEntityToDto(Country entity)
         {
+            if (entity == null)
+            {
+                return null;
+            }
+
             return new CountryDto
             {
                 CountryId = entity.CountryId,

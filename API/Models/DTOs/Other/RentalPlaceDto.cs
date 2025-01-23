@@ -8,9 +8,9 @@ namespace API.Models.DTOs.Other
 
         public int LocationId { get; set; }
 
-        public double Gpslatitude { get; set; }
+        public double? Gpslatitude { get; set; }
 
-        public double Gpslongitude { get; set; }
+        public double? Gpslongitude { get; set; }
 
         public int AddressId { get; set; }
 

@@ -209,11 +209,11 @@ namespace API.Services.Vehicles
                 Notes = v.Notes,
                 CreatedDate = v.CreatedDate,
                 IsActive = v.IsActive,
-                VehicleType = MapVehicleTypeToDto(v.VehicleType),
-                VehicleModel = MapVehicleModelToDto(v.VehicleModel),
+                VehicleType = _vehicleTypesService.MapSingleEntityToDto(v.VehicleType),
+                VehicleModel = _vehicleModelsService.MapSingleEntityToDto(v.VehicleModel),
                 RentalPlace = _rentalPlacesService.MapSingleEntityToDto(v.RentalPlace),
-                VehicleStatistics = MapVehicleStatisticsToDto(v.VehicleStatistics),
-                OptionalInformation = MapVehicleOptionalInformationToDto(v.VehicleOptionalInformation)
+                VehicleStatistics = _statisticsService.MapSingleEntityToDto(v.VehicleStatistics),
+                OptionalInformation = _optionalInformationService.MapSingleEntityToDto(v.VehicleOptionalInformation)
             };
         }
 
@@ -303,41 +303,46 @@ namespace API.Services.Vehicles
                 ModifiedDate = entity.ModifiedDate,
                 DeletedDate = entity.DeletedDate,
                 IsActive = entity.IsActive,
-                VehicleType = entity.VehicleType != null ? new VehicleTypeDto
-                {
-                    VehicleTypeId = entity.VehicleType.VehicleTypeId,
-                    Name = entity.VehicleType.Name
-                } : null,
-                VehicleModel = entity.VehicleModel != null ? new VehicleModelDto
-                {
-                    VehicleModelId = entity.VehicleModel.VehicleModelId,
-                    Name = entity.VehicleModel.Name
-                } : null,
-                RentalPlace = entity.RentalPlace != null ? new RentalPlaceDto
-                {
-                    RentalPlaceId = entity.RentalPlace.RentalPlaceId,
-                    CountryName = entity.RentalPlace.Address.Country.Name,
-                    City = entity.RentalPlace.Address.City,
-                    Address = _addressesService.MapSingleEntityToDto(entity.RentalPlace.Address)
-                } : null,
-                VehicleStatistics = entity.VehicleStatistics != null ? new VehicleStatisticsDto
-                {
-                    VehicleStatisticsId = entity.VehicleStatistics.VehicleStatisticsId,
-                    TotalRentals = entity.VehicleStatistics.TotalRentals,
-                    RentalRevenue = entity.VehicleStatistics.RentalRevenue,
-                    FirstRentalDate = entity.VehicleStatistics.FirstRentalDate,
-                    LastRentalDate = entity.VehicleStatistics.LastRentalDate
-                } : null,
-                OptionalInformation = entity.VehicleOptionalInformation != null ? new VehicleOptionalInformationDto
-                {
-                    VehicleOptionalInformationId = entity.VehicleOptionalInformation.VehicleOptionalInformationId,
-                    HasNavigation = entity.VehicleOptionalInformation.HasNavigation,
-                    HasBluetooth = entity.VehicleOptionalInformation.HasBluetooth,
-                    HasAirConditioning = entity.VehicleOptionalInformation.HasAirConditioning,
-                    HasAutomaticTransmission = entity.VehicleOptionalInformation.HasAutomaticTransmission,
-                    HasParkingSensors = entity.VehicleOptionalInformation.HasParkingSensors,
-                    HasCruiseControl = entity.VehicleOptionalInformation.HasCruiseControl
-                } : null
+                //VehicleType = entity.VehicleType != null ? new VehicleTypeDto
+                //{
+                //    VehicleTypeId = entity.VehicleType.VehicleTypeId,
+                //    Name = entity.VehicleType.Name
+                //} : null,
+                //VehicleModel = entity.VehicleModel != null ? new VehicleModelDto
+                //{
+                //    VehicleModelId = entity.VehicleModel.VehicleModelId,
+                //    Name = entity.VehicleModel.Name
+                //} : null,
+                //RentalPlace = entity.RentalPlace != null ? new RentalPlaceDto
+                //{
+                //    RentalPlaceId = entity.RentalPlace.RentalPlaceId,
+                //    CountryName = entity.RentalPlace.Address.Country.Name,
+                //    City = entity.RentalPlace.Address.City,
+                //    Address = _addressesService.MapSingleEntityToDto(entity.RentalPlace.Address)
+                //} : null,
+                //VehicleStatistics = entity.VehicleStatistics != null ? new VehicleStatisticsDto
+                //{
+                //    VehicleStatisticsId = entity.VehicleStatistics.VehicleStatisticsId,
+                //    TotalRentals = entity.VehicleStatistics.TotalRentals,
+                //    RentalRevenue = entity.VehicleStatistics.RentalRevenue,
+                //    FirstRentalDate = entity.VehicleStatistics.FirstRentalDate,
+                //    LastRentalDate = entity.VehicleStatistics.LastRentalDate
+                //} : null,
+                //OptionalInformation = entity.VehicleOptionalInformation != null ? new VehicleOptionalInformationDto
+                //{
+                //    VehicleOptionalInformationId = entity.VehicleOptionalInformation.VehicleOptionalInformationId,
+                //    HasNavigation = entity.VehicleOptionalInformation.HasNavigation,
+                //    HasBluetooth = entity.VehicleOptionalInformation.HasBluetooth,
+                //    HasAirConditioning = entity.VehicleOptionalInformation.HasAirConditioning,
+                //    HasAutomaticTransmission = entity.VehicleOptionalInformation.HasAutomaticTransmission,
+                //    HasParkingSensors = entity.VehicleOptionalInformation.HasParkingSensors,
+                //    HasCruiseControl = entity.VehicleOptionalInformation.HasCruiseControl
+                //} : null
+                VehicleType = _vehicleTypesService.MapSingleEntityToDto(entity.VehicleType),
+                VehicleModel = _vehicleModelsService.MapSingleEntityToDto(entity.VehicleModel),
+                RentalPlace = _rentalPlacesService.MapSingleEntityToDto(entity.RentalPlace),
+                VehicleStatistics = _statisticsService.MapSingleEntityToDto(entity.VehicleStatistics),
+                OptionalInformation = _optionalInformationService.MapSingleEntityToDto(entity.VehicleOptionalInformation)
             };
         }
 

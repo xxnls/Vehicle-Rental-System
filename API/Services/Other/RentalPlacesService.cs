@@ -24,8 +24,8 @@ namespace API.Services.Other
         {
             var location = new LocationDto
             {
-                Gpslatitude = createDto.Gpslatitude,
-                Gpslongitude = createDto.Gpslongitude
+                Gpslatitude = createDto.Gpslatitude ?? 0,
+                Gpslongitude = createDto.Gpslongitude ?? 0
             };
 
             var address = new AddressDto
@@ -118,8 +118,8 @@ namespace API.Services.Other
             {
                 RentalPlaceId = entity.RentalPlaceId,
                 LocationId = entity.LocationId,
-                Gpslatitude = entity.Location.Gpslatitude,
-                Gpslongitude = entity.Location.Gpslongitude,
+                Gpslatitude = entity.Location?.Gpslatitude,
+                Gpslongitude = entity.Location?.Gpslongitude,
                 AddressId = entity.AddressId,
                 CountryName = entity.Address.Country?.Name,
                 CountryId = entity.Address.CountryId,
@@ -175,9 +175,8 @@ namespace API.Services.Other
             // Update location
             var location = new LocationDto
             {
-                LocationId = existingRentalPlace.LocationId,
-                Gpslatitude = updateDto.Gpslatitude,
-                Gpslongitude = updateDto.Gpslongitude,
+                Gpslatitude = updateDto.Gpslatitude ?? 0,
+                Gpslongitude = updateDto.Gpslongitude ?? 0,
                 RentalPlaceId = id, // Maintain the relationship
                 IsActive = updateDto.IsActive
             };
@@ -186,7 +185,6 @@ namespace API.Services.Other
             // Update address
             var address = new AddressDto
             {
-                //AddressId = existingRentalPlace.AddressId,
                 City = updateDto.City,
                 FirstLine = updateDto.FirstLine,
                 SecondLine = updateDto.SecondLine,
