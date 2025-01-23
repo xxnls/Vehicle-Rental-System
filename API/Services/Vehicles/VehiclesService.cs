@@ -18,6 +18,8 @@ namespace API.Services.Vehicles
         private readonly LocationsService _locationsService;
         private readonly VehicleTypesService _vehicleTypesService;
         private readonly VehicleModelsService _vehicleModelsService;
+        private readonly AddressesService _addressesService;
+        private readonly RentalPlacesService _rentalPlacesService;
 
         public VehiclesService(
             ApiDbContext context,
@@ -25,7 +27,9 @@ namespace API.Services.Vehicles
             VehicleStatisticsService statisticsService,
             LocationsService locationsService,
             VehicleTypesService vehicleTypesService,
-            VehicleModelsService vehicleModelsService)
+            VehicleModelsService vehicleModelsService,
+            AddressesService addressesService,
+            RentalPlacesService rentalPlacesService)
             : base(context)
         {
             _apiDbContext = context;
@@ -34,6 +38,8 @@ namespace API.Services.Vehicles
             _locationsService = locationsService;
             _vehicleTypesService = vehicleTypesService;
             _vehicleModelsService = vehicleModelsService;
+            _addressesService = addressesService;
+            _rentalPlacesService = rentalPlacesService;
         }
 
         public override async Task<VehicleDto> CreateAsync(VehicleDto createDto)
@@ -205,7 +211,7 @@ namespace API.Services.Vehicles
                 IsActive = v.IsActive,
                 VehicleType = MapVehicleTypeToDto(v.VehicleType),
                 VehicleModel = MapVehicleModelToDto(v.VehicleModel),
-                RentalPlace = MapRentalPlaceToDto(v.RentalPlace),
+                RentalPlace = _rentalPlacesService.MapSingleEntityToDto(v.RentalPlace),
                 VehicleStatistics = MapVehicleStatisticsToDto(v.VehicleStatistics),
                 OptionalInformation = MapVehicleOptionalInformationToDto(v.VehicleOptionalInformation)
             };
@@ -311,7 +317,8 @@ namespace API.Services.Vehicles
                 {
                     RentalPlaceId = entity.RentalPlace.RentalPlaceId,
                     CountryName = entity.RentalPlace.Address.Country.Name,
-                    City = entity.RentalPlace.Address.City
+                    City = entity.RentalPlace.Address.City,
+                    Address = _addressesService.MapSingleEntityToDto(entity.RentalPlace.Address)
                 } : null,
                 VehicleStatistics = entity.VehicleStatistics != null ? new VehicleStatisticsDto
                 {
@@ -385,11 +392,23 @@ namespace API.Services.Vehicles
                 .Include(v => v.VehicleType)
                 .Include(v => v.VehicleModel)
                 .Include(v => v.RentalPlace)
-                .ThenInclude(a => a.Address)
-                .ThenInclude(c => c.Country)
+                .Include(v => v.RentalPlace.Address)
+                .Include(v => v.RentalPlace.Address.Country)
                 .Include(v => v.VehicleStatistics)
                 .Include(v => v.VehicleOptionalInformation)
                 .FirstOrDefaultAsync(v => v.VehicleId == id);
+        }
+
+        protected override IQueryable<Vehicle> IncludeRelatedEntities(IQueryable<Vehicle> query)
+        {
+            return query
+                .Include(v => v.VehicleType)
+                .Include(v => v.VehicleModel)
+                .Include(v => v.RentalPlace)
+                .Include(v => v.RentalPlace.Address)
+                .Include(v => v.RentalPlace.Address.Country)
+                .Include(v => v.VehicleStatistics)
+                .Include(v => v.VehicleOptionalInformation);
         }
     }
 }   

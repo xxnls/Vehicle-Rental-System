@@ -82,6 +82,12 @@ namespace API.Services
         /// </param>
         protected abstract void UpdateEntity(TEntity entity, TCreateDto dto);
 
+        protected virtual IQueryable<TEntity> IncludeRelatedEntities(IQueryable<TEntity> query)
+        {
+            // Default implementation does nothing
+            return query;
+        }
+
         /// <summary>
         /// Get all entities with pagination and filtering.
         /// </summary>
@@ -96,7 +102,8 @@ namespace API.Services
             DateTime? createdAfter = null,
             DateTime? modifiedBefore = null,
             DateTime? modifiedAfter = null,
-            int pageSize = 10)
+            int pageSize = 10
+            )
         {
             if (page <= 0 || pageSize <= 0)
             {
@@ -105,6 +112,9 @@ namespace API.Services
 
             // Start with base query
             IQueryable<TEntity> query = _dbSet;
+
+            // Apply includes if specified
+            query = IncludeRelatedEntities(query);
 
             // Apply active/deleted filter
             query = query.Where(GetActiveFilter(showDeleted));

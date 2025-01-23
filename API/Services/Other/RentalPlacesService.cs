@@ -105,7 +105,9 @@ namespace API.Services.Other
                 CreatedDate = rp.CreatedDate,
                 ModifiedDate = rp.ModifiedDate,
                 DeletedDate = rp.DeletedDate,
-                IsActive = rp.IsActive
+                IsActive = rp.IsActive,
+
+                Address = rp.Address != null ? _addressesService.MapSingleEntityToDto(rp.Address) : null
             };
         }
 
@@ -127,7 +129,9 @@ namespace API.Services.Other
                 CreatedDate = entity.CreatedDate,
                 ModifiedDate = entity.ModifiedDate,
                 DeletedDate = entity.DeletedDate,
-                IsActive = entity.IsActive
+                IsActive = entity.IsActive,
+
+                Address = entity.Address != null ? _addressesService.MapSingleEntityToDto(entity.Address) : null
             };
         }
 
@@ -137,7 +141,16 @@ namespace API.Services.Other
             return await _apiDbContext.RentalPlaces
                 .Include(rp => rp.Location)
                 .Include(rp => rp.Address)
+                .Include(rp => rp.Address.Country)
                 .FirstOrDefaultAsync(rp => rp.RentalPlaceId == id);
+        }
+
+        protected override IQueryable<RentalPlace> IncludeRelatedEntities(IQueryable<RentalPlace> query)
+        {
+            return query
+                .Include(rp => rp.Location)
+                .Include(rp => rp.Address)
+                .Include(rp => rp.Address.Country);
         }
 
         // Update entity
