@@ -21,6 +21,7 @@ namespace API.Services.Other
         protected override Expression<Func<Address, bool>> BuildSearchQuery(string search)
         {
             return a =>
+                a.AddressId.ToString().Contains(search) ||
                 a.FirstLine.Contains(search) ||
                 (a.SecondLine != null && a.SecondLine.Contains(search)) ||
                 a.ZipCode.Contains(search) ||

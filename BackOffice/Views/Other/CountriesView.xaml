@@ -8,6 +8,7 @@
              xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
              xmlns:res="clr-namespace:BackOffice.Resources.Countries"
              xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+             xmlns:helpers="clr-namespace:BackOffice.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="400">
 
@@ -15,6 +16,47 @@
         <other:CountriesViewModel x:Name="DataContext"/>
     </UserControl.DataContext>
 
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="ContentStringFormat" Value="{}{0}:"/>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <!-- CRUD Buttons -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <customControls:CRUDButtonsControl LoadCommand="{Binding LoadModelsCommand}"
+                                   AddCommand="{Binding SwitchToCreateModeCommand}"
+                                   EditCommand="{Binding SwitchToEditModeCommand}"
+                                   DeleteCommand="{Binding DeleteModelCommand}"
+                                   DeleteVisibility="{Binding ShowDeleted, Converter={StaticResource InverseBooleanConverter}}"
+                                   RestoreCommand="{Binding RestoreModelCommand}"
+                                   RestoreCommandParameter="{Binding EditableModel.CountryId}"
+                                   RestoreVisibility="{Binding ShowDeleted}"
+                                   Grid.Column="0"/>
+
+            <customControls:SearchControl Grid.Column="1"
+                                  SearchCommand="{Binding SearchCommand}"/>
+
+            <customControls:FilterButtonsControl ShowFilterOptionsCommand="{Binding ShowFilterOptionsCommand}"
+                                         ShowDeletedModelsCommand="{Binding ShowDeletedModelsCommand}"
+                                         Grid.Column="2"
+                                         Margin="0,0,5,0"/>
+        </Grid>
+
+        <!-- Filter Options -->
+        <customControls:FilterOptionsControl Visibility="{Binding IsFiltering, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     CreatedBefore="{Binding CreatedBefore, Mode=TwoWay}"
+                                     CreatedAfter="{Binding CreatedAfter, Mode=TwoWay}"
+                                     ModifiedBefore="{Binding ModifiedBefore, Mode=TwoWay}"
+                                     ModifiedAfter="{Binding ModifiedAfter, Mode=TwoWay}"
+                                     FilterCommand="{Binding LoadModelsCommand}"/>
         <!--Data Grid-->
         <DataGrid x:Name="MainDataGrid" 
                       ItemsSource="{Binding Models}"
@@ -33,4 +75,13 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <!-- Pagination -->
+        <customControls:PaginationControl CurrentPage="{Binding CurrentPage}" 
+                                          TotalItemCount="{Binding TotalItemCount}"
+                                          ModelsPerPage="{Binding PageSize}"
+                                          CanLoadPreviousPage="{Binding CanLoadPreviousPage}" 
+                                          CanLoadNextPage="{Binding CanLoadNextPage}" 
+                                          PreviousPageCommand="{Binding LoadPreviousPageCommand}" 
+                                          NextPageCommand="{Binding LoadNextPageCommand}" />
+    </StackPanel>
 </UserControl>

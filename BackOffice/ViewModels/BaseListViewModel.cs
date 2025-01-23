@@ -279,8 +279,8 @@ namespace BackOffice.ViewModels
         public ICommand SwitchToListModeCommand { get; }
         public ICommand SwitchToCreateModeCommand { get; set; }
         public RelayCommand SwitchToEditModeCommand { get; set; }
-        public ICommand ShowFilterOptionsCommand { get; }
-        public ICommand ShowDeletedModelsCommand { get; }
+        public RelayCommand ShowFilterOptionsCommand { get; set; }
+        public RelayCommand ShowDeletedModelsCommand { get; set; }
         public AsyncRelayCommand<int> RestoreModelCommand { get; set; }
         public ICommand ShowDetailedInfoCommand { get; }
         public ICommand ShowSelectorDialogCommand { get; }
@@ -347,6 +347,9 @@ namespace BackOffice.ViewModels
                 IsBusy = true;
 
                 CurrentSearchInput = searchInput;
+
+                // Reset page number if search input is provided
+                _ = !string.IsNullOrWhiteSpace(searchInput) ? CurrentPage = 1 : CurrentPage;
 
                 var endpoint = string.IsNullOrWhiteSpace(searchInput)
                     ? $"{EndPointName}?page={CurrentPage}&pageSize={PageSize}"
@@ -587,14 +590,6 @@ namespace BackOffice.ViewModels
 
                 var selectedItem = newGrid.SelectedItem;
 
-                //var property = selectedItem.GetType().GetProperty(parameters.PropertyForSelection);
-
-                //if (property != null)
-                //{
-                //    var value = property.GetValue(selectedItem);
-                //    parameters.TargetProperty?.Invoke(value);
-                //}
-
                 if (string.IsNullOrEmpty(parameters.PropertyForSelection))
                 {
                     parameters.TargetProperty?.Invoke(selectedItem);
@@ -655,7 +650,7 @@ namespace BackOffice.ViewModels
         /// <summary>
         /// Toggles the visibility of the filter options.
         /// </summary>
-        private void ShowFilterOptions()
+        protected void ShowFilterOptions()
         {
             IsFiltering = !IsFiltering;
         }
@@ -663,7 +658,7 @@ namespace BackOffice.ViewModels
         /// <summary>
         /// Toggles the visibility of deleted models.
         /// </summary>
-        private void ShowDeletedModels()
+        protected void ShowDeletedModels()
         {
             ShowDeleted = !ShowDeleted;
             CurrentPage = 1;

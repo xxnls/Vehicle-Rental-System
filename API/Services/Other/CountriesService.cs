@@ -18,6 +18,7 @@ namespace API.Services.Other
         protected override Expression<Func<Country, bool>> BuildSearchQuery(string search)
         {
             return c =>
+                c.CountryId.ToString().Contains(search) ||
                 c.Name.Contains(search) ||
                 c.FullName.Contains(search) ||
                 c.Abbreviation.Contains(search) ||
