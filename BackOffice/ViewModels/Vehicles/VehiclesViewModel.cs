@@ -58,7 +58,7 @@ namespace BackOffice.ViewModels.Vehicles
 
             ValidationRules = new Dictionary<string, Action>
             {
-                { nameof(EditableModel.VIN), ValidateVIN },
+                { nameof(EditableModel.Vin), ValidateVIN },
                 { nameof(EditableModel.LicensePlate), ValidateLicensePlate },
                 { nameof(EditableModel.Color), ValidateColor },
                 { nameof(EditableModel.ManufactureYear), ValidateManufactureYear },
@@ -76,7 +76,7 @@ namespace BackOffice.ViewModels.Vehicles
                 VehicleTypeId = EditableModel.VehicleTypeId,
                 VehicleModelId = EditableModel.VehicleModelId,
                 RentalPlaceId = EditableModel.RentalPlaceId,
-                VIN = EditableModel.VIN,
+                Vin = EditableModel.Vin,
                 LicensePlate = EditableModel.LicensePlate,
                 Color = EditableModel.Color,
                 ManufactureYear = EditableModel.ManufactureYear,
@@ -107,7 +107,7 @@ namespace BackOffice.ViewModels.Vehicles
                 VehicleTypeId = EditableModel.VehicleTypeId,
                 VehicleModelId = EditableModel.VehicleModelId,
                 RentalPlaceId = EditableModel.RentalPlaceId,
-                VIN = EditableModel.VIN,
+                Vin = EditableModel.Vin,
                 LicensePlate = EditableModel.LicensePlate,
                 Color = EditableModel.Color,
                 ManufactureYear = EditableModel.ManufactureYear,
@@ -133,8 +133,8 @@ namespace BackOffice.ViewModels.Vehicles
         #region Validation
         private void ValidateVIN()
         {
-            ValidateProperty(nameof(EditableModel.VIN),
-                () => !string.IsNullOrWhiteSpace(EditableModel.VIN) && EditableModel.VIN.Length == 17,
+            ValidateProperty(nameof(EditableModel.Vin),
+                () => !string.IsNullOrWhiteSpace(EditableModel.Vin) && EditableModel.Vin.Length == 17,
                 LocalizationHelper.GetString("Vehicles", "ErrorVIN"));
         }
 

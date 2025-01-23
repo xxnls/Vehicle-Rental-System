@@ -82,7 +82,8 @@
                         <Style TargetType="Button" BasedOn="{StaticResource SideBarButton}" />
                     </Expander.Resources>
                     <StackPanel>
-                        <Button Content="Vehicles" />
+                        <Button Content="Vehicles" Command="{Binding ChangeWorkspaceCommand}"
+                                CommandParameter="VehiclesViewModel"/>
                         <Button Content="Vehicle Types" Command="{Binding ChangeWorkspaceCommand}"
                                 CommandParameter="VehicleTypesViewModel"/>
                         <Button Content="Vehicle Brands" Command="{Binding ChangeWorkspaceCommand}"

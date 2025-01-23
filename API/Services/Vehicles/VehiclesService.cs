@@ -3,6 +3,7 @@ using API.Models.DTOs.Vehicles;
 using System.Linq.Expressions;
 using API.Models;
 using API.Models.DTOs.Other;
+using API.Models.Other;
 using API.Models.Vehicles;
 using API.Services.Other;
 using Microsoft.EntityFrameworkCore;
@@ -139,6 +140,8 @@ namespace API.Services.Vehicles
             return v => v.IsActive != showDeleted;
         }
 
+        #region Mapping
+
         public override Vehicle MapToEntity(VehicleDto dto)
         {
             return new Vehicle
@@ -202,6 +205,7 @@ namespace API.Services.Vehicles
                 IsActive = v.IsActive,
                 VehicleType = MapVehicleTypeToDto(v.VehicleType),
                 VehicleModel = MapVehicleModelToDto(v.VehicleModel),
+                RentalPlace = MapRentalPlaceToDto(v.RentalPlace),
                 VehicleStatistics = MapVehicleStatisticsToDto(v.VehicleStatistics),
                 OptionalInformation = MapVehicleOptionalInformationToDto(v.VehicleOptionalInformation)
             };
@@ -223,6 +227,16 @@ namespace API.Services.Vehicles
                 VehicleModelId = vehicleModel.VehicleModelId,
                 Name = vehicleModel.Name,
                 VehicleBrandName = vehicleModel.VehicleBrand?.Name
+            };
+        }
+
+        private static RentalPlaceDto MapRentalPlaceToDto(RentalPlace rentalPlace)
+        {
+            return new RentalPlaceDto
+            {
+                RentalPlaceId = rentalPlace.RentalPlaceId,
+                CountryName = rentalPlace.Address?.Country?.Name,
+                City = rentalPlace.Address?.City,
             };
         }
 
@@ -293,6 +307,12 @@ namespace API.Services.Vehicles
                     VehicleModelId = entity.VehicleModel.VehicleModelId,
                     Name = entity.VehicleModel.Name
                 } : null,
+                RentalPlace = entity.RentalPlace != null ? new RentalPlaceDto
+                {
+                    RentalPlaceId = entity.RentalPlace.RentalPlaceId,
+                    CountryName = entity.RentalPlace.Address.Country.Name,
+                    City = entity.RentalPlace.Address.City
+                } : null,
                 VehicleStatistics = entity.VehicleStatistics != null ? new VehicleStatisticsDto
                 {
                     VehicleStatisticsId = entity.VehicleStatistics.VehicleStatisticsId,
@@ -314,6 +334,8 @@ namespace API.Services.Vehicles
             };
         }
 
+        #endregion
+
         public override async Task<VehicleDto> GetByIdAsync(int id)
         {
             var entity = await FindEntityById(id);
@@ -329,8 +351,6 @@ namespace API.Services.Vehicles
         {
             entity.VehicleTypeId = model.VehicleTypeId;
             entity.VehicleModelId = model.VehicleModelId;
-            entity.VehicleStatisticsId = model.VehicleStatisticsId;
-            entity.VehicleOptionalInformationId = model.VehicleOptionalInformationId;
             entity.RentalPlaceId = model.RentalPlaceId;
             entity.Vin = model.Vin;
             entity.LicensePlate = model.LicensePlate;
@@ -354,6 +374,9 @@ namespace API.Services.Vehicles
                 entity.DeletedDate = model.DeletedDate;
                 entity.IsActive = model.IsActive;
             }
+
+            // Update vehicle optional information
+            _optionalInformationService.UpdateAsync(entity.VehicleOptionalInformationId, model.OptionalInformation);
         }
 
         public override async Task<Vehicle> FindEntityById(int id)
@@ -361,6 +384,9 @@ namespace API.Services.Vehicles
             return await _apiDbContext.Vehicles
                 .Include(v => v.VehicleType)
                 .Include(v => v.VehicleModel)
+                .Include(v => v.RentalPlace)
+                .ThenInclude(a => a.Address)
+                .ThenInclude(c => c.Country)
                 .Include(v => v.VehicleStatistics)
                 .Include(v => v.VehicleOptionalInformation)
                 .FirstOrDefaultAsync(v => v.VehicleId == id);

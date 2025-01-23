@@ -34,7 +34,7 @@
                 <StackPanel Orientation="Vertical">
                     <!-- Input Fields -->
                     <Label Content="VIN"/>
-                    <TextBox x:Name="VINField" Text="{Binding EditableModel.VIN, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox x:Name="VINField" Text="{Binding EditableModel.Vin, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
                                helpers:ValidationHelper.PropertyName="VIN"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
@@ -91,7 +91,7 @@
                 <StackPanel Orientation="Vertical">
                     <!-- Input Fields (same as Create, just for Editing) -->
                     <Label Content="VIN"/>
-                    <TextBox x:Name="EditVINField" Text="{Binding EditableModel.VIN, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox x:Name="EditVINField" Text="{Binding EditableModel.Vin, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Foreground="{StaticResource ErrorBrush}"
                                helpers:ValidationHelper.PropertyName="VIN"
                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
@@ -179,13 +179,20 @@
                       SelectedItem="{Binding EditableModel, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding VehicleId}" />
-                    <DataGridTextColumn Header="VIN" Binding="{Binding VIN}" />
-                    <DataGridTextColumn Header="{x:Static res:Resources.LicensePlate}" Binding="{Binding LicensePlate}" />
-                    <DataGridTextColumn Header="{x:Static res:Resources.Color}" Binding="{Binding Color}" />
-                    <DataGridTextColumn Header="{x:Static res:Resources.ManufactureYear}" Binding="{Binding ManufactureYear}" />
-                    <DataGridTextColumn Header="{x:Static res:Resources.VehicleType}" Binding="{Binding VehicleType}" />
-                    <DataGridTextColumn Header="{x:Static res:Resources.VehicleModel}" Binding="{Binding VehicleModel}" />
-                    <DataGridTextColumn Header="{x:Static res:Resources.RentalPlace}" Binding="{Binding RentalPlace}" />
+                    <DataGridTextColumn Header="VIN" Binding="{Binding Vin}" />
+                    <DataGridTextColumn Header="License Plate" Binding="{Binding LicensePlate}" />
+                    <DataGridTextColumn Header="Color" Binding="{Binding Color}" />
+                    <DataGridTextColumn Header="Year" Binding="{Binding ManufactureYear}" />
+                    <DataGridTextColumn Header="Type" Binding="{Binding VehicleType.Name}" />
+                    <DataGridTextColumn Header="Model" Binding="{Binding VehicleModel.Name}" />
+                    <DataGridTextColumn Header="Country" Binding="{Binding RentalPlace.CountryName}" />
+                    <DataGridTextColumn Header="City" Binding="{Binding RentalPlace.City}" />
+                    <DataGridCheckBoxColumn Header="Available" Binding="{Binding IsAvailableForRent}" />
+                    <DataGridTextColumn Header="Mileage" Binding="{Binding CurrentMileage}" />
+                    <DataGridTextColumn Header="Last Maintenance" Binding="{Binding LastMaintenanceDate, StringFormat='{}{0:yyyy-MM-dd}'}" />
+                    <DataGridTextColumn Header="Daily Rate" Binding="{Binding CustomDailyRate, StringFormat='{}{0:C}'}" />
+                    <DataGridTextColumn Header="Weekly Rate" Binding="{Binding CustomWeeklyRate, StringFormat='{}{0:C}'}" />
+                    <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" />
                 </DataGrid.Columns>
             </DataGrid>
 

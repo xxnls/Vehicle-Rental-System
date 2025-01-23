@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BackOffice.Models.DTOs.Other;
 
 namespace BackOffice.Models.DTOs.Vehicles
 {
@@ -65,7 +66,7 @@ namespace BackOffice.Models.DTOs.Vehicles
         }
 
         private string _vin = string.Empty;
-        public string VIN
+        public string Vin
         {
             get => _vin;
             set
@@ -258,6 +259,17 @@ namespace BackOffice.Models.DTOs.Vehicles
             set
             {
                 _vehicleModel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RentalPlaceDto? _rentalPlace;
+        public RentalPlaceDto? RentalPlace
+        {
+            get => _rentalPlace;
+            set
+            {
+                _rentalPlace = value;
                 OnPropertyChanged();
             }
         }

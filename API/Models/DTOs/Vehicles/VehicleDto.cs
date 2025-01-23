@@ -1,4 +1,5 @@
 ﻿using API.Interfaces;
+using API.Models.DTOs.Other;
 
 namespace API.Models.DTOs.Vehicles
 {
@@ -35,6 +36,7 @@ namespace API.Models.DTOs.Vehicles
         // Navigation properties
         public VehicleTypeDto? VehicleType { get; set; }
         public VehicleModelDto? VehicleModel { get; set; }
+        public RentalPlaceDto? RentalPlace { get; set; }
         public VehicleStatisticsDto? VehicleStatistics { get; set; }
         public VehicleOptionalInformationDto? OptionalInformation { get; set; }
     }

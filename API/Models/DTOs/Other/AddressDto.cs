@@ -25,5 +25,8 @@ namespace API.Models.DTOs.Other
         public DateTime? DeletedDate { get; set; }
 
         public bool IsActive { get; set; }
+
+        // Navigation properties
+        public CountryDto? Country { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using API.Models.DTOs.Other;
 using System.Linq.Expressions;
 using API.Models;
+using API.Models.Other;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Services.Other
@@ -9,10 +10,13 @@ namespace API.Services.Other
     public class AddressesService : BaseApiService<Address, AddressDto, AddressDto>
     {
         private readonly ApiDbContext _apiDbContext;
+        private readonly CountriesService _countriesService;
 
-        public AddressesService(ApiDbContext context) : base(context)
+        public AddressesService(ApiDbContext context, CountriesService countriesService) : base(context)
         {
             _apiDbContext = context;
+            _countriesService = countriesService;
+
         }
 
         protected override Expression<Func<Address, bool>> BuildSearchQuery(string search)
@@ -62,7 +66,9 @@ namespace API.Services.Other
                 CreatedDate = a.CreatedDate,
                 ModifiedDate = a.ModifiedDate,
                 DeletedDate = a.DeletedDate,
-                IsActive = a.IsActive
+                IsActive = a.IsActive,
+
+                Country = _countriesService.MapSingleEntityToDto(a.Country)
             };
         }
 
@@ -80,7 +86,9 @@ namespace API.Services.Other
                 CreatedDate = entity.CreatedDate,
                 ModifiedDate = entity.ModifiedDate,
                 DeletedDate = entity.DeletedDate,
-                IsActive = entity.IsActive
+                IsActive = entity.IsActive,
+
+                Country = _countriesService.MapSingleEntityToDto(entity.Country)
             };
         }
 

@@ -13,11 +13,11 @@ namespace API.Services.Other
         private readonly LocationsService _locationsService;
         private readonly AddressesService _addressesService;
 
-        public RentalPlacesService(ApiDbContext context) : base(context)
+        public RentalPlacesService(ApiDbContext context, LocationsService locationsService, AddressesService addressesService) : base(context)
         {
             _apiDbContext = context;
-            _locationsService = new LocationsService(context);
-            _addressesService = new AddressesService(context);
+            _locationsService = locationsService;
+            _addressesService = addressesService;
         }
 
         public override async Task<RentalPlaceDto> CreateAsync(RentalPlaceDto createDto)
