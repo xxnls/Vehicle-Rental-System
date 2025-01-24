@@ -2,6 +2,7 @@
 using API.Interfaces;
 using API.Models;
 using API.Models.DTOs.Vehicles;
+using API.Services.Other;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -10,10 +11,12 @@ namespace API.Services.Vehicles
     public class VehicleModelsService : BaseApiService<VehicleModel, VehicleModelDto, VehicleModelDto>
     {
         private readonly ApiDbContext _apiDbContext;
+        private readonly VehicleBrandsService _vehicleBrandsService;
 
-        public VehicleModelsService(ApiDbContext context) : base(context)
+        public VehicleModelsService(ApiDbContext context, VehicleBrandsService vehicleBrandsService) : base(context)
         {
             _apiDbContext = context;
+            _vehicleBrandsService = vehicleBrandsService;
         }
 
         protected override Expression<Func<VehicleModel, bool>> BuildSearchQuery(string search)
@@ -39,7 +42,6 @@ namespace API.Services.Vehicles
             return new VehicleModel
             {
                 VehicleModelId = model.VehicleModelId,
-                VehicleBrandId = model.VehicleBrandId,
                 Name = model.Name,
                 Description = model.Description,
                 EngineSize = model.EngineSize,
@@ -48,7 +50,9 @@ namespace API.Services.Vehicles
                 CreatedDate = model.CreatedDate,
                 ModifiedDate = model.ModifiedDate,
                 DeletedDate = model.DeletedDate,
-                IsActive = model.IsActive
+                IsActive = model.IsActive,
+                
+                VehicleBrandId = model.VehicleBrand.VehicleBrandId
             };
         }
 
@@ -57,8 +61,6 @@ namespace API.Services.Vehicles
             return vm => new VehicleModelDto
             {
                 VehicleModelId = vm.VehicleModelId,
-                VehicleBrandId = vm.VehicleBrandId,
-                VehicleBrandName = vm.VehicleBrand.Name,
                 Name = vm.Name,
                 Description = vm.Description,
                 EngineSize = vm.EngineSize,
@@ -67,7 +69,9 @@ namespace API.Services.Vehicles
                 CreatedDate = vm.CreatedDate,
                 ModifiedDate = vm.ModifiedDate,
                 DeletedDate = vm.DeletedDate,
-                IsActive = vm.IsActive
+                IsActive = vm.IsActive,
+
+                VehicleBrand = vm.VehicleBrand != null ? _vehicleBrandsService.MapSingleEntityToDto(vm.VehicleBrand) : null
             };
         }
 
@@ -76,8 +80,6 @@ namespace API.Services.Vehicles
             return new VehicleModelDto
             {
                 VehicleModelId = entity.VehicleModelId,
-                VehicleBrandId = entity.VehicleBrandId,
-                VehicleBrandName = entity.VehicleBrand?.Name,
                 Name = entity.Name,
                 Description = entity.Description,
                 EngineSize = entity.EngineSize,
@@ -86,7 +88,9 @@ namespace API.Services.Vehicles
                 CreatedDate = entity.CreatedDate,
                 ModifiedDate = entity.ModifiedDate,
                 DeletedDate = entity.DeletedDate,
-                IsActive = entity.IsActive
+                IsActive = entity.IsActive,
+
+                VehicleBrand = entity.VehicleBrand != null ? _vehicleBrandsService.MapSingleEntityToDto(entity.VehicleBrand) : null
             };
         }
 
@@ -103,12 +107,12 @@ namespace API.Services.Vehicles
 
         protected override void UpdateEntity(VehicleModel entity, VehicleModelDto model)
         {
-            entity.VehicleBrandId = model.VehicleBrandId;
             entity.Name = model.Name;
             entity.Description = model.Description;
             entity.EngineSize = model.EngineSize;
             entity.HorsePower = model.HorsePower;
             entity.FuelType = model.FuelType;
+            entity.VehicleBrandId = model.VehicleBrand.VehicleBrandId;
 
             if (model.IsActive)
             {
@@ -124,5 +128,10 @@ namespace API.Services.Vehicles
                 .FirstOrDefaultAsync(vm => vm.VehicleModelId == id);
         }
 
+        protected override IQueryable<VehicleModel> IncludeRelatedEntities(IQueryable<VehicleModel> query)
+        {
+            return query
+                .Include(v => v.VehicleBrand);
+        }
     }
 }

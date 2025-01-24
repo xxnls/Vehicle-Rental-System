@@ -226,15 +226,15 @@ namespace API.Services.Vehicles
             };
         }
 
-        private static VehicleModelDto MapVehicleModelToDto(VehicleModel vehicleModel)
-        {
-            return new VehicleModelDto
-            {
-                VehicleModelId = vehicleModel.VehicleModelId,
-                Name = vehicleModel.Name,
-                VehicleBrandName = vehicleModel.VehicleBrand?.Name
-            };
-        }
+        //private static VehicleModelDto MapVehicleModelToDto(VehicleModel vehicleModel)
+        //{
+        //    return new VehicleModelDto
+        //    {
+        //        VehicleModelId = vehicleModel.VehicleModelId,
+        //        Name = vehicleModel.Name,
+        //        VehicleBrandName = vehicleModel.VehicleBrand?.Name
+        //    };
+        //}
 
         //private static RentalPlaceDto MapRentalPlaceToDto(RentalPlace rentalPlace)
         //{

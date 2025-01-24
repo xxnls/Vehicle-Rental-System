@@ -6,8 +6,8 @@ namespace API.Models.DTOs.Vehicles
     {
         public int VehicleModelId { get; set; }
 
-        public int VehicleBrandId { get; set; }
-        public string? VehicleBrandName { get; set; }
+        // public int VehicleBrandId { get; set; }
+        // public string? VehicleBrandName { get; set; }
 
         public string Name { get; set; } = null!;
 
@@ -26,5 +26,8 @@ namespace API.Models.DTOs.Vehicles
         public DateTime? DeletedDate { get; set; }
 
         public bool IsActive { get; set; }
+
+        // Navigation Properties
+        public VehicleBrandDto VehicleBrand { get; set; } = null!;
     }
 }

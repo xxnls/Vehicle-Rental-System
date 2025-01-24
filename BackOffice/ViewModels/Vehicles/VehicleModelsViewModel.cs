@@ -11,6 +11,7 @@ using BackOffice.Helpers;
 using BackOffice.Interfaces;
 using BackOffice.Models;
 using BackOffice.Models.DTOs.Vehicles;
+using BackOffice.Models.Vehicles;
 using BackOffice.Models.Vehicles.VehicleBrands;
 using BackOffice.Models.Vehicles.VehicleBrands.DTOs;
 using BackOffice.Views;
@@ -22,21 +23,20 @@ namespace BackOffice.ViewModels.Vehicles
 {
     public class VehicleModelsViewModel : BaseListViewModel<VehicleModelDto>, IListViewModel
     {
-        public SelectorDialogParameters SelectVehicleBrandIdParameters { get; set; }
+        public SelectorDialogParameters SelectVehicleBrandParameters { get; set; }
 
         public VehicleModelsViewModel() : base("VehicleModels", LocalizationHelper.GetString("VehicleModels", "DisplayName"))
         {
-            SelectVehicleBrandIdParameters = new SelectorDialogParameters
+            SelectVehicleBrandParameters = new SelectorDialogParameters
             {
                 SelectorViewModelType = typeof(VehicleBrandsViewModel),
                 SelectorView = new VehicleBrandsView(),
-                TargetProperty = result => EditableModel.VehicleBrandId = (int)result,
-                PropertyForSelection = "VehicleBrandId",
+                TargetProperty = result => EditableModel.VehicleBrand = (VehicleBrandDto)result,
                 Title = LocalizationHelper.GetString("VehicleModels", "SelectVehicleBrandTitle")
             };
 
-            CreateModelCommand = new AsyncRelayCommand(CreateModelAsync);
-            UpdateModelCommand = new AsyncRelayCommand(UpdateModelAsync);
+            CreateModelCommand = new AsyncRelayCommand(() => CreateModelAsync(EditableModel));
+            UpdateModelCommand = new AsyncRelayCommand(() => UpdateModelAsync(EditableModel.VehicleModelId, EditableModel));
             DeleteModelCommand = new AsyncRelayCommand(
                 () => DeleteModelAsync(EditableModel.VehicleModelId),
                 () => EditableModel != null
@@ -44,51 +44,14 @@ namespace BackOffice.ViewModels.Vehicles
 
             ValidationRules = new Dictionary<string, Action>
             {
-                { nameof(EditableModel.Name), ValidateName },
-                { nameof(EditableModel.Description), ValidateDescription},
-                { nameof(EditableModel.EngineSize), ValidateEngineSize },
-                { nameof(EditableModel.HorsePower), ValidateHorsePower },
-                { nameof(EditableModel.FuelType), ValidateFuelType },
-                { nameof(EditableModel.VehicleBrandId), ValidateVehicleBrandId }
+                //{ nameof(EditableModel.Name), ValidateName },
+                //{ nameof(EditableModel.Description), ValidateDescription},
+                //{ nameof(EditableModel.EngineSize), ValidateEngineSize },
+                //{ nameof(EditableModel.HorsePower), ValidateHorsePower },
+                //{ nameof(EditableModel.FuelType), ValidateFuelType },
+                //{ nameof(EditableModel.VehicleBrand.VehicleBrandId), ValidateVehicleBrandId }
             };
         }
-
-        #region Methods
-
-        public async Task CreateModelAsync()
-        {
-            var model = new VehicleModelDto
-            {
-                VehicleBrandId = EditableModel.VehicleBrandId,
-                Name = EditableModel.Name,
-                Description = EditableModel.Description,
-                EngineSize = EditableModel.EngineSize,
-                HorsePower = EditableModel.HorsePower,
-                FuelType = EditableModel.FuelType
-            };
-
-            await CreateModelAsync(model);
-        }
-
-        public async Task UpdateModelAsync()
-        {
-            var id = EditableModel.VehicleModelId;
-
-            var model = new VehicleModelDto
-            {
-                VehicleModelId = EditableModel.VehicleModelId,
-                VehicleBrandId = EditableModel.VehicleBrandId,
-                Name = EditableModel.Name,
-                Description = EditableModel.Description,
-                EngineSize = EditableModel.EngineSize,
-                HorsePower = EditableModel.HorsePower,
-                FuelType = EditableModel.FuelType
-            };
-
-            await UpdateModelAsync(id, model);
-        }
-
-        #endregion
 
         #region Validation
         private void ValidateName()
@@ -136,8 +99,8 @@ namespace BackOffice.ViewModels.Vehicles
 
         private void ValidateVehicleBrandId()
         {
-            ValidateProperty(nameof(EditableModel.VehicleBrandId),
-                () => EditableModel.VehicleBrandId > 0,
+            ValidateProperty(nameof(EditableModel.VehicleBrand.VehicleBrandId),
+                () => EditableModel.VehicleBrand.VehicleBrandId > 0,
                 LocalizationHelper.GetString("VehicleModels", "ErrorVehicleBrandId"));
         }
 
