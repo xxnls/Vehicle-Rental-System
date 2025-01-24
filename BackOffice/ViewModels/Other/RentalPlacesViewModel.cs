@@ -15,21 +15,25 @@ namespace BackOffice.ViewModels.Other
 {
     public class RentalPlacesViewModel : BaseListViewModel<RentalPlaceDto>, IListViewModel
     {
-        public SelectorDialogParameters SelectCountryIdParameters { get; set; }
+        public SelectorDialogParameters SelectCountryParameters { get; set; }
 
         public RentalPlacesViewModel() : base("RentalPlaces", LocalizationHelper.GetString("RentalPlaces", "DisplayName"))
         {
-            SelectCountryIdParameters = new SelectorDialogParameters
+            SelectCountryParameters = new SelectorDialogParameters
             {
                 SelectorViewModelType = typeof(CountriesViewModel),
                 SelectorView = new CountriesView(),
-                TargetProperty = result => EditableModel.CountryId = (short)result,
-                PropertyForSelection = "CountryId",
+                TargetProperty = result =>
+                {
+                    EditableModel.Address ??= new AddressDto();
+                    EditableModel.Address.Country = (CountryDto)result;
+                },
                 Title = LocalizationHelper.GetString("RentalPlaces", "SelectCountryTitle")
             };
 
             CreateModelCommand = new AsyncRelayCommand(CreateModelAsync);
-            UpdateModelCommand = new AsyncRelayCommand(UpdateModelAsync);
+            //UpdateModelCommand = new AsyncRelayCommand(UpdateModelAsync);
+            UpdateModelCommand = new AsyncRelayCommand(() => UpdateModelAsync(EditableModel.RentalPlaceId, EditableModel));
             DeleteModelCommand = new AsyncRelayCommand(
                 () => DeleteModelAsync(EditableModel.RentalPlaceId),
                 () => EditableModel != null
@@ -53,39 +57,25 @@ namespace BackOffice.ViewModels.Other
         {
             var model = new RentalPlaceDto
             {
-                CountryId = EditableModel.CountryId,
-                ZipCode = EditableModel.ZipCode,
-                GpsLatitude = EditableModel.GpsLatitude,
-                GpsLongitude = EditableModel.GpsLongitude,
-                City = EditableModel.City,
-                FirstLine = EditableModel.FirstLine,
-                SecondLine = EditableModel.SecondLine
+                Address = new AddressDto
+                {
+                    City = EditableModel.Address.City,
+                    FirstLine = EditableModel.Address.FirstLine,
+                    SecondLine = EditableModel.Address.SecondLine,
+                    ZipCode = EditableModel.Address.ZipCode,
+                    Country = EditableModel.Address.Country
+
+                },
+
+                Location = new LocationDto
+                {
+                    GpsLatitude = EditableModel.Location.GpsLatitude,
+                    GpsLongitude = EditableModel.Location.GpsLongitude
+                }
             };
 
             await CreateModelAsync(model);
         }
-
-        public async Task UpdateModelAsync()
-        {
-            var id = EditableModel.RentalPlaceId;
-
-            var model = new RentalPlaceDto
-            {
-                RentalPlaceId = EditableModel.RentalPlaceId,
-                LocationId = EditableModel.LocationId,
-                AddressId = EditableModel.AddressId,
-                CountryId = EditableModel.CountryId,
-                ZipCode = EditableModel.ZipCode,
-                GpsLatitude = EditableModel.GpsLatitude,
-                GpsLongitude = EditableModel.GpsLongitude,
-                City = EditableModel.City,
-                FirstLine = EditableModel.FirstLine,
-                SecondLine = EditableModel.SecondLine
-            };
-
-            await UpdateModelAsync(id, model);
-        }
-
 
         #endregion
 

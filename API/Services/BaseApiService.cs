@@ -259,6 +259,7 @@ namespace API.Services
                     return false;
                 case ILocation baseLocation:
                     baseLocation.IsActive = false;
+                    baseLocation.DateTime = DateTime.UtcNow;
                     await _context.SaveChangesAsync();
                     return true;
                 case IBaseModel baseModel:

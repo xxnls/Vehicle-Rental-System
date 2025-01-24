@@ -1,8 +1,8 @@
 ﻿using API.Context;
 using API.Models.DTOs.Other;
 using System.Linq.Expressions;
-using API.Models;
 using Microsoft.EntityFrameworkCore;
+using API.Models.Other;
 
 namespace API.Services.Other
 {
@@ -18,6 +18,7 @@ namespace API.Services.Other
         protected override Expression<Func<Location, bool>> BuildSearchQuery(string search)
         {
             return l =>
+                l.LocationId.ToString().Contains(search) ||
                 l.Gpslatitude.ToString().Contains(search) ||
                 l.Gpslongitude.ToString().Contains(search) ||
                 l.DateTime.ToString().Contains(search) ||
@@ -98,12 +99,5 @@ namespace API.Services.Other
                 .FirstOrDefaultAsync(l => l.LocationId == id);
         }
 
-        // Method for seeder
-        public async Task AddLocationAsync(LocationDto locationDto)
-        {
-            var location = MapToEntity(locationDto);
-            await _apiDbContext.Locations.AddAsync(location);
-            await _apiDbContext.SaveChangesAsync();
-        }
     }
 }

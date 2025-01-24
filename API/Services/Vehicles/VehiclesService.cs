@@ -236,15 +236,15 @@ namespace API.Services.Vehicles
             };
         }
 
-        private static RentalPlaceDto MapRentalPlaceToDto(RentalPlace rentalPlace)
-        {
-            return new RentalPlaceDto
-            {
-                RentalPlaceId = rentalPlace.RentalPlaceId,
-                CountryName = rentalPlace.Address?.Country?.Name,
-                City = rentalPlace.Address?.City,
-            };
-        }
+        //private static RentalPlaceDto MapRentalPlaceToDto(RentalPlace rentalPlace)
+        //{
+        //    return new RentalPlaceDto
+        //    {
+        //        RentalPlaceId = rentalPlace.RentalPlaceId,
+        //        CountryName = rentalPlace.Address?.Country?.Name,
+        //        City = rentalPlace.Address?.City,
+        //    };
+        //}
 
         private static VehicleStatisticsDto MapVehicleStatisticsToDto(VehicleStatistic vehicleStatistics)
         {

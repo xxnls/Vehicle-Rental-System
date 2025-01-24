@@ -97,6 +97,8 @@ namespace BackOffice.ViewModels
             }
         }
 
+        public bool IsCreatingOrEditing => IsCreating || IsEditing;
+
         private bool _isCreating;
         public bool IsCreating
         {
@@ -105,6 +107,7 @@ namespace BackOffice.ViewModels
             {
                 _isCreating = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsCreatingOrEditing));
             }
         }
 
@@ -116,6 +119,7 @@ namespace BackOffice.ViewModels
             {
                 _isEditing = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsCreatingOrEditing));
             }
         }
 

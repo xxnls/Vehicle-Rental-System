@@ -10,147 +10,27 @@ namespace BackOffice.Models.DTOs.Other
     {
         public int RentalPlaceId { get; set; }
 
-        private int _locationId;
-        public int LocationId
+        // Navigation properties
+        private AddressDto? _address = new();
+        public AddressDto? Address
         {
-            get => _locationId;
+            get => _address;
             set
             {
-                if (_locationId != value)
-                {
-                    _locationId = value;
-                    OnPropertyChanged();
-                }
+                _address = value;
+                OnPropertyChanged();
             }
         }
 
-        private short _countryId;
-        public short CountryId
+        private LocationDto? _location = new();
+        public LocationDto? Location
         {
-            get => _countryId;
+            get => _location;
             set
             {
-                if (_countryId != value)
-                {
-                    _countryId = value;
-                    OnPropertyChanged();
-                }
+                _location = value;
+                OnPropertyChanged();
             }
         }
-
-        private string? _countryName { get; set; } = null!;
-        public string? CountryName
-        {
-            get => _countryName;
-            set
-            {
-                if (_countryName != value)
-                {
-                    _countryName = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-
-        private string _zipCode;
-        public string ZipCode
-        {
-            get => _zipCode;
-            set
-            {
-                if (_zipCode != value)
-                {
-                    _zipCode = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private double? _gpsLatitude;
-        public double? GpsLatitude
-        {
-            get => _gpsLatitude;
-            set
-            {
-                if (_gpsLatitude != value)
-                {
-                    _gpsLatitude = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private double? _gpsLongitude;
-        public double? GpsLongitude
-        {
-            get => _gpsLongitude;
-            set
-            {
-                if (_gpsLongitude != value)
-                {
-                    _gpsLongitude = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private int _addressId;
-        public int AddressId
-        {
-            get => _addressId;
-            set
-            {
-                if (_addressId != value)
-                {
-                    _addressId = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private string? _city;
-        public string? City
-        {
-            get => _city;
-            set
-            {
-                if (_city != value)
-                {
-                    _city = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private string? _firstLine;
-        public string? FirstLine
-        {
-            get => _firstLine;
-            set
-            {
-                if (_firstLine != value)
-                {
-                    _firstLine = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private string? _secondLine;
-        public string? SecondLine
-        {
-            get => _secondLine;
-            set
-            {
-                if (_secondLine != value)
-                {
-                    _secondLine = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-
     }
 }

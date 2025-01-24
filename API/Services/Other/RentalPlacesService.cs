@@ -22,38 +22,30 @@ namespace API.Services.Other
 
         public override async Task<RentalPlaceDto> CreateAsync(RentalPlaceDto createDto)
         {
-            var location = new LocationDto
+            using var transaction = await _apiDbContext.Database.BeginTransactionAsync();
+            try
             {
-                Gpslatitude = createDto.Gpslatitude ?? 0,
-                Gpslongitude = createDto.Gpslongitude ?? 0
-            };
+                // Set the tracking properties for the address and location
+                createDto.Address.CreatedDate = DateTime.Now;
+                createDto.Address.IsActive = true;
+                createDto.Location.DateTime = DateTime.Now;
+                createDto.Location.IsActive = true;
 
-            var address = new AddressDto
+                var createdRentalPlace = await base.CreateAsync(createDto);
+
+                // Change the location's RentalPlaceId to the created RentalPlaceId
+                var locationEntity = await _locationsService.FindEntityById(createdRentalPlace.Location.LocationId);
+                locationEntity.RentalPlaceId = createdRentalPlace.RentalPlaceId;
+                await _locationsService.UpdateAsync(locationEntity.LocationId, _locationsService.MapSingleEntityToDto(locationEntity));
+
+                await transaction.CommitAsync();
+                return createdRentalPlace;
+            }
+            catch (Exception ex)
             {
-                City = createDto.City,
-                FirstLine = createDto.FirstLine,
-                SecondLine = createDto.SecondLine,
-                ZipCode = createDto.ZipCode,
-                //CountryId = createDto.CountryId
-            };
-
-            var createdLocation = await _locationsService.CreateAsync(location);
-            var createdAddress = await _addressesService.CreateAsync(address);
-
-            var rentalPlace = new RentalPlaceDto
-            {
-                LocationId = createdLocation.LocationId,
-                AddressId = createdAddress.AddressId,
-            };
-
-            var createdRentalPlace = await base.CreateAsync(rentalPlace);
-
-            // Change the location's RentalPlaceId to the created RentalPlaceId
-            var locationEntity = await _locationsService.FindEntityById(createdLocation.LocationId);
-            locationEntity.RentalPlaceId = createdRentalPlace.RentalPlaceId;
-            await _locationsService.UpdateAsync(locationEntity.LocationId, _locationsService.MapSingleEntityToDto(locationEntity));
-
-            return createdRentalPlace;
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
 
         protected override Expression<Func<RentalPlace, bool>> BuildSearchQuery(string search)
@@ -61,10 +53,15 @@ namespace API.Services.Other
             return rp =>
                 rp.RentalPlaceId.ToString().Contains(search) ||
                 rp.LocationId.ToString().Contains(search) ||
+                rp.Location.Gpslatitude.ToString().Contains(search) ||
+                rp.Location.Gpslongitude.ToString().Contains(search) ||
                 rp.AddressId.ToString().Contains(search) ||
                 rp.Address.City.Contains(search) ||
                 rp.Address.FirstLine.Contains(search) ||
-                (rp.Address.SecondLine != null && rp.Address.SecondLine.Contains(search));
+                (rp.Address.SecondLine != null && rp.Address.SecondLine.Contains(search)) ||
+                rp.Address.ZipCode.Contains(search) ||
+                rp.Address.Country.Name.Contains(search) ||
+                rp.Address.Country.Abbreviation.Contains(search);
         }
 
         protected override Expression<Func<RentalPlace, bool>> GetActiveFilter(bool showDeleted)
@@ -77,12 +74,12 @@ namespace API.Services.Other
             return new RentalPlace
             {
                 RentalPlaceId = model.RentalPlaceId,
-                LocationId = model.LocationId,
-                AddressId = model.AddressId,
                 CreatedDate = model.CreatedDate,
                 ModifiedDate = model.ModifiedDate,
                 DeletedDate = model.DeletedDate,
-                IsActive = model.IsActive
+                IsActive = model.IsActive,
+                Address = _addressesService.MapToEntity(model.Address),
+                Location = _locationsService.MapToEntity(model.Location)
             };
         }
 
@@ -92,22 +89,13 @@ namespace API.Services.Other
             return rp => new RentalPlaceDto
             {
                 RentalPlaceId = rp.RentalPlaceId,
-                LocationId = rp.LocationId,
-                Gpslatitude = rp.Location.Gpslatitude,
-                Gpslongitude = rp.Location.Gpslongitude,
-                AddressId = rp.AddressId,
-                CountryName = rp.Address.Country.Name,
-                CountryId = rp.Address.CountryId,
-                City = rp.Address.City,
-                ZipCode = rp.Address.ZipCode,
-                FirstLine = rp.Address.FirstLine,
-                SecondLine = rp.Address.SecondLine,
                 CreatedDate = rp.CreatedDate,
                 ModifiedDate = rp.ModifiedDate,
                 DeletedDate = rp.DeletedDate,
                 IsActive = rp.IsActive,
 
-                Address = rp.Address != null ? _addressesService.MapSingleEntityToDto(rp.Address) : null
+                Address = rp.Address != null ? _addressesService.MapSingleEntityToDto(rp.Address) : null,
+                Location = rp.Location != null ? _locationsService.MapSingleEntityToDto(rp.Location) : null
             };
         }
 
@@ -117,21 +105,13 @@ namespace API.Services.Other
             return new RentalPlaceDto
             {
                 RentalPlaceId = entity.RentalPlaceId,
-                LocationId = entity.LocationId,
-                Gpslatitude = entity.Location?.Gpslatitude,
-                Gpslongitude = entity.Location?.Gpslongitude,
-                AddressId = entity.AddressId,
-                CountryName = entity.Address.Country?.Name,
-                CountryId = entity.Address.CountryId,
-                City = entity.Address.City,
-                FirstLine = entity.Address.FirstLine,
-                SecondLine = entity.Address.SecondLine,
                 CreatedDate = entity.CreatedDate,
                 ModifiedDate = entity.ModifiedDate,
                 DeletedDate = entity.DeletedDate,
                 IsActive = entity.IsActive,
 
-                Address = entity.Address != null ? _addressesService.MapSingleEntityToDto(entity.Address) : null
+                Address = entity.Address != null ? _addressesService.MapSingleEntityToDto(entity.Address) : null,
+                Location = entity.Location != null ? _locationsService.MapSingleEntityToDto(entity.Location) : null
             };
         }
 
@@ -153,83 +133,75 @@ namespace API.Services.Other
                 .Include(rp => rp.Address.Country);
         }
 
-        // Update entity
         protected override void UpdateEntity(RentalPlace entity, RentalPlaceDto model)
         {
-            entity.RentalPlaceId = model.RentalPlaceId;
-            entity.LocationId = model.LocationId;
-            entity.AddressId = model.AddressId;
+            // Update RentalPlace core properties
+            entity.IsActive = model.IsActive;
+            entity.DeletedDate = model.IsActive ? null : model.DeletedDate;
+            entity.ModifiedDate = DateTime.UtcNow;
 
-
-            if (model.IsActive)
+            // Manual update because of the tracking
+            // Update Address properties
+            if (model.Address != null && entity.Address != null)
             {
-                entity.DeletedDate = model.DeletedDate;
-                entity.IsActive = model.IsActive;
+                entity.Address.FirstLine = model.Address.FirstLine;
+                entity.Address.SecondLine = model.Address.SecondLine;
+                entity.Address.ZipCode = model.Address.ZipCode;
+                entity.Address.City = model.Address.City;
+
+                entity.Address.IsActive = model.IsActive;
+                entity.Address.DeletedDate = model.IsActive ? null : model.DeletedDate;
+                entity.Address.ModifiedDate = DateTime.UtcNow;
+
+                if (model.Address.Country != null)
+                {
+                    entity.Address.CountryId = model.Address.Country.CountryId;
+                }
             }
-        }
 
-        public override async Task<RentalPlaceDto> UpdateAsync(int id, RentalPlaceDto updateDto)
-        {
-            var existingRentalPlace = await FindEntityById(id);
-
-            // Update location
-            var location = new LocationDto
+            // Update Location properties
+            if (model.Location != null && entity.Location != null)
             {
-                Gpslatitude = updateDto.Gpslatitude ?? 0,
-                Gpslongitude = updateDto.Gpslongitude ?? 0,
-                RentalPlaceId = id, // Maintain the relationship
-                IsActive = updateDto.IsActive
-            };
-            await _locationsService.UpdateAsync(existingRentalPlace.LocationId, location);
+                entity.Location.Gpslatitude = model.Location.Gpslatitude;
+                entity.Location.Gpslongitude = model.Location.Gpslongitude;
 
-            // Update address
-            var address = new AddressDto
-            {
-                City = updateDto.City,
-                FirstLine = updateDto.FirstLine,
-                SecondLine = updateDto.SecondLine,
-                ZipCode = updateDto.ZipCode,
-                // CountryId = updateDto.CountryId,
-                IsActive = updateDto.IsActive,
-                DeletedDate = updateDto.DeletedDate
-            };
-            await _addressesService.UpdateAsync(existingRentalPlace.AddressId, address);
-
-            // Update rental place
-            var rentalPlace = new RentalPlaceDto
-            {
-                RentalPlaceId = id,
-                LocationId = existingRentalPlace.LocationId,
-                AddressId = existingRentalPlace.AddressId,
-                IsActive = updateDto.IsActive,
-                DeletedDate = updateDto.DeletedDate
-            };
-
-            // Use base update to handle the rental place entity
-            return await base.UpdateAsync(id, rentalPlace);
+                entity.Location.IsActive = model.IsActive;
+                entity.Location.DateTime = DateTime.UtcNow;
+            }
         }
 
         public override async Task<bool> DeleteAsync(int id)
         {
-            // Get the rental place entity with its related IDs
-            var rentalPlace = await FindEntityById(id);
-            if (rentalPlace == null)
-                return false;
+            using var transaction = await _apiDbContext.Database.BeginTransactionAsync();
+            try
+            {
+                // Get the rental place entity with its related IDs
+                var rentalPlace = await FindEntityById(id);
+                if (rentalPlace == null)
+                    return false;
 
-            // Get locationId and addressId before deletion
-            int locationId = rentalPlace.LocationId;
-            int addressId = rentalPlace.AddressId;
+                // Get locationId and addressId before deletion
+                int locationId = rentalPlace.LocationId;
+                int addressId = rentalPlace.AddressId;
 
-            // Delete rental place using base implementation
-            var rentalPlaceDeleted = await base.DeleteAsync(id);
-            if (!rentalPlaceDeleted)
-                return false;
+                // Delete rental place using base implementation
+                var rentalPlaceDeleted = await base.DeleteAsync(id);
+                if (!rentalPlaceDeleted)
+                    return false;
 
-            // Delete associated location and address
-            await _locationsService.DeleteAsync(locationId);
-            await _addressesService.DeleteAsync(addressId);
+                // Delete associated location and address
+                await _locationsService.DeleteAsync(locationId);
+                await _addressesService.DeleteAsync(addressId);
 
-            return true;
+                await transaction.CommitAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+
         }
 
         // Override GetByIdAsync if additional logic is needed

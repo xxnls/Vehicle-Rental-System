@@ -14,9 +14,9 @@ namespace BackOffice.Models.DTOs.Other
 
         public int? RentalPlaceId { get; set; }
 
-        public double Gpslatitude { get; set; }
+        public double GpsLatitude { get; set; }
 
-        public double Gpslongitude { get; set; }
+        public double GpsLongitude { get; set; }
 
         public DateTime DateTime { get; set; }
 

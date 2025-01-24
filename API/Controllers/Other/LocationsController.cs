@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using API.Models;
 using API.Models.DTOs.Other;
 using API.Services.Other;
+using API.Models.Other;
 
 namespace API.Controllers.Other
 {

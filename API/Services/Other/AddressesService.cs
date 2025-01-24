@@ -48,7 +48,8 @@ namespace API.Services.Other
                 ModifiedDate = model.ModifiedDate,
                 DeletedDate = model.DeletedDate,
                 IsActive = model.IsActive,
-                Country = _countriesService.MapToEntity(model.Country)
+                CountryId = model.Country.CountryId
+                // Country = _countriesService.MapToEntity(model.Country)
             };
         }
 
@@ -105,7 +106,8 @@ namespace API.Services.Other
             entity.SecondLine = model.SecondLine;
             entity.ZipCode = model.ZipCode;
             entity.City = model.City;
-            entity.Country = _countriesService.MapToEntity(model.Country);
+            entity.CountryId = model.Country.CountryId;
+            // entity.Country = _countriesService.MapToEntity(model.Country);
 
             if (model.IsActive)
             {

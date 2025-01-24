@@ -1,10 +1,9 @@
-﻿using API.Models.Other;
-using API.Models.Vehicles;
+﻿using API.Models.Vehicles;
 using System;
 using System.Collections.Generic;
 using API.Interfaces;
 
-namespace API.Models;
+namespace API.Models.Other;
 
 public partial class Location : ILocation
 {

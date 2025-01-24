@@ -104,7 +104,7 @@ namespace BackOffice.ViewModels
             CurrentUser = (REmployeeDTO)SessionManager.Get("User");
 
             // Set default workspace
-            CurrentWorkspace = _viewModelMappings["CountriesViewModel"];
+            CurrentWorkspace = _viewModelMappings["RentalPlacesViewModel"];
 
             ToggleSidebarCommand = new RelayCommand(ToggleSidebar);
             LogoutCommand = new RelayCommand(Logout);
