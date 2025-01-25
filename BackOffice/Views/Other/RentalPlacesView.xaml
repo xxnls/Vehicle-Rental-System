@@ -159,7 +159,8 @@
             <DataGrid
                 ItemsSource="{Binding Models}"
                 SelectedItem="{Binding EditableModel, Mode=TwoWay}"
-                Style="{StaticResource DefaultDataGridStyle}">
+                Style="{StaticResource DefaultDataGridStyle}"
+                x:Name="MainDataGrid">
                 <DataGrid.InputBindings>
                     <MouseBinding
                         Command="{Binding ShowDetailedInfoCommand}"

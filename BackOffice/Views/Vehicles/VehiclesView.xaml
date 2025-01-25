@@ -1,209 +1,373 @@
-﻿<UserControl x:Class="BackOffice.Views.Vehicles.VehiclesView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BackOffice.Views.Vehicles"
-             xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
-             xmlns:helpers="clr-namespace:BackOffice.Helpers"
-             xmlns:res="clr-namespace:BackOffice.Resources.Vehicles"
-             xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
-             xmlns:vehicles="clr-namespace:BackOffice.ViewModels.Vehicles"
-             xmlns:system="clr-namespace:System;assembly=System.Runtime"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    x:Class="BackOffice.Views.Vehicles.VehiclesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+    xmlns:helpers="clr-namespace:BackOffice.Helpers"
+    xmlns:local="clr-namespace:BackOffice.Views.Vehicles"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:BackOffice.Resources.Vehicles"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:vehicles="clr-namespace:BackOffice.ViewModels.Vehicles"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
     <UserControl.DataContext>
-        <vehicles:VehiclesViewModel x:Name="DataContext"/>
+        <vehicles:VehiclesViewModel x:Name="DataContext" />
     </UserControl.DataContext>
 
     <UserControl.Resources>
         <Style TargetType="Label">
-            <Setter Property="ContentStringFormat" Value="{}{0}:"/>
+            <Setter Property="ContentStringFormat" Value="{}{0}:" />
         </Style>
     </UserControl.Resources>
 
-    <StackPanel Orientation="Vertical">
-        <Grid Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
 
-            <Border Style="{StaticResource CreateEditBorderStyle}">
-                <StackPanel Orientation="Vertical">
-                    <!-- Input Fields -->
-                    <Label Content="VIN"/>
-                    <TextBox x:Name="VINField" Text="{Binding EditableModel.Vin, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="VIN"
-                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+            <Grid Visibility="{Binding IsCreatingOrEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-                    <Label Content="{x:Static res:Resources.LicensePlate}"/>
-                    <TextBox x:Name="LicensePlateField" Text="{Binding EditableModel.LicensePlate, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="LicensePlate"
-                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                <Border Style="{StaticResource CreateEditBorderStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Grid.Column="0"
+                            Margin="0,0,20,0"
+                            Orientation="Vertical">
+                            <!--  Input Fields  -->
+                            <Label Content="{x:Static res:Resources.VehicleType}" />
+                            <TextBox IsReadOnly="True" Text="{Binding EditableModel.VehicleType.Name, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="VehicleType"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectVehicleTypeParameters}"
+                                Content="{x:Static res:Resources.SelectVehicleType}"
+                                Style="{StaticResource DefaultButtonStyle}" />
 
-                    <Label Content="{x:Static res:Resources.Color}"/>
-                    <TextBox x:Name="ColorField" Text="{Binding EditableModel.Color, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="Color"
-                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Label Content="{x:Static res:Resources.VehicleModel}" />
+                            <TextBox IsReadOnly="True" Text="{Binding EditableModel.VehicleModel.Name, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="VehicleModel"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectVehicleModelParameters}"
+                                Content="{x:Static res:Resources.SelectVehicleModel}"
+                                Style="{StaticResource DefaultButtonStyle}" />
 
-                    <Label Content="{x:Static res:Resources.ManufactureYear}"/>
-                    <TextBox x:Name="ManufactureYearField" Text="{Binding EditableModel.ManufactureYear, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="ManufactureYear"
-                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Label Content="{x:Static res:Resources.RentalPlace}" />
+                            <TextBox IsReadOnly="True" Text="{Binding EditableModel.RentalPlace.Address.City, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="RentalPlace"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectRentalPlaceParameters}"
+                                Content="{x:Static res:Resources.SelectRentalPlace}"
+                                Style="{StaticResource DefaultButtonStyle}" />
 
-                    <Label Content="{x:Static res:Resources.VehicleType}"/>
-                    <ComboBox x:Name="VehicleTypeComboBox" SelectedItem="{Binding EditableModel.VehicleTypeId, UpdateSourceTrigger=PropertyChanged}">
-                        <!-- ItemsSource binding can be added if needed -->
-                    </ComboBox>
+                            <Label Content="VIN" />
+                            <TextBox x:Name="VinField" Text="{Binding EditableModel.Vin, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Vin"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.VehicleModel}"/>
-                    <ComboBox x:Name="VehicleModelComboBox" SelectedItem="{Binding EditableModel.VehicleModelId, UpdateSourceTrigger=PropertyChanged}">
-                        <!-- ItemsSource binding can be added if needed -->
-                    </ComboBox>
+                            <Label Content="{x:Static res:Resources.LicensePlate}" />
+                            <TextBox x:Name="LicensePlateField" Text="{Binding EditableModel.LicensePlate, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="LicensePlate"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.RentalPlace}"/>
-                    <ComboBox x:Name="RentalPlaceComboBox" SelectedItem="{Binding EditableModel.RentalPlaceId, UpdateSourceTrigger=PropertyChanged}">
-                        <!-- ItemsSource binding can be added if needed -->
-                    </ComboBox>
-                </StackPanel>
-            </Border>
+                            <Label Content="{x:Static res:Resources.Color}" />
+                            <TextBox x:Name="ColorField" Text="{Binding EditableModel.Color, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Color"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-            <!-- Action Buttons -->
-            <customControls:CreateEditSaveCancelControl Grid.Row="1"
-                                             SaveCommand="{Binding CreateModelCommand}"
-                                             CancelCommand="{Binding SwitchToListModeCommand}"
-                                             HasErrors="{Binding HasErrors}"/>
-        </Grid>
+                            <Label Content="{x:Static res:Resources.ManufactureYear}" />
+                            <TextBox x:Name="ManufactureYearField" Text="{Binding EditableModel.ManufactureYear, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="ManufactureYear"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-        <Grid Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+                            <Label Content="{x:Static res:Resources.CurrentMileage}" />
+                            <TextBox x:Name="CurrentMileageField" Text="{Binding EditableModel.CurrentMileage, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="CurrentMileage"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-            <Border Style="{StaticResource CreateEditBorderStyle}">
-                <StackPanel Orientation="Vertical">
-                    <!-- Input Fields (same as Create, just for Editing) -->
-                    <Label Content="VIN"/>
-                    <TextBox x:Name="EditVINField" Text="{Binding EditableModel.Vin, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="VIN"
-                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Label Content="{x:Static res:Resources.LastMaintenanceMileage}" />
+                            <TextBox x:Name="LastMaintenanceMileageField" Text="{Binding EditableModel.LastMaintenanceMileage, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="LastMaintenanceMileage"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.LicensePlate}"/>
-                    <TextBox x:Name="EditLicensePlateField" Text="{Binding EditableModel.LicensePlate, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="LicensePlate"
-                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Label Content="{x:Static res:Resources.LastMaintenanceDate}" />
+                            <TextBox x:Name="LastMaintenanceDateField" Text="{Binding EditableModel.LastMaintenanceDate, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="LastMaintenanceDate"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.Color}"/>
-                    <TextBox x:Name="EditColorField" Text="{Binding EditableModel.Color, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="Color"
-                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Label Content="{x:Static res:Resources.NextMaintenanceDate}" />
+                            <TextBox x:Name="NextMaintenanceDateField" Text="{Binding EditableModel.NextMaintenanceDate, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="NextMaintenanceDate"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.ManufactureYear}"/>
-                    <TextBox x:Name="EditManufactureYearField" Text="{Binding EditableModel.ManufactureYear, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Foreground="{StaticResource ErrorBrush}"
-                               helpers:ValidationHelper.PropertyName="ManufactureYear"
-                               Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Label Content="{x:Static res:Resources.PurchaseDate}" />
+                            <TextBox x:Name="PurchaseDateField" Text="{Binding EditableModel.PurchaseDate, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="PurchaseDate"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.VehicleType}"/>
-                    <ComboBox x:Name="EditVehicleTypeComboBox" SelectedItem="{Binding EditableModel.VehicleTypeId, UpdateSourceTrigger=PropertyChanged}">
-                        <!-- ItemsSource binding can be added if needed -->
-                    </ComboBox>
+                            <Label Content="{x:Static res:Resources.PurchasePrice}" />
+                            <TextBox x:Name="PurchasePriceField" Text="{Binding EditableModel.PurchasePrice, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="PurchasePrice"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.VehicleModel}"/>
-                    <ComboBox x:Name="EditVehicleModelComboBox" SelectedItem="{Binding EditableModel.VehicleModelId, UpdateSourceTrigger=PropertyChanged}">
-                        <!-- ItemsSource binding can be added if needed -->
-                    </ComboBox>
+                            <Label Content="{x:Static res:Resources.Status}" />
+                            <ComboBox x:Name="StatusField" Text="{Binding EditableModel.Status, UpdateSourceTrigger=PropertyChanged}">
+                                <ComboBox.ItemsSource>
+                                    <x:Array Type="system:String">
+                                        <system:String>InService</system:String>
+                                        <system:String>OutOfService</system:String>
+                                        <system:String>InMaintenance</system:String>
+                                        <system:String>Rented</system:String>
+                                    </x:Array>
+                                </ComboBox.ItemsSource>
+                            </ComboBox>
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Status"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.RentalPlace}"/>
-                    <ComboBox x:Name="EditRentalPlaceComboBox" SelectedItem="{Binding EditableModel.RentalPlaceId, UpdateSourceTrigger=PropertyChanged}">
-                        <!-- ItemsSource binding can be added if needed -->
-                    </ComboBox>
-                </StackPanel>
-            </Border>
+                            <Label Content="{x:Static res:Resources.CustomDailyRate}" />
+                            <TextBox x:Name="CustomDailyRateField" Text="{Binding EditableModel.CustomDailyRate, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="CustomDailyRate"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-            <!-- Action Buttons -->
-            <customControls:CreateEditSaveCancelControl Grid.Row="1"
-                                            SaveCommand="{Binding UpdateModelCommand}"
-                                            CancelCommand="{Binding SwitchToListModeCommand}"
-                                            HasErrors="{Binding HasErrors}"/>
-        </Grid>
+                            <Label Content="{x:Static res:Resources.CustomWeeklyRate}" />
+                            <TextBox x:Name="CustomWeeklyRateField" Text="{Binding EditableModel.CustomWeeklyRate, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="CustomWeeklyRate"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-        <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                            <Label Content="{x:Static res:Resources.CustomDeposit}" />
+                            <TextBox x:Name="CustomDepositField" Text="{Binding EditableModel.CustomDeposit, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="CustomDeposit"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                <customControls:CRUDButtonsControl LoadCommand="{Binding LoadModelsCommand}"
-                                   AddCommand="{Binding SwitchToCreateModeCommand}"
-                                   EditCommand="{Binding SwitchToEditModeCommand}"
-                                   DeleteCommand="{Binding DeleteModelCommand}"
-                                   DeleteVisibility="{Binding ShowDeleted, Converter={StaticResource InverseBooleanConverter}}"
-                                   RestoreCommand="{Binding RestoreModelCommand}"
-                                   RestoreCommandParameter="{Binding EditableModel.VehicleId}"
-                                   RestoreVisibility="{Binding ShowDeleted}"
-                                   Grid.Column="0"/>
+                            <Label Content="{x:Static res:Resources.IsAvailableForRent}" />
+                            <CheckBox x:Name="IsAvailableForRentField" IsChecked="{Binding EditableModel.IsAvailableForRent, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="IsAvailableForRent"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                <customControls:SearchControl Grid.Column="1"
-                                  SearchCommand="{Binding SearchCommand}"/>
+                            <Label Content="{x:Static res:Resources.Notes}" />
+                            <TextBox
+                                x:Name="NotesField"
+                                Height="50"
+                                AcceptsReturn="True"
+                                Text="{Binding EditableModel.Notes, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Notes"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                        </StackPanel>
 
-                <customControls:FilterButtonsControl ShowFilterOptionsCommand="{Binding ShowFilterOptionsCommand}"
-                                         ShowDeletedModelsCommand="{Binding ShowDeletedModelsCommand}"
-                                         Grid.Column="2"
-                                         Margin="0,0,5,0"/>
+                        <!--  Optional Information  -->
+                        <StackPanel Grid.Column="1" Orientation="Vertical">
+
+                            <DockPanel Height="25">
+                                <Label Content="{x:Static res:Resources.OptionalInfoFields}" DockPanel.Dock="Left" />
+                                <Separator />
+                            </DockPanel>
+
+                            <Label Content="{x:Static res:Resources.HasNavigation}" />
+                            <CheckBox x:Name="HasNavigationField" IsChecked="{Binding EditableModel.VehicleOptionalInformation.HasNavigation, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="HasNavigation"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.HasBluetooth}" />
+                            <CheckBox x:Name="HasBluetoothField" IsChecked="{Binding EditableModel.VehicleOptionalInformation.HasBluetooth, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="HasBluetooth"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.HasAirConditioning}" />
+                            <CheckBox x:Name="HasAirConditioningField" IsChecked="{Binding EditableModel.VehicleOptionalInformation.HasAirConditioning, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="HasAirConditioning"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.HasAutomaticTransmission}" />
+                            <CheckBox x:Name="HasAutomaticTransmissionField" IsChecked="{Binding EditableModel.VehicleOptionalInformation.HasAutomaticTransmission, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="HasAutomaticTransmission"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.HasParkingSensors}" />
+                            <CheckBox x:Name="HasParkingSensorsField" IsChecked="{Binding EditableModel.VehicleOptionalInformation.HasParkingSensors, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="HasParkingSensors"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.HasCruiseControl}" />
+                            <CheckBox x:Name="HasCruiseControlField" IsChecked="{Binding EditableModel.VehicleOptionalInformation.HasCruiseControl, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="HasCruiseControl"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+
+                <!--  Action Buttons  -->
+                <customControls:CreateEditSaveCancelControl
+                    Grid.Row="1"
+                    CancelCommand="{Binding SwitchToListModeCommand}"
+                    HasErrors="{Binding HasErrors}"
+                    SaveCommand="{Binding CreateModelCommand}"
+                    Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <customControls:CreateEditSaveCancelControl
+                    Grid.Row="1"
+                    CancelCommand="{Binding SwitchToListModeCommand}"
+                    HasErrors="{Binding HasErrors}"
+                    SaveCommand="{Binding UpdateModelCommand}"
+                    Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </Grid>
 
-            <customControls:FilterOptionsControl Visibility="{Binding IsFiltering, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                     CreatedBefore="{Binding CreatedBefore, Mode=TwoWay}"
-                                     CreatedAfter="{Binding CreatedAfter, Mode=TwoWay}"
-                                     ModifiedBefore="{Binding ModifiedBefore, Mode=TwoWay}"
-                                     ModifiedAfter="{Binding ModifiedAfter, Mode=TwoWay}"
-                                     FilterCommand="{Binding LoadModelsCommand}"/>
 
-            <!--Data Grid-->
-            <DataGrid x:Name="MainDataGrid" 
-                      ItemsSource="{Binding Models}"
-                      Style="{StaticResource DefaultDataGridStyle}"
-                      SelectedItem="{Binding EditableModel, Mode=TwoWay}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding VehicleId}" />
-                    <DataGridTextColumn Header="VIN" Binding="{Binding Vin}" />
-                    <DataGridTextColumn Header="License Plate" Binding="{Binding LicensePlate}" />
-                    <DataGridTextColumn Header="Color" Binding="{Binding Color}" />
-                    <DataGridTextColumn Header="Year" Binding="{Binding ManufactureYear}" />
-                    <DataGridTextColumn Header="Type" Binding="{Binding VehicleType.Name}" />
-                    <DataGridTextColumn Header="Model" Binding="{Binding VehicleModel.Name}" />
-                    <DataGridTextColumn Header="Country" Binding="{Binding RentalPlace.CountryName}" />
-                    <DataGridTextColumn Header="City" Binding="{Binding RentalPlace.City}" />
-                    <DataGridCheckBoxColumn Header="Available" Binding="{Binding IsAvailableForRent}" />
-                    <DataGridTextColumn Header="Mileage" Binding="{Binding CurrentMileage}" />
-                    <DataGridTextColumn Header="Last Maintenance" Binding="{Binding LastMaintenanceDate, StringFormat='{}{0:yyyy-MM-dd}'}" />
-                    <DataGridTextColumn Header="Daily Rate" Binding="{Binding CustomDailyRate, StringFormat='{}{0:C}'}" />
-                    <DataGridTextColumn Header="Weekly Rate" Binding="{Binding CustomWeeklyRate, StringFormat='{}{0:C}'}" />
-                    <DataGridTextColumn Header="Notes" Binding="{Binding Notes}" />
-                </DataGrid.Columns>
-            </DataGrid>
+            <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-            <!-- Pagination -->
-            <customControls:PaginationControl CurrentPage="{Binding CurrentPage}" 
-                                  TotalItemCount="{Binding TotalItemCount}"
-                                  ModelsPerPage="{Binding PageSize}" 
-                                  CanLoadPreviousPage="{Binding CanLoadPreviousPage}" 
-                                  CanLoadNextPage="{Binding CanLoadNextPage}" 
-                                  PreviousPageCommand="{Binding LoadPreviousPageCommand}" 
-                                  NextPageCommand="{Binding LoadNextPageCommand}" />
+                    <customControls:CRUDButtonsControl
+                        Grid.Column="0"
+                        AddCommand="{Binding SwitchToCreateModeCommand}"
+                        DeleteCommand="{Binding DeleteModelCommand}"
+                        DeleteVisibility="{Binding ShowDeleted, Converter={StaticResource InverseBooleanConverter}}"
+                        EditCommand="{Binding SwitchToEditModeCommand}"
+                        LoadCommand="{Binding LoadModelsCommand}"
+                        RestoreCommand="{Binding RestoreModelCommand}"
+                        RestoreCommandParameter="{Binding EditableModel.VehicleId}"
+                        RestoreVisibility="{Binding ShowDeleted}" />
+
+                    <customControls:SearchControl Grid.Column="1" SearchCommand="{Binding SearchCommand}" />
+
+                    <customControls:FilterButtonsControl
+                        Grid.Column="2"
+                        Margin="0,0,5,0"
+                        ShowDeletedModelsCommand="{Binding ShowDeletedModelsCommand}"
+                        ShowFilterOptionsCommand="{Binding ShowFilterOptionsCommand}" />
+                </Grid>
+
+                <customControls:FilterOptionsControl
+                    CreatedAfter="{Binding CreatedAfter, Mode=TwoWay}"
+                    CreatedBefore="{Binding CreatedBefore, Mode=TwoWay}"
+                    FilterCommand="{Binding LoadModelsCommand}"
+                    ModifiedAfter="{Binding ModifiedAfter, Mode=TwoWay}"
+                    ModifiedBefore="{Binding ModifiedBefore, Mode=TwoWay}"
+                    Visibility="{Binding IsFiltering, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <!--  Data Grid  -->
+                <DataGrid
+                    x:Name="MainDataGrid"
+                    ItemsSource="{Binding Models}"
+                    SelectedItem="{Binding EditableModel, Mode=TwoWay}"
+                    Style="{StaticResource DefaultDataGridStyle}">
+                    <DataGrid.InputBindings>
+                        <MouseBinding
+                            Command="{Binding ShowDetailedInfoCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Mode=OneWay}"
+                            Gesture="LeftDoubleClick" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding VehicleId}" Header="ID" />
+                        <DataGridTextColumn Binding="{Binding VehicleType.Name}" Header="{x:Static res:Resources.VehicleType}" />
+                        <DataGridTextColumn Binding="{Binding VehicleModel.VehicleBrand.Name}" Header="{x:Static res:Resources.Brand}" />
+                        <DataGridTextColumn Binding="{Binding VehicleModel.Name}" Header="{x:Static res:Resources.VehicleModel}" />
+                        <DataGridTextColumn Binding="{Binding RentalPlace.Address.Country.Name}" Header="{x:Static res:Resources.Country}" />
+                        <DataGridTextColumn Binding="{Binding RentalPlace.Address.City}" Header="{x:Static res:Resources.City}" />
+                        <DataGridTextColumn Binding="{Binding Vin}" Header="VIN" />
+                        <DataGridTextColumn Binding="{Binding LicensePlate}" Header="{x:Static res:Resources.LicensePlate}" />
+                        <DataGridTextColumn Binding="{Binding Color}" Header="{x:Static res:Resources.Color}" />
+                        <DataGridTextColumn Binding="{Binding ManufactureYear}" Header="{x:Static res:Resources.ManufactureYear}" />
+                        <DataGridTextColumn Binding="{Binding CurrentMileage}" Header="{x:Static res:Resources.CurrentMileage}" />
+                        <DataGridTextColumn Binding="{Binding LastMaintenanceMileage}" Header="{x:Static res:Resources.LastMaintenanceMileage}" />
+                        <DataGridTextColumn Binding="{Binding LastMaintenanceDate}" Header="{x:Static res:Resources.LastMaintenanceDate}" />
+                        <DataGridTextColumn Binding="{Binding NextMaintenanceDate}" Header="{x:Static res:Resources.NextMaintenanceDate}" />
+                        <DataGridTextColumn Binding="{Binding PurchaseDate}" Header="{x:Static res:Resources.PurchaseDate}" />
+                        <DataGridTextColumn Binding="{Binding PurchasePrice}" Header="{x:Static res:Resources.PurchasePrice}" />
+                        <DataGridTextColumn Binding="{Binding Status}" Header="{x:Static res:Resources.Status}" />
+                        <DataGridTextColumn Binding="{Binding CustomDailyRate}" Header="{x:Static res:Resources.DataGridCustomDailyRate}" />
+                        <DataGridTextColumn Binding="{Binding CustomWeeklyRate}" Header="{x:Static res:Resources.DataGridCustomWeeklyRate}" />
+                        <DataGridTextColumn Binding="{Binding CustomDeposit}" Header="{x:Static res:Resources.DataGridCustomDeposit}" />
+                        <DataGridCheckBoxColumn Binding="{Binding IsAvailableForRent}" Header="{x:Static res:Resources.DataGridAvailable}" />
+                        <DataGridTextColumn Binding="{Binding Notes}" Header="{x:Static res:Resources.Notes}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!--  Pagination  -->
+                <customControls:PaginationControl
+                    CanLoadNextPage="{Binding CanLoadNextPage}"
+                    CanLoadPreviousPage="{Binding CanLoadPreviousPage}"
+                    CurrentPage="{Binding CurrentPage}"
+                    ModelsPerPage="{Binding PageSize}"
+                    NextPageCommand="{Binding LoadNextPageCommand}"
+                    PreviousPageCommand="{Binding LoadPreviousPageCommand}"
+                    TotalItemCount="{Binding TotalItemCount}" />
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </ScrollViewer>
 </UserControl>

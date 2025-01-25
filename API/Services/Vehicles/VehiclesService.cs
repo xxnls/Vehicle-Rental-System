@@ -5,6 +5,7 @@ using API.Models.DTOs.Vehicles;
 using API.Models.Vehicles;
 using API.Services.Other;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace API.Services.Vehicles;
 
@@ -52,12 +53,12 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             // Create the related VehicleOptionalInformation, VehicleStatistics, Location first
             var vehicleOptionalInfoDto = new VehicleOptionalInformationDto
             {
-                HasNavigation = createDto.OptionalInformation?.HasNavigation ?? false,
-                HasBluetooth = createDto.OptionalInformation?.HasBluetooth ?? false,
-                HasAirConditioning = createDto.OptionalInformation?.HasAirConditioning ?? false,
-                HasAutomaticTransmission = createDto.OptionalInformation?.HasAutomaticTransmission ?? false,
-                HasParkingSensors = createDto.OptionalInformation?.HasParkingSensors ?? false,
-                HasCruiseControl = createDto.OptionalInformation?.HasCruiseControl ?? false
+                HasNavigation = createDto.VehicleOptionalInformation.HasNavigation,
+                HasBluetooth = createDto.VehicleOptionalInformation.HasBluetooth,
+                HasAirConditioning = createDto.VehicleOptionalInformation.HasAirConditioning,
+                HasAutomaticTransmission = createDto.VehicleOptionalInformation.HasAutomaticTransmission,
+                HasParkingSensors = createDto.VehicleOptionalInformation.HasParkingSensors,
+                HasCruiseControl = createDto.VehicleOptionalInformation.HasCruiseControl
             };
 
             var vehicleStatisticsDto = new VehicleStatisticsDto
@@ -83,12 +84,13 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             // Now create the Vehicle entity and link the created Optional Information and Statistics
             var vehicle = new VehicleDto
             {
-                VehicleTypeId = createDto.VehicleTypeId,
-                VehicleModelId = createDto.VehicleModelId,
+                VehicleTypeId = createDto.VehicleType.VehicleTypeId,
+                VehicleModelId = createDto.VehicleModel.VehicleModelId,
                 VehicleStatisticsId = createdStatistics.VehicleStatisticsId,
                 VehicleOptionalInformationId = createdOptionalInformation.VehicleOptionalInformationId,
-                RentalPlaceId = createDto.RentalPlaceId,
+                RentalPlaceId = createDto.RentalPlace.RentalPlaceId,
                 LocationId = createdLocation.LocationId,
+
                 Vin = createDto.Vin,
                 LicensePlate = createDto.LicensePlate,
                 Color = createDto.Color,
@@ -100,16 +102,19 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
                 PurchaseDate = createDto.PurchaseDate,
                 PurchasePrice = createDto.PurchasePrice,
                 Status = createDto.Status,
-                CustomDailyRate = createDto.CustomDailyRate,
-                CustomWeeklyRate = createDto.CustomWeeklyRate,
-                CustomDeposit = createDto.CustomDeposit,
+
+                // If custom rates are not provided, use the default rates from Vehicle Type
+                CustomDailyRate = createDto.CustomDailyRate ?? createDto.VehicleType.BaseDailyRate,
+                CustomWeeklyRate = createDto.CustomWeeklyRate ?? createDto.VehicleType.BaseWeeklyRate,
+                CustomDeposit = createDto.CustomDeposit ?? createDto.VehicleType.BaseDeposit,
+
                 IsAvailableForRent = createDto.IsAvailableForRent,
                 Notes = createDto.Notes
             };
 
             var createdVehicle = await base.CreateAsync(vehicle);
 
-            var locationEntity = await _locationsService.FindEntityById(createdLocation.LocationId);
+            var locationEntity = await _locationsService.FindEntityById(createdVehicle.LocationId);
             locationEntity.VehicleId = createdVehicle.VehicleId;
             await _locationsService.UpdateAsync(locationEntity.LocationId,
                 _locationsService.MapSingleEntityToDto(locationEntity));
@@ -131,12 +136,26 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
 
         return v =>
             v.VehicleId.ToString().Contains(search) ||
-            v.VehicleModel.Name.Contains(search) ||
+            (v.VehicleModel != null && v.VehicleModel.Name != null && v.VehicleModel.Name.Contains(search)) ||
+            (v.VehicleModel != null && v.VehicleModel.VehicleBrand != null && v.VehicleModel.VehicleBrand.Name != null && v.VehicleModel.VehicleBrand.Name.Contains(search)) ||
+            (v.VehicleType != null && v.VehicleType.Name != null && v.VehicleType.Name.Contains(search)) ||
             (v.LicensePlate != null && v.LicensePlate.Contains(search)) ||
-            v.Color.Contains(search) ||
+            (v.Color != null && v.Color.Contains(search)) ||
             (v.Vin != null && v.Vin.Contains(search)) ||
             v.CurrentMileage.ToString().Contains(search) ||
-            v.Status.Contains(search);
+            v.ManufactureYear.ToString().Contains(search) ||
+            (v.LastMaintenanceMileage != null && v.LastMaintenanceMileage.ToString().Contains(search)) ||
+            (v.LastMaintenanceDate != null && v.LastMaintenanceDate.Value.ToString("yyyy-MM-dd").Contains(search)) ||
+            (v.NextMaintenanceDate != null && v.NextMaintenanceDate.Value.ToString("yyyy-MM-dd").Contains(search)) ||
+            v.PurchaseDate.ToString("yyyy-MM-dd").Contains(search) ||
+            v.PurchasePrice.ToString("F2").Contains(search) ||
+            (v.Status != null && v.Status.Contains(search)) ||
+            (v.CustomDailyRate != null && v.CustomDailyRate.Value.ToString("F2").Contains(search)) ||
+            (v.CustomWeeklyRate != null && v.CustomWeeklyRate.Value.ToString("F2").Contains(search)) ||
+            (v.CustomDeposit != null && v.CustomDeposit.Value.ToString("F2").Contains(search)) ||
+            (v.Notes != null && v.Notes.Contains(search)) ||
+            (v.RentalPlace != null && v.RentalPlace.Address.City != null && v.RentalPlace.Address.City.Contains(search)) ||
+            v.IsAvailableForRent.ToString().Contains(search);
     }
 
     protected override Expression<Func<Vehicle, bool>> GetActiveFilter(bool showDeleted)
@@ -168,20 +187,26 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
         entity.PurchaseDate = model.PurchaseDate;
         entity.PurchasePrice = model.PurchasePrice;
         entity.Status = model.Status;
-        entity.CustomDailyRate = model.CustomDailyRate;
-        entity.CustomWeeklyRate = model.CustomWeeklyRate;
-        entity.CustomDeposit = model.CustomDeposit;
         entity.IsAvailableForRent = model.IsAvailableForRent;
         entity.Notes = model.Notes;
+
+        entity.Location.IsActive = model.IsActive;
+
+        // If custom rates are not provided, use the default rates from Vehicle Type
+        entity.CustomDailyRate = model.CustomDailyRate ?? model.VehicleType.BaseDailyRate;
+        entity.CustomWeeklyRate = model.CustomWeeklyRate ?? model.VehicleType.BaseWeeklyRate;
+        entity.CustomDeposit = model.CustomDeposit ?? model.VehicleType.BaseDeposit;
 
         if (model.IsActive)
         {
             entity.DeletedDate = model.DeletedDate;
             entity.IsActive = model.IsActive;
+            entity.Location.DateTime = DateTime.Now;
+            entity.Location.IsActive = model.IsActive;
         }
 
         // Update vehicle optional information
-        _optionalInformationService.UpdateAsync(entity.VehicleOptionalInformationId, model.OptionalInformation);
+        _optionalInformationService.UpdateAsync(entity.VehicleOptionalInformationId, model.VehicleOptionalInformation);
     }
 
     public override async Task<Vehicle> FindEntityById(int id)
@@ -189,11 +214,13 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
         return await _apiDbContext.Vehicles
             .Include(v => v.VehicleType)
             .Include(v => v.VehicleModel)
+            .Include(v => v.VehicleModel.VehicleBrand)
             .Include(v => v.RentalPlace)
             .Include(v => v.RentalPlace.Address)
             .Include(v => v.RentalPlace.Address.Country)
             .Include(v => v.VehicleStatistics)
             .Include(v => v.VehicleOptionalInformation)
+            .Include(v => v.Location)
             .FirstOrDefaultAsync(v => v.VehicleId == id);
     }
 
@@ -202,11 +229,13 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
         return query
             .Include(v => v.VehicleType)
             .Include(v => v.VehicleModel)
+            .Include(v => v.VehicleModel.VehicleBrand)
             .Include(v => v.RentalPlace)
             .Include(v => v.RentalPlace.Address)
             .Include(v => v.RentalPlace.Address.Country)
             .Include(v => v.VehicleStatistics)
-            .Include(v => v.VehicleOptionalInformation);
+            .Include(v => v.VehicleOptionalInformation)
+            .Include(v => v.Location);
     }
 
     #region Mapping
@@ -272,11 +301,14 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             Notes = v.Notes,
             CreatedDate = v.CreatedDate,
             IsActive = v.IsActive,
-            VehicleType = _vehicleTypesService.MapSingleEntityToDto(v.VehicleType),
-            VehicleModel = _vehicleModelsService.MapSingleEntityToDto(v.VehicleModel),
-            RentalPlace = _rentalPlacesService.MapSingleEntityToDto(v.RentalPlace),
-            VehicleStatistics = _statisticsService.MapSingleEntityToDto(v.VehicleStatistics),
-            OptionalInformation = _optionalInformationService.MapSingleEntityToDto(v.VehicleOptionalInformation)
+            VehicleType = v.VehicleType != null ? _vehicleTypesService.MapSingleEntityToDto(v.VehicleType) : null,
+            VehicleModel = v.VehicleModel != null ? _vehicleModelsService.MapSingleEntityToDto(v.VehicleModel) : null,
+            RentalPlace = v.RentalPlace != null ? _rentalPlacesService.MapSingleEntityToDto(v.RentalPlace) : null,
+            VehicleStatistics = v.VehicleStatistics != null ? _statisticsService.MapSingleEntityToDto(v.VehicleStatistics) : null,
+            VehicleOptionalInformation = v.VehicleOptionalInformation != null
+                ? _optionalInformationService.MapSingleEntityToDto(v.VehicleOptionalInformation)
+                : null,
+            Location = v.Location != null ? _locationsService.MapSingleEntityToDto(v.Location) : null
         };
     }
 
@@ -311,11 +343,14 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             ModifiedDate = entity.ModifiedDate,
             DeletedDate = entity.DeletedDate,
             IsActive = entity.IsActive,
-            VehicleType = _vehicleTypesService.MapSingleEntityToDto(entity.VehicleType),
-            VehicleModel = _vehicleModelsService.MapSingleEntityToDto(entity.VehicleModel),
-            RentalPlace = _rentalPlacesService.MapSingleEntityToDto(entity.RentalPlace),
-            VehicleStatistics = _statisticsService.MapSingleEntityToDto(entity.VehicleStatistics),
-            OptionalInformation = _optionalInformationService.MapSingleEntityToDto(entity.VehicleOptionalInformation)
+            VehicleType = entity.VehicleType != null ? _vehicleTypesService.MapSingleEntityToDto(entity.VehicleType) : null,
+            VehicleModel = entity.VehicleModel != null ? _vehicleModelsService.MapSingleEntityToDto(entity.VehicleModel) : null,
+            RentalPlace = entity.RentalPlace != null ? _rentalPlacesService.MapSingleEntityToDto(entity.RentalPlace) : null,
+            VehicleStatistics = entity.VehicleStatistics != null ? _statisticsService.MapSingleEntityToDto(entity.VehicleStatistics) : null,
+            VehicleOptionalInformation = entity.VehicleOptionalInformation != null
+                ? _optionalInformationService.MapSingleEntityToDto(entity.VehicleOptionalInformation)
+                : null,
+            Location = entity.Location != null ? _locationsService.MapSingleEntityToDto(entity.Location) : null
         };
     }
 

@@ -78,13 +78,24 @@ namespace BackOffice.Models.DTOs.Vehicles
             }
         }
 
-        private VehicleOptionalInformationDto? _optionalInformation;
-        public VehicleOptionalInformationDto? OptionalInformation
+        private VehicleOptionalInformationDto? _vehicleOptionalInformation = new();
+        public VehicleOptionalInformationDto? VehicleOptionalInformation
         {
-            get => _optionalInformation;
+            get => _vehicleOptionalInformation;
             set
             {
-                _optionalInformation = value;
+                _vehicleOptionalInformation = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private LocationDto? _location;
+        public LocationDto? Location
+        {
+            get => _location;
+            set
+            {
+                _location = value;
                 OnPropertyChanged();
             }
         }

@@ -61,6 +61,24 @@ namespace BackOffice.Resources.Vehicles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vehicle brand.
+        /// </summary>
+        public static string Brand {
+            get {
+                return ResourceManager.GetString("Brand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color.
         /// </summary>
         public static string Color {
@@ -70,11 +88,173 @@ namespace BackOffice.Resources.Vehicles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current mileage.
+        /// </summary>
+        public static string CurrentMileage {
+            get {
+                return ResourceManager.GetString("CurrentMileage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom daily rate.
+        /// </summary>
+        public static string CustomDailyRate {
+            get {
+                return ResourceManager.GetString("CustomDailyRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom deposit.
+        /// </summary>
+        public static string CustomDeposit {
+            get {
+                return ResourceManager.GetString("CustomDeposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom weekly rate.
+        /// </summary>
+        public static string CustomWeeklyRate {
+            get {
+                return ResourceManager.GetString("CustomWeeklyRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available?.
+        /// </summary>
+        public static string DataGridAvailable {
+            get {
+                return ResourceManager.GetString("DataGridAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Daily rate.
+        /// </summary>
+        public static string DataGridCustomDailyRate {
+            get {
+                return ResourceManager.GetString("DataGridCustomDailyRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deposit.
+        /// </summary>
+        public static string DataGridCustomDeposit {
+            get {
+                return ResourceManager.GetString("DataGridCustomDeposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weekly rate.
+        /// </summary>
+        public static string DataGridCustomWeeklyRate {
+            get {
+                return ResourceManager.GetString("DataGridCustomWeeklyRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vehicles.
         /// </summary>
         public static string DisplayName {
             get {
                 return ResourceManager.GetString("DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Air conditioning.
+        /// </summary>
+        public static string HasAirConditioning {
+            get {
+                return ResourceManager.GetString("HasAirConditioning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic transmission.
+        /// </summary>
+        public static string HasAutomaticTransmission {
+            get {
+                return ResourceManager.GetString("HasAutomaticTransmission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bluetooth.
+        /// </summary>
+        public static string HasBluetooth {
+            get {
+                return ResourceManager.GetString("HasBluetooth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cruise control.
+        /// </summary>
+        public static string HasCruiseControl {
+            get {
+                return ResourceManager.GetString("HasCruiseControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Navigation.
+        /// </summary>
+        public static string HasNavigation {
+            get {
+                return ResourceManager.GetString("HasNavigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parking sensors.
+        /// </summary>
+        public static string HasParkingSensors {
+            get {
+                return ResourceManager.GetString("HasParkingSensors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is available for rent?.
+        /// </summary>
+        public static string IsAvailableForRent {
+            get {
+                return ResourceManager.GetString("IsAvailableForRent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last maintenance date.
+        /// </summary>
+        public static string LastMaintenanceDate {
+            get {
+                return ResourceManager.GetString("LastMaintenanceDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last maintenance mileage.
+        /// </summary>
+        public static string LastMaintenanceMileage {
+            get {
+                return ResourceManager.GetString("LastMaintenanceMileage", resourceCulture);
             }
         }
         
@@ -97,11 +277,92 @@ namespace BackOffice.Resources.Vehicles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next maintenance date.
+        /// </summary>
+        public static string NextMaintenanceDate {
+            get {
+                return ResourceManager.GetString("NextMaintenanceDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        public static string Notes {
+            get {
+                return ResourceManager.GetString("Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optional Information.
+        /// </summary>
+        public static string OptionalInfoFields {
+            get {
+                return ResourceManager.GetString("OptionalInfoFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase date.
+        /// </summary>
+        public static string PurchaseDate {
+            get {
+                return ResourceManager.GetString("PurchaseDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase price.
+        /// </summary>
+        public static string PurchasePrice {
+            get {
+                return ResourceManager.GetString("PurchasePrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rental place.
         /// </summary>
         public static string RentalPlace {
             get {
                 return ResourceManager.GetString("RentalPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Rental Place.
+        /// </summary>
+        public static string SelectRentalPlace {
+            get {
+                return ResourceManager.GetString("SelectRentalPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Vehicle Model.
+        /// </summary>
+        public static string SelectVehicleModel {
+            get {
+                return ResourceManager.GetString("SelectVehicleModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Vehicle Type.
+        /// </summary>
+        public static string SelectVehicleType {
+            get {
+                return ResourceManager.GetString("SelectVehicleType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
             }
         }
         

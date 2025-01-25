@@ -118,4 +118,91 @@
   <data name="RentalPlace" xml:space="preserve">
     <value>Rental place</value>
   </data>
+  <data name="SelectVehicleType" xml:space="preserve">
+    <value>Select Vehicle Type</value>
+  </data>
+  <data name="SelectVehicleModel" xml:space="preserve">
+    <value>Select Vehicle Model</value>
+  </data>
+  <data name="SelectRentalPlace" xml:space="preserve">
+    <value>Select Rental Place</value>
+  </data>
+  <data name="CurrentMileage" xml:space="preserve">
+    <value>Current mileage</value>
+  </data>
+  <data name="LastMaintenanceMileage" xml:space="preserve">
+    <value>Last maintenance mileage</value>
+  </data>
+  <data name="LastMaintenanceDate" xml:space="preserve">
+    <value>Last maintenance date</value>
+  </data>
+  <data name="PurchaseDate" xml:space="preserve">
+    <value>Purchase date</value>
+  </data>
+  <data name="PurchasePrice" xml:space="preserve">
+    <value>Purchase price</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="CustomDailyRate" xml:space="preserve">
+    <value>Custom daily rate</value>
+  </data>
+  <data name="CustomWeeklyRate" xml:space="preserve">
+    <value>Custom weekly rate</value>
+  </data>
+  <data name="CustomDeposit" xml:space="preserve">
+    <value>Custom deposit</value>
+  </data>
+  <data name="IsAvailableForRent" xml:space="preserve">
+    <value>Is available for rent?</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Vehicle brand</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="NextMaintenanceDate" xml:space="preserve">
+    <value>Next maintenance date</value>
+  </data>
+  <data name="DataGridAvailable" xml:space="preserve">
+    <value>Available?</value>
+  </data>
+  <data name="HasNavigation" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="HasBluetooth" xml:space="preserve">
+    <value>Bluetooth</value>
+  </data>
+  <data name="HasAirConditioning" xml:space="preserve">
+    <value>Air conditioning</value>
+  </data>
+  <data name="HasAutomaticTransmission" xml:space="preserve">
+    <value>Automatic transmission</value>
+  </data>
+  <data name="HasParkingSensors" xml:space="preserve">
+    <value>Parking sensors</value>
+  </data>
+  <data name="HasCruiseControl" xml:space="preserve">
+    <value>Cruise control</value>
+  </data>
+  <data name="OptionalInfoFields" xml:space="preserve">
+    <value>Optional Information</value>
+  </data>
+  <data name="DataGridCustomDailyRate" xml:space="preserve">
+    <value>Daily rate</value>
+  </data>
+  <data name="DataGridCustomWeeklyRate" xml:space="preserve">
+    <value>Weekly rate</value>
+  </data>
+  <data name="DataGridCustomDeposit" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
 </root>

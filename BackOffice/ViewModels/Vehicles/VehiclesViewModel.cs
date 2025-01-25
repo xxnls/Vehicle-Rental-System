@@ -10,47 +10,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BackOffice.Models.DTOs.Other;
 using BackOffice.Models.DTOs.Vehicles;
 
 namespace BackOffice.ViewModels.Vehicles
 {
     public class VehiclesViewModel : BaseListViewModel<VehicleDto>, IListViewModel
     {
-        public SelectorDialogParameters SelectVehicleModelIdParameters { get; set; }
-        public SelectorDialogParameters SelectVehicleTypeIdParameters { get; set; }
-        public SelectorDialogParameters SelectRentalPlaceIdParameters { get; set; }
+        public SelectorDialogParameters SelectVehicleModelParameters { get; set; }
+        public SelectorDialogParameters SelectVehicleTypeParameters { get; set; }
+        public SelectorDialogParameters SelectRentalPlaceParameters { get; set; }
 
         public VehiclesViewModel() : base("Vehicles", LocalizationHelper.GetString("Vehicles", "DisplayName"))
         {
-            SelectVehicleModelIdParameters = new SelectorDialogParameters
+            SelectVehicleModelParameters = new SelectorDialogParameters
             {
                 SelectorViewModelType = typeof(VehicleModelsViewModel),
                 SelectorView = new VehicleModelsView(),
-                TargetProperty = result => EditableModel.VehicleModelId = (int)result,
-                PropertyForSelection = "VehicleModelId",
+                TargetProperty = result =>
+                {
+                    EditableModel.VehicleModel ??= new VehicleModelDto();
+                    EditableModel.VehicleModel = (VehicleModelDto)result;
+                },
                 Title = LocalizationHelper.GetString("Vehicles", "SelectVehicleModelTitle")
             };
 
-            SelectVehicleTypeIdParameters = new SelectorDialogParameters
+            SelectVehicleTypeParameters = new SelectorDialogParameters
             {
                 SelectorViewModelType = typeof(VehicleTypesViewModel),
                 SelectorView = new VehicleTypesView(),
-                TargetProperty = result => EditableModel.VehicleTypeId = (int)result,
-                PropertyForSelection = "VehicleTypeId",
+                TargetProperty = result =>
+                {
+                    EditableModel.VehicleType ??= new VehicleTypeDto();
+                    EditableModel.VehicleType = (VehicleTypeDto)result;
+                },
                 Title = LocalizationHelper.GetString("Vehicles", "SelectVehicleTypeTitle")
             };
 
-            SelectRentalPlaceIdParameters = new SelectorDialogParameters
+            SelectRentalPlaceParameters = new SelectorDialogParameters
             {
                 SelectorViewModelType = typeof(RentalPlacesViewModel),
                 SelectorView = new RentalPlacesView(),
-                TargetProperty = result => EditableModel.RentalPlaceId = (int)result,
-                PropertyForSelection = "RentalPlaceId",
+                TargetProperty = result =>
+                {
+                    EditableModel.RentalPlace ??= new RentalPlaceDto();
+                    EditableModel.RentalPlace = (RentalPlaceDto)result;
+                },
                 Title = LocalizationHelper.GetString("Vehicles", "SelectRentalPlaceTitle")
             };
 
-            CreateModelCommand = new AsyncRelayCommand(CreateModelAsync);
-            UpdateModelCommand = new AsyncRelayCommand(UpdateModelAsync);
+            CreateModelCommand = new AsyncRelayCommand(() => CreateModelAsync(EditableModel));
+            UpdateModelCommand = new AsyncRelayCommand(() => UpdateModelAsync(EditableModel.VehicleId, EditableModel));
             DeleteModelCommand = new AsyncRelayCommand(
                 () => DeleteModelAsync(EditableModel.VehicleId),
                 () => EditableModel != null
@@ -58,75 +68,75 @@ namespace BackOffice.ViewModels.Vehicles
 
             ValidationRules = new Dictionary<string, Action>
             {
-                { nameof(EditableModel.Vin), ValidateVIN },
-                { nameof(EditableModel.LicensePlate), ValidateLicensePlate },
-                { nameof(EditableModel.Color), ValidateColor },
-                { nameof(EditableModel.ManufactureYear), ValidateManufactureYear },
-                { nameof(EditableModel.VehicleTypeId), ValidateVehicleTypeId },
-                { nameof(EditableModel.VehicleModelId), ValidateVehicleModelId }
+                //{ nameof(EditableModel.Vin), ValidateVIN },
+                //{ nameof(EditableModel.LicensePlate), ValidateLicensePlate },
+                //{ nameof(EditableModel.Color), ValidateColor },
+                //{ nameof(EditableModel.ManufactureYear), ValidateManufactureYear },
+                //{ nameof(EditableModel.VehicleTypeId), ValidateVehicleTypeId },
+                //{ nameof(EditableModel.VehicleModelId), ValidateVehicleModelId }
             };
         }
 
         #region Methods
 
-        public async Task CreateModelAsync()
-        {
-            var model = new VehicleDto
-            {
-                VehicleTypeId = EditableModel.VehicleTypeId,
-                VehicleModelId = EditableModel.VehicleModelId,
-                RentalPlaceId = EditableModel.RentalPlaceId,
-                Vin = EditableModel.Vin,
-                LicensePlate = EditableModel.LicensePlate,
-                Color = EditableModel.Color,
-                ManufactureYear = EditableModel.ManufactureYear,
-                CurrentMileage = EditableModel.CurrentMileage,
-                LastMaintenanceMileage = EditableModel.LastMaintenanceMileage,
-                LastMaintenanceDate = EditableModel.LastMaintenanceDate,
-                NextMaintenanceDate = EditableModel.NextMaintenanceDate,
-                PurchaseDate = EditableModel.PurchaseDate,
-                PurchasePrice = EditableModel.PurchasePrice,
-                Status = EditableModel.Status,
-                CustomDailyRate = EditableModel.CustomDailyRate,
-                CustomWeeklyRate = EditableModel.CustomWeeklyRate,
-                CustomDeposit = EditableModel.CustomDeposit,
-                IsAvailableForRent = EditableModel.IsAvailableForRent,
-                Notes = EditableModel.Notes
-            };
+        //public async Task CreateModelAsync()
+        //{
+        //    var model = new VehicleDto
+        //    {
+        //        VehicleTypeId = EditableModel.VehicleTypeId,
+        //        VehicleModelId = EditableModel.VehicleModelId,
+        //        RentalPlaceId = EditableModel.RentalPlaceId,
+        //        Vin = EditableModel.Vin,
+        //        LicensePlate = EditableModel.LicensePlate,
+        //        Color = EditableModel.Color,
+        //        ManufactureYear = EditableModel.ManufactureYear,
+        //        CurrentMileage = EditableModel.CurrentMileage,
+        //        LastMaintenanceMileage = EditableModel.LastMaintenanceMileage,
+        //        LastMaintenanceDate = EditableModel.LastMaintenanceDate,
+        //        NextMaintenanceDate = EditableModel.NextMaintenanceDate,
+        //        PurchaseDate = EditableModel.PurchaseDate,
+        //        PurchasePrice = EditableModel.PurchasePrice,
+        //        Status = EditableModel.Status,
+        //        CustomDailyRate = EditableModel.CustomDailyRate,
+        //        CustomWeeklyRate = EditableModel.CustomWeeklyRate,
+        //        CustomDeposit = EditableModel.CustomDeposit,
+        //        IsAvailableForRent = EditableModel.IsAvailableForRent,
+        //        Notes = EditableModel.Notes
+        //    };
 
-            await CreateModelAsync(model);
-        }
+        //    await CreateModelAsync(model);
+        //}
 
-        public async Task UpdateModelAsync()
-        {
-            var id = EditableModel.VehicleId;
+        //public async Task UpdateModelAsync()
+        //{
+        //    var id = EditableModel.VehicleId;
 
-            var model = new VehicleDto
-            {
-                VehicleId = EditableModel.VehicleId,
-                VehicleTypeId = EditableModel.VehicleTypeId,
-                VehicleModelId = EditableModel.VehicleModelId,
-                RentalPlaceId = EditableModel.RentalPlaceId,
-                Vin = EditableModel.Vin,
-                LicensePlate = EditableModel.LicensePlate,
-                Color = EditableModel.Color,
-                ManufactureYear = EditableModel.ManufactureYear,
-                CurrentMileage = EditableModel.CurrentMileage,
-                LastMaintenanceMileage = EditableModel.LastMaintenanceMileage,
-                LastMaintenanceDate = EditableModel.LastMaintenanceDate,
-                NextMaintenanceDate = EditableModel.NextMaintenanceDate,
-                PurchaseDate = EditableModel.PurchaseDate,
-                PurchasePrice = EditableModel.PurchasePrice,
-                Status = EditableModel.Status,
-                CustomDailyRate = EditableModel.CustomDailyRate,
-                CustomWeeklyRate = EditableModel.CustomWeeklyRate,
-                CustomDeposit = EditableModel.CustomDeposit,
-                IsAvailableForRent = EditableModel.IsAvailableForRent,
-                Notes = EditableModel.Notes
-            };
+        //    var model = new VehicleDto
+        //    {
+        //        VehicleId = EditableModel.VehicleId,
+        //        VehicleTypeId = EditableModel.VehicleTypeId,
+        //        VehicleModelId = EditableModel.VehicleModelId,
+        //        RentalPlaceId = EditableModel.RentalPlaceId,
+        //        Vin = EditableModel.Vin,
+        //        LicensePlate = EditableModel.LicensePlate,
+        //        Color = EditableModel.Color,
+        //        ManufactureYear = EditableModel.ManufactureYear,
+        //        CurrentMileage = EditableModel.CurrentMileage,
+        //        LastMaintenanceMileage = EditableModel.LastMaintenanceMileage,
+        //        LastMaintenanceDate = EditableModel.LastMaintenanceDate,
+        //        NextMaintenanceDate = EditableModel.NextMaintenanceDate,
+        //        PurchaseDate = EditableModel.PurchaseDate,
+        //        PurchasePrice = EditableModel.PurchasePrice,
+        //        Status = EditableModel.Status,
+        //        CustomDailyRate = EditableModel.CustomDailyRate,
+        //        CustomWeeklyRate = EditableModel.CustomWeeklyRate,
+        //        CustomDeposit = EditableModel.CustomDeposit,
+        //        IsAvailableForRent = EditableModel.IsAvailableForRent,
+        //        Notes = EditableModel.Notes
+        //    };
 
-            await UpdateModelAsync(id, model);
-        }
+        //    await UpdateModelAsync(id, model);
+        //}
 
         #endregion
 

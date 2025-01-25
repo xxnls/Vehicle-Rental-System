@@ -38,6 +38,7 @@ namespace API.Models.DTOs.Vehicles
         public VehicleModelDto? VehicleModel { get; set; }
         public RentalPlaceDto? RentalPlace { get; set; }
         public VehicleStatisticsDto? VehicleStatistics { get; set; }
-        public VehicleOptionalInformationDto? OptionalInformation { get; set; }
+        public VehicleOptionalInformationDto? VehicleOptionalInformation { get; set; }
+        public LocationDto? Location { get; set; }
     }
 }
