@@ -130,6 +130,34 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
         }
     }
 
+    public override async Task<bool> DeleteAsync(int id)
+    {
+        using var transaction = await _apiDbContext.Database.BeginTransactionAsync();
+        try
+        {
+            var vehicle = await FindEntityById(id);
+            if (vehicle == null) throw new KeyNotFoundException($"{typeof(Vehicle).Name} not found");
+
+            // Delete location
+            var location = await _locationsService.FindEntityById(vehicle.LocationId);
+            if (location != null)
+            {
+                await _locationsService.DeleteAsync(location.LocationId);
+            }
+
+            var vehicleDeleted = await base.DeleteAsync(id);
+            if (!vehicleDeleted) return false;
+
+            await transaction.CommitAsync();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            await transaction.RollbackAsync();
+            throw;
+        }
+    }
+
     protected override Expression<Func<Vehicle, bool>> BuildSearchQuery(string search)
     {
         // TODO: Implement search query
@@ -171,11 +199,17 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
         return MapSingleEntityToDto(entity);
     }
 
+    public override async Task<VehicleDto> UpdateAsync(int id, VehicleDto updateDto)
+    {
+        await _optionalInformationService.UpdateAsync(updateDto.VehicleOptionalInformationId, updateDto.VehicleOptionalInformation);
+        return await base.UpdateAsync(id, updateDto);
+    }
+
     protected override void UpdateEntity(Vehicle entity, VehicleDto model)
     {
-        entity.VehicleTypeId = model.VehicleTypeId;
-        entity.VehicleModelId = model.VehicleModelId;
-        entity.RentalPlaceId = model.RentalPlaceId;
+        entity.VehicleTypeId = model.VehicleType.VehicleTypeId;
+        entity.VehicleModelId = model.VehicleModel.VehicleModelId;
+        entity.RentalPlaceId = model.RentalPlace.RentalPlaceId;
         entity.Vin = model.Vin;
         entity.LicensePlate = model.LicensePlate;
         entity.Color = model.Color;
@@ -190,13 +224,27 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
         entity.IsAvailableForRent = model.IsAvailableForRent;
         entity.Notes = model.Notes;
 
-        entity.Location.IsActive = model.IsActive;
+        if (model.VehicleOptionalInformation != null)
+        {
+            entity.VehicleOptionalInformation.HasAirConditioning = model.VehicleOptionalInformation.HasAirConditioning;
+            entity.VehicleOptionalInformation.HasAutomaticTransmission = model.VehicleOptionalInformation.HasAutomaticTransmission;
+            entity.VehicleOptionalInformation.HasBluetooth = model.VehicleOptionalInformation.HasBluetooth;
+            entity.VehicleOptionalInformation.HasCruiseControl = model.VehicleOptionalInformation.HasCruiseControl;
+            entity.VehicleOptionalInformation.HasNavigation = model.VehicleOptionalInformation.HasNavigation;
+            entity.VehicleOptionalInformation.HasParkingSensors = model.VehicleOptionalInformation.HasParkingSensors;
+        }
+
+        // entity.Location.IsActive = model.IsActive;
 
         // If custom rates are not provided, use the default rates from Vehicle Type
-        entity.CustomDailyRate = model.CustomDailyRate ?? model.VehicleType.BaseDailyRate;
-        entity.CustomWeeklyRate = model.CustomWeeklyRate ?? model.VehicleType.BaseWeeklyRate;
-        entity.CustomDeposit = model.CustomDeposit ?? model.VehicleType.BaseDeposit;
+        if (model.VehicleType != null)
+        {
+            entity.CustomDailyRate = model.CustomDailyRate ?? model.VehicleType.BaseDailyRate;
+            entity.CustomWeeklyRate = model.CustomWeeklyRate ?? model.VehicleType.BaseWeeklyRate;
+            entity.CustomDeposit = model.CustomDeposit ?? model.VehicleType.BaseDeposit;
+        }
 
+        // Restore the vehicle to active state if it was previously deleted
         if (model.IsActive)
         {
             entity.DeletedDate = model.DeletedDate;
@@ -204,9 +252,6 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             entity.Location.DateTime = DateTime.Now;
             entity.Location.IsActive = model.IsActive;
         }
-
-        // Update vehicle optional information
-        _optionalInformationService.UpdateAsync(entity.VehicleOptionalInformationId, model.VehicleOptionalInformation);
     }
 
     public override async Task<Vehicle> FindEntityById(int id)
