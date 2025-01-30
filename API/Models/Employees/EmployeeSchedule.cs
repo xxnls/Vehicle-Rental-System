@@ -1,11 +1,11 @@
-﻿using API.Models.Employees;
-using API.Models.Other;
+﻿using API.Models.Other;
 using System;
 using System.Collections.Generic;
+using API.Interfaces;
 
-namespace API.Models;
+namespace API.Models.Employees;
 
-public partial class EmployeeSchedule
+public partial class EmployeeSchedule : IBaseModel
 {
     public int EmployeeScheduleId { get; set; }
 

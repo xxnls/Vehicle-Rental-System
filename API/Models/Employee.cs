@@ -1,4 +1,5 @@
-﻿using API.Models.Other;
+﻿using API.Models.Employees;
+using API.Models.Other;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

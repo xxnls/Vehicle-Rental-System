@@ -34,6 +34,9 @@
     <Compile Update="Views\DetailedInfoWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Employees\EmployeeLeaveTypesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Employees\EmployeeShiftTypesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -97,6 +100,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\DetailedInfoWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Employees\EmployeeLeaveTypesView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Employees\EmployeeShiftTypesView.xaml">

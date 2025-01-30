@@ -3,36 +3,76 @@
   "WorkspaceRootPath": "G:\\Vehicle Rental System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\employees\\employeeshifttypesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\employees\\employeeshifttypesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewmodels\\employees\\employeeleavetypesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\employees\\employeeleavetypesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\vehicles\\vehiclemodelsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\vehicles\\vehiclemodelsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\helpers\\localizationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\helpers\\localizationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\vehicles\\vehiclesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\vehicles\\vehiclesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\employees\\employeeleavetypesview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\employees\\employeeleavetypesview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\employees\\employeeleavetypesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\employees\\employeeleavetypesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\employeeleavetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\employeeleavetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\resources\\countries\\resources.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\resources\\countries\\resources.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\vehicles\\vehicletypesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\vehicles\\vehicletypesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewmodels\\other\\addressesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\other\\addressesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewmodels\\other\\rentalplacesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\other\\rentalplacesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewmodels\\employees\\employeeshifttypesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\employees\\employeeshifttypesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\dtos\\employees\\employeeshifttypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\dtos\\employees\\employeeshifttypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\models\\dtos\\employees\\employeeleavetypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\models\\dtos\\employees\\employeeleavetypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\employees\\employeeshifttypesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\employees\\employeeshifttypesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\controllers\\employees\\employeeleavetypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\controllers\\employees\\employeeleavetypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\employees\\employeeshifttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\employees\\employeeshifttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\dtos\\employees\\employeeleavetypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\dtos\\employees\\employeeleavetypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\controllers\\employees\\employeeshifttypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\controllers\\employees\\employeeshifttypescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\employees\\employeeleavetypesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\employees\\employeeleavetypesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\other\\addressesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\other\\addressesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\other\\countriesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\other\\countriesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,112 +82,240 @@
       "DocumentGroups": [
         {
           "DockedWidth": 263,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "EmployeeShiftType.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\Employees\\EmployeeShiftType.cs",
-              "RelativeDocumentMoniker": "API\\Models\\Employees\\EmployeeShiftType.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\Employees\\EmployeeShiftType.cs",
-              "RelativeToolTip": "API\\Models\\Employees\\EmployeeShiftType.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 12,
+              "Title": "EmployeeLeaveTypeDto.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\Employees\\EmployeeLeaveTypeDto.cs",
+              "RelativeDocumentMoniker": "API\\Models\\DTOs\\Employees\\EmployeeLeaveTypeDto.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\Employees\\EmployeeLeaveTypeDto.cs",
+              "RelativeToolTip": "API\\Models\\DTOs\\Employees\\EmployeeLeaveTypeDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-30T13:51:30.058Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "EmployeeShiftTypeDto.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\Employees\\EmployeeShiftTypeDto.cs",
-              "RelativeDocumentMoniker": "API\\Models\\DTOs\\Employees\\EmployeeShiftTypeDto.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\Employees\\EmployeeShiftTypeDto.cs",
-              "RelativeToolTip": "API\\Models\\DTOs\\Employees\\EmployeeShiftTypeDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-30T13:50:32.381Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EmployeeShiftTypesService.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\Employees\\EmployeeShiftTypesService.cs",
-              "RelativeDocumentMoniker": "API\\Services\\Employees\\EmployeeShiftTypesService.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\Employees\\EmployeeShiftTypesService.cs",
-              "RelativeToolTip": "API\\Services\\Employees\\EmployeeShiftTypesService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-30T13:54:44.61Z",
+              "WhenOpened": "2025-01-30T16:03:49.863Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "EmployeeShiftTypesViewModel.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Employees\\EmployeeShiftTypesViewModel.cs",
-              "RelativeDocumentMoniker": "BackOffice\\ViewModels\\Employees\\EmployeeShiftTypesViewModel.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Employees\\EmployeeShiftTypesViewModel.cs",
-              "RelativeToolTip": "BackOffice\\ViewModels\\Employees\\EmployeeShiftTypesViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAArAAAAAAAAAA==",
+              "Title": "EmployeeLeaveType.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\EmployeeLeaveType.cs",
+              "RelativeDocumentMoniker": "API\\Models\\EmployeeLeaveType.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\EmployeeLeaveType.cs",
+              "RelativeToolTip": "API\\Models\\EmployeeLeaveType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-30T14:57:31.44Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "EmployeeShiftTypesView.xaml",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\Employees\\EmployeeShiftTypesView.xaml",
-              "RelativeDocumentMoniker": "BackOffice\\Views\\Employees\\EmployeeShiftTypesView.xaml",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Employees\\EmployeeShiftTypesView.xaml",
-              "RelativeToolTip": "BackOffice\\Views\\Employees\\EmployeeShiftTypesView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-30T14:46:08.09Z",
+              "WhenOpened": "2025-01-30T16:03:58.212Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "VehicleModelsView.xaml",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\Vehicles\\VehicleModelsView.xaml",
-              "RelativeDocumentMoniker": "BackOffice\\Views\\Vehicles\\VehicleModelsView.xaml",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Vehicles\\VehicleModelsView.xaml",
-              "RelativeToolTip": "BackOffice\\Views\\Vehicles\\VehicleModelsView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-30T15:10:20.264Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Program.cs",
-              "RelativeDocumentMoniker": "API\\Program.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Program.cs",
-              "RelativeToolTip": "API\\Program.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAAABwAAAAzAAAAAAAAAA==",
+              "Title": "LocalizationHelper.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Helpers\\LocalizationHelper.cs",
+              "RelativeDocumentMoniker": "BackOffice\\Helpers\\LocalizationHelper.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Helpers\\LocalizationHelper.cs",
+              "RelativeToolTip": "BackOffice\\Helpers\\LocalizationHelper.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAApwBQAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-30T15:07:49.968Z",
+              "WhenOpened": "2025-01-30T16:36:34.719Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "VehiclesView.xaml",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\Vehicles\\VehiclesView.xaml",
-              "RelativeDocumentMoniker": "BackOffice\\Views\\Vehicles\\VehiclesView.xaml",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Vehicles\\VehiclesView.xaml",
-              "RelativeToolTip": "BackOffice\\Views\\Vehicles\\VehiclesView.xaml",
+              "Title": "EmployeeLeaveTypesView.xaml.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\Employees\\EmployeeLeaveTypesView.xaml.cs",
+              "RelativeDocumentMoniker": "BackOffice\\Views\\Employees\\EmployeeLeaveTypesView.xaml.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Employees\\EmployeeLeaveTypesView.xaml.cs",
+              "RelativeToolTip": "BackOffice\\Views\\Employees\\EmployeeLeaveTypesView.xaml.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T16:46:27.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "VehicleTypesView.xaml",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\Vehicles\\VehicleTypesView.xaml",
+              "RelativeDocumentMoniker": "BackOffice\\Views\\Vehicles\\VehicleTypesView.xaml",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Vehicles\\VehicleTypesView.xaml",
+              "RelativeToolTip": "BackOffice\\Views\\Vehicles\\VehicleTypesView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-30T14:54:26.439Z",
+              "WhenOpened": "2025-01-30T16:26:04.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "EmployeeShiftTypesViewModel.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Employees\\EmployeeShiftTypesViewModel.cs",
+              "RelativeDocumentMoniker": "BackOffice\\ViewModels\\Employees\\EmployeeShiftTypesViewModel.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Employees\\EmployeeShiftTypesViewModel.cs",
+              "RelativeToolTip": "BackOffice\\ViewModels\\Employees\\EmployeeShiftTypesViewModel.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T16:24:03.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmployeeLeaveTypesViewModel.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Employees\\EmployeeLeaveTypesViewModel.cs",
+              "RelativeDocumentMoniker": "BackOffice\\ViewModels\\Employees\\EmployeeLeaveTypesViewModel.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Employees\\EmployeeLeaveTypesViewModel.cs*",
+              "RelativeToolTip": "BackOffice\\ViewModels\\Employees\\EmployeeLeaveTypesViewModel.cs*",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAgwBYAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T16:22:49.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EmployeeLeaveTypesView.xaml",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\Employees\\EmployeeLeaveTypesView.xaml",
+              "RelativeDocumentMoniker": "BackOffice\\Views\\Employees\\EmployeeLeaveTypesView.xaml",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Employees\\EmployeeLeaveTypesView.xaml",
+              "RelativeToolTip": "BackOffice\\Views\\Employees\\EmployeeLeaveTypesView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-30T16:26:46.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Resources.Designer.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Resources\\Countries\\Resources.Designer.cs",
+              "RelativeDocumentMoniker": "BackOffice\\Resources\\Countries\\Resources.Designer.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Resources\\Countries\\Resources.Designer.cs",
+              "RelativeToolTip": "BackOffice\\Resources\\Countries\\Resources.Designer.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAADAAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T16:43:44.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RentalPlacesViewModel.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Other\\RentalPlacesViewModel.cs",
+              "RelativeDocumentMoniker": "BackOffice\\ViewModels\\Other\\RentalPlacesViewModel.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Other\\RentalPlacesViewModel.cs",
+              "RelativeToolTip": "BackOffice\\ViewModels\\Other\\RentalPlacesViewModel.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowDUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T16:23:51.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AddressesViewModel.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Other\\AddressesViewModel.cs",
+              "RelativeDocumentMoniker": "BackOffice\\ViewModels\\Other\\AddressesViewModel.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Other\\AddressesViewModel.cs",
+              "RelativeToolTip": "BackOffice\\ViewModels\\Other\\AddressesViewModel.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAC8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T16:18:53.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "EmployeeLeaveTypeDto.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Models\\DTOs\\Employees\\EmployeeLeaveTypeDto.cs",
+              "RelativeDocumentMoniker": "BackOffice\\Models\\DTOs\\Employees\\EmployeeLeaveTypeDto.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Models\\DTOs\\Employees\\EmployeeLeaveTypeDto.cs",
+              "RelativeToolTip": "BackOffice\\Models\\DTOs\\Employees\\EmployeeLeaveTypeDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T16:16:04.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Program.cs",
+              "RelativeDocumentMoniker": "API\\Program.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Program.cs",
+              "RelativeToolTip": "API\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T16:15:19.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "EmployeeShiftTypesController.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Controllers\\Employees\\EmployeeShiftTypesController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\Employees\\EmployeeShiftTypesController.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Controllers\\Employees\\EmployeeShiftTypesController.cs",
+              "RelativeToolTip": "API\\Controllers\\Employees\\EmployeeShiftTypesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T16:12:23.294Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "EmployeeLeaveTypesController.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Controllers\\Employees\\EmployeeLeaveTypesController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\Employees\\EmployeeLeaveTypesController.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Controllers\\Employees\\EmployeeLeaveTypesController.cs",
+              "RelativeToolTip": "API\\Controllers\\Employees\\EmployeeLeaveTypesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAACsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T16:08:53.821Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AddressesService.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\Other\\AddressesService.cs",
+              "RelativeDocumentMoniker": "API\\Services\\Other\\AddressesService.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\Other\\AddressesService.cs",
+              "RelativeToolTip": "API\\Services\\Other\\AddressesService.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T16:07:16.239Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "CountriesService.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\Other\\CountriesService.cs",
+              "RelativeDocumentMoniker": "API\\Services\\Other\\CountriesService.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\Other\\CountriesService.cs",
+              "RelativeToolTip": "API\\Services\\Other\\CountriesService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABYAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T16:06:11.579Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "EmployeeLeaveTypesService.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\Employees\\EmployeeLeaveTypesService.cs",
+              "RelativeDocumentMoniker": "API\\Services\\Employees\\EmployeeLeaveTypesService.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\Employees\\EmployeeLeaveTypesService.cs",
+              "RelativeToolTip": "API\\Services\\Employees\\EmployeeLeaveTypesService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEsAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-30T16:04:57.09Z",
               "EditorCaption": ""
             }
           ]

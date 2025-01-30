@@ -99,7 +99,8 @@ namespace BackOffice.ViewModels
                 { "RentalPlacesViewModel", new RentalPlacesViewModel() },
                 { "AddressesViewModel", new AddressesViewModel() },
                 { "CountriesViewModel", new CountriesViewModel() },
-                { "EmployeeShiftTypesViewModel", new EmployeeShiftTypesViewModel() }
+                { "EmployeeShiftTypesViewModel", new EmployeeShiftTypesViewModel() },
+                { "EmployeeLeaveTypesViewModel", new EmployeeLeaveTypesViewModel() }
             };
 
             // Load user
