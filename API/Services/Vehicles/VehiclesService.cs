@@ -165,7 +165,8 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
         return v =>
             v.VehicleId.ToString().Contains(search) ||
             (v.VehicleModel != null && v.VehicleModel.Name != null && v.VehicleModel.Name.Contains(search)) ||
-            (v.VehicleModel != null && v.VehicleModel.VehicleBrand != null && v.VehicleModel.VehicleBrand.Name != null && v.VehicleModel.VehicleBrand.Name.Contains(search)) ||
+            (v.VehicleModel != null && v.VehicleModel.VehicleBrand != null &&
+             v.VehicleModel.VehicleBrand.Name != null && v.VehicleModel.VehicleBrand.Name.Contains(search)) ||
             (v.VehicleType != null && v.VehicleType.Name != null && v.VehicleType.Name.Contains(search)) ||
             (v.LicensePlate != null && v.LicensePlate.Contains(search)) ||
             (v.Color != null && v.Color.Contains(search)) ||
@@ -173,16 +174,19 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             v.CurrentMileage.ToString().Contains(search) ||
             v.ManufactureYear.ToString().Contains(search) ||
             (v.LastMaintenanceMileage != null && v.LastMaintenanceMileage.ToString().Contains(search)) ||
-            (v.LastMaintenanceDate != null && v.LastMaintenanceDate.Value.ToString("yyyy-MM-dd").Contains(search)) ||
-            (v.NextMaintenanceDate != null && v.NextMaintenanceDate.Value.ToString("yyyy-MM-dd").Contains(search)) ||
-            v.PurchaseDate.ToString("yyyy-MM-dd").Contains(search) ||
-            v.PurchasePrice.ToString("F2").Contains(search) ||
+            (v.LastMaintenanceDate != null && v.LastMaintenanceDate.Value.ToString().Contains(search)) ||
+            (v.NextMaintenanceDate != null && v.NextMaintenanceDate.Value.ToString().Contains(search)) ||
+            v.PurchaseDate.ToString().Contains(search) ||
+            v.PurchasePrice.ToString().Contains(search) ||
             (v.Status != null && v.Status.Contains(search)) ||
-            (v.CustomDailyRate != null && v.CustomDailyRate.Value.ToString("F2").Contains(search)) ||
-            (v.CustomWeeklyRate != null && v.CustomWeeklyRate.Value.ToString("F2").Contains(search)) ||
-            (v.CustomDeposit != null && v.CustomDeposit.Value.ToString("F2").Contains(search)) ||
+            (v.CustomDailyRate != null && v.CustomDailyRate.Value.ToString().Contains(search)) ||
+            (v.CustomWeeklyRate != null && v.CustomWeeklyRate.Value.ToString().Contains(search)) ||
+            (v.CustomDeposit != null && v.CustomDeposit.Value.ToString().Contains(search)) ||
             (v.Notes != null && v.Notes.Contains(search)) ||
-            (v.RentalPlace != null && v.RentalPlace.Address.City != null && v.RentalPlace.Address.City.Contains(search)) ||
+            (v.RentalPlace != null && v.RentalPlace.Address.City != null &&
+             v.RentalPlace.Address.City.Contains(search)) ||
+            (v.RentalPlace != null && v.RentalPlace.Address.Country.Name != null) &&
+            v.RentalPlace.Address.Country.Name.Contains(search) ||
             v.IsAvailableForRent.ToString().Contains(search);
     }
 

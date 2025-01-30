@@ -111,8 +111,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-25T00:19:36.531Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -124,8 +123,7 @@
               "RelativeToolTip": "BackOffice\\Views\\Vehicles\\VehiclesView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-01-25T00:19:31.387Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -135,7 +133,7 @@
               "RelativeDocumentMoniker": "API\\Services\\Vehicles\\VehiclesService.cs",
               "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\Vehicles\\VehiclesService.cs",
               "RelativeToolTip": "API\\Services\\Vehicles\\VehiclesService.cs",
-              "ViewState": "AgIAAM8AAAAAAAAAAAAUwOsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAKEAAAAAAAAAAAAkwLQAAABlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-25T00:19:15.651Z",
               "IsPinned": true,
@@ -151,8 +149,7 @@
               "RelativeToolTip": "API\\Services\\BaseApiService.cs",
               "ViewState": "AgIAAM4AAAAAAAAAAAAswNcAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T13:48:21.123Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T13:48:21.123Z"
             },
             {
               "$type": "Document",
@@ -164,8 +161,7 @@
               "RelativeToolTip": "API\\Services\\Vehicles\\VehicleStatisticsService.cs",
               "ViewState": "AgIAAD8AAAAAAAAAAAAawFAAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T14:02:14.478Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T14:02:14.478Z"
             },
             {
               "$type": "Document",
@@ -177,8 +173,7 @@
               "RelativeToolTip": "API\\Services\\Other\\CountriesService.cs",
               "ViewState": "AgIAAD4AAAAAAAAAAAAawFQAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T14:01:56.162Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T14:01:56.162Z"
             },
             {
               "$type": "Document",
@@ -190,8 +185,7 @@
               "RelativeToolTip": "API\\Services\\Other\\AddressesService.cs",
               "ViewState": "AgIAAF0AAAAAAAAAAAAlwHQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T14:01:46.871Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T14:01:46.871Z"
             },
             {
               "$type": "Document",
@@ -203,8 +197,7 @@
               "RelativeToolTip": "API\\Services\\Vehicles\\VehicleBrandsService.cs",
               "ViewState": "AgIAAEkAAAAAAAAAAAAtwFwAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T14:02:08.896Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T14:02:08.896Z"
             },
             {
               "$type": "Document",
@@ -216,8 +209,7 @@
               "RelativeToolTip": "API\\Services\\Vehicles\\VehicleModelsService.cs",
               "ViewState": "AgIAAFoAAAAAAAAAAAAawGsAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T14:02:17.241Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T14:02:17.241Z"
             },
             {
               "$type": "Document",
@@ -229,8 +221,7 @@
               "RelativeToolTip": "API\\Services\\Other\\LocationsService.cs",
               "ViewState": "AgIAAEIAAAAAAAAAAAAtwFUAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T14:02:05.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T14:02:05.185Z"
             },
             {
               "$type": "Document",
@@ -242,8 +233,7 @@
               "RelativeToolTip": "BackOffice\\ViewModels\\BaseListViewModel.cs",
               "ViewState": "AgIAALsBAAAAAAAAAAASwNEBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T01:55:28.932Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T01:55:28.932Z"
             },
             {
               "$type": "Document",
@@ -255,8 +245,7 @@
               "RelativeToolTip": "API\\Services\\Other\\RentalPlacesService.cs",
               "ViewState": "AgIAAKoAAAAAAAAAAAAtwLIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T00:38:20.962Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T00:38:20.962Z"
             },
             {
               "$type": "Document",
@@ -268,8 +257,7 @@
               "RelativeToolTip": "API\\Services\\Vehicles\\VehicleOptionalInformationService.cs",
               "ViewState": "AgIAAEYAAAAAAAAAAAAawFcAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T13:47:11.723Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T13:47:11.723Z"
             },
             {
               "$type": "Document",
@@ -281,8 +269,7 @@
               "RelativeToolTip": "API\\Controllers\\Vehicles\\VehiclesController.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T13:27:02.108Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-28T13:27:02.108Z"
             },
             {
               "$type": "Document",
@@ -294,8 +281,7 @@
               "RelativeToolTip": "BackOffice\\Models\\DTOs\\Vehicles\\VehicleDto.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAswBoAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T03:02:09.292Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T03:02:09.292Z"
             },
             {
               "$type": "Document",
@@ -306,8 +292,7 @@
               "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Other\\RentalPlacesView.xaml",
               "RelativeToolTip": "BackOffice\\Views\\Other\\RentalPlacesView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-25T02:47:53.155Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T02:47:53.155Z"
             },
             {
               "$type": "Document",
@@ -331,8 +316,7 @@
               "RelativeToolTip": "API\\Models\\DTOs\\Vehicles\\VehicleDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-25T03:01:30.247Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-25T03:01:30.247Z"
             },
             {
               "$type": "Document",
