@@ -203,11 +203,11 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
         return MapSingleEntityToDto(entity);
     }
 
-    public override async Task<VehicleDto> UpdateAsync(int id, VehicleDto updateDto)
-    {
-        await _optionalInformationService.UpdateAsync(updateDto.VehicleOptionalInformationId, updateDto.VehicleOptionalInformation);
-        return await base.UpdateAsync(id, updateDto);
-    }
+    //public override async Task<VehicleDto> UpdateAsync(int id, VehicleDto updateDto)
+    //{
+    //    await _optionalInformationService.UpdateAsync(updateDto.VehicleOptionalInformationId, updateDto.VehicleOptionalInformation);
+    //    return await base.UpdateAsync(id, updateDto);
+    //}
 
     protected override void UpdateEntity(Vehicle entity, VehicleDto model)
     {

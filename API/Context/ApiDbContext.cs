@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using API.Models.Vehicles;
 using API.Models.Other;
+using API.Models.Employees;
 
 namespace API.Context;
 

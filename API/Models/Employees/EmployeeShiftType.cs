@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using API.Interfaces;
 
-namespace API.Models;
+namespace API.Models.Employees;
 
-public partial class EmployeeShiftType
+public partial class EmployeeShiftType : IBaseModel
 {
     public int EmployeeShiftTypeId { get; set; }
 

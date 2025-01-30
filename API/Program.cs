@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using API.Services.Vehicles;
 using API.Seeders;
+using API.Services.Employees;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,7 @@ builder.Services.AddDbContext<ApiDbContext>(options =>
 
 builder.Services.AddScoped<EmployeeAuthService>();
 builder.Services.AddScoped<EmployeesService>();
+builder.Services.AddScoped<EmployeeShiftTypesService>();
 builder.Services.AddScoped<VehiclesService>();
 builder.Services.AddScoped<VehicleBrandsService>();
 builder.Services.AddScoped<VehicleModelsService>();

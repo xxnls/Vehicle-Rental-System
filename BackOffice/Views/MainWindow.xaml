@@ -1,17 +1,20 @@
-﻿<Window x:Class="BackOffice.Views.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BackOffice"
-        xmlns:ViewModels="clr-namespace:BackOffice.ViewModels"
-        xmlns:res="clr-namespace:BackOffice.Resources.MainWindow"
-        xmlns:other="clr-namespace:BackOffice.Views.Other"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280">
+﻿<Window
+    x:Class="BackOffice.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ViewModels="clr-namespace:BackOffice.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BackOffice"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:other="clr-namespace:BackOffice.Views.Other"
+    xmlns:res="clr-namespace:BackOffice.Resources.MainWindow"
+    Title="MainWindow"
+    Width="1280"
+    Height="720"
+    mc:Ignorable="d">
 
     <Window.Resources>
-        <ResourceDictionary Source="MainWindowResources.xaml"/>
+        <ResourceDictionary Source="MainWindowResources.xaml" />
     </Window.Resources>
 
     <Window.DataContext>
@@ -20,95 +23,139 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-         <!--Sidebar--> 
-        <Grid Width="{Binding SidebarWidth}"
-              Background="{StaticResource PrimaryBrush}"
-              Grid.Row="0"
-              Grid.Column="0"
-              Grid.RowSpan="2">
+        <!--  Sidebar  -->
+        <Grid
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Width="{Binding SidebarWidth}"
+            Background="{StaticResource PrimaryBrush}">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-             <Grid Grid.Row="0">
-                 <Grid.ColumnDefinitions>
-                     <ColumnDefinition Width="Auto" />
-                     <ColumnDefinition Width="*" />
-                 </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-                 <!-- Toggle Button -->
-                 <Button Style="{StaticResource SideBarButton}"
-                         VerticalAlignment="Top" 
-                         Margin="5,5,0,5"
-                         Command="{Binding ToggleSidebarCommand}"
-                         Grid.Column="0">
-                     <Image Source="/ViewResources/Icons/menu.png" Height="24" Width="24" />
-                 </Button>
-
-                 <!-- User Button -->
-                 <Button Style="{StaticResource SideBarButton}"
-                         HorizontalAlignment="Right"
-                         Margin="5,5,5,5"
-                         Grid.Column="1">
-                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                         <Image Source="/ViewResources/Icons/account.png" Width="24" Height="24" Margin="0,0,5,0" />
-                         <TextBlock Text="{Binding FullName}"
-                                    VerticalAlignment="Center"
-                                    Padding="0,0,0,2"/>
-                     </StackPanel>
+                <!--  Toggle Button  -->
+                <Button
+                    Grid.Column="0"
+                    Margin="5,5,0,5"
+                    VerticalAlignment="Top"
+                    Command="{Binding ToggleSidebarCommand}"
+                    Style="{StaticResource SideBarButton}">
+                    <Image
+                        Width="24"
+                        Height="24"
+                        Source="/ViewResources/Icons/menu.png" />
                 </Button>
-             </Grid>
 
-            <!--Menu Items--> 
+                <!--  User Button  -->
+                <Button
+                    Grid.Column="1"
+                    Margin="5,5,5,5"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource SideBarButton}">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                        <Image
+                            Width="24"
+                            Height="24"
+                            Margin="0,0,5,0"
+                            Source="/ViewResources/Icons/account.png" />
+                        <TextBlock
+                            Padding="0,0,0,2"
+                            VerticalAlignment="Center"
+                            Text="{Binding FullName}" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <!--  Menu Items  -->
             <StackPanel Grid.Row="1" Margin="4,0">
-                 <!--Vehicles-->  
-                <Expander Header="{x:Static res:Resources.VehiclesSideMenu}"
-                          Foreground="White"
-                          Background="{StaticResource DarkerPrimaryBrush}"
-                          Padding="3,5"
-                          Margin="0,0,0,5">
+                <!--  Vehicles  -->
+                <Expander
+                    Margin="0,0,0,5"
+                    Padding="3,5"
+                    Background="{StaticResource DarkerPrimaryBrush}"
+                    Foreground="White"
+                    Header="{x:Static res:Resources.VehiclesSideMenu}">
                     <Expander.Resources>
-                        <Style TargetType="Button" BasedOn="{StaticResource SideBarButton}" />
+                        <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
                     <StackPanel>
-                        <Button Content="Vehicles" Command="{Binding ChangeWorkspaceCommand}"
-                                CommandParameter="VehiclesViewModel"/>
-                        <Button Content="Vehicle Types" Command="{Binding ChangeWorkspaceCommand}"
-                                CommandParameter="VehicleTypesViewModel"/>
-                        <Button Content="Vehicle Brands" Command="{Binding ChangeWorkspaceCommand}"
-                                CommandParameter="VehicleBrandsViewModel" />
-                        <Button Content="Vehicle Models" Command="{Binding ChangeWorkspaceCommand}"
-                                CommandParameter="VehicleModelsViewModel"/>
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="VehiclesViewModel"
+                            Content="Vehicles" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="VehicleTypesViewModel"
+                            Content="Vehicle Types" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="VehicleBrandsViewModel"
+                            Content="Vehicle Brands" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="VehicleModelsViewModel"
+                            Content="Vehicle Models" />
                     </StackPanel>
                 </Expander>
 
-                <!--Other-->
-                <Expander Header="Other"
-                          Foreground="White"
-                          Background="{StaticResource DarkerPrimaryBrush}"
-                          Padding="3,5"
-                          Margin="0,0,0,5">
+                <Expander
+                    Margin="0,0,0,5"
+                    Padding="3,5"
+                    Background="{StaticResource DarkerPrimaryBrush}"
+                    Foreground="White"
+                    Header="Employees">
                     <Expander.Resources>
-                        <Style TargetType="Button" BasedOn="{StaticResource SideBarButton}" />
+                        <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
                     <StackPanel>
-                        <Button Content="Rental Places" Command="{Binding ChangeWorkspaceCommand}"
-                                CommandParameter="RentalPlacesViewModel" />
-                        <Button Content="Addresses" Command="{Binding ChangeWorkspaceCommand}"
-                                CommandParameter="AddressesViewModel" />
-                        <Button Content="Countries" Command="{Binding ChangeWorkspaceCommand}"
-                                CommandParameter="CountriesViewModel" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="EmployeeShiftTypesViewModel"
+                            Content="Shift Types" />
+                    </StackPanel>
+                </Expander>
+
+                <!--  Other  -->
+                <Expander
+                    Margin="0,0,0,5"
+                    Padding="3,5"
+                    Background="{StaticResource DarkerPrimaryBrush}"
+                    Foreground="White"
+                    Header="Other">
+                    <Expander.Resources>
+                        <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
+                    </Expander.Resources>
+                    <StackPanel>
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="RentalPlacesViewModel"
+                            Content="Rental Places" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="AddressesViewModel"
+                            Content="Addresses" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="CountriesViewModel"
+                            Content="Countries" />
                         <Button Content="Settings" />
                         <Button Content="Help" />
                     </StackPanel>
@@ -116,36 +163,40 @@
             </StackPanel>
         </Grid>
 
-        <ContentControl Grid.Row="0"
-                        Grid.Column="1"
-                        Content="{Binding CurrentWorkspace}" />
+        <ContentControl
+            Grid.Row="0"
+            Grid.Column="1"
+            Content="{Binding CurrentWorkspace}" />
 
-        <Button Grid.Column="0" 
-                Grid.Row="1"
-                Style="{StaticResource SideBarButton}"
-                HorizontalAlignment="Right"
-                Command="{Binding LogoutCommand}"
-                Margin="0,0,5,5">
-            <Image Source="/ViewResources/Icons/logout.png" Height="24"/>
+        <Button
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="0,0,5,5"
+            HorizontalAlignment="Right"
+            Command="{Binding LogoutCommand}"
+            Style="{StaticResource SideBarButton}">
+            <Image Height="24" Source="/ViewResources/Icons/logout.png" />
         </Button>
 
         <StatusBar Grid.Row="1" Grid.Column="1">
             <StatusBarItem>
-                <TextBlock Text="{Binding StatusMessage}" VerticalAlignment="Center" />
+                <TextBlock VerticalAlignment="Center" Text="{Binding StatusMessage}" />
             </StatusBarItem>
 
             <StatusBarItem HorizontalAlignment="Right">
-                <Button Content="English"
-                        Command="{Binding ChangeLanguageCommand}"
-                        CommandParameter="en-US"
-                        Click="ChangeLanguage_OnClick"/>
+                <Button
+                    Click="ChangeLanguage_OnClick"
+                    Command="{Binding ChangeLanguageCommand}"
+                    CommandParameter="en-US"
+                    Content="English" />
             </StatusBarItem>
 
             <StatusBarItem HorizontalAlignment="Right">
-                <Button Content="Polish"
-                        Command="{Binding ChangeLanguageCommand}"
-                        CommandParameter="pl-PL"
-                        Click="ChangeLanguage_OnClick"/>
+                <Button
+                    Click="ChangeLanguage_OnClick"
+                    Command="{Binding ChangeLanguageCommand}"
+                    CommandParameter="pl-PL"
+                    Content="Polish" />
             </StatusBarItem>
         </StatusBar>
     </Grid>

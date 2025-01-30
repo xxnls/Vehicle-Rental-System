@@ -355,6 +355,12 @@
                         <DataGridTextColumn Binding="{Binding CustomDeposit}" Header="{x:Static res:Resources.DataGridCustomDeposit}" />
                         <DataGridCheckBoxColumn Binding="{Binding IsAvailableForRent}" Header="{x:Static res:Resources.DataGridAvailable}" />
                         <DataGridTextColumn Binding="{Binding Notes}" Header="{x:Static res:Resources.Notes}" />
+                        <DataGridTextColumn Binding="{Binding CreatedDate}" Header="{x:Static generic:Resources.CreatedDate}" />
+                        <DataGridTextColumn Binding="{Binding ModifiedDate}" Header="{x:Static generic:Resources.ModifiedDate}" />
+                        <DataGridTextColumn
+                            Binding="{Binding DeletedDate}"
+                            Header="{x:Static generic:Resources.DeletedDate}"
+                            Visibility="{Binding ShowDeleted, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference Name=DataContext}}" />
                     </DataGrid.Columns>
                 </DataGrid>
 

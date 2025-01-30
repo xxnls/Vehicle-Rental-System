@@ -12,6 +12,7 @@ using System.Windows.Input;
 using BackOffice.Properties;
 using BackOffice.Views;
 using BackOffice.Models.Employees.DTOs;
+using BackOffice.ViewModels.Employees;
 using BackOffice.ViewModels.Other;
 using BackOffice.ViewModels.Vehicles;
 
@@ -97,7 +98,8 @@ namespace BackOffice.ViewModels
                 { "VehiclesViewModel", new VehiclesViewModel() },
                 { "RentalPlacesViewModel", new RentalPlacesViewModel() },
                 { "AddressesViewModel", new AddressesViewModel() },
-                { "CountriesViewModel", new CountriesViewModel() }
+                { "CountriesViewModel", new CountriesViewModel() },
+                { "EmployeeShiftTypesViewModel", new EmployeeShiftTypesViewModel() }
             };
 
             // Load user
