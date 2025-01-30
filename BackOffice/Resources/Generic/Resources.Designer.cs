@@ -115,6 +115,33 @@ namespace BackOffice.Resources.Generic {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name cannot be empty..
+        /// </summary>
+        public static string ErrorName1 {
+            get {
+                return ResourceManager.GetString("ErrorName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name must be at least 3 characters long..
+        /// </summary>
+        public static string ErrorName2 {
+            get {
+                return ResourceManager.GetString("ErrorName2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name cannot exceed 50 characters..
+        /// </summary>
+        public static string ErrorName3 {
+            get {
+                return ResourceManager.GetString("ErrorName3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
         public static string Filter {

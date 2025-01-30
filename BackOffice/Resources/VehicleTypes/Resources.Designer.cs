@@ -97,56 +97,83 @@ namespace BackOffice.Resources.VehicleTypes {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Base daily rate must be a number..
+        ///   Looks up a localized string similar to Base daily rate must be a positive number..
         /// </summary>
-        public static string ErrorBaseDailyRate {
+        public static string ErrorBaseDailyRate1 {
             get {
-                return ResourceManager.GetString("ErrorBaseDailyRate", resourceCulture);
+                return ResourceManager.GetString("ErrorBaseDailyRate1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Base deposit must be a number..
+        ///   Looks up a localized string similar to Base deposit must be a positive number..
         /// </summary>
-        public static string ErrorBaseDeposit {
+        public static string ErrorBaseDeposit1 {
             get {
-                return ResourceManager.GetString("ErrorBaseDeposit", resourceCulture);
+                return ResourceManager.GetString("ErrorBaseDeposit1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Base weekly rate must be a number..
+        ///   Looks up a localized string similar to Base weekly rate must be a positive number..
         /// </summary>
-        public static string ErrorBaseWeeklyRate {
+        public static string ErrorBaseWeeklyRate1 {
             get {
-                return ResourceManager.GetString("ErrorBaseWeeklyRate", resourceCulture);
+                return ResourceManager.GetString("ErrorBaseWeeklyRate1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description cannot exceed 150 characters..
+        ///   Looks up a localized string similar to Description cannot exceed 300 characters..
         /// </summary>
-        public static string ErrorDescription {
+        public static string ErrorDescription1 {
             get {
-                return ResourceManager.GetString("ErrorDescription", resourceCulture);
+                return ResourceManager.GetString("ErrorDescription1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name is required and must be at least 3 characters long..
+        ///   Looks up a localized string similar to Name is required..
         /// </summary>
-        public static string ErrorName {
+        public static string ErrorName1 {
             get {
-                return ResourceManager.GetString("ErrorName", resourceCulture);
+                return ResourceManager.GetString("ErrorName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name must have at least 3 characters..
+        /// </summary>
+        public static string ErrorName2 {
+            get {
+                return ResourceManager.GetString("ErrorName2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name cannot exceed 30 characters..
+        /// </summary>
+        public static string ErrorName3 {
+            get {
+                return ResourceManager.GetString("ErrorName3", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Required license field is mandatory..
         /// </summary>
-        public static string ErrorRequiredLicenseType {
+        public static string ErrorRequiredLicenseType1 {
             get {
-                return ResourceManager.GetString("ErrorRequiredLicenseType", resourceCulture);
+                return ResourceManager.GetString("ErrorRequiredLicenseType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Required license must be a valid license..
+        /// </summary>
+        public static string ErrorRequiredLicenseType2 {
+            get {
+                return ResourceManager.GetString("ErrorRequiredLicenseType2", resourceCulture);
             }
         }
         

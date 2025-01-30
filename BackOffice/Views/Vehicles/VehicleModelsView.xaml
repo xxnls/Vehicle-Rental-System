@@ -53,11 +53,12 @@
                     <Label Content="{x:Static res:Resources.VehicleBrand}" />
                     <TextBox IsReadOnly="True" Text="{Binding EditableModel.VehicleBrand.Name, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
-                        helpers:ValidationHelper.PropertyName="VehicleBrandId"
+                        helpers:ValidationHelper.PropertyName="VehicleBrand"
                         Foreground="{StaticResource ErrorBrush}"
                         Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                     <Button
                         Width="100"
+                        Margin="0,5,0,0"
                         HorizontalAlignment="Left"
                         Command="{Binding ShowSelectorDialogCommand}"
                         CommandParameter="{Binding SelectVehicleBrandParameters}"

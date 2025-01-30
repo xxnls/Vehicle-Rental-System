@@ -202,4 +202,13 @@
   <data name="NoData" xml:space="preserve">
     <value>&lt;no data&gt;</value>
   </data>
+  <data name="ErrorName1" xml:space="preserve">
+    <value>Name cannot be empty.</value>
+  </data>
+  <data name="ErrorName2" xml:space="preserve">
+    <value>Name must be at least 3 characters long.</value>
+  </data>
+  <data name="ErrorName3" xml:space="preserve">
+    <value>Name cannot exceed 50 characters.</value>
+  </data>
 </root>

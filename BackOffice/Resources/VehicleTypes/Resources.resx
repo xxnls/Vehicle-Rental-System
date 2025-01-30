@@ -100,22 +100,22 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Vehicle Types</value>
   </data>
-  <data name="ErrorName" xml:space="preserve">
-    <value>Name is required and must be at least 3 characters long.</value>
+  <data name="ErrorName1" xml:space="preserve">
+    <value>Name is required.</value>
   </data>
-  <data name="ErrorDescription" xml:space="preserve">
-    <value>Description cannot exceed 150 characters.</value>
+  <data name="ErrorDescription1" xml:space="preserve">
+    <value>Description cannot exceed 300 characters.</value>
   </data>
-  <data name="ErrorBaseDailyRate" xml:space="preserve">
-    <value>Base daily rate must be a number.</value>
+  <data name="ErrorBaseDailyRate1" xml:space="preserve">
+    <value>Base daily rate must be a positive number.</value>
   </data>
-  <data name="ErrorBaseWeeklyRate" xml:space="preserve">
-    <value>Base weekly rate must be a number.</value>
+  <data name="ErrorBaseWeeklyRate1" xml:space="preserve">
+    <value>Base weekly rate must be a positive number.</value>
   </data>
-  <data name="ErrorBaseDeposit" xml:space="preserve">
-    <value>Base deposit must be a number.</value>
+  <data name="ErrorBaseDeposit1" xml:space="preserve">
+    <value>Base deposit must be a positive number.</value>
   </data>
-  <data name="ErrorRequiredLicenseType" xml:space="preserve">
+  <data name="ErrorRequiredLicenseType1" xml:space="preserve">
     <value>Required license field is mandatory.</value>
   </data>
   <data name="BaseDailyRate" xml:space="preserve">
@@ -129,5 +129,14 @@
   </data>
   <data name="RequiredLicenseType" xml:space="preserve">
     <value>Required license type</value>
+  </data>
+  <data name="ErrorName2" xml:space="preserve">
+    <value>Name must have at least 3 characters.</value>
+  </data>
+  <data name="ErrorName3" xml:space="preserve">
+    <value>Name cannot exceed 30 characters.</value>
+  </data>
+  <data name="ErrorRequiredLicenseType2" xml:space="preserve">
+    <value>Required license must be a valid license.</value>
   </data>
 </root>

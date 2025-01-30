@@ -68,119 +68,248 @@ namespace BackOffice.ViewModels.Vehicles
 
             ValidationRules = new Dictionary<string, Action>
             {
-                //{ nameof(EditableModel.Vin), ValidateVIN },
-                //{ nameof(EditableModel.LicensePlate), ValidateLicensePlate },
-                //{ nameof(EditableModel.Color), ValidateColor },
-                //{ nameof(EditableModel.ManufactureYear), ValidateManufactureYear },
-                //{ nameof(EditableModel.VehicleTypeId), ValidateVehicleTypeId },
-                //{ nameof(EditableModel.VehicleModelId), ValidateVehicleModelId }
+                { nameof(EditableModel.Vin), ValidateVin },
+                { nameof(EditableModel.LicensePlate), ValidateLicensePlate },
+                { nameof(EditableModel.Color), ValidateColor },
+                { nameof(EditableModel.ManufactureYear), ValidateManufactureYear },
+                { nameof(EditableModel.CurrentMileage), ValidateCurrentMileage },
+                { nameof(EditableModel.LastMaintenanceMileage), ValidateLastMaintenanceMileage },
+                { nameof(EditableModel.LastMaintenanceDate), ValidateLastMaintenanceDate },
+                { nameof(EditableModel.NextMaintenanceDate), ValidateNextMaintenanceDate },
+                { nameof(EditableModel.PurchaseDate), ValidatePurchaseDate },
+                { nameof(EditableModel.PurchasePrice), ValidatePurchasePrice },
+                { nameof(EditableModel.Status), ValidateStatus },
+                { nameof(EditableModel.CustomDailyRate), ValidateCustomDailyRate },
+                { nameof(EditableModel.CustomWeeklyRate), ValidateCustomWeeklyRate },
+                { nameof(EditableModel.CustomDeposit), ValidateCustomDeposit },
+                { nameof(EditableModel.Notes), ValidateNotes },
+                { nameof(EditableModel.VehicleType), ValidateVehicleType },
+                { nameof(EditableModel.VehicleModel), ValidateVehicleModel },
+                { nameof(EditableModel.RentalPlace), ValidateRentalPlace }
             };
         }
 
-        #region Methods
-
-        //public async Task CreateModelAsync()
-        //{
-        //    var model = new VehicleDto
-        //    {
-        //        VehicleTypeId = EditableModel.VehicleTypeId,
-        //        VehicleModelId = EditableModel.VehicleModelId,
-        //        RentalPlaceId = EditableModel.RentalPlaceId,
-        //        Vin = EditableModel.Vin,
-        //        LicensePlate = EditableModel.LicensePlate,
-        //        Color = EditableModel.Color,
-        //        ManufactureYear = EditableModel.ManufactureYear,
-        //        CurrentMileage = EditableModel.CurrentMileage,
-        //        LastMaintenanceMileage = EditableModel.LastMaintenanceMileage,
-        //        LastMaintenanceDate = EditableModel.LastMaintenanceDate,
-        //        NextMaintenanceDate = EditableModel.NextMaintenanceDate,
-        //        PurchaseDate = EditableModel.PurchaseDate,
-        //        PurchasePrice = EditableModel.PurchasePrice,
-        //        Status = EditableModel.Status,
-        //        CustomDailyRate = EditableModel.CustomDailyRate,
-        //        CustomWeeklyRate = EditableModel.CustomWeeklyRate,
-        //        CustomDeposit = EditableModel.CustomDeposit,
-        //        IsAvailableForRent = EditableModel.IsAvailableForRent,
-        //        Notes = EditableModel.Notes
-        //    };
-
-        //    await CreateModelAsync(model);
-        //}
-
-        //public async Task UpdateModelAsync()
-        //{
-        //    var id = EditableModel.VehicleId;
-
-        //    var model = new VehicleDto
-        //    {
-        //        VehicleId = EditableModel.VehicleId,
-        //        VehicleTypeId = EditableModel.VehicleTypeId,
-        //        VehicleModelId = EditableModel.VehicleModelId,
-        //        RentalPlaceId = EditableModel.RentalPlaceId,
-        //        Vin = EditableModel.Vin,
-        //        LicensePlate = EditableModel.LicensePlate,
-        //        Color = EditableModel.Color,
-        //        ManufactureYear = EditableModel.ManufactureYear,
-        //        CurrentMileage = EditableModel.CurrentMileage,
-        //        LastMaintenanceMileage = EditableModel.LastMaintenanceMileage,
-        //        LastMaintenanceDate = EditableModel.LastMaintenanceDate,
-        //        NextMaintenanceDate = EditableModel.NextMaintenanceDate,
-        //        PurchaseDate = EditableModel.PurchaseDate,
-        //        PurchasePrice = EditableModel.PurchasePrice,
-        //        Status = EditableModel.Status,
-        //        CustomDailyRate = EditableModel.CustomDailyRate,
-        //        CustomWeeklyRate = EditableModel.CustomWeeklyRate,
-        //        CustomDeposit = EditableModel.CustomDeposit,
-        //        IsAvailableForRent = EditableModel.IsAvailableForRent,
-        //        Notes = EditableModel.Notes
-        //    };
-
-        //    await UpdateModelAsync(id, model);
-        //}
-
-        #endregion
-
         #region Validation
-        private void ValidateVIN()
+        // Validation method for Vin
+        private void ValidateVin()
         {
-            ValidateProperty(nameof(EditableModel.Vin),
-                () => !string.IsNullOrWhiteSpace(EditableModel.Vin) && EditableModel.Vin.Length == 17,
-                LocalizationHelper.GetString("Vehicles", "ErrorVIN"));
+            ClearErrors(nameof(EditableModel.Vin));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.Vin))
+            {
+                AddError(nameof(EditableModel.Vin), LocalizationHelper.GetString("Vehicles", "ErrorVin1"));
+            }
+            else if (EditableModel.Vin.Length != 17)
+            {
+                AddError(nameof(EditableModel.Vin), LocalizationHelper.GetString("Vehicles", "ErrorVin2"));
+            }
         }
 
+        // Validation method for LicensePlate
         private void ValidateLicensePlate()
         {
-            ValidateProperty(nameof(EditableModel.LicensePlate),
-                () => !string.IsNullOrWhiteSpace(EditableModel.LicensePlate),
-                LocalizationHelper.GetString("Vehicles", "ErrorLicensePlate"));
+            ClearErrors(nameof(EditableModel.LicensePlate));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.LicensePlate))
+            {
+                AddError(nameof(EditableModel.LicensePlate), LocalizationHelper.GetString("Vehicles", "ErrorLicensePlate1"));
+            }
+            else if (EditableModel.LicensePlate.Length > 20)
+            {
+                AddError(nameof(EditableModel.LicensePlate), LocalizationHelper.GetString("Vehicles", "ErrorLicensePlate2"));
+            }
         }
 
+        // Validation method for Color
         private void ValidateColor()
         {
-            ValidateProperty(nameof(EditableModel.Color),
-                () => !string.IsNullOrWhiteSpace(EditableModel.Color),
-                LocalizationHelper.GetString("Vehicles", "ErrorColor"));
+            ClearErrors(nameof(EditableModel.Color));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.Color))
+            {
+                AddError(nameof(EditableModel.Color), LocalizationHelper.GetString("Vehicles", "ErrorColor1"));
+            }
         }
 
+        // Validation method for ManufactureYear
         private void ValidateManufactureYear()
         {
-            ValidateProperty(nameof(EditableModel.ManufactureYear),
-                () => EditableModel.ManufactureYear > 1900 && EditableModel.ManufactureYear <= DateTime.Now.Year,
-                LocalizationHelper.GetString("Vehicles", "ErrorManufactureYear"));
+            ClearErrors(nameof(EditableModel.ManufactureYear));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.ManufactureYear.ToString()))
+            {
+                AddError(nameof(EditableModel.ManufactureYear), LocalizationHelper.GetString("Vehicles", "ErrorManufactureYear2"));
+            }
+            else if (EditableModel.ManufactureYear < 1900 || EditableModel.ManufactureYear > DateTime.Now.Year)
+            {
+                AddError(nameof(EditableModel.ManufactureYear), LocalizationHelper.GetString("Vehicles", "ErrorManufactureYear1"));
+            }
         }
 
-        private void ValidateVehicleTypeId()
+        // Validation method for CurrentMileage
+        private void ValidateCurrentMileage()
         {
-            ValidateProperty(nameof(EditableModel.VehicleTypeId),
-                () => EditableModel.VehicleTypeId > 0,
-                LocalizationHelper.GetString("Vehicles", "ErrorVehicleTypeId"));
+            ClearErrors(nameof(EditableModel.CurrentMileage));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.CurrentMileage.ToString()))
+            {
+                AddError(nameof(EditableModel.CurrentMileage), LocalizationHelper.GetString("Vehicles", "ErrorCurrentMileage2"));
+            }
+            else if (EditableModel.CurrentMileage < 0)
+            {
+                AddError(nameof(EditableModel.CurrentMileage), LocalizationHelper.GetString("Vehicles", "ErrorCurrentMileage1"));
+            }
         }
 
-        private void ValidateVehicleModelId()
+        // Validation method for LastMaintenanceMileage
+        private void ValidateLastMaintenanceMileage()
         {
-            ValidateProperty(nameof(EditableModel.VehicleModelId),
-                () => EditableModel.VehicleModelId > 0,
-                LocalizationHelper.GetString("Vehicles", "ErrorVehicleModelId"));
+            ClearErrors(nameof(EditableModel.LastMaintenanceMileage));
+
+            if (EditableModel.LastMaintenanceMileage.HasValue && EditableModel.LastMaintenanceMileage < 0)
+            {
+                AddError(nameof(EditableModel.LastMaintenanceMileage), LocalizationHelper.GetString("Vehicles", "ErrorLastMaintenanceMileage1"));
+            }
+        }
+
+        // Validation method for LastMaintenanceDate
+        private void ValidateLastMaintenanceDate()
+        {
+            ClearErrors(nameof(EditableModel.LastMaintenanceDate));
+
+            if (EditableModel.LastMaintenanceDate.HasValue && EditableModel.LastMaintenanceDate > DateTime.Now)
+            {
+                AddError(nameof(EditableModel.LastMaintenanceDate), LocalizationHelper.GetString("Vehicles", "ErrorLastMaintenanceDate1"));
+            }
+        }
+
+        // Validation method for NextMaintenanceDate
+        private void ValidateNextMaintenanceDate()
+        {
+            ClearErrors(nameof(EditableModel.NextMaintenanceDate));
+
+            if (EditableModel.NextMaintenanceDate.HasValue && EditableModel.NextMaintenanceDate < DateTime.Now)
+            {
+                AddError(nameof(EditableModel.NextMaintenanceDate), LocalizationHelper.GetString("Vehicles", "ErrorNextMaintenanceDate1"));
+            }
+        }
+
+        // Validation method for PurchaseDate
+        private void ValidatePurchaseDate()
+        {
+            ClearErrors(nameof(EditableModel.PurchaseDate));
+
+            if (EditableModel.PurchaseDate == null)
+            {
+                AddError(nameof(EditableModel.PurchaseDate), LocalizationHelper.GetString("Vehicles", "ErrorPurchaseDate2"));
+            }
+            else if (EditableModel.PurchaseDate > DateTime.Now)
+            {
+                AddError(nameof(EditableModel.PurchaseDate), LocalizationHelper.GetString("Vehicles", "ErrorPurchaseDate1"));
+            }
+        }
+
+        // Validation method for PurchasePrice
+        private void ValidatePurchasePrice()
+        {
+            ClearErrors(nameof(EditableModel.PurchasePrice));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.PurchasePrice.ToString()))
+            {
+                AddError(nameof(EditableModel.PurchasePrice), LocalizationHelper.GetString("Vehicles", "ErrorPurchasePrice2"));
+            }
+            else if (EditableModel.PurchasePrice <= 0)
+            {
+                AddError(nameof(EditableModel.PurchasePrice), LocalizationHelper.GetString("Vehicles", "ErrorPurchasePrice1"));
+            }
+        }
+
+        // Validation method for Status
+        private void ValidateStatus()
+        {
+            ClearErrors(nameof(EditableModel.Status));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.Status))
+            {
+                AddError(nameof(EditableModel.Status), LocalizationHelper.GetString("Vehicles", "ErrorStatus1"));
+            }
+        }
+
+        // Validation method for CustomDailyRate
+        private void ValidateCustomDailyRate()
+        {
+            ClearErrors(nameof(EditableModel.CustomDailyRate));
+
+            if (EditableModel.CustomDailyRate.HasValue && EditableModel.CustomDailyRate <= 0)
+            {
+                AddError(nameof(EditableModel.CustomDailyRate), LocalizationHelper.GetString("Vehicles", "ErrorCustomDailyRate1"));
+            }
+        }
+
+        // Validation method for CustomWeeklyRate
+        private void ValidateCustomWeeklyRate()
+        {
+            ClearErrors(nameof(EditableModel.CustomWeeklyRate));
+
+            if (EditableModel.CustomWeeklyRate.HasValue && EditableModel.CustomWeeklyRate <= 0)
+            {
+                AddError(nameof(EditableModel.CustomWeeklyRate), LocalizationHelper.GetString("Vehicles", "ErrorCustomWeeklyRate1"));
+            }
+        }
+
+        // Validation method for CustomDeposit
+        private void ValidateCustomDeposit()
+        {
+            ClearErrors(nameof(EditableModel.CustomDeposit));
+
+            if (EditableModel.CustomDeposit.HasValue && EditableModel.CustomDeposit <= 0)
+            {
+                AddError(nameof(EditableModel.CustomDeposit), LocalizationHelper.GetString("Vehicles", "ErrorCustomDeposit1"));
+            }
+        }
+
+        // Validation method for Notes
+        private void ValidateNotes()
+        {
+            ClearErrors(nameof(EditableModel.Notes));
+
+            if (!string.IsNullOrWhiteSpace(EditableModel.Notes) && EditableModel.Notes.Length > 500)
+            {
+                AddError(nameof(EditableModel.Notes), LocalizationHelper.GetString("Vehicles", "ErrorNotes1"));
+            }
+        }
+
+        // Validation method for VehicleType
+        private void ValidateVehicleType()
+        {
+            ClearErrors(nameof(EditableModel.VehicleType));
+
+            if (EditableModel.VehicleType == null)
+            {
+                AddError(nameof(EditableModel.VehicleType), LocalizationHelper.GetString("Vehicles", "ErrorVehicleType1"));
+            }
+        }
+
+        // Validation method for VehicleModel
+        private void ValidateVehicleModel()
+        {
+            ClearErrors(nameof(EditableModel.VehicleModel));
+
+            if (EditableModel.VehicleModel == null)
+            {
+                AddError(nameof(EditableModel.VehicleModel), LocalizationHelper.GetString("Vehicles", "ErrorVehicleModel1"));
+            }
+        }
+
+        // Validation method for RentalPlace
+        private void ValidateRentalPlace()
+        {
+            ClearErrors(nameof(EditableModel.RentalPlace));
+
+            if (EditableModel.RentalPlace == null)
+            {
+                AddError(nameof(EditableModel.RentalPlace), LocalizationHelper.GetString("Vehicles", "ErrorRentalPlace1"));
+            }
         }
 
         #endregion

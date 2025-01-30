@@ -106,13 +106,13 @@
   <data name="ErrorDescription" xml:space="preserve">
     <value>Description cannot exceed 250 characters.</value>
   </data>
-  <data name="ErrorEngineSize" xml:space="preserve">
-    <value>Engine size must be a number.</value>
+  <data name="ErrorEngineSize1" xml:space="preserve">
+    <value>Engine size is required.</value>
   </data>
-  <data name="ErrorHorsePower" xml:space="preserve">
-    <value>Horse power must be a number.</value>
+  <data name="ErrorHorsePower1" xml:space="preserve">
+    <value>Horse power is required.</value>
   </data>
-  <data name="ErrorFuelType" xml:space="preserve">
+  <data name="ErrorFuelType1" xml:space="preserve">
     <value>Fuel type is required.</value>
   </data>
   <data name="EngineSize" xml:space="preserve">
@@ -136,9 +136,6 @@
   <data name="VehicleBrand" xml:space="preserve">
     <value>Vehicle brand</value>
   </data>
-  <data name="ErrorVehicleBrandId" xml:space="preserve">
-    <value>Brand is required.</value>
-  </data>
   <data name="SelectVehicleBrandTitle" xml:space="preserve">
     <value>Select vehicle brand</value>
   </data>
@@ -156,5 +153,23 @@
   </data>
   <data name="FuelTypeHybrid" xml:space="preserve">
     <value>Hybrid</value>
+  </data>
+  <data name="ErrorEngineSize3" xml:space="preserve">
+    <value>Engine size cannot exceed 10.0.</value>
+  </data>
+  <data name="ErrorHorsePower3" xml:space="preserve">
+    <value>Horse power cannot exceed 1000.</value>
+  </data>
+  <data name="ErrorFuelType2" xml:space="preserve">
+    <value>Fuel type must be valid.</value>
+  </data>
+  <data name="ErrorEngineSize2" xml:space="preserve">
+    <value>Engine size must be a numer.</value>
+  </data>
+  <data name="ErrorHorsePower2" xml:space="preserve">
+    <value>Horse power must be a number.</value>
+  </data>
+  <data name="ErrorVehicleBrand1" xml:space="preserve">
+    <value>Vehicle brand is required.</value>
   </data>
 </root>

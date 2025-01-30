@@ -205,4 +205,76 @@
   <data name="DataGridCustomDeposit" xml:space="preserve">
     <value>Kaucja</value>
   </data>
+  <data name="ErrorVin1" xml:space="preserve">
+    <value>VIN jest wymagany.</value>
+  </data>
+  <data name="ErrorVin2" xml:space="preserve">
+    <value>VIN musi posiadać 17 znaków.</value>
+  </data>
+  <data name="ErrorLicensePlate1" xml:space="preserve">
+    <value>Numer rejestracyjny jest wymagany.</value>
+  </data>
+  <data name="ErrorLicensePlate2" xml:space="preserve">
+    <value>Numer rejestracyjny nie może przekraczać 20 znaków.</value>
+  </data>
+  <data name="ErrorColor1" xml:space="preserve">
+    <value>Kolor jest wymagany.</value>
+  </data>
+  <data name="ErrorManufactureYear1" xml:space="preserve">
+    <value>Data produkcji musi być poprawna.</value>
+  </data>
+  <data name="ErrorCurrentMileage1" xml:space="preserve">
+    <value>Aktualny przebieg musi być liczbą dodatnią.</value>
+  </data>
+  <data name="ErrorLastMaintenanceMileage1" xml:space="preserve">
+    <value>Stan licznika podczas ostatniej konserwacji musi być liczbą dodatnią.</value>
+  </data>
+  <data name="ErrorLastMaintenanceDate1" xml:space="preserve">
+    <value>Data ostatniej konserwacji musi być poprawna.</value>
+  </data>
+  <data name="ErrorNextMaintenanceDate1" xml:space="preserve">
+    <value>Data następnej konserwacji musi być poprawna.</value>
+  </data>
+  <data name="ErrorPurchaseDate1" xml:space="preserve">
+    <value>Data zakupu musi być poprawną datą.</value>
+  </data>
+  <data name="ErrorPurchasePrice1" xml:space="preserve">
+    <value>Kwota zakupu musi być liczbą dodatnią.</value>
+  </data>
+  <data name="ErrorStatus1" xml:space="preserve">
+    <value>Status pojazdu jest wymagany.</value>
+  </data>
+  <data name="ErrorCustomDailyRate1" xml:space="preserve">
+    <value>Niestandardowa stawka dzienna musi być liczbą dodatnią.</value>
+  </data>
+  <data name="ErrorCustomWeeklyRate1" xml:space="preserve">
+    <value>Niestandardowa stawka tygodniowa musi być liczbą dodatnią.</value>
+  </data>
+  <data name="ErrorCustomDeposit1" xml:space="preserve">
+    <value>Niestandardowa kaucja musi być liczbą dodatnią.</value>
+  </data>
+  <data name="ErrorNotes1" xml:space="preserve">
+    <value>Notatki nie mogą mieć więcej niż 500 znaków.</value>
+  </data>
+  <data name="ErrorVehicleType1" xml:space="preserve">
+    <value>Rodzaj pojazdu jest wymagany.</value>
+  </data>
+  <data name="ErrorVehicleModel1" xml:space="preserve">
+    <value>Model pojazdu jest wymagany.</value>
+  </data>
+  <data name="ErrorRentalPlace1" xml:space="preserve">
+    <value>Placówka jest wymagana.</value>
+  </data>
+  <data name="ErrorPurchaseDate2" xml:space="preserve">
+    <value>Data zakupu jest wymagana.</value>
+  </data>
+  <data name="ErrorManufactureYear2" xml:space="preserve">
+    <value>Data produkcji jest wymagana.</value>
+  </data>
+  <data name="ErrorCurrentMileage2" xml:space="preserve">
+    <value>Aktualny przebieg jest wymagany.</value>
+  </data>
+  <data name="ErrorPurchasePrice2" xml:space="preserve">
+    <value>Kwota zakupu jest wymagana.</value>
+  </data>
 </root>

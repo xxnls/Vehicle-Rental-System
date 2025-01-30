@@ -103,14 +103,14 @@
   <data name="ErrorDescription" xml:space="preserve">
     <value>Opis nie może mieć więcej niż 250 znaków.</value>
   </data>
-  <data name="ErrorEngineSize" xml:space="preserve">
-    <value>Pojemność silnika musi być liczbą.</value>
+  <data name="ErrorEngineSize1" xml:space="preserve">
+    <value>Pojemność silnika jest wymagana.</value>
   </data>
-  <data name="ErrorFuelType" xml:space="preserve">
+  <data name="ErrorFuelType1" xml:space="preserve">
     <value>Rodzaj paliwa jest wymagany.</value>
   </data>
-  <data name="ErrorHorsePower" xml:space="preserve">
-    <value>Konie mechaniczne muszą być liczbą.</value>
+  <data name="ErrorHorsePower1" xml:space="preserve">
+    <value>Konie mechaniczne są wymagane.</value>
   </data>
   <data name="ErrorName" xml:space="preserve">
     <value>Nazwa jest wymagana i musi mieć przynajmniej 3 znaki.</value>
@@ -136,9 +136,6 @@
   <data name="VehicleBrand" xml:space="preserve">
     <value>Marka pojazdu</value>
   </data>
-  <data name="ErrorVehicleBrandId" xml:space="preserve">
-    <value>Marka jest wymagana.</value>
-  </data>
   <data name="SelectVehicleBrandTitle" xml:space="preserve">
     <value>Wybierz markę pojazdu</value>
   </data>
@@ -156,5 +153,23 @@
   </data>
   <data name="FuelTypeHybrid" xml:space="preserve">
     <value>Hybryda</value>
+  </data>
+  <data name="ErrorEngineSize3" xml:space="preserve">
+    <value>Pojemność silnika nie może przekraczać 10.0.</value>
+  </data>
+  <data name="ErrorHorsePower3" xml:space="preserve">
+    <value>Konie mechaniczne nie mogą przekraczać 1000.</value>
+  </data>
+  <data name="ErrorFuelType2" xml:space="preserve">
+    <value>Rodzaj paliwa musi być poprawnym rodzajem paliwa.</value>
+  </data>
+  <data name="ErrorEngineSize2" xml:space="preserve">
+    <value>Pojemność silnika musi być liczbą.</value>
+  </data>
+  <data name="ErrorHorsePower2" xml:space="preserve">
+    <value>Konie mechaniczne muszą być liczbą.</value>
+  </data>
+  <data name="ErrorVehicleBrand1" xml:space="preserve">
+    <value>Marka samochodu jest wymagana.</value>
   </data>
 </root>

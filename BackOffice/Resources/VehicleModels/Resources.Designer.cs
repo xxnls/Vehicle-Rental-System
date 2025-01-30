@@ -106,29 +106,74 @@ namespace BackOffice.Resources.VehicleModels {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Engine size must be a number..
+        ///   Looks up a localized string similar to Engine size is required..
         /// </summary>
-        public static string ErrorEngineSize {
+        public static string ErrorEngineSize1 {
             get {
-                return ResourceManager.GetString("ErrorEngineSize", resourceCulture);
+                return ResourceManager.GetString("ErrorEngineSize1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engine size must be a numer..
+        /// </summary>
+        public static string ErrorEngineSize2 {
+            get {
+                return ResourceManager.GetString("ErrorEngineSize2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engine size cannot exceed 10.0..
+        /// </summary>
+        public static string ErrorEngineSize3 {
+            get {
+                return ResourceManager.GetString("ErrorEngineSize3", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Fuel type is required..
         /// </summary>
-        public static string ErrorFuelType {
+        public static string ErrorFuelType1 {
             get {
-                return ResourceManager.GetString("ErrorFuelType", resourceCulture);
+                return ResourceManager.GetString("ErrorFuelType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fuel type must be valid..
+        /// </summary>
+        public static string ErrorFuelType2 {
+            get {
+                return ResourceManager.GetString("ErrorFuelType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horse power is required..
+        /// </summary>
+        public static string ErrorHorsePower1 {
+            get {
+                return ResourceManager.GetString("ErrorHorsePower1", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Horse power must be a number..
         /// </summary>
-        public static string ErrorHorsePower {
+        public static string ErrorHorsePower2 {
             get {
-                return ResourceManager.GetString("ErrorHorsePower", resourceCulture);
+                return ResourceManager.GetString("ErrorHorsePower2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horse power cannot exceed 1000..
+        /// </summary>
+        public static string ErrorHorsePower3 {
+            get {
+                return ResourceManager.GetString("ErrorHorsePower3", resourceCulture);
             }
         }
         
@@ -142,11 +187,11 @@ namespace BackOffice.Resources.VehicleModels {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Brand is required..
+        ///   Looks up a localized string similar to Vehicle brand is required..
         /// </summary>
-        public static string ErrorVehicleBrandId {
+        public static string ErrorVehicleBrand1 {
             get {
-                return ResourceManager.GetString("ErrorVehicleBrandId", resourceCulture);
+                return ResourceManager.GetString("ErrorVehicleBrand1", resourceCulture);
             }
         }
         

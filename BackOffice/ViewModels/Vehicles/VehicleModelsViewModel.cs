@@ -44,66 +44,109 @@ namespace BackOffice.ViewModels.Vehicles
 
             ValidationRules = new Dictionary<string, Action>
             {
-                //{ nameof(EditableModel.Name), ValidateName },
-                //{ nameof(EditableModel.Description), ValidateDescription},
-                //{ nameof(EditableModel.EngineSize), ValidateEngineSize },
-                //{ nameof(EditableModel.HorsePower), ValidateHorsePower },
-                //{ nameof(EditableModel.FuelType), ValidateFuelType },
-                //{ nameof(EditableModel.VehicleBrand.VehicleBrandId), ValidateVehicleBrandId }
+                { nameof(EditableModel.Name), ValidateName },
+                { nameof(EditableModel.Description), ValidateDescription},
+                { nameof(EditableModel.EngineSize), ValidateEngineSize },
+                { nameof(EditableModel.HorsePower), ValidateHorsePower },
+                { nameof(EditableModel.FuelType), ValidateFuelType },
+                { nameof(EditableModel.VehicleBrand), ValidateVehicleBrand }
             };
         }
 
         #region Validation
+        // Validation method for Name
         private void ValidateName()
         {
-            ValidateProperty(nameof(EditableModel.Name),
-                () => !string.IsNullOrWhiteSpace(EditableModel.Name) && EditableModel.Name.Length >= 3,
-                LocalizationHelper.GetString("VehicleModels", "ErrorName"));
+            ClearErrors(nameof(EditableModel.Name));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.Name))
+            {
+                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("Generic", "ErrorName1"));
+            }
+            else if (EditableModel.Name.Length < 3)
+            {
+                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("Generic", "ErrorName2"));
+            }
+            else if (EditableModel.Name.Length >= 50)
+            {
+                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("Generic", "ErrorName3"));
+            }
         }
 
+        // Validation method for Description
         private void ValidateDescription()
         {
-            ValidateProperty(nameof(EditableModel.Description),
-                () => string.IsNullOrWhiteSpace(EditableModel.Description) || EditableModel.Description.Length <= 250,
-                LocalizationHelper.GetString("VehicleModels", "ErrorDescription"));
+            ClearErrors(nameof(EditableModel.Description));
+
+            if (!string.IsNullOrWhiteSpace(EditableModel.Description) && EditableModel.Description.Length > 250)
+            {
+                AddError(nameof(EditableModel.Description), LocalizationHelper.GetString("VehicleModels", "ErrorDescription"));
+            }
         }
 
+        // Validation method for EngineSize
         private void ValidateEngineSize()
         {
-            //ValidateProperty(nameof(EditableModel.EngineSize),
-            //    () =>
-            //    {
-            //        // Check if EngineSize is a valid number and greater than 0
-            //        return EditableModel.EngineSize.HasValue && EditableModel.EngineSize.Value > 0;
-            //    },
-            //    LocalizationHelper.GetString("VehicleModels", "ErrorEngineSize"));
+            ClearErrors(nameof(EditableModel.EngineSize));
+
+            if (EditableModel.EngineSize == null)
+            {
+                AddError(nameof(EditableModel.EngineSize), LocalizationHelper.GetString("VehicleModels", "ErrorEngineSize1"));
+            }
+            else if (EditableModel.EngineSize <= 0)
+            {
+                AddError(nameof(EditableModel.EngineSize), LocalizationHelper.GetString("VehicleModels", "ErrorEngineSize2"));
+            }
+            else if (EditableModel.EngineSize > 10.0)
+            {
+                AddError(nameof(EditableModel.EngineSize), LocalizationHelper.GetString("VehicleModels", "ErrorEngineSize3"));
+            }
         }
 
+        // Validation method for HorsePower
         private void ValidateHorsePower()
         {
-            //ValidateProperty(nameof(EditableModel.HorsePower),
-            //    () =>
-            //    {
-            //        // Check if HorsePower is a valid number and greater than 0
-            //        return EditableModel.HorsePower.HasValue && EditableModel.HorsePower.Value > 0;
-            //    },
-            //    LocalizationHelper.GetString("VehicleModels", "ErrorHorsePower"));
+            ClearErrors(nameof(EditableModel.HorsePower));
+
+            if (EditableModel.HorsePower == null)
+            {
+                AddError(nameof(EditableModel.HorsePower), LocalizationHelper.GetString("VehicleModels", "ErrorHorsePower1"));
+            }
+            else if (EditableModel.HorsePower <= 0)
+            {
+                AddError(nameof(EditableModel.HorsePower), LocalizationHelper.GetString("VehicleModels", "ErrorHorsePower2"));
+            }
+            else if (EditableModel.HorsePower > 1000)
+            {
+                AddError(nameof(EditableModel.HorsePower), LocalizationHelper.GetString("VehicleModels", "ErrorHorsePower3"));
+            }
         }
 
+        // Validation method for FuelType
         private void ValidateFuelType()
         {
-            ValidateProperty(nameof(EditableModel.FuelType),
-                () => !string.IsNullOrWhiteSpace(EditableModel.FuelType) && EditableModel.FuelType.Length <= 10,
-                LocalizationHelper.GetString("VehicleModels", "ErrorFuelType"));
+            ClearErrors(nameof(EditableModel.FuelType));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.FuelType))
+            {
+                AddError(nameof(EditableModel.FuelType), LocalizationHelper.GetString("VehicleModels", "ErrorFuelType1"));
+            }
+            else if (!new[] { "Petrol", "Diesel", "Electric", "Hybrid" }.Contains(EditableModel.FuelType))
+            {
+                AddError(nameof(EditableModel.FuelType), LocalizationHelper.GetString("VehicleModels", "ErrorFuelType2"));
+            }
         }
 
-        private void ValidateVehicleBrandId()
+        // Validation method for VehicleBrand
+        private void ValidateVehicleBrand()
         {
-            ValidateProperty(nameof(EditableModel.VehicleBrand.VehicleBrandId),
-                () => EditableModel.VehicleBrand.VehicleBrandId > 0,
-                LocalizationHelper.GetString("VehicleModels", "ErrorVehicleBrandId"));
-        }
+            ClearErrors(nameof(EditableModel.VehicleBrand));
 
+            if (EditableModel.VehicleBrand == null)
+            {
+                AddError(nameof(EditableModel.VehicleBrand), LocalizationHelper.GetString("VehicleModels", "ErrorVehicleBrand1"));
+            }
+        }
 
         #endregion
     }

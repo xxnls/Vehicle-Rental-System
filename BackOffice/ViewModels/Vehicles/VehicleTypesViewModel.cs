@@ -72,47 +72,124 @@ namespace BackOffice.ViewModels.Vehicles
 
         #region Validation
 
+        // Validation method for Name
         private void ValidateName()
         {
-            ValidateProperty(nameof(EditableModel.Name),
-                () => !string.IsNullOrWhiteSpace(EditableModel.Name) && EditableModel.Name.Length >= 3,
-                LocalizationHelper.GetString("VehicleTypes", "ErrorName"));
+            ClearErrors(nameof(EditableModel.Name));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.Name))
+            {
+                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("VehicleTypes", "ErrorName1"));
+            }
+            else if (EditableModel.Name.Length < 3)
+            {
+                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("VehicleTypes", "ErrorName2"));
+            }
+            else if (EditableModel.Name.Length >= 30)
+            {
+                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("VehicleTypes", "ErrorName3"));
+            }
         }
 
+        // Validation method for Description
         private void ValidateDescription()
         {
-            ValidateProperty(nameof(EditableModel.Description),
-                () => string.IsNullOrWhiteSpace(EditableModel.Description) || EditableModel.Description.Length <= 300,
-                LocalizationHelper.GetString("VehicleTypes", "ErrorDescription"));
+            ClearErrors(nameof(EditableModel.Description));
+
+            if (!string.IsNullOrWhiteSpace(EditableModel.Description) && EditableModel.Description.Length > 300)
+            {
+                AddError(nameof(EditableModel.Description), LocalizationHelper.GetString("VehicleTypes", "ErrorDescription1"));
+            }
         }
 
+        // Validation method for BaseDailyRate
         private void ValidateBaseDailyRate()
         {
-            ValidateProperty(nameof(EditableModel.BaseDailyRate),
-                () => EditableModel.BaseDailyRate > 0,
-                LocalizationHelper.GetString("VehicleTypes", "ErrorBaseDailyRate"));
+            ClearErrors(nameof(EditableModel.BaseDailyRate));
+
+            if (EditableModel.BaseDailyRate <= 0)
+            {
+                AddError(nameof(EditableModel.BaseDailyRate), LocalizationHelper.GetString("VehicleTypes", "ErrorBaseDailyRate1"));
+            }
         }
 
+        // Validation method for BaseWeeklyRate
         private void ValidateBaseWeeklyRate()
         {
-            ValidateProperty(nameof(EditableModel.BaseWeeklyRate),
-                () => EditableModel.BaseWeeklyRate > 0,
-                LocalizationHelper.GetString("VehicleTypes", "ErrorBaseWeeklyRate"));
+            ClearErrors(nameof(EditableModel.BaseWeeklyRate));
+
+            if (EditableModel.BaseWeeklyRate <= 0)
+            {
+                AddError(nameof(EditableModel.BaseWeeklyRate), LocalizationHelper.GetString("VehicleTypes", "ErrorBaseWeeklyRate1"));
+            }
         }
 
+        // Validation method for BaseDeposit
         private void ValidateBaseDeposit()
         {
-            ValidateProperty(nameof(EditableModel.BaseDeposit),
-                () => EditableModel.BaseDeposit > 0,
-                LocalizationHelper.GetString("VehicleTypes", "ErrorBaseDeposit"));
+            ClearErrors(nameof(EditableModel.BaseDeposit));
+
+            if (EditableModel.BaseDeposit <= 0)
+            {
+                AddError(nameof(EditableModel.BaseDeposit), LocalizationHelper.GetString("VehicleTypes", "ErrorBaseDeposit1"));
+            }
         }
 
+        // Validation method for RequiredLicenseType
         private void ValidateRequiredLicenseType()
         {
-            ValidateProperty(nameof(EditableModel.RequiredLicenseType),
-                () => !string.IsNullOrWhiteSpace(EditableModel.RequiredLicenseType),
-                LocalizationHelper.GetString("VehicleTypes", "ErrorRequiredLicenseType"));
+            ClearErrors(nameof(EditableModel.RequiredLicenseType));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.RequiredLicenseType))
+            {
+                AddError(nameof(EditableModel.RequiredLicenseType), LocalizationHelper.GetString("VehicleTypes", "ErrorRequiredLicenseType1"));
+            }
+            else if (!new[] { "A", "B", "C" }.Contains(EditableModel.RequiredLicenseType))
+            {
+                AddError(nameof(EditableModel.RequiredLicenseType), LocalizationHelper.GetString("VehicleTypes", "ErrorRequiredLicenseType2"));
+            }
         }
+        //private void ValidateName()
+        //{
+        //    ValidateProperty(nameof(EditableModel.Name),
+        //        () => !string.IsNullOrWhiteSpace(EditableModel.Name) && EditableModel.Name.Length >= 3,
+        //        LocalizationHelper.GetString("VehicleTypes", "ErrorName"));
+        //}
+
+        //private void ValidateDescription()
+        //{
+        //    ValidateProperty(nameof(EditableModel.Description),
+        //        () => string.IsNullOrWhiteSpace(EditableModel.Description) || EditableModel.Description.Length <= 300,
+        //        LocalizationHelper.GetString("VehicleTypes", "ErrorDescription"));
+        //}
+
+        //private void ValidateBaseDailyRate()
+        //{
+        //    ValidateProperty(nameof(EditableModel.BaseDailyRate),
+        //        () => EditableModel.BaseDailyRate > 0,
+        //        LocalizationHelper.GetString("VehicleTypes", "ErrorBaseDailyRate"));
+        //}
+
+        //private void ValidateBaseWeeklyRate()
+        //{
+        //    ValidateProperty(nameof(EditableModel.BaseWeeklyRate),
+        //        () => EditableModel.BaseWeeklyRate > 0,
+        //        LocalizationHelper.GetString("VehicleTypes", "ErrorBaseWeeklyRate"));
+        //}
+
+        //private void ValidateBaseDeposit()
+        //{
+        //    ValidateProperty(nameof(EditableModel.BaseDeposit),
+        //        () => EditableModel.BaseDeposit > 0,
+        //        LocalizationHelper.GetString("VehicleTypes", "ErrorBaseDeposit"));
+        //}
+
+        //private void ValidateRequiredLicenseType()
+        //{
+        //    ValidateProperty(nameof(EditableModel.RequiredLicenseType),
+        //        () => !string.IsNullOrWhiteSpace(EditableModel.RequiredLicenseType),
+        //        LocalizationHelper.GetString("VehicleTypes", "ErrorRequiredLicenseType"));
+        //}
 
         #endregion
     }

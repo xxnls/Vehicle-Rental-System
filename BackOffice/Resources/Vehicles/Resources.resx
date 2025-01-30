@@ -205,4 +205,76 @@
   <data name="DataGridCustomDeposit" xml:space="preserve">
     <value>Deposit</value>
   </data>
+  <data name="ErrorVin1" xml:space="preserve">
+    <value>VIN is required.</value>
+  </data>
+  <data name="ErrorVin2" xml:space="preserve">
+    <value>VIN must have 17 characters.</value>
+  </data>
+  <data name="ErrorLicensePlate1" xml:space="preserve">
+    <value>License plate field is required.</value>
+  </data>
+  <data name="ErrorLicensePlate2" xml:space="preserve">
+    <value>License plate field cannot exceed 20 characters.</value>
+  </data>
+  <data name="ErrorColor1" xml:space="preserve">
+    <value>Color field is required.</value>
+  </data>
+  <data name="ErrorManufactureYear1" xml:space="preserve">
+    <value>Manufacture year must be a valid year.</value>
+  </data>
+  <data name="ErrorCurrentMileage1" xml:space="preserve">
+    <value>Current mileage must be a positive number.</value>
+  </data>
+  <data name="ErrorLastMaintenanceMileage1" xml:space="preserve">
+    <value>Last maintenance mileage must be a positivie number.</value>
+  </data>
+  <data name="ErrorLastMaintenanceDate1" xml:space="preserve">
+    <value>Last maintenance date must be a valid date.</value>
+  </data>
+  <data name="ErrorNextMaintenanceDate1" xml:space="preserve">
+    <value>Next maintenance date must be a valid date.</value>
+  </data>
+  <data name="ErrorPurchaseDate1" xml:space="preserve">
+    <value>Purchase date must be a valid date.</value>
+  </data>
+  <data name="ErrorPurchasePrice1" xml:space="preserve">
+    <value>Purchase price must be a positive number.</value>
+  </data>
+  <data name="ErrorStatus1" xml:space="preserve">
+    <value>Vehicle status is required.</value>
+  </data>
+  <data name="ErrorCustomDailyRate1" xml:space="preserve">
+    <value>Custom daily rate must be a positive number.</value>
+  </data>
+  <data name="ErrorCustomWeeklyRate1" xml:space="preserve">
+    <value>Custom weekly rate must be a positive number.</value>
+  </data>
+  <data name="ErrorCustomDeposit1" xml:space="preserve">
+    <value>Custom deposit must be a positive number.</value>
+  </data>
+  <data name="ErrorNotes1" xml:space="preserve">
+    <value>Notes cannot exceed 500 characters.</value>
+  </data>
+  <data name="ErrorVehicleType1" xml:space="preserve">
+    <value>Vehicle type is required.</value>
+  </data>
+  <data name="ErrorVehicleModel1" xml:space="preserve">
+    <value>Vehicle model is required.</value>
+  </data>
+  <data name="ErrorRentalPlace1" xml:space="preserve">
+    <value>Rental place is required.</value>
+  </data>
+  <data name="ErrorPurchaseDate2" xml:space="preserve">
+    <value>Purchase date field is required.</value>
+  </data>
+  <data name="ErrorManufactureYear2" xml:space="preserve">
+    <value>Manufacture year is required.</value>
+  </data>
+  <data name="ErrorCurrentMileage2" xml:space="preserve">
+    <value>Current mileage is required.</value>
+  </data>
+  <data name="ErrorPurchasePrice2" xml:space="preserve">
+    <value>Purchase price is required.</value>
+  </data>
 </root>

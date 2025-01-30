@@ -2,6 +2,7 @@
     x:Class="BackOffice.Views.Vehicles.VehiclesView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
@@ -53,6 +54,7 @@
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                             <Button
                                 Width="150"
+                                Margin="0,5,0,0"
                                 HorizontalAlignment="Left"
                                 Command="{Binding ShowSelectorDialogCommand}"
                                 CommandParameter="{Binding SelectVehicleTypeParameters}"
@@ -67,6 +69,7 @@
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                             <Button
                                 Width="150"
+                                Margin="0,5,0,0"
                                 HorizontalAlignment="Left"
                                 Command="{Binding ShowSelectorDialogCommand}"
                                 CommandParameter="{Binding SelectVehicleModelParameters}"
@@ -81,6 +84,7 @@
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                             <Button
                                 Width="150"
+                                Margin="0,5,0,0"
                                 HorizontalAlignment="Left"
                                 Command="{Binding ShowSelectorDialogCommand}"
                                 CommandParameter="{Binding SelectRentalPlaceParameters}"
@@ -109,49 +113,65 @@
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                             <Label Content="{x:Static res:Resources.ManufactureYear}" />
-                            <TextBox x:Name="ManufactureYearField" Text="{Binding EditableModel.ManufactureYear, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox x:Name="ManufactureYearField" Text="{Binding EditableModel.ManufactureYear, UpdateSourceTrigger=PropertyChanged}">
+                                <b:Interaction.Behaviors>
+                                    <helpers:TextBoxInputBehavior InputMode="DigitInput" />
+                                </b:Interaction.Behaviors>
+                            </TextBox>
                             <TextBlock
                                 helpers:ValidationHelper.PropertyName="ManufactureYear"
                                 Foreground="{StaticResource ErrorBrush}"
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                             <Label Content="{x:Static res:Resources.CurrentMileage}" />
-                            <TextBox x:Name="CurrentMileageField" Text="{Binding EditableModel.CurrentMileage, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox x:Name="CurrentMileageField" Text="{Binding EditableModel.CurrentMileage, UpdateSourceTrigger=PropertyChanged}">
+                                <b:Interaction.Behaviors>
+                                    <helpers:TextBoxInputBehavior InputMode="DigitInput" />
+                                </b:Interaction.Behaviors>
+                            </TextBox>
                             <TextBlock
                                 helpers:ValidationHelper.PropertyName="CurrentMileage"
                                 Foreground="{StaticResource ErrorBrush}"
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                             <Label Content="{x:Static res:Resources.LastMaintenanceMileage}" />
-                            <TextBox x:Name="LastMaintenanceMileageField" Text="{Binding EditableModel.LastMaintenanceMileage, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox x:Name="LastMaintenanceMileageField" Text="{Binding EditableModel.LastMaintenanceMileage, UpdateSourceTrigger=PropertyChanged}">
+                                <b:Interaction.Behaviors>
+                                    <helpers:TextBoxInputBehavior InputMode="DigitInput" />
+                                </b:Interaction.Behaviors>
+                            </TextBox>
                             <TextBlock
                                 helpers:ValidationHelper.PropertyName="LastMaintenanceMileage"
                                 Foreground="{StaticResource ErrorBrush}"
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                             <Label Content="{x:Static res:Resources.LastMaintenanceDate}" />
-                            <TextBox x:Name="LastMaintenanceDateField" Text="{Binding EditableModel.LastMaintenanceDate, UpdateSourceTrigger=PropertyChanged}" />
+                            <DatePicker x:Name="LastMaintenanceDateField" SelectedDate="{Binding EditableModel.LastMaintenanceDate, UpdateSourceTrigger=PropertyChanged}" />
                             <TextBlock
                                 helpers:ValidationHelper.PropertyName="LastMaintenanceDate"
                                 Foreground="{StaticResource ErrorBrush}"
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                             <Label Content="{x:Static res:Resources.NextMaintenanceDate}" />
-                            <TextBox x:Name="NextMaintenanceDateField" Text="{Binding EditableModel.NextMaintenanceDate, UpdateSourceTrigger=PropertyChanged}" />
+                            <DatePicker x:Name="NextMaintenanceDateField" SelectedDate="{Binding EditableModel.NextMaintenanceDate, UpdateSourceTrigger=PropertyChanged}" />
                             <TextBlock
                                 helpers:ValidationHelper.PropertyName="NextMaintenanceDate"
                                 Foreground="{StaticResource ErrorBrush}"
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                             <Label Content="{x:Static res:Resources.PurchaseDate}" />
-                            <TextBox x:Name="PurchaseDateField" Text="{Binding EditableModel.PurchaseDate, UpdateSourceTrigger=PropertyChanged}" />
+                            <DatePicker x:Name="PurchaseDateField" SelectedDate="{Binding EditableModel.PurchaseDate, UpdateSourceTrigger=PropertyChanged}" />
                             <TextBlock
                                 helpers:ValidationHelper.PropertyName="PurchaseDate"
                                 Foreground="{StaticResource ErrorBrush}"
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                             <Label Content="{x:Static res:Resources.PurchasePrice}" />
-                            <TextBox x:Name="PurchasePriceField" Text="{Binding EditableModel.PurchasePrice, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox x:Name="PurchasePriceField" Text="{Binding EditableModel.PurchasePrice, UpdateSourceTrigger=PropertyChanged}">
+                                <b:Interaction.Behaviors>
+                                    <helpers:TextBoxInputBehavior InputMode="DigitInput" />
+                                </b:Interaction.Behaviors>
+                            </TextBox>
                             <TextBlock
                                 helpers:ValidationHelper.PropertyName="PurchasePrice"
                                 Foreground="{StaticResource ErrorBrush}"
@@ -174,21 +194,34 @@
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                             <Label Content="{x:Static res:Resources.CustomDailyRate}" />
-                            <TextBox x:Name="CustomDailyRateField" Text="{Binding EditableModel.CustomDailyRate, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox x:Name="CustomDailyRateField" Text="{Binding EditableModel.CustomDailyRate, UpdateSourceTrigger=PropertyChanged}">
+                                <b:Interaction.Behaviors>
+                                    <helpers:TextBoxInputBehavior InputMode="DecimalInput" />
+                                </b:Interaction.Behaviors>
+                            </TextBox>
                             <TextBlock
                                 helpers:ValidationHelper.PropertyName="CustomDailyRate"
                                 Foreground="{StaticResource ErrorBrush}"
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
+
                             <Label Content="{x:Static res:Resources.CustomWeeklyRate}" />
-                            <TextBox x:Name="CustomWeeklyRateField" Text="{Binding EditableModel.CustomWeeklyRate, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox x:Name="CustomWeeklyRateField" Text="{Binding EditableModel.CustomWeeklyRate, UpdateSourceTrigger=PropertyChanged}">
+                                <b:Interaction.Behaviors>
+                                    <helpers:TextBoxInputBehavior InputMode="DecimalInput" />
+                                </b:Interaction.Behaviors>
+                            </TextBox>
                             <TextBlock
                                 helpers:ValidationHelper.PropertyName="CustomWeeklyRate"
                                 Foreground="{StaticResource ErrorBrush}"
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                             <Label Content="{x:Static res:Resources.CustomDeposit}" />
-                            <TextBox x:Name="CustomDepositField" Text="{Binding EditableModel.CustomDeposit, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBox x:Name="CustomDepositField" Text="{Binding EditableModel.CustomDeposit, UpdateSourceTrigger=PropertyChanged}">
+                                <b:Interaction.Behaviors>
+                                    <helpers:TextBoxInputBehavior InputMode="DecimalInput" />
+                                </b:Interaction.Behaviors>
+                            </TextBox>
                             <TextBlock
                                 helpers:ValidationHelper.PropertyName="CustomDeposit"
                                 Foreground="{StaticResource ErrorBrush}"

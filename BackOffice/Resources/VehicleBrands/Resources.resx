@@ -106,15 +106,6 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Vehicle Brands</value>
   </data>
-  <data name="ErrorName1" xml:space="preserve">
-    <value>Name cannot be empty.</value>
-  </data>
-  <data name="ErrorName2" xml:space="preserve">
-    <value>Name must be at least 3 characters long.</value>
-  </data>
-  <data name="ErrorName3" xml:space="preserve">
-    <value>Name cannot exceed 50 characters.</value>
-  </data>
   <data name="ErrorDescription1" xml:space="preserve">
     <value>Description cannot exceed 250 characters.</value>
   </data>

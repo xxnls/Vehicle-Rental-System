@@ -6,15 +6,60 @@ namespace BackOffice.Models.DTOs.Vehicles
     {
         public int VehicleModelId { get; set; }
 
-        public string Name { get; set; } = null!;
+        private string _name = null!;
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public double? EngineSize { get; set; }
+        private double? _engineSize;
+        public double? EngineSize
+        {
+            get => _engineSize;
+            set
+            {
+                _engineSize = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int? HorsePower { get; set; }
+        private int? _horsePower;
+        public int? HorsePower
+        {
+            get => _horsePower;
+            set
+            {
+                _horsePower = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string FuelType { get; set; } = null!;
+        private string _fuelType = null!;
+        public string FuelType
+        {
+            get => _fuelType;
+            set
+            {
+                _fuelType = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string? Description { get; set; }
+        private string? _description;
+        public string? Description
+        {
+            get => _description;
+            set
+            {
+                _description = value;
+                OnPropertyChanged();
+            }
+        }
 
         // Navigation Properties
         private VehicleBrandDto _vehicleBrand = null!;

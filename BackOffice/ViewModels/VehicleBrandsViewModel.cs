@@ -76,15 +76,15 @@ namespace BackOffice.ViewModels
 
             if (string.IsNullOrWhiteSpace(EditableModel.Name))
             {
-                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("VehicleBrands", "ErrorName1"));
+                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("Generic", "ErrorName1"));
             }
             else if (EditableModel.Name.Length < 3)
             {
-                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("VehicleBrands", "ErrorName2"));
+                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("Generic", "ErrorName2"));
             }
             else if (EditableModel.Name.Length >= 50)
             {
-                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("VehicleBrands", "ErrorName3"));
+                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("Generic", "ErrorName3"));
             }
         }
 
@@ -108,6 +108,7 @@ namespace BackOffice.ViewModels
                 () => !string.IsNullOrWhiteSpace(EditableModel.LogoUrl) && Uri.IsWellFormedUriString(EditableModel.LogoUrl, UriKind.Absolute),
                 LocalizationHelper.GetString("VehicleBrands", "ErrorLogoURL"));
         }
+
 
         #endregion
     }

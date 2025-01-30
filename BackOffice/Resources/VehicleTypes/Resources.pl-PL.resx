@@ -100,22 +100,22 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Rodzaje pojazdów</value>
   </data>
-  <data name="ErrorName" xml:space="preserve">
-    <value>Nazwa jest wymagana i musi mieć przynajmniej 3 znaki.</value>
+  <data name="ErrorName1" xml:space="preserve">
+    <value>Nazwa jest wymagana.</value>
   </data>
-  <data name="ErrorDescription" xml:space="preserve">
-    <value>Opis nie może mieć więcej niż 150 znaków.</value>
+  <data name="ErrorDescription1" xml:space="preserve">
+    <value>Opis nie może mieć więcej niż 300 znaków.</value>
   </data>
-  <data name="ErrorBaseDailyRate" xml:space="preserve">
-    <value>Bazowa stawka za dzień musi być liczbą.</value>
+  <data name="ErrorBaseDailyRate1" xml:space="preserve">
+    <value>Bazowa stawka za dzień musi być liczbą dodatnią.</value>
   </data>
-  <data name="ErrorBaseWeeklyRate" xml:space="preserve">
-    <value>Bazowa stawka za tydzień musi być liczbą.</value>
+  <data name="ErrorBaseWeeklyRate1" xml:space="preserve">
+    <value>Bazowa stawka za tydzień musi być liczbą dodatnią.</value>
   </data>
-  <data name="ErrorBaseDeposit" xml:space="preserve">
-    <value>Bazowa kaucja musi być liczbą.</value>
+  <data name="ErrorBaseDeposit1" xml:space="preserve">
+    <value>Bazowa kaucja musi być liczbą dodatnią.</value>
   </data>
-  <data name="ErrorRequiredLicenseType" xml:space="preserve">
+  <data name="ErrorRequiredLicenseType1" xml:space="preserve">
     <value>Pole wymagana licencja jest wymagane.</value>
   </data>
   <data name="BaseDailyRate" xml:space="preserve">
@@ -129,5 +129,14 @@
   </data>
   <data name="RequiredLicenseType" xml:space="preserve">
     <value>Rodzaj wymaganej licencji</value>
+  </data>
+  <data name="ErrorName2" xml:space="preserve">
+    <value>Nazwa musi posiadać przynajmniej 3 znaki.</value>
+  </data>
+  <data name="ErrorName3" xml:space="preserve">
+    <value>Nazwa może posiadać maksymalnie 30 znaków.</value>
+  </data>
+  <data name="ErrorRequiredLicenseType2" xml:space="preserve">
+    <value>Wymagana licencja musi być poprawna.</value>
   </data>
 </root>
