@@ -1,7 +1,8 @@
 ﻿<UserControl
-    x:Class="BackOffice.Views.Employees.EmployeeShiftTypesView"
+    x:Class="BackOffice.Views.Employees.EmployeePositionsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:employees="clr-namespace:BackOffice.ViewModels.Employees"
@@ -9,14 +10,13 @@
     xmlns:helpers="clr-namespace:BackOffice.Helpers"
     xmlns:local="clr-namespace:BackOffice.Views.Employees"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:res="clr-namespace:BackOffice.Resources.EmployeeShiftTypes"
-    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:res="clr-namespace:BackOffice.Resources.EmployeePositions"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
 
     <UserControl.DataContext>
-        <employees:EmployeeShiftTypesViewModel x:Name="DataContext" />
+        <employees:EmployeePositionsViewModel x:Name="DataContext" />
     </UserControl.DataContext>
 
     <UserControl.Resources>
@@ -26,45 +26,51 @@
     </UserControl.Resources>
 
     <StackPanel Orientation="Vertical">
-        <!--  Create/Edit Mode  -->
         <Grid Visibility="{Binding IsCreatingOrEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
-            <Border Style="{StaticResource CreateEditBorderStyle}">
+            <Border Grid.Row="0" Style="{StaticResource CreateEditBorderStyle}">
                 <StackPanel Orientation="Vertical">
-                    <Label Content="{x:Static res:Resources.ShiftName}" />
-                    <TextBox Text="{Binding EditableModel.Name, UpdateSourceTrigger=PropertyChanged}" />
+                    <Label Content="{x:Static res:Resources.Title}" />
+                    <TextBox Text="{Binding EditableModel.Title, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
-                        helpers:ValidationHelper.PropertyName="Name"
+                        helpers:ValidationHelper.PropertyName="Title"
                         Foreground="{StaticResource ErrorBrush}"
                         Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.ShiftStartTime}" />
-                    <xctk:TimePicker
-                        Format="Custom"
-                        FormatString="HH:mm"
-                        ShowDropDownButton="True"
-                        TextAlignment="Left"
-                        Value="{Binding EditableModel.TimeStart, UpdateSourceTrigger=PropertyChanged}" />
+                    <!--  Checkbox to Disable Salary  -->
+                    <CheckBox
+                        Margin="0,10,0,0"
+                        Content="{x:Static res:Resources.DisableSalary}"
+                        IsChecked="{Binding IsSalaryDisabled, UpdateSourceTrigger=PropertyChanged}" />
 
+                    <Label Content="{x:Static res:Resources.DefaultBaseSalary}" />
+                    <TextBox IsEnabled="{Binding IsSalaryDisabled, Converter={StaticResource InverseBooleanConverter}}" Text="{Binding EditableModel.DefaultBaseSalary, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}">
+                        <!--<b:Interaction.Behaviors>
+                            <helpers:TextBoxInputBehavior InputMode="DecimalInput" JustPositiveDecimalInput="True" />
+                        </b:Interaction.Behaviors>-->
+                    </TextBox>
                     <TextBlock
-                        helpers:ValidationHelper.PropertyName="TimeStart"
+                        helpers:ValidationHelper.PropertyName="DefaultBaseSalary"
                         Foreground="{StaticResource ErrorBrush}"
                         Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                    <Label Content="{x:Static res:Resources.ShiftEndTime}" />
-                    <xctk:TimePicker
-                        Format="Custom"
-                        FormatString="HH:mm"
-                        ShowDropDownButton="True"
-                        TextAlignment="Left"
-                        Value="{Binding EditableModel.TimeEnd, UpdateSourceTrigger=PropertyChanged}" />
+                    <!--  Checkbox to Disable Hourly Rate  -->
+                    <CheckBox
+                        Margin="0,10,0,0"
+                        Content="{x:Static res:Resources.DisableHourlyRate}"
+                        IsChecked="{Binding IsHourlyRateDisabled, UpdateSourceTrigger=PropertyChanged}" />
 
+                    <Label Content="{x:Static res:Resources.DefaultHourlyRate}" />
+                    <TextBox IsEnabled="{Binding IsHourlyRateDisabled, Converter={StaticResource InverseBooleanConverter}}" Text="{Binding EditableModel.DefaultHourlyRate, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}">
+                        <!--<b:Interaction.Behaviors>
+                            <helpers:TextBoxInputBehavior InputMode="DecimalInput" JustPositiveDecimalInput="True" />
+                        </b:Interaction.Behaviors>-->
+                    </TextBox>
                     <TextBlock
-                        helpers:ValidationHelper.PropertyName="TimeEnd"
+                        helpers:ValidationHelper.PropertyName="DefaultHourlyRate"
                         Foreground="{StaticResource ErrorBrush}"
                         Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                 </StackPanel>
@@ -85,7 +91,6 @@
                 Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}" />
         </Grid>
 
-        <!--  List Mode  -->
         <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -95,14 +100,13 @@
                 </Grid.ColumnDefinitions>
 
                 <customControls:CRUDButtonsControl
-                    Grid.Column="0"
                     AddCommand="{Binding SwitchToCreateModeCommand}"
                     DeleteCommand="{Binding DeleteModelCommand}"
                     DeleteVisibility="{Binding ShowDeleted, Converter={StaticResource InverseBooleanConverter}}"
                     EditCommand="{Binding SwitchToEditModeCommand}"
                     LoadCommand="{Binding LoadModelsCommand}"
                     RestoreCommand="{Binding RestoreModelCommand}"
-                    RestoreCommandParameter="{Binding EditableModel.EmployeeShiftTypeId}"
+                    RestoreCommandParameter="{Binding EditableModel.EmployeePositionId}"
                     RestoreVisibility="{Binding ShowDeleted}" />
 
                 <customControls:SearchControl Grid.Column="1" SearchCommand="{Binding SearchCommand}" />
@@ -134,10 +138,10 @@
                         Gesture="LeftDoubleClick" />
                 </DataGrid.InputBindings>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding EmployeeShiftTypeId}" Header="ID" />
-                    <DataGridTextColumn Binding="{Binding Name}" Header="{x:Static res:Resources.ShiftName}" />
-                    <DataGridTextColumn Binding="{Binding TimeStart, StringFormat=HH:mm}" Header="{x:Static res:Resources.ShiftStartTime}" />
-                    <DataGridTextColumn Binding="{Binding TimeEnd, StringFormat=HH:mm}" Header="{x:Static res:Resources.ShiftEndTime}" />
+                    <DataGridTextColumn Binding="{Binding EmployeePositionId}" Header="ID" />
+                    <DataGridTextColumn Binding="{Binding Title}" Header="{x:Static res:Resources.Title}" />
+                    <DataGridTextColumn Binding="{Binding DefaultBaseSalary, StringFormat=N2}" Header="{x:Static res:Resources.DefaultBaseSalary}" />
+                    <DataGridTextColumn Binding="{Binding DefaultHourlyRate, StringFormat=N2}" Header="{x:Static res:Resources.DefaultHourlyRate}" />
                     <DataGridTextColumn Binding="{Binding CreatedDate}" Header="{x:Static generic:Resources.CreatedDate}" />
                     <DataGridTextColumn Binding="{Binding ModifiedDate}" Header="{x:Static generic:Resources.ModifiedDate}" />
                     <DataGridTextColumn

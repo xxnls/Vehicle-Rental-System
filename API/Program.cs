@@ -26,6 +26,7 @@ builder.Services.AddScoped<EmployeeAuthService>();
 builder.Services.AddScoped<EmployeesService>();
 builder.Services.AddScoped<EmployeeShiftTypesService>();
 builder.Services.AddScoped<EmployeeLeaveTypesService>();
+builder.Services.AddScoped<EmployeePositionsService>();
 builder.Services.AddScoped<VehiclesService>();
 builder.Services.AddScoped<VehicleBrandsService>();
 builder.Services.AddScoped<VehicleModelsService>();

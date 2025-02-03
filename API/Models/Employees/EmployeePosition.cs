@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using API.Interfaces;
 
-namespace API.Models;
+namespace API.Models.Employees;
 
-public partial class EmployeePosition
+public partial class EmployeePosition : IBaseModel
 {
     public int EmployeePositionId { get; set; }
 

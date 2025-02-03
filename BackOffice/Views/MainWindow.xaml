@@ -134,6 +134,10 @@
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeeLeaveTypesViewModel"
                             Content="Leave Types" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="EmployeePositionsViewModel"
+                            Content="Positions" />
                     </StackPanel>
                 </Expander>
 

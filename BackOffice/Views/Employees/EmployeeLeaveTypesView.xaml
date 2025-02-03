@@ -118,6 +118,16 @@
                         Header="{x:Static res:Resources.DefaultDays}" />
                 </DataGrid.Columns>
             </DataGrid>
+
+            <!--  Pagination  -->
+            <customControls:PaginationControl
+                CanLoadNextPage="{Binding CanLoadNextPage}"
+                CanLoadPreviousPage="{Binding CanLoadPreviousPage}"
+                CurrentPage="{Binding CurrentPage}"
+                ModelsPerPage="{Binding PageSize}"
+                NextPageCommand="{Binding LoadNextPageCommand}"
+                PreviousPageCommand="{Binding LoadPreviousPageCommand}"
+                TotalItemCount="{Binding TotalItemCount}" />
         </StackPanel>
     </StackPanel>
 </UserControl>

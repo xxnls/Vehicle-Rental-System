@@ -19,20 +19,20 @@ namespace BackOffice.Helpers
         public TextBoxInputBehavior()
         {
             this.InputMode = TextBoxInputMode.None;
-            this.JustPositivDecimalInput = false;
+            this.JustPositiveDecimalInput = false;
         }
 
         public TextBoxInputMode InputMode { get; set; }
 
 
-        public static readonly DependencyProperty JustPositivDecimalInputProperty =
-         DependencyProperty.Register("JustPositivDecimalInput", typeof(bool),
+        public static readonly DependencyProperty JustPositiveDecimalInputProperty =
+         DependencyProperty.Register(nameof(JustPositiveDecimalInput), typeof(bool),
          typeof(TextBoxInputBehavior), new FrameworkPropertyMetadata(false));
 
-        public bool JustPositivDecimalInput
+        public bool JustPositiveDecimalInput
         {
-            get { return (bool)GetValue(JustPositivDecimalInputProperty); }
-            set { SetValue(JustPositivDecimalInputProperty, value); }
+            get { return (bool)GetValue(JustPositiveDecimalInputProperty); }
+            set { SetValue(JustPositiveDecimalInputProperty, value); }
         }
 
         protected override void OnAttached()
@@ -135,7 +135,7 @@ namespace BackOffice.Helpers
 
                     if (input.Contains("-"))
                     {
-                        if (this.JustPositivDecimalInput)
+                        if (this.JustPositiveDecimalInput)
                             return false;
 
 

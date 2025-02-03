@@ -100,14 +100,15 @@ namespace BackOffice.ViewModels
                 { "AddressesViewModel", new AddressesViewModel() },
                 { "CountriesViewModel", new CountriesViewModel() },
                 { "EmployeeShiftTypesViewModel", new EmployeeShiftTypesViewModel() },
-                { "EmployeeLeaveTypesViewModel", new EmployeeLeaveTypesViewModel() }
+                { "EmployeeLeaveTypesViewModel", new EmployeeLeaveTypesViewModel() },
+                { "EmployeePositionsViewModel", new EmployeePositionsViewModel() }
             };
 
             // Load user
             CurrentUser = (REmployeeDTO)SessionManager.Get("User");
 
             // Set default workspace
-            CurrentWorkspace = _viewModelMappings["RentalPlacesViewModel"];
+            CurrentWorkspace = _viewModelMappings["EmployeePositionsViewModel"];
 
             ToggleSidebarCommand = new RelayCommand(ToggleSidebar);
             LogoutCommand = new RelayCommand(Logout);

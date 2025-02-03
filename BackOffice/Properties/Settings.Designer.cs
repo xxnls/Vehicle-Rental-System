@@ -58,7 +58,7 @@ namespace BackOffice.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int ModelsPerPage {
             get {
                 return ((int)(this["ModelsPerPage"]));

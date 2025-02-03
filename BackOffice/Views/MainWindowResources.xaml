@@ -46,6 +46,10 @@
         <employeesviews:EmployeeLeaveTypesView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type employees:EmployeePositionsViewModel}">
+        <employeesviews:EmployeePositionsView />
+    </DataTemplate>
+
 
     <Storyboard x:Key="ExpandSidebar">
         <DoubleAnimation
