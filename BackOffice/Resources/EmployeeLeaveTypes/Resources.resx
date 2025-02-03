@@ -103,4 +103,13 @@
   <data name="DefaultDays" xml:space="preserve">
     <value>Default days</value>
   </data>
+  <data name="ErrorName3" xml:space="preserve">
+    <value>Name cannot exceed 100 characters.</value>
+  </data>
+  <data name="ErrorDescription1" xml:space="preserve">
+    <value>Description cannot exceed 300 characters.</value>
+  </data>
+  <data name="ErrorDefaultDays1" xml:space="preserve">
+    <value>Default days field is required.</value>
+  </data>
 </root>

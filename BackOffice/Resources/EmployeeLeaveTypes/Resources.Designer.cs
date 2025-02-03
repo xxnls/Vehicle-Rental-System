@@ -59,5 +59,50 @@ namespace BackOffice.Resources.EmployeeLeaveTypes {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default days.
+        /// </summary>
+        public static string DefaultDays {
+            get {
+                return ResourceManager.GetString("DefaultDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave types.
+        /// </summary>
+        public static string DisplayName {
+            get {
+                return ResourceManager.GetString("DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default days field is required..
+        /// </summary>
+        public static string ErrorDefaultDays1 {
+            get {
+                return ResourceManager.GetString("ErrorDefaultDays1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description cannot exceed 300 characters..
+        /// </summary>
+        public static string ErrorDescription1 {
+            get {
+                return ResourceManager.GetString("ErrorDescription1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name cannot exceed 100 characters..
+        /// </summary>
+        public static string ErrorName3 {
+            get {
+                return ResourceManager.GetString("ErrorName3", resourceCulture);
+            }
+        }
     }
 }

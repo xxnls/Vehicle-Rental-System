@@ -10,10 +10,37 @@ namespace BackOffice.Models.DTOs.Employees
     {
         public int EmployeeLeaveTypeId { get; set; }
 
-        public string Name { get; set; } = null!;
+        private string _name = null!;
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string? Description { get; set; }
+        private string? _description;
+        public string? Description
+        {
+            get => _description;
+            set
+            {
+                _description = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int DefaultDays { get; set; }
+        private int _defaultDays;
+        public int DefaultDays
+        {
+            get => _defaultDays;
+            set
+            {
+                _defaultDays = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

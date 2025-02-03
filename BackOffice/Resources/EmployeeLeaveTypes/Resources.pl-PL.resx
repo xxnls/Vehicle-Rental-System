@@ -103,4 +103,13 @@
   <data name="DefaultDays" xml:space="preserve">
     <value>Domyślnie dni</value>
   </data>
+  <data name="ErrorName3" xml:space="preserve">
+    <value>Nazwa nie może przekraczać 100 znaków.</value>
+  </data>
+  <data name="ErrorDescription1" xml:space="preserve">
+    <value>Opis nie może przekraczać 300 znaków.</value>
+  </data>
+  <data name="ErrorDefaultDays1" xml:space="preserve">
+    <value>Pole domyślnie dni jest wymagane.</value>
+  </data>
 </root>
