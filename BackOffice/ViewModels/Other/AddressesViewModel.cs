@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using BackOffice.Helpers;
@@ -42,7 +43,10 @@ namespace BackOffice.ViewModels.Other
 
             ValidationRules = new Dictionary<string, Action>
             {
-                // TODO: Fill it when updating is implemented
+                { nameof(EditableModel.FirstLine), ValidateFirstLine },
+                { nameof(EditableModel.SecondLine), ValidateSecondLine },
+                { nameof(EditableModel.ZipCode), ValidateZipCode },
+                { nameof(EditableModel.City), ValidateCity }
             };
         }
 
@@ -51,6 +55,66 @@ namespace BackOffice.ViewModels.Other
         public async Task CreateModelAsync()
         {
             //N/A
+        }
+
+        #endregion
+
+        #region Validation
+
+        // Validation method for FirstLine
+        private void ValidateFirstLine()
+        {
+            ClearErrors(nameof(EditableModel.FirstLine));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.FirstLine))
+            {
+                AddError(nameof(EditableModel.FirstLine), LocalizationHelper.GetString("Addresses", "ErrorFirstLine1"));
+            }
+            else if (EditableModel.FirstLine.Length > 100)
+            {
+                AddError(nameof(EditableModel.FirstLine), LocalizationHelper.GetString("Addresses", "ErrorFirstLine2"));
+            }
+        }
+
+        // Validation method for SecondLine
+        private void ValidateSecondLine()
+        {
+            ClearErrors(nameof(EditableModel.SecondLine));
+
+            if (!string.IsNullOrWhiteSpace(EditableModel.SecondLine) && EditableModel.SecondLine.Length > 100)
+            {
+                AddError(nameof(EditableModel.SecondLine), LocalizationHelper.GetString("Addresses", "ErrorSecondLine1"));
+            }
+        }
+
+        // Validation method for ZipCode
+        private void ValidateZipCode()
+        {
+            ClearErrors(nameof(EditableModel.ZipCode));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.ZipCode))
+            {
+                AddError(nameof(EditableModel.ZipCode), LocalizationHelper.GetString("Addresses", "ErrorZipCode1"));
+            }
+            else if (EditableModel.ZipCode.Length > 20)
+            {
+                AddError(nameof(EditableModel.ZipCode), LocalizationHelper.GetString("Addresses", "ErrorZipCode2"));
+            }
+        }
+
+        // Validation method for City
+        private void ValidateCity()
+        {
+            ClearErrors(nameof(EditableModel.City));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.City))
+            {
+                AddError(nameof(EditableModel.City), LocalizationHelper.GetString("Addresses", "ErrorCity1"));
+            }
+            else if (EditableModel.City.Length > 50)
+            {
+                AddError(nameof(EditableModel.City), LocalizationHelper.GetString("Addresses", "ErrorCity2"));
+            }
         }
 
         #endregion

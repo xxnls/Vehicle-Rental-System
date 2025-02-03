@@ -121,4 +121,25 @@
   <data name="SelectCountry" xml:space="preserve">
     <value>Select Country</value>
   </data>
+  <data name="ErrorFirstLine1" xml:space="preserve">
+    <value>First line field is required.</value>
+  </data>
+  <data name="ErrorFirstLine2" xml:space="preserve">
+    <value>First line field cannot exceed 100 characters.</value>
+  </data>
+  <data name="ErrorSecondLine1" xml:space="preserve">
+    <value>Second line cannot exceed 100 characters.</value>
+  </data>
+  <data name="ErrorZipCode1" xml:space="preserve">
+    <value>Zip code is required.</value>
+  </data>
+  <data name="ErrorZipCode2" xml:space="preserve">
+    <value>Zip code cannot exceed 20 characters.</value>
+  </data>
+  <data name="ErrorCity1" xml:space="preserve">
+    <value>City field is required.</value>
+  </data>
+  <data name="ErrorCity2" xml:space="preserve">
+    <value>City field cannot exceed 50 characters.</value>
+  </data>
 </root>

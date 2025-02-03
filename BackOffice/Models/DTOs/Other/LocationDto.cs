@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BackOffice.Models.DTOs.Other
 {
-    public class LocationDto
+    public class LocationDto : BaseDtoModel
     {
         public int LocationId { get; set; }
 
@@ -14,12 +14,28 @@ namespace BackOffice.Models.DTOs.Other
 
         public int? RentalPlaceId { get; set; }
 
-        public double GpsLatitude { get; set; }
+        private double _gpsLatitude;
+        public double GpsLatitude
+        {
+            get => _gpsLatitude;
+            set
+            {
+                _gpsLatitude = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public double GpsLongitude { get; set; }
+        private double _gpsLongitude;
+        public double GpsLongitude
+        {
+            get => _gpsLongitude;
+            set
+            {
+                _gpsLongitude = value;
+                OnPropertyChanged();
+            }
+        }
 
         public DateTime DateTime { get; set; }
-
-        public bool IsActive { get; set; }
     }
 }

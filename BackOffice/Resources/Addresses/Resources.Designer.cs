@@ -88,6 +88,69 @@ namespace BackOffice.Resources.Addresses {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to City field is required..
+        /// </summary>
+        public static string ErrorCity1 {
+            get {
+                return ResourceManager.GetString("ErrorCity1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City field cannot exceed 50 characters..
+        /// </summary>
+        public static string ErrorCity2 {
+            get {
+                return ResourceManager.GetString("ErrorCity2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First line field is required..
+        /// </summary>
+        public static string ErrorFirstLine1 {
+            get {
+                return ResourceManager.GetString("ErrorFirstLine1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First line field cannot exceed 100 characters..
+        /// </summary>
+        public static string ErrorFirstLine2 {
+            get {
+                return ResourceManager.GetString("ErrorFirstLine2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Second line cannot exceed 100 characters..
+        /// </summary>
+        public static string ErrorSecondLine1 {
+            get {
+                return ResourceManager.GetString("ErrorSecondLine1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zip code is required..
+        /// </summary>
+        public static string ErrorZipCode1 {
+            get {
+                return ResourceManager.GetString("ErrorZipCode1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zip code cannot exceed 20 characters..
+        /// </summary>
+        public static string ErrorZipCode2 {
+            get {
+                return ResourceManager.GetString("ErrorZipCode2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First line.
         /// </summary>
         public static string FirstLine {

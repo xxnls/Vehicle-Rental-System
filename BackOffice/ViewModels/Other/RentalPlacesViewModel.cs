@@ -32,7 +32,6 @@ namespace BackOffice.ViewModels.Other
             };
 
             CreateModelCommand = new AsyncRelayCommand(CreateModelAsync);
-            //UpdateModelCommand = new AsyncRelayCommand(UpdateModelAsync);
             UpdateModelCommand = new AsyncRelayCommand(() => UpdateModelAsync(EditableModel.RentalPlaceId, EditableModel));
             DeleteModelCommand = new AsyncRelayCommand(
                 () => DeleteModelAsync(EditableModel.RentalPlaceId),
@@ -41,13 +40,25 @@ namespace BackOffice.ViewModels.Other
 
             ValidationRules = new Dictionary<string, Action>
             {
-            //    { nameof(EditableModel.LocationId), ValidateLocationId },
-            //    { nameof(EditableModel.GpsLatitude), ValidateGpsLatitude },
-            //    { nameof(EditableModel.GpsLongitude), ValidateGpsLongitude },
-            //    { nameof(EditableModel.AddressId), ValidateAddressId },
-            //    { nameof(EditableModel.City), ValidateCity },
-            //    { nameof(EditableModel.FirstLine), ValidateFirstLine },
-            //    { nameof(EditableModel.SecondLine), ValidateSecondLine }
+            { nameof(EditableModel.Address.FirstLine), () =>
+                {
+                    if (EditableModel?.Address != null)
+                        ValidationRulesHelper.ValidateFirstLine(EditableModel.Address, AddError);
+                }
+            },
+            { nameof(EditableModel.Address.SecondLine), ValidateZipCode },
+            { "Address.ZipCode", () =>
+                {
+                    if (EditableModel?.Address != null)
+                        ValidationRulesHelper.ValidateZipCode(EditableModel.Address, AddError);
+                }
+            },
+            { "Address.City", () =>
+                {
+                    if (EditableModel?.Address != null)
+                        ValidationRulesHelper.ValidateCity(EditableModel.Address, AddError);
+                }
+            },
             };
         } 
 
@@ -81,6 +92,19 @@ namespace BackOffice.ViewModels.Other
 
         #region Validation
 
+        private void ValidateZipCode()
+        {
+            ClearErrors(nameof(EditableModel.Address.ZipCode));
+
+            if (string.IsNullOrWhiteSpace(EditableModel.Address.ZipCode))
+            {
+                AddError(nameof(EditableModel.Address.ZipCode), LocalizationHelper.GetString("Addresses", "ErrorZipCode1"));
+            }
+            else if (EditableModel.Address.ZipCode.Length > 20)
+            {
+                AddError(nameof(EditableModel.Address.ZipCode), LocalizationHelper.GetString("Addresses", "ErrorZipCode2"));
+            }
+        }
 
         #endregion
     }

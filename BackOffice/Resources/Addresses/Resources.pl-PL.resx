@@ -121,4 +121,25 @@
   <data name="SelectCountry" xml:space="preserve">
     <value>Wybierz Kraj</value>
   </data>
+  <data name="ErrorFirstLine1" xml:space="preserve">
+    <value>Pierwsza linia adresu jest wymagana.</value>
+  </data>
+  <data name="ErrorFirstLine2" xml:space="preserve">
+    <value>Pierwsza linia adresu nie może przekraczać 100 znaków.</value>
+  </data>
+  <data name="ErrorSecondLine1" xml:space="preserve">
+    <value>Druga linia adresu nie może przekraczać 100 znaków.</value>
+  </data>
+  <data name="ErrorZipCode1" xml:space="preserve">
+    <value>Kod pocztowy jest wymagany.</value>
+  </data>
+  <data name="ErrorZipCode2" xml:space="preserve">
+    <value>Kod pocztowy nie może przekraczać 20 znaków.</value>
+  </data>
+  <data name="ErrorCity1" xml:space="preserve">
+    <value>Miasto jest wymagane.</value>
+  </data>
+  <data name="ErrorCity2" xml:space="preserve">
+    <value>Miasto nie może przekraczać 50 znaków.</value>
+  </data>
 </root>

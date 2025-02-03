@@ -10,6 +10,7 @@
     xmlns:local="clr-namespace:BackOffice.Views.Employees"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:res="clr-namespace:BackOffice.Resources.EmployeeShiftTypes"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -42,16 +43,28 @@
                         Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                     <Label Content="{x:Static res:Resources.ShiftStartTime}" />
-                    <TextBox Text="{Binding EditableModel.TimeStart, UpdateSourceTrigger=PropertyChanged, StringFormat=t}" />
+                    <xctk:TimePicker
+                        Format="Custom"
+                        FormatString="HH:mm"
+                        ShowDropDownButton="True"
+                        TextAlignment="Left"
+                        Value="{Binding EditableModel.TimeStart, UpdateSourceTrigger=PropertyChanged}" />
+
                     <TextBlock
-                        helpers:ValidationHelper.PropertyName="StartTime"
+                        helpers:ValidationHelper.PropertyName="TimeStart"
                         Foreground="{StaticResource ErrorBrush}"
                         Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                     <Label Content="{x:Static res:Resources.ShiftEndTime}" />
-                    <TextBox Text="{Binding EditableModel.TimeEnd, UpdateSourceTrigger=PropertyChanged, StringFormat=t}" />
+                    <xctk:TimePicker
+                        Format="Custom"
+                        FormatString="HH:mm"
+                        ShowDropDownButton="True"
+                        TextAlignment="Left"
+                        Value="{Binding EditableModel.TimeEnd, UpdateSourceTrigger=PropertyChanged}" />
+
                     <TextBlock
-                        helpers:ValidationHelper.PropertyName="EndTime"
+                        helpers:ValidationHelper.PropertyName="TimeEnd"
                         Foreground="{StaticResource ErrorBrush}"
                         Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                 </StackPanel>
@@ -122,8 +135,8 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding EmployeeShiftTypeId}" Header="ID" />
                     <DataGridTextColumn Binding="{Binding Name}" Header="{x:Static res:Resources.ShiftName}" />
-                    <DataGridTextColumn Binding="{Binding TimeStart, StringFormat=t}" Header="{x:Static res:Resources.ShiftStartTime}" />
-                    <DataGridTextColumn Binding="{Binding TimeEnd, StringFormat=t}" Header="{x:Static res:Resources.ShiftEndTime}" />
+                    <DataGridTextColumn Binding="{Binding TimeStart, StringFormat=HH:mm}" Header="{x:Static res:Resources.ShiftStartTime}" />
+                    <DataGridTextColumn Binding="{Binding TimeEnd, StringFormat=HH:mm}" Header="{x:Static res:Resources.ShiftEndTime}" />
                     <DataGridTextColumn Binding="{Binding CreatedDate}" Header="{x:Static generic:Resources.CreatedDate}" />
                     <DataGridTextColumn Binding="{Binding ModifiedDate}" Header="{x:Static generic:Resources.ModifiedDate}" />
                     <DataGridTextColumn

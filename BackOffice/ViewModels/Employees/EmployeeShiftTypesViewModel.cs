@@ -23,32 +23,35 @@ namespace BackOffice.ViewModels.Employees
 
             ValidationRules = new Dictionary<string, Action>
             {
-                //{ nameof(EditableModel.Name), ValidateName },
-                //{ nameof(EditableModel.TimeStart), ValidateTimeStart },
-                //{ nameof(EditableModel.TimeEnd), ValidateTimeEnd }
+                { nameof(EditableModel.Name), ValidateName },
+                { nameof(EditableModel.TimeStart), ValidateTimeStart },
+                { nameof(EditableModel.TimeEnd), ValidateTimeEnd }
             };
         }
 
         #region Validation
         private void ValidateName()
         {
-            ValidateProperty(nameof(EditableModel.Name),
-                () => !string.IsNullOrWhiteSpace(EditableModel.Name),
-                LocalizationHelper.GetString("EmployeeShiftTypes", "ErrorName"));
+            ClearErrors(nameof(EditableModel.Name));
+
+            if (!string.IsNullOrWhiteSpace(EditableModel.Name) && EditableModel.Name.Length >= 100)
+            {
+                AddError(nameof(EditableModel.Name), LocalizationHelper.GetString("EmployeeShiftTypes", "ErrorName1"));
+            }
         }
 
         private void ValidateTimeStart()
         {
             ValidateProperty(nameof(EditableModel.TimeStart),
                 () => EditableModel.TimeStart < EditableModel.TimeEnd,
-                LocalizationHelper.GetString("EmployeeShiftTypes", "ErrorTimeStart"));
+                LocalizationHelper.GetString("EmployeeShiftTypes", "ErrorTimeStart1"));
         }
 
         private void ValidateTimeEnd()
         {
             ValidateProperty(nameof(EditableModel.TimeEnd),
                 () => EditableModel.TimeEnd > EditableModel.TimeStart,
-                LocalizationHelper.GetString("EmployeeShiftTypes", "ErrorTimeEnd"));
+                LocalizationHelper.GetString("EmployeeShiftTypes", "ErrorTimeEnd1"));
         }
         #endregion
     }

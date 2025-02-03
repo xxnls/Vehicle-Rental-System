@@ -157,10 +157,10 @@
 
             <!--  Data Grid  -->
             <DataGrid
+                x:Name="MainDataGrid"
                 ItemsSource="{Binding Models}"
                 SelectedItem="{Binding EditableModel, Mode=TwoWay}"
-                Style="{StaticResource DefaultDataGridStyle}"
-                x:Name="MainDataGrid">
+                Style="{StaticResource DefaultDataGridStyle}">
                 <DataGrid.InputBindings>
                     <MouseBinding
                         Command="{Binding ShowDetailedInfoCommand}"

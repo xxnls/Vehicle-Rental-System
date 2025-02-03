@@ -109,4 +109,13 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Rodzaje zmian</value>
   </data>
+  <data name="ErrorName1" xml:space="preserve">
+    <value>Nazwa nie może mieć więcej niż 100 znaków.</value>
+  </data>
+  <data name="ErrorTimeStart1" xml:space="preserve">
+    <value>Początek zmiany nie może być po końcu zmiany.</value>
+  </data>
+  <data name="ErrorTimeEnd1" xml:space="preserve">
+    <value>Koniec zmiany nie może być przed początkiem zmiany.</value>
+  </data>
 </root>

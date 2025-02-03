@@ -70,6 +70,33 @@ namespace BackOffice.Resources.EmployeeShiftTypes {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name cannot exceed 100 characters..
+        /// </summary>
+        public static string ErrorName1 {
+            get {
+                return ResourceManager.GetString("ErrorName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End time cannot be before the start of a shift.
+        /// </summary>
+        public static string ErrorTimeEnd1 {
+            get {
+                return ResourceManager.GetString("ErrorTimeEnd1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start time cannot be after the end of a shift..
+        /// </summary>
+        public static string ErrorTimeStart1 {
+            get {
+                return ResourceManager.GetString("ErrorTimeStart1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shift end time.
         /// </summary>
         public static string ShiftEndTime {

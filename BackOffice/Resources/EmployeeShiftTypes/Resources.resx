@@ -109,4 +109,13 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Shift types</value>
   </data>
+  <data name="ErrorName1" xml:space="preserve">
+    <value>Name cannot exceed 100 characters.</value>
+  </data>
+  <data name="ErrorTimeStart1" xml:space="preserve">
+    <value>Start time cannot be after the end of a shift.</value>
+  </data>
+  <data name="ErrorTimeEnd1" xml:space="preserve">
+    <value>End time cannot be before the start of a shift</value>
+  </data>
 </root>

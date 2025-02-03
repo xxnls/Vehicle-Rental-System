@@ -10,13 +10,49 @@ namespace BackOffice.Models.DTOs.Other
     {
         public int AddressId { get; set; }
 
-        public string FirstLine { get; set; } = null!;
+        private string _firstLine = null!;
+        public string FirstLine
+        {
+            get => _firstLine;
+            set
+            {
+                _firstLine = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string? SecondLine { get; set; }
+        private string? _secondLine;
+        public string? SecondLine
+        {
+            get => _secondLine;
+            set
+            {
+                _secondLine = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string ZipCode { get; set; } = null!;
+        private string _zipCode = null!;
+        public string ZipCode
+        {
+            get => _zipCode;
+            set
+            {
+                _zipCode = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string City { get; set; } = null!;
+        private string _city = null!;
+        public string City
+        {
+            get => _city;
+            set
+            {
+                _city = value;
+                OnPropertyChanged();
+            }
+        }
 
         // Navigation properties
         private CountryDto? _country;
