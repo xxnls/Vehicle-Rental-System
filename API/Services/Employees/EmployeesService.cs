@@ -46,7 +46,22 @@ namespace API.Services.Employees
                 e.LastName.Contains(search) ||
                 e.Email.Contains(search) ||
                 e.PhoneNumber.Contains(search) ||
-                e.UserName.Contains(search);
+                e.UserName.Contains(search) ||
+                e.Supervisor.FirstName.Contains(search) ||
+                e.Supervisor.LastName.Contains(search) ||
+                e.DateOfBirth.ToString().Contains(search) ||
+                (e.Status != null && e.Status.Contains(search)) ||
+                e.HireDate.ToString().Contains(search) ||
+                (e.TerminationDate != null && e.TerminationDate.ToString().Contains(search)) ||
+                e.EmployeePosition.Title.Contains(search) ||
+                (e.EmployeeFinances.BaseSalary.HasValue &&
+                 e.EmployeeFinances.BaseSalary.Value.ToString().Contains(search)) ||
+                (e.EmployeeFinances.HourlyRate.HasValue &&
+                 e.EmployeeFinances.HourlyRate.Value.ToString().Contains(search)) ||
+                e.RentalPlace.Address.City.Contains(search) ||
+                e.RentalPlace.Address.FirstLine.Contains(search) ||
+                e.RentalPlace.Address.SecondLine.Contains(search) ||
+                e.RentalPlace.Address.ZipCode.Contains(search);
         }
 
         protected override Expression<Func<Employee, bool>> GetActiveFilter(bool showDeleted)
@@ -112,22 +127,11 @@ namespace API.Services.Employees
                 Address = e.Address != null ? _addressesService.MapSingleEntityToDto(e.Address) : null,
                 EmployeePosition = e.EmployeePosition != null ? _employeePositionsService.MapSingleEntityToDto(e.EmployeePosition) : null,
                 RentalPlace = e.RentalPlace != null ? _rentalPlacesService.MapSingleEntityToDto(e.RentalPlace) : null,
-                Supervisor = e.Supervisor != null ? new EmployeeDto
+                Supervisor = e.Supervisor != null ? new EmployeeSelectorDto
                 {
                     Id = e.Supervisor.Id,
-                    UserName = e.Supervisor.UserName,
-                    Email = e.Supervisor.Email,
-                    PhoneNumber = e.Supervisor.PhoneNumber,
                     FirstName = e.Supervisor.FirstName,
                     LastName = e.Supervisor.LastName,
-                    DateOfBirth = e.Supervisor.DateOfBirth,
-                    HireDate = e.Supervisor.HireDate,
-                    TerminationDate = e.Supervisor.TerminationDate,
-                    Status = e.Supervisor.Status,
-                    CreatedDate = e.Supervisor.CreatedDate,
-                    ModifiedDate = e.Supervisor.ModifiedDate,
-                    DeletedDate = e.Supervisor.DeletedDate,
-                    IsActive = e.Supervisor.IsActive
                 } : null
             };
         }
@@ -161,22 +165,11 @@ namespace API.Services.Employees
                 Address = entity.Address != null ? _addressesService.MapSingleEntityToDto(entity.Address) : null,
                 EmployeePosition = entity.EmployeePosition != null ? _employeePositionsService.MapSingleEntityToDto(entity.EmployeePosition) : null,
                 RentalPlace = entity.RentalPlace != null ? _rentalPlacesService.MapSingleEntityToDto(entity.RentalPlace) : null,
-                Supervisor = entity.Supervisor != null ? new EmployeeDto
+                Supervisor = entity.Supervisor != null ? new EmployeeSelectorDto
                 {
                     Id = entity.Supervisor.Id,
-                    UserName = entity.Supervisor.UserName,
-                    Email = entity.Supervisor.Email,
-                    PhoneNumber = entity.Supervisor.PhoneNumber,
                     FirstName = entity.Supervisor.FirstName,
                     LastName = entity.Supervisor.LastName,
-                    DateOfBirth = entity.Supervisor.DateOfBirth,
-                    HireDate = entity.Supervisor.HireDate,
-                    TerminationDate = entity.Supervisor.TerminationDate,
-                    Status = entity.Supervisor.Status,
-                    CreatedDate = entity.Supervisor.CreatedDate,
-                    ModifiedDate = entity.Supervisor.ModifiedDate,
-                    DeletedDate = entity.Supervisor.DeletedDate,
-                    IsActive = entity.Supervisor.IsActive
                 } : null
             };
         }
@@ -216,7 +209,7 @@ namespace API.Services.Employees
 
             if (model.Supervisor != null)
             {
-                entity.SupervisorId = model.Supervisor.SupervisorId;
+                entity.SupervisorId = model.Supervisor.Id;
             }
 
             if (model.Address != null)
@@ -297,11 +290,115 @@ namespace API.Services.Employees
         }
 
         // Custom method for creating an employee
+        //public override async Task<EmployeeDto> CreateAsync(EmployeeDto employeeDto)
+        //{
+        //    using var transaction = await _context.Database.BeginTransactionAsync();
+        //    try
+        //    {
+        //        // Set the default statistics if not provided
+        //        var employeeStatisticsDto = new EmployeeStatisticsDto
+        //        {
+        //            TotalWorkDays = 0,
+        //            LateArrivals = 0,
+        //            EarlyDepartures = 0,
+        //            OvertimeHours = 0,
+        //            SickLeavesTaken = 0,
+        //            VacationDaysTaken = 0,
+        //            UnpaidLeavesTaken = 0,
+        //            TotalRentalsApproved = 0
+        //        };
+
+        //        // Set the default base salary and hourly rate if not provided
+        //        var employeeFinancesDto = new EmployeeFinanceDto
+        //        {
+        //            BaseSalary = employeeDto.EmployeeFinances.BaseSalary ?? employeeDto.EmployeePosition.DefaultBaseSalary,
+        //            HourlyRate = employeeDto.EmployeeFinances.HourlyRate ?? employeeDto.EmployeePosition.DefaultHourlyRate,
+        //            ModifiedDate = DateTime.Now
+        //        };
+
+        //        // Save the related entities first
+        //        var createdStatistics = await _employeeStatisticsService.CreateAsync(employeeStatisticsDto);
+        //        var createdFinances = await _employeeFinancesService.CreateAsync(employeeFinancesDto);
+        //        await _context.SaveChangesAsync();
+
+        //        // Generate a unique username
+        //        var generatedUserName = await GenerateUniqueUsernameAsync(employeeDto.FirstName, employeeDto.LastName);
+
+        //        // Set the address properties
+        //        employeeDto.Address.CreatedDate = DateTime.UtcNow;
+        //        employeeDto.Address.IsActive = true;
+
+        //        // Create the employee entity
+        //        var employee = new Employee
+        //        {
+        //            UserName = generatedUserName,
+        //            Email = employeeDto.Email,
+        //            PhoneNumber = employeeDto.PhoneNumber,
+        //            RentalPlaceId = employeeDto.RentalPlace?.RentalPlaceId ?? throw new ArgumentException("RentalPlace is required."),
+        //            // AddressId = employeeDto.Address?.AddressId ?? throw new ArgumentException("Address is required."),
+        //            EmployeePositionId = employeeDto.EmployeePosition?.EmployeePositionId ?? throw new ArgumentException("EmployeePosition is required."),
+        //            SupervisorId = employeeDto.Supervisor?.SupervisorId,
+        //            FirstName = employeeDto.FirstName,
+        //            LastName = employeeDto.LastName,
+        //            DateOfBirth = employeeDto.DateOfBirth,
+        //            HireDate = employeeDto.HireDate,
+        //            TerminationDate = employeeDto.TerminationDate,
+        //            Status = employeeDto.Status,
+        //            CreatedDate = DateTime.UtcNow,
+        //            IsActive = true,
+        //            EmployeeStatisticsId = createdStatistics.EmployeeStatisticsId,
+        //            EmployeeFinancesId = createdFinances.EmployeeFinancesId
+        //        };
+
+        //        // Create the employee in the Identity system
+        //        var result = await _userManager.CreateAsync(employee, employeeDto.Password);
+
+        //        if (!result.Succeeded)
+        //        {
+        //            var errorMessages = string.Join(", ", result.Errors.Select(e => e.Description));
+        //            throw new InvalidOperationException($"Employee creation failed: {errorMessages}");
+        //        }
+
+        //        // Commit the transaction
+        //        await transaction.CommitAsync();
+
+        //        // Return the created employee as a DTO
+        //        return MapSingleEntityToDto(employee);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Rollback the transaction in case of an error
+        //        await transaction.RollbackAsync();
+        //        throw new ApplicationException("An error occurred while creating the employee.", ex);
+        //    }
+        //}
+
         public override async Task<EmployeeDto> CreateAsync(EmployeeDto employeeDto)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
+                // Validate the Address in the DTO
+                if (employeeDto.Address == null)
+                {
+                    throw new ArgumentException("Address is required.");
+                }
+
+                // Create and save the new Address entity
+                var newAddress = new Address
+                {
+                    FirstLine = employeeDto.Address.FirstLine,
+                    City = employeeDto.Address.City,
+                    SecondLine = employeeDto.Address.SecondLine,
+                    ZipCode = employeeDto.Address.ZipCode,
+                    CountryId = employeeDto.Address.Country.CountryId, // Use existing CountryId
+                    CreatedDate = DateTime.UtcNow,
+                    IsActive = true
+                };
+
+                _context.Addresses.Add(newAddress);
+                await _context.SaveChangesAsync(); // Save the new Address to generate an AddressId
+
                 // Set the default statistics if not provided
                 var employeeStatisticsDto = new EmployeeStatisticsDto
                 {
@@ -338,9 +435,9 @@ namespace API.Services.Employees
                     Email = employeeDto.Email,
                     PhoneNumber = employeeDto.PhoneNumber,
                     RentalPlaceId = employeeDto.RentalPlace?.RentalPlaceId ?? throw new ArgumentException("RentalPlace is required."),
-                    AddressId = employeeDto.Address?.AddressId ?? throw new ArgumentException("Address is required."),
+                    AddressId = newAddress.AddressId, // Use the newly generated AddressId
                     EmployeePositionId = employeeDto.EmployeePosition?.EmployeePositionId ?? throw new ArgumentException("EmployeePosition is required."),
-                    SupervisorId = employeeDto.Supervisor?.SupervisorId,
+                    SupervisorId = employeeDto.Supervisor?.Id,
                     FirstName = employeeDto.FirstName,
                     LastName = employeeDto.LastName,
                     DateOfBirth = employeeDto.DateOfBirth,
@@ -376,20 +473,34 @@ namespace API.Services.Employees
             }
         }
 
-        // Custom method for soft deleting an employee
-        //public override async Task<bool> DeleteAsync(int id)
-        //{
-        //    var employee = await FindEntityById(id);
-        //    if (employee == null)
-        //        return false;
+        //Custom method for soft deleting an employee
+        public override async Task<bool> DeleteAsync(int id)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                // Get the employee entity with its related IDs
+                var employee = await FindEntityById(id);
+                if (employee == null)
+                    return false;
 
-        //    // Set DeletedDate and IsActive for soft delete
-        //    employee.DeletedDate = DateTime.UtcNow;
-        //    employee.IsActive = false;
-        //    await _context.SaveChangesAsync();
+                // Delete employee using base implementation
+                var employeeDeleted = await base.DeleteAsync(id);
+                if (!employeeDeleted)
+                    return false;
 
-        //    return true;
-        //}
+                // Delete associated address
+                await _addressesService.DeleteAsync(employee.AddressId);
+
+                await transaction.CommitAsync();
+                return true;
+            }
+            catch (Exception e)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
 
         private async Task<string> GenerateUniqueUsernameAsync(string firstName, string lastName)
         {

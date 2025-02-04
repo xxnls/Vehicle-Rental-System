@@ -38,6 +38,14 @@
         <otherviews:AddressesView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type employees:EmployeesViewModel}">
+        <employeesviews:EmployeesView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type employees:EmployeeSelectorViewModel}">
+        <employeesviews:EmployeeSelectorView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type employees:EmployeeShiftTypesViewModel}">
         <employeesviews:EmployeeShiftTypesView />
     </DataTemplate>

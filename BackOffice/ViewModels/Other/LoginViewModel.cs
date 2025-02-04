@@ -12,7 +12,7 @@ using BackOffice.Models.Other;
 using BackOffice.Helpers;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Net;
-using BackOffice.Models.Employees.DTOs;
+using BackOffice.Models.DTOs.Employees;
 using BackOffice.Models.Vehicles.VehicleBrands.DTOs;
 
 namespace BackOffice.ViewModels.Other
@@ -95,7 +95,7 @@ namespace BackOffice.ViewModels.Other
                     ApiClient.SetAuthorizationHeader(response.Token);
 
                     // Store the user in the session
-                    var user = await ApiClient.GetAsync<REmployeeDTO>($"Employees/{response.UserId}");
+                    var user = await ApiClient.GetAsync<EmployeeDto>($"Employees/{response.UserId}");
                     SessionManager.Set("User", user);
 
                     // Notify successful login

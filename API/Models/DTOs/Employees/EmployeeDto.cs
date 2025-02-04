@@ -1,5 +1,6 @@
 ﻿using API.Interfaces;
 using API.Models.DTOs.Other;
+using API.Models.Employees;
 
 namespace API.Models.DTOs.Employees
 {
@@ -20,8 +21,8 @@ namespace API.Models.DTOs.Employees
         public DateTime? TerminationDate { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; } // Added for creation
+        public string? UserName { get; set; }
+        public string? Password { get; set; } // Added for creation
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public DateTime? DeletedDate { get; set; }
@@ -33,6 +34,6 @@ namespace API.Models.DTOs.Employees
         public EmployeePositionDto? EmployeePosition { get; set; } = null!;
         public EmployeeStatisticsDto? EmployeeStatistics { get; set; } = null!;
         public RentalPlaceDto? RentalPlace { get; set; } = null!;
-        public EmployeeDto? Supervisor { get; set; } = null!;
+        public EmployeeSelectorDto? Supervisor { get; set; } = null!;
     }
 }

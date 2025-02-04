@@ -1,0 +1,346 @@
+﻿<UserControl
+    x:Class="BackOffice.Views.Employees.EmployeesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:addresses="clr-namespace:BackOffice.Resources.Addresses"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:employees="clr-namespace:BackOffice.ViewModels.Employees"
+    xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+    xmlns:helpers="clr-namespace:BackOffice.Helpers"
+    xmlns:local="clr-namespace:BackOffice.Views.Employees"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:BackOffice.Resources.Employees"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <employees:EmployeesViewModel x:Name="DataContext" />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="ContentStringFormat" Value="{}{0}:" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <Grid Visibility="{Binding IsCreatingOrEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Style="{StaticResource CreateEditBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Orientation="Vertical">
+                            <!--  Basic Information  -->
+
+                            <DockPanel Height="25">
+                                <Label Content="{x:Static res:Resources.BasicInformationFields}" DockPanel.Dock="Left" />
+                                <Separator />
+                            </DockPanel>
+
+                            <Label Content="{x:Static res:Resources.FirstName}" />
+                            <TextBox Text="{Binding EditableModel.FirstName, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="FirstName"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.LastName}" />
+                            <TextBox Text="{Binding EditableModel.LastName, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="LastName"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.DateOfBirth}" />
+                            <DatePicker SelectedDate="{Binding EditableModel.DateOfBirth, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="DateOfBirth"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.HireDate}" />
+                            <DatePicker SelectedDate="{Binding EditableModel.HireDate, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="HireDate"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.TerminationDate}" />
+                            <DatePicker SelectedDate="{Binding EditableModel.TerminationDate, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="TerminationDate"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="E-Mail" />
+                            <TextBox Text="{Binding EditableModel.Email, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Email"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.PhoneNumber}" />
+                            <TextBox Text="{Binding EditableModel.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="PhoneNumber"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <!--<StackPanel Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label Content="{x:Static res:Resources.UserName}" />
+                                <TextBox Text="{Binding EditableModel.UserName, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    helpers:ValidationHelper.PropertyName="UserName"
+                                    Foreground="{StaticResource ErrorBrush}"
+                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            </StackPanel>-->
+
+                            <StackPanel Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label Content="{x:Static res:Resources.Password}" />
+                                <TextBox Text="{Binding EditableModel.Password, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    helpers:ValidationHelper.PropertyName="Password"
+                                    Foreground="{StaticResource ErrorBrush}"
+                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            </StackPanel>
+
+                            <Label Content="{x:Static res:Resources.RentalPlace}" />
+                            <TextBox IsReadOnly="True" Text="{Binding EditableModel.RentalPlace.Address.City}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="RentalPlace"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectRentalPlaceParameters}"
+                                Content="{x:Static res:Resources.SelectRentalPlace}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+
+                            <Label Content="{x:Static res:Resources.EmployeePosition}" />
+                            <TextBox IsReadOnly="True" Text="{Binding EditableModel.EmployeePosition.Title}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="EmployeePosition"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectEmployeePositionParameters}"
+                                Content="{x:Static res:Resources.SelectPosition}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+
+                            <Label Content="{x:Static res:Resources.Supervisor}" />
+                            <TextBox IsReadOnly="True">
+                                <TextBox.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="EditableModel.Supervisor.FirstName" />
+                                        <Binding Path="EditableModel.Supervisor.LastName" />
+                                    </MultiBinding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Supervisor"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectSupervisorParameters}"
+                                Content="{x:Static res:Resources.SelectSupervisor}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+                        </StackPanel>
+
+                        <!--  Address  -->
+
+                        <StackPanel
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            Orientation="Vertical">
+
+                            <DockPanel Height="25">
+                                <Label Content="{x:Static res:Resources.AddressFields}" DockPanel.Dock="Left" />
+                                <Separator />
+                            </DockPanel>
+
+                            <Label Content="{x:Static addresses:Resources.FirstLine}" />
+                            <TextBox Text="{Binding EditableModel.Address.FirstLine, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Address.FirstLine"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static addresses:Resources.SecondLine}" />
+                            <TextBox Text="{Binding EditableModel.Address.SecondLine, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Address.SecondLine"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static addresses:Resources.City}" />
+                            <TextBox Text="{Binding EditableModel.Address.City, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Address.City"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static addresses:Resources.ZipCode}" />
+                            <TextBox Text="{Binding EditableModel.Address.ZipCode, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Address.ZipCode"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static addresses:Resources.Country}" />
+                            <TextBox IsReadOnly="True" Text="{Binding EditableModel.Address.Country.Name}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Address.Country"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectCountryParameters}"
+                                Content="{x:Static res:Resources.SelectCountry}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+
+                            <DockPanel Height="25" Margin="0,5,0,0">
+                                <Label Content="{x:Static res:Resources.FinancesFields}" DockPanel.Dock="Left" />
+                                <Separator />
+                            </DockPanel>
+
+                            <!--  Checkbox to Disable Base Salary  -->
+                            <CheckBox
+                                Margin="0,10,0,0"
+                                Content="{x:Static res:Resources.DisableBaseSalary}"
+                                IsChecked="{Binding IsSalaryDisabled, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label Content="{x:Static res:Resources.BaseSalary}" />
+                            <TextBox IsEnabled="{Binding IsSalaryDisabled, Converter={StaticResource InverseBooleanConverter}}" Text="{Binding EditableModel.EmployeeFinances.BaseSalary, UpdateSourceTrigger=PropertyChanged}">
+                                <!--<b:Interaction.Behaviors>
+                                    <helpers:TextBoxInputBehavior InputMode="DecimalInput" />
+                                </b:Interaction.Behaviors>-->
+                            </TextBox>
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="EmployeeFinances.BaseSalary"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <!--  Checkbox to Disable Hourly Rate  -->
+                            <CheckBox
+                                Margin="0,10,0,0"
+                                Content="{x:Static res:Resources.DisableHourlyRate}"
+                                IsChecked="{Binding IsHourlyRateDisabled, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label Content="{x:Static res:Resources.HourlyRate}" />
+                            <TextBox IsEnabled="{Binding IsHourlyRateDisabled, Converter={StaticResource InverseBooleanConverter}}" Text="{Binding EditableModel.EmployeeFinances.HourlyRate, UpdateSourceTrigger=PropertyChanged}">
+                                <!--<b:Interaction.Behaviors>
+                                    <helpers:TextBoxInputBehavior InputMode="DecimalInput" />
+                                </b:Interaction.Behaviors>-->
+                            </TextBox>
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="EmployeeFinances.HourlyRate"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!--  Create/Edit Save/Cancel Controls  -->
+                <customControls:CreateEditSaveCancelControl
+                    Grid.Row="1"
+                    CancelCommand="{Binding SwitchToListModeCommand}"
+                    HasErrors="{Binding HasErrors}"
+                    SaveCommand="{Binding CreateModelCommand}"
+                    Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <customControls:CreateEditSaveCancelControl
+                    Grid.Row="1"
+                    CancelCommand="{Binding SwitchToListModeCommand}"
+                    HasErrors="{Binding HasErrors}"
+                    SaveCommand="{Binding UpdateModelCommand}"
+                    Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </Grid>
+
+            <!--  List View  -->
+            <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid>
+                    <customControls:CRUDButtonsControl
+                        AddCommand="{Binding SwitchToCreateModeCommand}"
+                        DeleteCommand="{Binding DeleteModelCommand}"
+                        DeleteVisibility="{Binding ShowDeleted, Converter={StaticResource InverseBooleanConverter}}"
+                        EditCommand="{Binding SwitchToEditModeCommand}"
+                        LoadCommand="{Binding LoadModelsCommand}"
+                        RestoreCommand="{Binding RestoreModelCommand}"
+                        RestoreCommandParameter="{Binding EditableModel.Id}"
+                        RestoreVisibility="{Binding ShowDeleted}" />
+
+                    <customControls:SearchControl SearchCommand="{Binding SearchCommand}" />
+                </Grid>
+
+                <DataGrid
+                    x:Name="MainDataGrid"
+                    ItemsSource="{Binding Models}"
+                    SelectedItem="{Binding EditableModel, Mode=TwoWay}"
+                    Style="{StaticResource DefaultDataGridStyle}">
+                    <DataGrid.InputBindings>
+                        <MouseBinding
+                            Command="{Binding ShowDetailedInfoCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Mode=OneWay}"
+                            Gesture="LeftDoubleClick" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Id}" Header="ID" />
+                        <DataGridTextColumn Binding="{Binding FirstName}" Header="{x:Static res:Resources.FirstName}" />
+                        <DataGridTextColumn Binding="{Binding LastName}" Header="{x:Static res:Resources.LastName}" />
+                        <DataGridTextColumn Binding="{Binding Email}" Header="E-Mail" />
+                        <DataGridTextColumn Binding="{Binding PhoneNumber}" Header="{x:Static res:Resources.PhoneNumber}" />
+                        <DataGridTextColumn Binding="{Binding UserName}" Header="{x:Static res:Resources.UserName}" />
+                        <DataGridTextColumn Binding="{Binding CreatedDate}" Header="{x:Static generic:Resources.CreatedDate}" />
+                        <DataGridTextColumn Binding="{Binding ModifiedDate}" Header="{x:Static generic:Resources.ModifiedDate}" />
+                        <DataGridTextColumn
+                            Binding="{Binding DeletedDate}"
+                            Header="{x:Static generic:Resources.DeletedDate}"
+                            Visibility="{Binding ShowDeleted, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference Name=DataContext}}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!--  Pagination  -->
+                <customControls:PaginationControl
+                    CanLoadNextPage="{Binding CanLoadNextPage}"
+                    CanLoadPreviousPage="{Binding CanLoadPreviousPage}"
+                    CurrentPage="{Binding CurrentPage}"
+                    ModelsPerPage="{Binding PageSize}"
+                    NextPageCommand="{Binding LoadNextPageCommand}"
+                    PreviousPageCommand="{Binding LoadPreviousPageCommand}"
+                    TotalItemCount="{Binding TotalItemCount}" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

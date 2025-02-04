@@ -8,15 +8,9 @@ namespace API.Controllers.Employees
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeesController : BaseApiController<Employee, EmployeeDto, EmployeeDto>
+    public class EmployeesController(EmployeesService service)
+        : BaseApiController<Employee, EmployeeDto, EmployeeDto>(service)
     {
-        private readonly EmployeesService _employeesService;
-
-        public EmployeesController(EmployeesService service) : base(service)
-        {
-            _employeesService = service;
-        }
-
         protected override int GetEntityId(EmployeeDto entity)
         {
             return entity.Id;

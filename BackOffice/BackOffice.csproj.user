@@ -40,7 +40,13 @@
     <Compile Update="Views\Employees\EmployeePositionsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Employees\EmployeeSelectorView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Employees\EmployeeShiftTypesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Employees\EmployeesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Other\AddressesView.xaml.cs">
@@ -111,7 +117,13 @@
     <Page Update="Views\Employees\EmployeePositionsView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Employees\EmployeeSelectorView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Employees\EmployeeShiftTypesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Employees\EmployeesView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Other\AddressesView.xaml">

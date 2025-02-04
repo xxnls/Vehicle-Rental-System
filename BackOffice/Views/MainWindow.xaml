@@ -128,6 +128,10 @@
                     <StackPanel>
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="Employees"
+                            Content="Employees" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeeShiftTypesViewModel"
                             Content="Shift Types" />
                         <Button

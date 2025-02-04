@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using BackOffice.Models.DTOs.Employees;
 using BackOffice.Properties;
 using BackOffice.Views;
-using BackOffice.Models.Employees.DTOs;
 using BackOffice.ViewModels.Employees;
 using BackOffice.ViewModels.Other;
 using BackOffice.ViewModels.Vehicles;
@@ -61,8 +61,8 @@ namespace BackOffice.ViewModels
             }
         }
 
-        private REmployeeDTO _currentUser;
-        public REmployeeDTO CurrentUser
+        private EmployeeDto _currentUser;
+        public EmployeeDto CurrentUser
         {
             get => _currentUser;
             set
@@ -99,16 +99,17 @@ namespace BackOffice.ViewModels
                 { "RentalPlacesViewModel", new RentalPlacesViewModel() },
                 { "AddressesViewModel", new AddressesViewModel() },
                 { "CountriesViewModel", new CountriesViewModel() },
+                { "Employees", new EmployeesViewModel() },
                 { "EmployeeShiftTypesViewModel", new EmployeeShiftTypesViewModel() },
                 { "EmployeeLeaveTypesViewModel", new EmployeeLeaveTypesViewModel() },
                 { "EmployeePositionsViewModel", new EmployeePositionsViewModel() }
             };
 
             // Load user
-            CurrentUser = (REmployeeDTO)SessionManager.Get("User");
+            CurrentUser = (EmployeeDto)SessionManager.Get("User");
 
             // Set default workspace
-            CurrentWorkspace = _viewModelMappings["EmployeePositionsViewModel"];
+            CurrentWorkspace = _viewModelMappings["Employees"];
 
             ToggleSidebarCommand = new RelayCommand(ToggleSidebar);
             LogoutCommand = new RelayCommand(Logout);
