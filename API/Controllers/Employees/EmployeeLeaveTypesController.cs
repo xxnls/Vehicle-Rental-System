@@ -1,5 +1,5 @@
-﻿using API.Models;
-using API.Models.DTOs.Employees;
+﻿using API.Models.DTOs.Employees;
+using API.Models.Employees;
 using API.Services.Employees;
 using Microsoft.AspNetCore.Mvc;
 

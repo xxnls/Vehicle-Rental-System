@@ -1,8 +1,8 @@
 ﻿using API.Context;
 using API.Models.DTOs.Employees;
 using System.Linq.Expressions;
-using API.Models;
 using Microsoft.EntityFrameworkCore;
+using API.Models.Employees;
 
 namespace API.Services.Employees
 {

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using API.Services.Vehicles;
 using API.Seeders;
 using API.Services.Employees;
+using API.Models.Employees;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,8 @@ builder.Services.AddScoped<EmployeesService>();
 builder.Services.AddScoped<EmployeeShiftTypesService>();
 builder.Services.AddScoped<EmployeeLeaveTypesService>();
 builder.Services.AddScoped<EmployeePositionsService>();
+builder.Services.AddScoped<EmployeeFinancesService>();
+builder.Services.AddScoped<EmployeeStatisticsService>();
 builder.Services.AddScoped<VehiclesService>();
 builder.Services.AddScoped<VehicleBrandsService>();
 builder.Services.AddScoped<VehicleModelsService>();

@@ -1,12 +1,12 @@
-﻿using API.Models.Employees;
-using API.Models.Other;
+﻿using API.Models.Other;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using API.Interfaces;
 
-namespace API.Models;
+namespace API.Models.Employees;
 
-public partial class Employee : IdentityUser<int>
+public partial class Employee : IdentityUser<int>, IBaseModel
 {
     public int EmployeeStatisticsId { get; set; }
 

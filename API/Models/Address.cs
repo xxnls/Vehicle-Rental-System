@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using API.Interfaces;
+using API.Models.Employees;
 
 namespace API.Models;
 
