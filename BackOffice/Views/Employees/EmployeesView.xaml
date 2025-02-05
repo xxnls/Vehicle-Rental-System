@@ -302,6 +302,12 @@
                         RestoreVisibility="{Binding ShowDeleted}" />
 
                     <customControls:SearchControl SearchCommand="{Binding SearchCommand}" />
+
+                    <customControls:FilterButtonsControl
+                        Grid.Column="2"
+                        Margin="0,0,5,0"
+                        ShowDeletedModelsCommand="{Binding ShowDeletedModelsCommand}"
+                        ShowFilterOptionsCommand="{Binding ShowFilterOptionsCommand}" />
                 </Grid>
 
                 <DataGrid
@@ -321,7 +327,25 @@
                         <DataGridTextColumn Binding="{Binding LastName}" Header="{x:Static res:Resources.LastName}" />
                         <DataGridTextColumn Binding="{Binding Email}" Header="E-Mail" />
                         <DataGridTextColumn Binding="{Binding PhoneNumber}" Header="{x:Static res:Resources.PhoneNumber}" />
+                        <DataGridTextColumn Binding="{Binding EmployeePosition.Title}" Header="{x:Static res:Resources.EmployeePosition}" />
+                        <DataGridTextColumn Binding="{Binding RentalPlace.Address.City}" Header="{x:Static res:Resources.RentalPlace}" />
+                        <DataGridTemplateColumn Header="{x:Static res:Resources.Supervisor}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} {1}">
+                                                <Binding Path="Supervisor.FirstName" />
+                                                <Binding Path="Supervisor.LastName" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Binding="{Binding UserName}" Header="{x:Static res:Resources.UserName}" />
+                        <DataGridTextColumn Binding="{Binding EmployeeFinances.BaseSalary, StringFormat=N2}" Header="{x:Static res:Resources.BaseSalary}" />
+                        <DataGridTextColumn Binding="{Binding EmployeeFinances.HourlyRate, StringFormat=N2}" Header="{x:Static res:Resources.HourlyRate}" />
                         <DataGridTextColumn Binding="{Binding CreatedDate}" Header="{x:Static generic:Resources.CreatedDate}" />
                         <DataGridTextColumn Binding="{Binding ModifiedDate}" Header="{x:Static generic:Resources.ModifiedDate}" />
                         <DataGridTextColumn

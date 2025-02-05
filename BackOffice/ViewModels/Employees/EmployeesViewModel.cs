@@ -139,7 +139,7 @@ namespace BackOffice.ViewModels.Employees
             {
                 AddError(nameof(EditableModel.FirstName), LocalizationHelper.GetString("Employees", "ErrorFirstName1"));
             }
-            else if (EditableModel.FirstName.Length > 100)
+            else if (EditableModel.FirstName.Length > 50)
             {
                 AddError(nameof(EditableModel.FirstName), LocalizationHelper.GetString("Employees", "ErrorFirstName2"));
             }
@@ -154,7 +154,7 @@ namespace BackOffice.ViewModels.Employees
             {
                 AddError(nameof(EditableModel.LastName), LocalizationHelper.GetString("Employees", "ErrorLastName1"));
             }
-            else if (EditableModel.LastName.Length > 100)
+            else if (EditableModel.LastName.Length > 50)
             {
                 AddError(nameof(EditableModel.LastName), LocalizationHelper.GetString("Employees", "ErrorLastName2"));
             }
@@ -165,7 +165,7 @@ namespace BackOffice.ViewModels.Employees
         {
             ClearErrors(nameof(EditableModel.DateOfBirth));
 
-            if (EditableModel.DateOfBirth == default)
+            if (EditableModel.DateOfBirth == null)
             {
                 AddError(nameof(EditableModel.DateOfBirth), LocalizationHelper.GetString("Employees", "ErrorDateOfBirth1"));
             }
@@ -180,7 +180,7 @@ namespace BackOffice.ViewModels.Employees
         {
             ClearErrors(nameof(EditableModel.HireDate));
 
-            if (EditableModel.HireDate == default)
+            if (EditableModel.HireDate == null)
             {
                 AddError(nameof(EditableModel.HireDate), LocalizationHelper.GetString("Employees", "ErrorHireDate1"));
             }
@@ -195,7 +195,7 @@ namespace BackOffice.ViewModels.Employees
         {
             ClearErrors(nameof(EditableModel.TerminationDate));
 
-            if (EditableModel.TerminationDate.HasValue && EditableModel.TerminationDate > DateTime.Now)
+            if (EditableModel.TerminationDate.HasValue && EditableModel.TerminationDate < DateTime.Now)
             {
                 AddError(nameof(EditableModel.TerminationDate), LocalizationHelper.GetString("Employees", "ErrorTerminationDate1"));
             }

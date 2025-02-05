@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -80,8 +81,8 @@ namespace BackOffice.Services
                 var jsonData = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
 
                 // Log the request details
-                Console.WriteLine($"Sending PUT request to: {endpoint}");
-                Console.WriteLine($"Request Data: {jsonData}");
+                Debug.WriteLine($"Sending PUT request to: {endpoint}");
+                Debug.WriteLine($"Request Data: {jsonData}");
 
                 // Ensure the HttpClient is properly configured
                 if (_httpClient == null)
@@ -96,24 +97,24 @@ namespace BackOffice.Services
                 var response = await _httpClient.PutAsync(endpoint, content);
 
                 // Log the response status code
-                Console.WriteLine($"Response Status Code: {response.StatusCode}");
+                Debug.WriteLine($"Response Status Code: {response.StatusCode}");
 
                 // Ensure the request was successful
                 response.EnsureSuccessStatusCode();
 
                 // Optionally, log the response content
                 var responseContent = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"Response Content: {responseContent}");
+                Debug.WriteLine($"Response Content: {responseContent}");
             }
             catch (HttpRequestException ex)
             {
                 // Log the HTTP request exception
-                Console.WriteLine($"HTTP Request Failed: {ex.Message}");
+                Debug.WriteLine($"HTTP Request Failed: {ex.Message}");
 
                 // Capture the response content for more details
                 if (ex.Data.Contains("ResponseContent"))
                 {
-                    Console.WriteLine($"Response Content: {ex.Data["ResponseContent"]}");
+                    Debug.WriteLine($"Response Content: {ex.Data["ResponseContent"]}");
                 }
 
                 throw new ApplicationException("An error occurred while sending the request. Please check the request data and try again.", ex);
@@ -121,13 +122,13 @@ namespace BackOffice.Services
             catch (TaskCanceledException ex)
             {
                 // Handle timeout issues
-                Console.WriteLine($"Request Timeout: {ex.Message}");
+                Debug.WriteLine($"Request Timeout: {ex.Message}");
                 throw new ApplicationException("The request timed out. Please check your network connection and try again.", ex);
             }
             catch (Exception ex)
             {
                 // Log any other exceptions
-                Console.WriteLine($"Unexpected Error: {ex.Message}");
+                Debug.WriteLine($"Unexpected Error: {ex.Message}");
                 throw new ApplicationException("An unexpected error occurred. Please try again later.", ex);
             }
         }

@@ -142,6 +142,150 @@ namespace BackOffice.Resources.Employees {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date of birth is required..
+        /// </summary>
+        public static string ErrorDateOfBirth1 {
+            get {
+                return ResourceManager.GetString("ErrorDateOfBirth1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of birth must be valid..
+        /// </summary>
+        public static string ErrorDateOfBirth2 {
+            get {
+                return ResourceManager.GetString("ErrorDateOfBirth2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is required..
+        /// </summary>
+        public static string ErrorEmail1 {
+            get {
+                return ResourceManager.GetString("ErrorEmail1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email must be valid..
+        /// </summary>
+        public static string ErrorEmail2 {
+            get {
+                return ResourceManager.GetString("ErrorEmail2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee position is required..
+        /// </summary>
+        public static string ErrorEmployeePosition1 {
+            get {
+                return ResourceManager.GetString("ErrorEmployeePosition1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name is required..
+        /// </summary>
+        public static string ErrorFirstName1 {
+            get {
+                return ResourceManager.GetString("ErrorFirstName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name cannot exceed 50 characters..
+        /// </summary>
+        public static string ErrorFirstName2 {
+            get {
+                return ResourceManager.GetString("ErrorFirstName2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hire date is required..
+        /// </summary>
+        public static string ErrorHireDate1 {
+            get {
+                return ResourceManager.GetString("ErrorHireDate1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hire date must be valid..
+        /// </summary>
+        public static string ErrorHireDate2 {
+            get {
+                return ResourceManager.GetString("ErrorHireDate2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name is required..
+        /// </summary>
+        public static string ErrorLastName1 {
+            get {
+                return ResourceManager.GetString("ErrorLastName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name cannot exceed 50 characters..
+        /// </summary>
+        public static string ErrorLastName2 {
+            get {
+                return ResourceManager.GetString("ErrorLastName2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number is required..
+        /// </summary>
+        public static string ErrorPhoneNumber1 {
+            get {
+                return ResourceManager.GetString("ErrorPhoneNumber1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number cannot exceed 20 characters..
+        /// </summary>
+        public static string ErrorPhoneNumber2 {
+            get {
+                return ResourceManager.GetString("ErrorPhoneNumber2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rental place is required..
+        /// </summary>
+        public static string ErrorRentalPlace1 {
+            get {
+                return ResourceManager.GetString("ErrorRentalPlace1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This person cannot be a supervisor..
+        /// </summary>
+        public static string ErrorSupervisor1 {
+            get {
+                return ResourceManager.GetString("ErrorSupervisor1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Termination date must be valid..
+        /// </summary>
+        public static string ErrorTerminationDate1 {
+            get {
+                return ResourceManager.GetString("ErrorTerminationDate1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Finances Fields.
         /// </summary>
         public static string FinancesFields {

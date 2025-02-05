@@ -21,8 +21,8 @@ namespace BackOffice.Models.DTOs.Employees
         private string? _status;
         private string _firstName = null!;
         private string _lastName = null!;
-        private DateTime _dateOfBirth;
-        private DateTime _hireDate;
+        private DateTime? _dateOfBirth;
+        private DateTime? _hireDate;
         private DateTime? _terminationDate;
         private string _email = null!;
         private string _phoneNumber = null!;
@@ -136,7 +136,7 @@ namespace BackOffice.Models.DTOs.Employees
             }
         }
 
-        public DateTime DateOfBirth
+        public DateTime? DateOfBirth
         {
             get => _dateOfBirth;
             set
@@ -146,7 +146,7 @@ namespace BackOffice.Models.DTOs.Employees
             }
         }
 
-        public DateTime HireDate
+        public DateTime? HireDate
         {
             get => _hireDate;
             set

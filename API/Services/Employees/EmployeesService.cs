@@ -229,19 +229,6 @@ namespace API.Services.Employees
                 }
             }
 
-            // Update EmployeeStatistics if provided
-            //if (model.EmployeeStatistics != null)
-            //{
-            //    entity.EmployeeStatistics.TotalWorkDays = model.EmployeeStatistics.TotalWorkDays;
-            //    entity.EmployeeStatistics.LateArrivals = model.EmployeeStatistics.LateArrivals;
-            //    entity.EmployeeStatistics.EarlyDepartures = model.EmployeeStatistics.EarlyDepartures;
-            //    entity.EmployeeStatistics.OvertimeHours = model.EmployeeStatistics.OvertimeHours;
-            //    entity.EmployeeStatistics.SickLeavesTaken = model.EmployeeStatistics.SickLeavesTaken;
-            //    entity.EmployeeStatistics.VacationDaysTaken = model.EmployeeStatistics.VacationDaysTaken;
-            //    entity.EmployeeStatistics.UnpaidLeavesTaken = model.EmployeeStatistics.UnpaidLeavesTaken;
-            //    entity.EmployeeStatistics.TotalRentalsApproved = model.EmployeeStatistics.TotalRentalsApproved;
-            //}
-
             // Update EmployeeFinances if provided
             if (model.EmployeeFinances != null)
             {
@@ -288,91 +275,6 @@ namespace API.Services.Employees
                 .Include(e => e.EmployeeStatistics)
                 .Include(e => e.EmployeeFinances);
         }
-
-        // Custom method for creating an employee
-        //public override async Task<EmployeeDto> CreateAsync(EmployeeDto employeeDto)
-        //{
-        //    using var transaction = await _context.Database.BeginTransactionAsync();
-        //    try
-        //    {
-        //        // Set the default statistics if not provided
-        //        var employeeStatisticsDto = new EmployeeStatisticsDto
-        //        {
-        //            TotalWorkDays = 0,
-        //            LateArrivals = 0,
-        //            EarlyDepartures = 0,
-        //            OvertimeHours = 0,
-        //            SickLeavesTaken = 0,
-        //            VacationDaysTaken = 0,
-        //            UnpaidLeavesTaken = 0,
-        //            TotalRentalsApproved = 0
-        //        };
-
-        //        // Set the default base salary and hourly rate if not provided
-        //        var employeeFinancesDto = new EmployeeFinanceDto
-        //        {
-        //            BaseSalary = employeeDto.EmployeeFinances.BaseSalary ?? employeeDto.EmployeePosition.DefaultBaseSalary,
-        //            HourlyRate = employeeDto.EmployeeFinances.HourlyRate ?? employeeDto.EmployeePosition.DefaultHourlyRate,
-        //            ModifiedDate = DateTime.Now
-        //        };
-
-        //        // Save the related entities first
-        //        var createdStatistics = await _employeeStatisticsService.CreateAsync(employeeStatisticsDto);
-        //        var createdFinances = await _employeeFinancesService.CreateAsync(employeeFinancesDto);
-        //        await _context.SaveChangesAsync();
-
-        //        // Generate a unique username
-        //        var generatedUserName = await GenerateUniqueUsernameAsync(employeeDto.FirstName, employeeDto.LastName);
-
-        //        // Set the address properties
-        //        employeeDto.Address.CreatedDate = DateTime.UtcNow;
-        //        employeeDto.Address.IsActive = true;
-
-        //        // Create the employee entity
-        //        var employee = new Employee
-        //        {
-        //            UserName = generatedUserName,
-        //            Email = employeeDto.Email,
-        //            PhoneNumber = employeeDto.PhoneNumber,
-        //            RentalPlaceId = employeeDto.RentalPlace?.RentalPlaceId ?? throw new ArgumentException("RentalPlace is required."),
-        //            // AddressId = employeeDto.Address?.AddressId ?? throw new ArgumentException("Address is required."),
-        //            EmployeePositionId = employeeDto.EmployeePosition?.EmployeePositionId ?? throw new ArgumentException("EmployeePosition is required."),
-        //            SupervisorId = employeeDto.Supervisor?.SupervisorId,
-        //            FirstName = employeeDto.FirstName,
-        //            LastName = employeeDto.LastName,
-        //            DateOfBirth = employeeDto.DateOfBirth,
-        //            HireDate = employeeDto.HireDate,
-        //            TerminationDate = employeeDto.TerminationDate,
-        //            Status = employeeDto.Status,
-        //            CreatedDate = DateTime.UtcNow,
-        //            IsActive = true,
-        //            EmployeeStatisticsId = createdStatistics.EmployeeStatisticsId,
-        //            EmployeeFinancesId = createdFinances.EmployeeFinancesId
-        //        };
-
-        //        // Create the employee in the Identity system
-        //        var result = await _userManager.CreateAsync(employee, employeeDto.Password);
-
-        //        if (!result.Succeeded)
-        //        {
-        //            var errorMessages = string.Join(", ", result.Errors.Select(e => e.Description));
-        //            throw new InvalidOperationException($"Employee creation failed: {errorMessages}");
-        //        }
-
-        //        // Commit the transaction
-        //        await transaction.CommitAsync();
-
-        //        // Return the created employee as a DTO
-        //        return MapSingleEntityToDto(employee);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Rollback the transaction in case of an error
-        //        await transaction.RollbackAsync();
-        //        throw new ApplicationException("An error occurred while creating the employee.", ex);
-        //    }
-        //}
-
         public override async Task<EmployeeDto> CreateAsync(EmployeeDto employeeDto)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();

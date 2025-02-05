@@ -28,10 +28,10 @@ namespace API.Models.DTOs.Employees
         public bool IsActive { get; set; }
 
         // Navigation properties
-        public REmployeeDTO CreatedByEmployee { get; set; } = null!;
-        public REmployeeDTO Employee { get; set; } = null!;
+        public EmployeeDto CreatedByEmployee { get; set; } = null!;
+        public EmployeeDto Employee { get; set; } = null!;
         public EmployeeShiftTypeDto EmployeeShiftType { get; set; } = null!;
-        public REmployeeDTO? ModifiedByEmployee { get; set; }
+        public EmployeeDto? ModifiedByEmployee { get; set; }
         public RentalPlaceDto? PlaceOfWork { get; set; }
     }
 }

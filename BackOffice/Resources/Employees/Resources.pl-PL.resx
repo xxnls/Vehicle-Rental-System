@@ -181,4 +181,52 @@
   <data name="Password" xml:space="preserve">
     <value>Tymczasowe hasło</value>
   </data>
+  <data name="ErrorFirstName1" xml:space="preserve">
+    <value>Imię jest wymagane.</value>
+  </data>
+  <data name="ErrorLastName1" xml:space="preserve">
+    <value>Nazwisko jest wymagane.</value>
+  </data>
+  <data name="ErrorFirstName2" xml:space="preserve">
+    <value>Imię nie może przekraczać 50 znaków.</value>
+  </data>
+  <data name="ErrorLastName2" xml:space="preserve">
+    <value>Nazwisko nie może przekraczać 50 znaków.</value>
+  </data>
+  <data name="ErrorDateOfBirth1" xml:space="preserve">
+    <value>Data urodzenia jest wymagana.</value>
+  </data>
+  <data name="ErrorDateOfBirth2" xml:space="preserve">
+    <value>Data urodzenia musi być poprawna.</value>
+  </data>
+  <data name="ErrorHireDate1" xml:space="preserve">
+    <value>Data zatrudnienia jest wymagana.</value>
+  </data>
+  <data name="ErrorHireDate2" xml:space="preserve">
+    <value>Data zatrudnienia musi być wymagana.</value>
+  </data>
+  <data name="ErrorTerminationDate1" xml:space="preserve">
+    <value>Data zakończenia umowy musi być poprawna.</value>
+  </data>
+  <data name="ErrorEmail1" xml:space="preserve">
+    <value>Email jest wymagany.</value>
+  </data>
+  <data name="ErrorEmail2" xml:space="preserve">
+    <value>Email musi być poprawny.</value>
+  </data>
+  <data name="ErrorPhoneNumber1" xml:space="preserve">
+    <value>Numer telefonu jest wymagany.</value>
+  </data>
+  <data name="ErrorPhoneNumber2" xml:space="preserve">
+    <value>Numer telefonu nie może przekraczać 20 znaków.</value>
+  </data>
+  <data name="ErrorEmployeePosition1" xml:space="preserve">
+    <value>Stanowisko pracownika jest wymagane.</value>
+  </data>
+  <data name="ErrorRentalPlace1" xml:space="preserve">
+    <value>Placówka jest wymagana.</value>
+  </data>
+  <data name="ErrorSupervisor1" xml:space="preserve">
+    <value>Ta osoba nie może być przełożonym.</value>
+  </data>
 </root>
