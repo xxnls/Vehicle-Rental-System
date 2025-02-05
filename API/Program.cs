@@ -88,9 +88,10 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var countriesService = scope.ServiceProvider.GetRequiredService<CountriesService>();
-    var employeeRolesService = scope.ServiceProvider.GetRequiredService<EmployeeRolesService>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<EmployeeRole>>();
+
     await CountrySeeder.SeedAsync(countriesService);
-    await EmployeeRolesSeeder.SeedAsync(employeeRolesService);
+    await EmployeeRolesSeeder.SeedAsync(roleManager);
 }
 
 // Configure the HTTP request pipeline.

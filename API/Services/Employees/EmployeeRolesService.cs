@@ -2,17 +2,18 @@
 using API.Context;
 using API.Models;
 using API.Models.DTOs.Employees;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Services.Employees
 {
     public class EmployeeRolesService : BaseApiService<EmployeeRole, EmployeeRoleDto, EmployeeRoleDto>
     {
-        private readonly ApiDbContext _context;
+        private readonly RoleManager<EmployeeRole> _roleManager;
 
-        public EmployeeRolesService(ApiDbContext context) : base(context)
+        public EmployeeRolesService(ApiDbContext context, RoleManager<EmployeeRole> roleManager) : base(context)
         {
-            _context = context;
+            _roleManager = roleManager;
         }
 
         // Build a search query for roles
@@ -101,8 +102,70 @@ namespace API.Services.Employees
         // Find an EmployeeRole entity by its ID
         public override async Task<EmployeeRole> FindEntityById(int id)
         {
-            return await _context.EmployeeRoles
-                .FirstOrDefaultAsync(e => e.Id == id);
+            return await _roleManager.Roles.FirstOrDefaultAsync(e => e.Id == id);
+        }
+
+        // Create a new role
+        public override async Task<EmployeeRoleDto> CreateAsync(EmployeeRoleDto dto)
+        {
+            var role = MapToEntity(dto);
+
+            // Check if the role already exists
+            if (await _roleManager.RoleExistsAsync(role.Name))
+            {
+                throw new InvalidOperationException($"Role '{role.Name}' already exists.");
+            }
+
+            var result = await _roleManager.CreateAsync(role);
+
+            if (!result.Succeeded)
+            {
+                throw new ApplicationException($"Role creation failed: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+            }
+
+            return MapSingleEntityToDto(role);
+        }
+
+        // Update an existing role
+        public override async Task<EmployeeRoleDto> UpdateAsync(int id, EmployeeRoleDto dto)
+        {
+            var role = await FindEntityById(id);
+
+            if (role == null)
+            {
+                throw new KeyNotFoundException("Role not found.");
+            }
+
+            UpdateEntity(role, dto);
+
+            var result = await _roleManager.UpdateAsync(role);
+
+            if (!result.Succeeded)
+            {
+                throw new ApplicationException($"Role update failed: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+            }
+
+            return MapSingleEntityToDto(role);
+        }
+
+        // Delete a role
+        public override async Task<bool> DeleteAsync(int id)
+        {
+            var role = await FindEntityById(id);
+
+            if (role == null)
+            {
+                return false;
+            }
+
+            var result = await _roleManager.DeleteAsync(role);
+
+            if (!result.Succeeded)
+            {
+                throw new ApplicationException($"Role deletion failed: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+            }
+
+            return true;
         }
     }
 }

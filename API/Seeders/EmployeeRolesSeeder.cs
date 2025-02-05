@@ -1,26 +1,23 @@
 ﻿using API.Models.DTOs.Employees;
-using API.Services.Employees;
+using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using API.Models;
 
 namespace API.Seeders
 {
     public class EmployeeRolesSeeder
     {
-        private readonly EmployeeRolesService _rolesService;
+        private readonly RoleManager<EmployeeRole> _roleManager;
 
-        public EmployeeRolesSeeder(EmployeeRolesService rolesService)
+        public EmployeeRolesSeeder(RoleManager<EmployeeRole> roleManager)
         {
-            _rolesService = rolesService;
+            _roleManager = roleManager;
         }
 
-        public static async Task SeedAsync(EmployeeRolesService rolesService)
+        public static async Task SeedAsync(RoleManager<EmployeeRole> roleManager)
         {
-            var existingRoles = await rolesService.GetAllAsync();
-            if (existingRoles != null && existingRoles.TotalItemCount > 0)
-            {
-                return; // Data is already seeded
-            }
-
-            var roles = new List<EmployeeRoleDto>
+            var roles = new List<EmployeeRole>
             {
                 new() { Name = "Admin", RolePower = 999, ManageVehicles = true, ManageEmployees = true, ManageRentals = true, ManageLeaves = true, ManageSchedule = true },
                 new() { Name = "Manager", RolePower = 700, ManageVehicles = true, ManageEmployees = true, ManageRentals = true, ManageLeaves = true, ManageSchedule = true },
@@ -35,7 +32,10 @@ namespace API.Seeders
             // Add roles to the database
             foreach (var role in roles)
             {
-                await rolesService.CreateAsync(role);
+                if (!await roleManager.RoleExistsAsync(role.Name))
+                {
+                    await roleManager.CreateAsync(role);
+                }
             }
         }
     }

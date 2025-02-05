@@ -405,6 +405,18 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.ToTable("EmployeeRoles");
 
             entity.Property(e => e.Id).HasColumnName("EmployeeRoleID");
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.NormalizedName).HasMaxLength(256);
+            entity.Property(e => e.ConcurrencyStamp).HasMaxLength(256);
+
+            // Custom properties
+            entity.Property(e => e.RolePower).IsRequired();
+            entity.Property(e => e.ManageVehicles).IsRequired();
+            entity.Property(e => e.ManageEmployees).IsRequired();
+            entity.Property(e => e.ManageRentals).IsRequired();
+            entity.Property(e => e.ManageLeaves).IsRequired();
+            entity.Property(e => e.ManageSchedule).IsRequired();
+            entity.Property(e => e.ModifiedDate).HasColumnType("datetime2");
 
         });
 

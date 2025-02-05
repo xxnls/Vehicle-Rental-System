@@ -20,14 +20,17 @@ namespace API.Services.Employees
         private readonly AddressesService _addressesService;
         private readonly EmployeePositionsService _employeePositionsService;
         private readonly RentalPlacesService _rentalPlacesService;
+        private readonly RoleManager<EmployeeRole> _roleManager;
 
         public EmployeesService(
             ApiDbContext context,
             UserManager<Employee> userManager,
             EmployeeFinancesService employeeFinancesService,
             EmployeeStatisticsService employeeStatisticsService,
-            AddressesService addressesService, EmployeePositionsService employeePositionsService,
-            RentalPlacesService rentalPlacesService) : base(context)
+            AddressesService addressesService,
+            EmployeePositionsService employeePositionsService,
+            RentalPlacesService rentalPlacesService,
+            RoleManager<EmployeeRole> roleManager) : base(context)
         {
             _context = context;
             _userManager = userManager;
@@ -36,6 +39,7 @@ namespace API.Services.Employees
             _addressesService = addressesService;
             _employeePositionsService = employeePositionsService;
             _rentalPlacesService = rentalPlacesService;
+            _roleManager = roleManager;
         }
 
         protected override Expression<Func<Employee, bool>> BuildSearchQuery(string search)
@@ -275,6 +279,7 @@ namespace API.Services.Employees
                 .Include(e => e.EmployeeStatistics)
                 .Include(e => e.EmployeeFinances);
         }
+
         public override async Task<EmployeeDto> CreateAsync(EmployeeDto employeeDto)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
@@ -359,6 +364,12 @@ namespace API.Services.Employees
                 {
                     var errorMessages = string.Join(", ", result.Errors.Select(e => e.Description));
                     throw new InvalidOperationException($"Employee creation failed: {errorMessages}");
+                }
+
+                // Assign the "Default" role to the user
+                if (await _roleManager.RoleExistsAsync("Default"))
+                {
+                    await _userManager.AddToRoleAsync(employee, "Default");
                 }
 
                 // Commit the transaction
