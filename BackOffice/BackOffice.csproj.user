@@ -10,6 +10,9 @@
     <Compile Update="Views\CustomControls\BindablePasswordBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\CustomControls\CalendarControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\CustomControls\CreateEditInputControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -38,6 +41,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Employees\EmployeePositionsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Employees\EmployeeSchedulesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Employees\EmployeeSelectorView.xaml.cs">
@@ -87,6 +93,9 @@
     <Page Update="Views\CustomControls\BindablePasswordBox.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\CustomControls\CalendarControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\CustomControls\CreateEditInputControl.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -115,6 +124,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Employees\EmployeePositionsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Employees\EmployeeSchedulesView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Employees\EmployeeSelectorView.xaml">

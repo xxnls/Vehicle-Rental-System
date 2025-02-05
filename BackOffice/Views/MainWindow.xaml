@@ -142,6 +142,10 @@
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeePositionsViewModel"
                             Content="Positions" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="EmployeeSchedulesViewModel"
+                            Content="Schedules" />
                     </StackPanel>
                 </Expander>
 

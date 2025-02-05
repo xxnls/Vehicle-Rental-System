@@ -102,7 +102,8 @@ namespace BackOffice.ViewModels
                 { "Employees", new EmployeesViewModel() },
                 { "EmployeeShiftTypesViewModel", new EmployeeShiftTypesViewModel() },
                 { "EmployeeLeaveTypesViewModel", new EmployeeLeaveTypesViewModel() },
-                { "EmployeePositionsViewModel", new EmployeePositionsViewModel() }
+                { "EmployeePositionsViewModel", new EmployeePositionsViewModel() },
+                { "EmployeeSchedulesViewModel", new EmployeeSchedulesViewModel()}
             };
 
             // Load user

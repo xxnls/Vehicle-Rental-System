@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "G:\\Vehicle Rental System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\employees\\employeesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\employees\\employeesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\customcontrols\\calendarcontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\customcontrols\\calendarcontrol.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewmodels\\employees\\employeesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\employees\\employeesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\customcontrols\\calendarcontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\customcontrols\\calendarcontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\dtos\\employees\\employeescheduledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\dtos\\employees\\employeescheduledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\models\\dtos\\employees\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\models\\dtos\\employees\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\employees\\employeeschedulesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\employees\\employeeschedulesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,8 +21,51 @@
       "VerticalTabListWidth": 180,
       "DocumentGroups": [
         {
-          "DockedHeight": 292,
-          "SelectedChildIndex": 2,
+          "DockedHeight": 662,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CalendarControl.xaml.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\CustomControls\\CalendarControl.xaml.cs",
+              "RelativeDocumentMoniker": "BackOffice\\Views\\CustomControls\\CalendarControl.xaml.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\CustomControls\\CalendarControl.xaml.cs",
+              "RelativeToolTip": "BackOffice\\Views\\CustomControls\\CalendarControl.xaml.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAA4wGEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T01:49:05.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CalendarControl.xaml",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\CustomControls\\CalendarControl.xaml",
+              "RelativeDocumentMoniker": "BackOffice\\Views\\CustomControls\\CalendarControl.xaml",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\CustomControls\\CalendarControl.xaml",
+              "RelativeToolTip": "BackOffice\\Views\\CustomControls\\CalendarControl.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-05T01:48:52.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EmployeeSchedulesView.xaml",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\Employees\\EmployeeSchedulesView.xaml",
+              "RelativeDocumentMoniker": "BackOffice\\Views\\Employees\\EmployeeSchedulesView.xaml",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Employees\\EmployeeSchedulesView.xaml",
+              "RelativeToolTip": "BackOffice\\Views\\Employees\\EmployeeSchedulesView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-05T00:50:06.763Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 102,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -35,57 +74,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "EmployeesView.xaml",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\Employees\\EmployeesView.xaml",
-              "RelativeDocumentMoniker": "BackOffice\\Views\\Employees\\EmployeesView.xaml",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Employees\\EmployeesView.xaml*",
-              "RelativeToolTip": "BackOffice\\Views\\Employees\\EmployeesView.xaml*",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-04T23:52:02.923Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EmployeeDto.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Models\\DTOs\\Employees\\EmployeeDto.cs",
-              "RelativeDocumentMoniker": "BackOffice\\Models\\DTOs\\Employees\\EmployeeDto.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Models\\DTOs\\Employees\\EmployeeDto.cs",
-              "RelativeToolTip": "BackOffice\\Models\\DTOs\\Employees\\EmployeeDto.cs",
-              "ViewState": "AgIAAH8AAAAAAAAAAAAYwJQAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T23:41:03.313Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmployeesViewModel.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Employees\\EmployeesViewModel.cs",
-              "RelativeDocumentMoniker": "BackOffice\\ViewModels\\Employees\\EmployeesViewModel.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Employees\\EmployeesViewModel.cs",
-              "RelativeToolTip": "BackOffice\\ViewModels\\Employees\\EmployeesViewModel.cs",
-              "ViewState": "AgIAAMsAAAAAAAAAAADwv8UAAABZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T23:35:01.04Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EmployeeScheduleDto.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\Employees\\EmployeeScheduleDto.cs",
-              "RelativeDocumentMoniker": "API\\Models\\DTOs\\Employees\\EmployeeScheduleDto.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\Employees\\EmployeeScheduleDto.cs",
-              "RelativeToolTip": "API\\Models\\DTOs\\Employees\\EmployeeScheduleDto.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAIwBUAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T23:31:52.89Z",
-              "EditorCaption": ""
             }
           ]
         }
