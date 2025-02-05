@@ -24,6 +24,7 @@ builder.Services.AddDbContext<ApiDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<EmployeeAuthService>();
+builder.Services.AddScoped<EmployeeRolesService>();
 builder.Services.AddScoped<EmployeesService>();
 builder.Services.AddScoped<EmployeeShiftTypesService>();
 builder.Services.AddScoped<EmployeeLeaveTypesService>();
@@ -87,7 +88,9 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var countriesService = scope.ServiceProvider.GetRequiredService<CountriesService>();
+    var employeeRolesService = scope.ServiceProvider.GetRequiredService<EmployeeRolesService>();
     await CountrySeeder.SeedAsync(countriesService);
+    await EmployeeRolesSeeder.SeedAsync(employeeRolesService);
 }
 
 // Configure the HTTP request pipeline.

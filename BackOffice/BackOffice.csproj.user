@@ -43,6 +43,9 @@
     <Compile Update="Views\Employees\EmployeePositionsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Employees\EmployeeRolesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Employees\EmployeeSchedulesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -124,6 +127,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Employees\EmployeePositionsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Employees\EmployeeRolesView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Employees\EmployeeSchedulesView.xaml">

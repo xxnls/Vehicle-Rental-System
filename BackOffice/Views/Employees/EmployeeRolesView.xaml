@@ -1,0 +1,150 @@
+﻿<UserControl
+    x:Class="BackOffice.Views.Employees.EmployeeRolesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:employees="clr-namespace:BackOffice.ViewModels.Employees"
+    xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+    xmlns:helpers="clr-namespace:BackOffice.Helpers"
+    xmlns:local="clr-namespace:BackOffice.Views.Employees"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:BackOffice.Resources.EmployeeRoles"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <employees:EmployeeRolesViewModel x:Name="DataContext" />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="ContentStringFormat" Value="{}{0}:" />
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <!--  Create/Edit Section  -->
+        <Grid Visibility="{Binding IsCreatingOrEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Style="{StaticResource CreateEditBorderStyle}">
+                <StackPanel Orientation="Vertical">
+                    <!--  Role Name  -->
+                    <Label Content="{x:Static res:Resources.Name}" />
+                    <TextBox Text="{Binding EditableModel.Name, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        helpers:ValidationHelper.PropertyName="Name"
+                        Foreground="{StaticResource ErrorBrush}"
+                        Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                    <!--  Role Power  -->
+                    <Label Content="{x:Static res:Resources.RolePower}" />
+                    <TextBox Text="{Binding EditableModel.RolePower, UpdateSourceTrigger=PropertyChanged}">
+                        <b:Interaction.Behaviors>
+                            <helpers:TextBoxInputBehavior InputMode="DigitInput" JustPositiveDecimalInput="True" />
+                        </b:Interaction.Behaviors>
+                    </TextBox>
+                    <TextBlock
+                        helpers:ValidationHelper.PropertyName="RolePower"
+                        Foreground="{StaticResource ErrorBrush}"
+                        Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                    <!--  Permissions  -->
+                    <CheckBox Margin="0,5,0,0" Content="{x:Static res:Resources.ManageVehicles}" IsChecked="{Binding EditableModel.ManageVehicles}" />
+                    <CheckBox Margin="0,5,0,0" Content="{x:Static res:Resources.ManageEmployees}" IsChecked="{Binding EditableModel.ManageEmployees}" />
+                    <CheckBox Margin="0,5,0,0" Content="{x:Static res:Resources.ManageRentals}" IsChecked="{Binding EditableModel.ManageRentals}" />
+                    <CheckBox Margin="0,5,0,0" Content="{x:Static res:Resources.ManageLeaves}" IsChecked="{Binding EditableModel.ManageLeaves}" />
+                    <CheckBox Margin="0,5,0,0" Content="{x:Static res:Resources.ManageSchedule}" IsChecked="{Binding EditableModel.ManageSchedule}" />
+                </StackPanel>
+            </Border>
+
+            <!--  Create/Edit Buttons  -->
+            <customControls:CreateEditSaveCancelControl
+                Grid.Row="1"
+                CancelCommand="{Binding SwitchToListModeCommand}"
+                HasErrors="{Binding HasErrors}"
+                SaveCommand="{Binding CreateModelCommand}"
+                Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            <customControls:CreateEditSaveCancelControl
+                Grid.Row="1"
+                CancelCommand="{Binding SwitchToListModeCommand}"
+                HasErrors="{Binding HasErrors}"
+                SaveCommand="{Binding UpdateModelCommand}"
+                Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </Grid>
+
+        <!--  List Section  -->
+        <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <!--  CRUD Buttons, Search, and Filters  -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <customControls:CRUDButtonsControl
+                    AddCommand="{Binding SwitchToCreateModeCommand}"
+                    DeleteCommand="{Binding DeleteModelCommand}"
+                    DeleteVisibility="{Binding ShowDeleted, Converter={StaticResource InverseBooleanConverter}}"
+                    EditCommand="{Binding SwitchToEditModeCommand}"
+                    LoadCommand="{Binding LoadModelsCommand}"
+                    RestoreCommand="{Binding RestoreModelCommand}"
+                    RestoreCommandParameter="{Binding EditableModel.Id}"
+                    RestoreVisibility="{Binding ShowDeleted}" />
+
+                <customControls:SearchControl Grid.Column="1" SearchCommand="{Binding SearchCommand}" />
+            </Grid>
+
+            <!--  Filter Options  -->
+            <customControls:FilterOptionsControl
+                CreatedAfter="{Binding CreatedAfter, Mode=TwoWay}"
+                CreatedBefore="{Binding CreatedBefore, Mode=TwoWay}"
+                FilterCommand="{Binding LoadModelsCommand}"
+                ModifiedAfter="{Binding ModifiedAfter, Mode=TwoWay}"
+                ModifiedBefore="{Binding ModifiedBefore, Mode=TwoWay}"
+                Visibility="{Binding IsFiltering, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+            <!--  DataGrid  -->
+            <DataGrid
+                x:Name="MainDataGrid"
+                ItemsSource="{Binding Models}"
+                SelectedItem="{Binding EditableModel, Mode=TwoWay}"
+                Style="{StaticResource DefaultDataGridStyle}">
+                <DataGrid.InputBindings>
+                    <MouseBinding
+                        Command="{Binding ShowDetailedInfoCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Mode=OneWay}"
+                        Gesture="LeftDoubleClick" />
+                </DataGrid.InputBindings>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="ID" />
+                    <DataGridTextColumn Binding="{Binding Name}" Header="{x:Static res:Resources.Name}" />
+                    <DataGridTextColumn Binding="{Binding RolePower}" Header="{x:Static res:Resources.RolePower}" />
+                    <DataGridCheckBoxColumn Binding="{Binding ManageVehicles}" Header="{x:Static res:Resources.ManageVehicles}" />
+                    <DataGridCheckBoxColumn Binding="{Binding ManageEmployees}" Header="{x:Static res:Resources.ManageEmployees}" />
+                    <DataGridCheckBoxColumn Binding="{Binding ManageRentals}" Header="{x:Static res:Resources.ManageRentals}" />
+                    <DataGridCheckBoxColumn Binding="{Binding ManageLeaves}" Header="{x:Static res:Resources.ManageLeaves}" />
+                    <DataGridCheckBoxColumn Binding="{Binding ManageSchedule}" Header="{x:Static res:Resources.ManageSchedule}" />
+                    <DataGridTextColumn Binding="{Binding ModifiedDate}" Header="{x:Static generic:Resources.ModifiedDate}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!--  Pagination  -->
+            <customControls:PaginationControl
+                CanLoadNextPage="{Binding CanLoadNextPage}"
+                CanLoadPreviousPage="{Binding CanLoadPreviousPage}"
+                CurrentPage="{Binding CurrentPage}"
+                ModelsPerPage="{Binding PageSize}"
+                NextPageCommand="{Binding LoadNextPageCommand}"
+                PreviousPageCommand="{Binding LoadPreviousPageCommand}"
+                TotalItemCount="{Binding TotalItemCount}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>
