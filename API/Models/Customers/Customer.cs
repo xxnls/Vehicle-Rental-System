@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using API.Interfaces;
 
-namespace API.Models;
+namespace API.Models.Customers;
 
-public partial class Customer : IdentityUser<int>
+public partial class Customer : IdentityUser<int>, IBaseModel
 {
     public int AddressId { get; set; }
 

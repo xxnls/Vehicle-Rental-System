@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using API.Interfaces;
 
-namespace API.Models;
+namespace API.Models.Customers;
 
-public partial class CustomerType
+public partial class CustomerType : IBaseModel
 {
     public int CustomerTypeId { get; set; }
 

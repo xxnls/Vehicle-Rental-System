@@ -13,6 +13,8 @@ using API.Services.Vehicles;
 using API.Seeders;
 using API.Services.Employees;
 using API.Models.Employees;
+using API.Services.Customers;
+using API.Models.Customers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,16 +33,20 @@ builder.Services.AddScoped<EmployeeLeaveTypesService>();
 builder.Services.AddScoped<EmployeePositionsService>();
 builder.Services.AddScoped<EmployeeFinancesService>();
 builder.Services.AddScoped<EmployeeStatisticsService>();
+
 builder.Services.AddScoped<VehiclesService>();
 builder.Services.AddScoped<VehicleBrandsService>();
 builder.Services.AddScoped<VehicleModelsService>();
 builder.Services.AddScoped<VehicleTypesService>();
 builder.Services.AddScoped<VehicleStatisticsService>();
 builder.Services.AddScoped<VehicleOptionalInformationService>();
+
 builder.Services.AddScoped<CountriesService>();
 builder.Services.AddScoped<RentalPlacesService>();
 builder.Services.AddScoped<LocationsService>();
 builder.Services.AddScoped<AddressesService>();
+
+builder.Services.AddScoped<CustomerTypesService>();
 
 
 builder.Services.AddIdentityCore<Employee>(options => { })

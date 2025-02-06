@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace API.Models;
+namespace API.Models.Customers;
 
 public partial class CustomerStatistic
 {

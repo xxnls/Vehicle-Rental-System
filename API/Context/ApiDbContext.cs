@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using API.Models;
+using API.Models.Customers;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

@@ -15,6 +15,7 @@ using BackOffice.Views;
 using BackOffice.ViewModels.Employees;
 using BackOffice.ViewModels.Other;
 using BackOffice.ViewModels.Vehicles;
+using BackOffice.ViewModels.Customers;
 
 namespace BackOffice.ViewModels
 {
@@ -204,14 +205,15 @@ namespace BackOffice.ViewModels
                 { "EmployeePositionsViewModel", new EmployeePositionsViewModel() },
                 { "EmployeeSchedulesViewModel", new EmployeeSchedulesViewModel() },
                 { "EmployeeRolesViewModel", new EmployeeRolesViewModel() },
-                { "RolesAssignmentViewModel", new RolesAssignmentViewModel() }
+                { "RolesAssignmentViewModel", new RolesAssignmentViewModel() },
+                { "CustomerTypesViewModel", new CustomerTypesViewModel() }
             };
 
             // Load user
             CurrentUser = (EmployeeDto)SessionManager.Get("User");
 
             // Set default workspace
-            CurrentWorkspace = _viewModelMappings["Employees"];
+            CurrentWorkspace = _viewModelMappings["CustomerTypesViewModel"];
 
             ToggleSidebarCommand = new RelayCommand(ToggleSidebar);
             LogoutCommand = new RelayCommand(Logout);

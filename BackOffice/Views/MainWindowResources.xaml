@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customers="clr-namespace:BackOffice.ViewModels.Customers"
+    xmlns:customerviews="clr-namespace:BackOffice.Views.Customers"
     xmlns:employees="clr-namespace:BackOffice.ViewModels.Employees"
     xmlns:employeesviews="clr-namespace:BackOffice.Views.Employees"
     xmlns:other="clr-namespace:BackOffice.ViewModels.Other"
@@ -68,6 +70,10 @@
 
     <DataTemplate DataType="{x:Type other:RolesAssignmentViewModel}">
         <otherviews:RolesAssignmentView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type customers:CustomerTypesViewModel}">
+        <customerviews:CustomerTypesView />
     </DataTemplate>
 
 
