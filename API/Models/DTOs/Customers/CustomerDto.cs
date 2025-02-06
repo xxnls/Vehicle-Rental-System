@@ -6,6 +6,7 @@ namespace API.Models.DTOs.Customers
 {
     public class CustomerDto : IBaseModel
     {
+        public int Id { get; set; }
         public int AddressId { get; set; }
 
         public int CustomerTypeId { get; set; }
@@ -18,6 +19,14 @@ namespace API.Models.DTOs.Customers
 
         public string? CompanyName { get; set; }
 
+        public string Email { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string? UserName { get; set; }
+
+        public string? Password { get; set; } // Added for creation
+
         public DateTime CreatedDate { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
@@ -28,8 +37,8 @@ namespace API.Models.DTOs.Customers
 
         public AddressDto Address { get; set; } = null!;
 
-        public CustomerStatisticsDto CustomerStatistics { get; set; } = null!;
+        public CustomerStatisticsDto? CustomerStatistics { get; set; } = null!;
 
-        public CustomerTypeDto CustomerType { get; set; } = null!;
+        public CustomerTypeDto? CustomerType { get; set; } = null!;
     }
 }

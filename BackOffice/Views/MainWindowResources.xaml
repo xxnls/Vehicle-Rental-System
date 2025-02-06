@@ -76,6 +76,11 @@
         <customerviews:CustomerTypesView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type customers:CustomersViewModel}">
+        <customerviews:CustomersView />
+    </DataTemplate>
+
+
 
     <Storyboard x:Key="ExpandSidebar">
         <DoubleAnimation

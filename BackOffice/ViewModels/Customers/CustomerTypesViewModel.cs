@@ -21,30 +21,30 @@ namespace BackOffice.ViewModels.Customers
 
             ValidationRules = new Dictionary<string, Action>
             {
-                //{ nameof(EditableModel.CustomerType), ValidateCustomerType },
+                { nameof(EditableModel.CustomerType), ValidateCustomerType },
                 { nameof(EditableModel.MaxRentals), ValidateMaxRentals },
                 { nameof(EditableModel.DiscountPercent), ValidateDiscountPercent }
             };
         }
 
         #region Validation
-        //private void ValidateCustomerType()
-        //{
-        //    ClearErrors(nameof(EditableModel.CustomerType));
+        private void ValidateCustomerType()
+        {
+            ClearErrors(nameof(EditableModel.CustomerType));
 
-        //    if (string.IsNullOrWhiteSpace(EditableModel.CustomerType))
-        //    {
-        //        AddError(nameof(EditableModel.CustomerType), LocalizationHelper.GetString("CustomerTypes", "ErrorCustomerType1"));
-        //    }
-        //    else if (EditableModel.CustomerType.Length < 3)
-        //    {
-        //        AddError(nameof(EditableModel.CustomerType), LocalizationHelper.GetString("CustomerTypes", "ErrorCustomerType2"));
-        //    }
-        //    else if (EditableModel.CustomerType.Length > 20)
-        //    {
-        //        AddError(nameof(EditableModel.CustomerType), LocalizationHelper.GetString("CustomerTypes", "ErrorCustomerType3"));
-        //    }
-        //}
+            if (string.IsNullOrWhiteSpace(EditableModel.CustomerType))
+            {
+                AddError(nameof(EditableModel.CustomerType), LocalizationHelper.GetString("CustomerTypes", "ErrorCustomerType1"));
+            }
+            else if (EditableModel.CustomerType.Length < 3)
+            {
+                AddError(nameof(EditableModel.CustomerType), LocalizationHelper.GetString("CustomerTypes", "ErrorCustomerType2"));
+            }
+            else if (EditableModel.CustomerType.Length > 20)
+            {
+                AddError(nameof(EditableModel.CustomerType), LocalizationHelper.GetString("CustomerTypes", "ErrorCustomerType3"));
+            }
+        }
 
         private void ValidateMaxRentals()
         {

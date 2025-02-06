@@ -206,14 +206,15 @@ namespace BackOffice.ViewModels
                 { "EmployeeSchedulesViewModel", new EmployeeSchedulesViewModel() },
                 { "EmployeeRolesViewModel", new EmployeeRolesViewModel() },
                 { "RolesAssignmentViewModel", new RolesAssignmentViewModel() },
-                { "CustomerTypesViewModel", new CustomerTypesViewModel() }
+                { "CustomerTypesViewModel", new CustomerTypesViewModel() },
+                { "CustomersViewModel", new CustomersViewModel()}
             };
 
             // Load user
             CurrentUser = (EmployeeDto)SessionManager.Get("User");
 
             // Set default workspace
-            CurrentWorkspace = _viewModelMappings["CustomerTypesViewModel"];
+            CurrentWorkspace = _viewModelMappings["CustomersViewModel"];
 
             ToggleSidebarCommand = new RelayCommand(ToggleSidebar);
             LogoutCommand = new RelayCommand(Logout);

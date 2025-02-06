@@ -47,6 +47,8 @@ builder.Services.AddScoped<LocationsService>();
 builder.Services.AddScoped<AddressesService>();
 
 builder.Services.AddScoped<CustomerTypesService>();
+builder.Services.AddScoped<CustomerStatisticsService>();
+builder.Services.AddScoped<CustomersService>();
 
 
 builder.Services.AddIdentityCore<Employee>(options => { })

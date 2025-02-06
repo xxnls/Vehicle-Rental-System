@@ -34,6 +34,9 @@
     <Compile Update="Views\CustomControls\SearchControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Customers\CustomersView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Customers\CustomerTypesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -124,6 +127,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CustomControls\SearchControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Customers\CustomersView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Customers\CustomerTypesView.xaml">

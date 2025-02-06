@@ -213,6 +213,10 @@
                     <StackPanel>
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="CustomersViewModel"
+                            Content="Customers" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="CustomerTypesViewModel"
                             Content="Customer Types" />
                     </StackPanel>

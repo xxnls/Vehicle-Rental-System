@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using API.Models.DTOs.Other;
 using API.Services.Other;
+using System.Globalization;
+using System.Text;
 
 namespace API.Services.Employees
 {
@@ -418,7 +420,7 @@ namespace API.Services.Employees
         private async Task<string> GenerateUniqueUsernameAsync(string firstName, string lastName)
         {
             var rnd = new Random();
-            var baseUsername = $"{firstName.ToLower()}.{lastName.ToLower()}";
+            var baseUsername = $"{RemoveDiacritics(firstName.ToLower())}.{RemoveDiacritics(lastName.ToLower())}";
             var generatedUsername = $"{baseUsername}{rnd.Next(1000):000}";
 
             // Ensure the username is unique
@@ -428,6 +430,25 @@ namespace API.Services.Employees
             }
 
             return generatedUsername;
+        }
+
+        private string RemoveDiacritics(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return text;
+
+            var normalizedString = text.Normalize(NormalizationForm.FormD);
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in normalizedString)
+            {
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
     }
 }

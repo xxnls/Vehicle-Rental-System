@@ -59,5 +59,140 @@ namespace BackOffice.Resources.Customers {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basic Information Fields.
+        /// </summary>
+        public static string BasicInformationFields {
+            get {
+                return ResourceManager.GetString("BasicInformationFields", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        public static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company name.
+        /// </summary>
+        public static string CompanyName {
+            get {
+                return ResourceManager.GetString("CompanyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer type.
+        /// </summary>
+        public static string CustomerType {
+            get {
+                return ResourceManager.GetString("CustomerType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customers.
+        /// </summary>
+        public static string DisplayName {
+            get {
+                return ResourceManager.GetString("DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer type is required..
+        /// </summary>
+        public static string ErrorCustomerType1 {
+            get {
+                return ResourceManager.GetString("ErrorCustomerType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-Mail is required..
+        /// </summary>
+        public static string ErrorEmail1 {
+            get {
+                return ResourceManager.GetString("ErrorEmail1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-Mail is invalid..
+        /// </summary>
+        public static string ErrorEmail2 {
+            get {
+                return ResourceManager.GetString("ErrorEmail2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name is required..
+        /// </summary>
+        public static string ErrorFirstName1 {
+            get {
+                return ResourceManager.GetString("ErrorFirstName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First name cannot exceed 50 characters..
+        /// </summary>
+        public static string ErrorFirstName2 {
+            get {
+                return ResourceManager.GetString("ErrorFirstName2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name is required..
+        /// </summary>
+        public static string ErrorLastName1 {
+            get {
+                return ResourceManager.GetString("ErrorLastName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name cannot exceed 50 characters..
+        /// </summary>
+        public static string ErrorLastName2 {
+            get {
+                return ResourceManager.GetString("ErrorLastName2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number is required..
+        /// </summary>
+        public static string ErrorPhoneNumber1 {
+            get {
+                return ResourceManager.GetString("ErrorPhoneNumber1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number cannot exceed 20 characters..
+        /// </summary>
+        public static string ErrorPhoneNumber2 {
+            get {
+                return ResourceManager.GetString("ErrorPhoneNumber2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Customer Type.
+        /// </summary>
+        public static string SelectCustomerType {
+            get {
+                return ResourceManager.GetString("SelectCustomerType", resourceCulture);
+            }
+        }
     }
 }

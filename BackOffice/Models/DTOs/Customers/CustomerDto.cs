@@ -7,24 +7,123 @@ namespace BackOffice.Models.DTOs.Customers
 {
     public class CustomerDto : BaseDtoModel
     {
+        public int Id { get; set; }
         public int AddressId { get; set; }
 
         public int CustomerTypeId { get; set; }
 
         public int CustomerStatisticsId { get; set; }
 
-        public string FirstName { get; set; } = null!;
+        private string _firstName = null!;
+        public string FirstName
+        {
+            get => _firstName;
+            set
+            {
+                _firstName = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string LastName { get; set; } = null!;
+        private string _lastName = null!;
+        public string LastName
+        {
+            get => _lastName;
+            set
+            {
+                _lastName = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public string? CompanyName { get; set; }
+        private string? _companyName;
+        public string? CompanyName
+        {
+            get => _companyName;
+            set
+            {
+                _companyName = value;
+                OnPropertyChanged();
+            }
+        }
 
+        private string _email = null!;
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                _email = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _phoneNumber = null!;
+        public string PhoneNumber
+        {
+            get => _phoneNumber;
+            set
+            {
+                _phoneNumber = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string? _userName;
+        public string? UserName
+        {
+            get => _userName;
+            set
+            {
+                _userName = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string? _password;
+        public string? Password
+        {
+            get => _password;
+            set
+            {
+                _password = value;
+                OnPropertyChanged();
+            }
+        }
 
         // Navigation properties
-        public AddressDto Address { get; set; } = null!;
+        private AddressDto _address = new();
+        public AddressDto Address
+        {
+            get => _address;
+            set
+            {
+                _address = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public CustomerStatisticsDto CustomerStatistics { get; set; } = null!;
+        private CustomerStatisticsDto _customerStatistics;
+        public CustomerStatisticsDto CustomerStatistics
+        {
+            get => _customerStatistics;
+            set
+            {
+                _customerStatistics = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public CustomerTypeDto CustomerType { get; set; } = null!;
+        private CustomerTypeDto _customerType;
+        public CustomerTypeDto CustomerType
+        {
+            get => _customerType;
+            set
+            {
+                _customerType = value;
+                OnPropertyChanged();
+            }
+        }
+
     }
 }

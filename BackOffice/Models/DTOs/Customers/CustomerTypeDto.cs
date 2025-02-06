@@ -6,10 +6,38 @@ namespace BackOffice.Models.DTOs.Customers
     {
         public int CustomerTypeId { get; set; }
 
-        public string CustomerType { get; set; } = null!;
+        private string _customerType = null!;
+        public string CustomerType
+        {
+            get => _customerType;
+            set
+            {
+                _customerType = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public short? MaxRentals { get; set; }
+        private short? _maxRentals;
+        public short? MaxRentals
+        {
+            get => _maxRentals;
+            set
+            {
+                _maxRentals = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public double? DiscountPercent { get; set; }
+        private double? _discountPercent;
+        public double? DiscountPercent
+        {
+            get => _discountPercent;
+            set
+            {
+                _discountPercent = value;
+                OnPropertyChanged();
+            }
+        }
+
     }
 }
