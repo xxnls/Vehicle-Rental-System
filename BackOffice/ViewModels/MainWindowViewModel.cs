@@ -203,7 +203,8 @@ namespace BackOffice.ViewModels
                 { "EmployeeLeaveTypesViewModel", new EmployeeLeaveTypesViewModel() },
                 { "EmployeePositionsViewModel", new EmployeePositionsViewModel() },
                 { "EmployeeSchedulesViewModel", new EmployeeSchedulesViewModel() },
-                { "EmployeeRolesViewModel", new EmployeeRolesViewModel() }
+                { "EmployeeRolesViewModel", new EmployeeRolesViewModel() },
+                { "RolesAssignmentViewModel", new RolesAssignmentViewModel() }
             };
 
             // Load user
@@ -226,6 +227,9 @@ namespace BackOffice.ViewModels
 
         #region Methods
 
+        /// <summary>
+        /// Initialize permissions for the current user
+        /// </summary>
         private async void InitializePermissionsAsync()
         {
             CanManageVehicles = await RoleHelper.HasPermission("ManageVehicles");

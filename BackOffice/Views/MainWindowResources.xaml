@@ -66,6 +66,10 @@
         <employeesviews:EmployeeRolesView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type other:RolesAssignmentViewModel}">
+        <otherviews:RolesAssignmentView />
+    </DataTemplate>
+
 
     <Storyboard x:Key="ExpandSidebar">
         <DoubleAnimation

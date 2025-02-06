@@ -1,0 +1,137 @@
+﻿<UserControl
+    x:Class="BackOffice.Views.Other.RolesAssignmentView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
+    xmlns:emp="clr-namespace:BackOffice.Resources.Employees"
+    xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+    xmlns:helpers="clr-namespace:BackOffice.Helpers"
+    xmlns:other="clr-namespace:BackOffice.ViewModels.Other"
+    xmlns:res="clr-namespace:BackOffice.Resources.RolesAssignment"
+    xmlns:vm="clr-namespace:BackOffice.ViewModels.Employees">
+
+    <UserControl.DataContext>
+        <other:RolesAssignmentViewModel />
+    </UserControl.DataContext>
+
+    <StackPanel Orientation="Vertical">
+        <Grid Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!--  Role Assignment  -->
+            <Border Grid.Row="0" Style="{StaticResource CreateEditBorderStyle}">
+                <StackPanel Grid.Row="0" Orientation="Vertical">
+                    <!--<Label>
+                        <Label.Content>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Source="{x:Static emp:Resources.FirstName}" />
+                                <Binding Source="{x:Static emp:Resources.LastName}" />
+                            </MultiBinding>
+                        </Label.Content>
+                    </Label>-->
+                    <TextBox Margin="0,10,0,0" IsReadOnly="True">
+                        <TextBox.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="EditableModel.FirstName" />
+                                <Binding Path="EditableModel.LastName" />
+                            </MultiBinding>
+                        </TextBox.Text>
+                    </TextBox>
+
+                    <Label Content="{x:Static res:Resources.Role}" />
+                    <TextBox IsReadOnly="True" Text="{Binding SelectedRole, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        helpers:ValidationHelper.PropertyName="SelectedRole"
+                        Foreground="{StaticResource ErrorBrush}"
+                        Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                    <Button
+                        Width="150"
+                        Margin="0,5,0,0"
+                        HorizontalAlignment="Left"
+                        Command="{Binding ShowSelectorDialogCommand}"
+                        CommandParameter="{Binding SelectRoleParameters}"
+                        Content="{x:Static res:Resources.SelectRole}"
+                        Style="{StaticResource DefaultButtonStyle}" />
+                </StackPanel>
+            </Border>
+
+            <StackPanel
+                Grid.Row="1"
+                Margin="10,0,0,0"
+                Orientation="Horizontal">
+                <Button
+                    Width="100"
+                    HorizontalAlignment="Left"
+                    Command="{Binding AssignRoleCommand}"
+                    Content="{x:Static res:Resources.AssignRole}"
+                    Style="{StaticResource DefaultButtonStyle}" />
+
+                <Button
+                    Width="100"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Left"
+                    Command="{Binding RemoveRoleCommand}"
+                    Content="{x:Static res:Resources.RemoveRole}"
+                    Style="{StaticResource DefaultButtonStyle}" />
+
+                <Button
+                    Width="75"
+                    Margin="10,0,0,0"
+                    Command="{Binding SwitchToListModeCommand}"
+                    Content="{x:Static generic:Resources.Cancel}"
+                    Style="{StaticResource DefaultButtonStyle}" />
+            </StackPanel>
+        </Grid>
+
+        <!--  User List  -->
+        <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid>
+                <customControls:CRUDButtonsControl
+                    AddCommand="{Binding SwitchToCreateModeCommand}"
+                    EditCommand="{Binding SwitchToEditModeCommand}"
+                    LoadCommand="{Binding LoadModelsCommand}" />
+
+                <customControls:SearchControl SearchCommand="{Binding SearchCommand}" />
+            </Grid>
+            <DataGrid
+                x:Name="MainDataGrid"
+                ItemsSource="{Binding Models}"
+                SelectedItem="{Binding EditableModel, Mode=TwoWay}"
+                Style="{StaticResource DefaultDataGridStyle}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="ID" />
+                    <DataGridTextColumn Binding="{Binding FirstName}" Header="{x:Static emp:Resources.FirstName}" />
+                    <DataGridTextColumn Binding="{Binding LastName}" Header="{x:Static emp:Resources.LastName}" />
+                    <DataGridTextColumn Binding="{Binding UserName}" Header="{x:Static emp:Resources.UserName}" />
+                    <DataGridTextColumn Binding="{Binding Email}" Header="E-Mail" />
+                    <DataGridTemplateColumn Header="{x:Static emp:Resources.Supervisor}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} {1}">
+                                            <Binding Path="Supervisor.FirstName" />
+                                            <Binding Path="Supervisor.LastName" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!--  Pagination  -->
+            <customControls:PaginationControl
+                CanLoadNextPage="{Binding CanLoadNextPage}"
+                CanLoadPreviousPage="{Binding CanLoadPreviousPage}"
+                CurrentPage="{Binding CurrentPage}"
+                ModelsPerPage="{Binding PageSize}"
+                NextPageCommand="{Binding LoadNextPageCommand}"
+                PreviousPageCommand="{Binding LoadPreviousPageCommand}"
+                TotalItemCount="{Binding TotalItemCount}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

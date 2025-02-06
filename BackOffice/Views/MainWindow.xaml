@@ -193,6 +193,10 @@
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeeRolesViewModel"
                             Content="Roles" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="RolesAssignmentViewModel"
+                            Content="Roles Assignment" />
                     </StackPanel>
                 </Expander>
             </StackPanel>

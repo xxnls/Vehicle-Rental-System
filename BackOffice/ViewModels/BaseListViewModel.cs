@@ -579,12 +579,31 @@ namespace BackOffice.ViewModels
             // Copy columns from original grid
             foreach (var column in originalGrid.Columns)
             {
-                var newColumn = new DataGridTextColumn
+                DataGridColumn newColumn = null;
+
+                // Check if column is DataGridTextColumn
+                if (column is DataGridTextColumn textColumn)
                 {
-                    Header = column.Header,
-                    Binding = ((DataGridTextColumn)column).Binding
-                };
-                newGrid.Columns.Add(newColumn);
+                    newColumn = new DataGridTextColumn
+                    {
+                        Header = textColumn.Header,
+                        Binding = textColumn.Binding
+                    };
+                }
+                else if (column is DataGridCheckBoxColumn checkBoxColumn)
+                {
+                    newColumn = new DataGridCheckBoxColumn
+                    {
+                        Header = checkBoxColumn.Header,
+                        Binding = checkBoxColumn.Binding
+                    };
+                }
+
+                // Ensure newColumn is not null before adding it to newGrid
+                if (newColumn != null)
+                {
+                    newGrid.Columns.Add(newColumn);
+                }
             }
 
             // Add double click event
