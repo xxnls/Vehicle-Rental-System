@@ -183,7 +183,8 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="Administrator">
+                    Header="Administrator"
+                    Visibility="{Binding IsUserAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -224,6 +225,8 @@
                     CommandParameter="en-US"
                     Content="English" />
             </StatusBarItem>
+
+            <TextBlock Text="{Binding UserRoles}" />
 
             <StatusBarItem HorizontalAlignment="Right">
                 <Button

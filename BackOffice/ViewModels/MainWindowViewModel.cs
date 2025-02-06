@@ -21,9 +21,106 @@ namespace BackOffice.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         #region Properties & Fields
+
+        private bool _canManageVehicles;
+        private bool _canManageEmployees;
+        private bool _canManageRentals;
+        private bool _canManageLeaves;
+        private bool _canManageSchedule;
+        private bool _isUserAdmin;
+
+        public bool CanManageVehicles
+        {
+            get => _canManageVehicles;
+            set
+            {
+                if (_canManageVehicles != value)
+                {
+                    _canManageVehicles = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public bool CanManageEmployees
+        {
+            get => _canManageEmployees;
+            set
+            {
+                if (_canManageEmployees != value)
+                {
+                    _canManageEmployees = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public bool CanManageRentals
+        {
+            get => _canManageRentals;
+            set
+            {
+                if (_canManageRentals != value)
+                {
+                    _canManageRentals = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public bool CanManageLeaves
+        {
+            get => _canManageLeaves;
+            set
+            {
+                if (_canManageLeaves != value)
+                {
+                    _canManageLeaves = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public bool CanManageSchedule
+        {
+            get => _canManageSchedule;
+            set
+            {
+                if (_canManageSchedule != value)
+                {
+                    _canManageSchedule = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public bool IsUserAdmin
+        {
+            get => _isUserAdmin;
+            set
+            {
+                if (_isUserAdmin != value)
+                {
+                    _isUserAdmin = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private readonly Dictionary<string, object> _viewModelMappings;
 
-        public string FullName { get { return CurrentUser.FirstName + " " + CurrentUser.LastName; } }
+        public string FullName => CurrentUser.FirstName + " " + CurrentUser.LastName;
+
+        private string _userRoles;
+        public string UserRoles
+        {
+            get => _userRoles;
+            set
+            {
+                _userRoles = value;
+                OnPropertyChanged();
+            }
+        }
 
         private double _sidebarWidth = 200;
         public double SidebarWidth
@@ -83,6 +180,8 @@ namespace BackOffice.ViewModels
 
         public MainWindowViewModel()
         {
+            InitializePermissionsAsync();
+
             // Register to receive status messages
             WeakReferenceMessenger.Default.Register<Messenger>(this, (r, m) =>
             {
@@ -117,9 +216,26 @@ namespace BackOffice.ViewModels
             LogoutCommand = new RelayCommand(Logout);
             ChangeWorkspaceCommand = new RelayCommand<object>(ChangeWorkspace);
             ChangeLanguageCommand = new RelayCommand<string>(LocalizationHelper.SetLanguage);
+
+            // Get user roles form SessionManager and set them into the UserRoles property
+            if (SessionManager.Get("Roles") is List<string> roles)
+            {
+                UserRoles = string.Join(", ", roles);
+            }
         }
 
         #region Methods
+
+        private async void InitializePermissionsAsync()
+        {
+            CanManageVehicles = await RoleHelper.HasPermission("ManageVehicles");
+            CanManageEmployees = await RoleHelper.HasPermission("ManageEmployees");
+            CanManageRentals = await RoleHelper.HasPermission("ManageRentals");
+            CanManageLeaves = await RoleHelper.HasPermission("ManageLeaves");
+            CanManageSchedule = await RoleHelper.HasPermission("ManageSchedule");
+            IsUserAdmin = RoleHelper.HasRole("Admin");
+        }
+
         private void ToggleSidebar()
         {
             SidebarWidth = SidebarWidth == 200 ? 52 : 200;

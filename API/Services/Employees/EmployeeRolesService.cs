@@ -2,6 +2,7 @@
 using API.Context;
 using API.Models;
 using API.Models.DTOs.Employees;
+using API.Models.Employees;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,11 +11,129 @@ namespace API.Services.Employees
     public class EmployeeRolesService : BaseApiService<EmployeeRole, EmployeeRoleDto, EmployeeRoleDto>
     {
         private readonly RoleManager<EmployeeRole> _roleManager;
+        private readonly UserManager<Employee> _userManager;
+        private readonly ApiDbContext _context;
 
-        public EmployeeRolesService(ApiDbContext context, RoleManager<EmployeeRole> roleManager) : base(context)
+        public EmployeeRolesService(
+            ApiDbContext context,
+            RoleManager<EmployeeRole> roleManager,
+            UserManager<Employee> userManager) : base(context)
         {
             _roleManager = roleManager;
+            _userManager = userManager;
+            _context = context;
         }
+
+        #region Role Management
+
+        /// <summary>
+        /// Get the roles of a user.
+        /// </summary>
+        /// <param name="userId">
+        /// The ID of the user to get the roles of.
+        /// </param>
+        /// <returns>Roles in a list.</returns>
+        public async Task<List<string>> GetUserRolesAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return []; // Return empty if user not found
+
+            var roles = await _userManager.GetRolesAsync(user);
+            return roles.ToList();
+        }
+
+        /// <summary>
+        /// Assign user to a specified role.
+        /// </summary>
+        /// <param name="userId">
+        /// The ID of the user to assign the role to.
+        /// </param>
+        /// <param name="roleName">
+        /// The name of the role to assign.
+        /// </param>
+        /// <returns>
+        /// True if the role was assigned successfully; otherwise, false.
+        /// </returns>
+        public async Task<bool> AssignRoleAsync(string userId, string roleName)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return false; // Return false if user not found
+            var result = await _userManager.AddToRoleAsync(user, roleName);
+            return result.Succeeded;
+        }
+
+        /// <summary>
+        /// Remove a role from a user.
+        /// </summary>
+        /// <param name="userId">
+        /// The ID of the user to remove the role from.
+        /// </param>
+        /// <param name="roleName">
+        /// The name of the role to remove.
+        /// </param>
+        /// <returns>
+        /// True if the role was removed successfully; otherwise, false.
+        /// </returns>
+        public async Task<bool> RemoveRoleAsync(string userId, string roleName)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return false; // Return false if user not found
+            var result = await _userManager.RemoveFromRoleAsync(user, roleName);
+            return result.Succeeded;
+        }
+
+        /// <summary>
+        /// Check if a user has a specific permission.
+        /// </summary>
+        /// <param name="userId">
+        /// The ID of the user to check the permission for.
+        /// </param>
+        /// <param name="permission">
+        /// The permission to check (e.g., ManageVehicles).
+        /// </param>
+        /// <returns>
+        /// True if the user has the permission; otherwise, false.
+        /// </returns>
+        public async Task<bool> HasPermissionAsync(string userId, string permission)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return false; // Return false if user not found
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            // Fetch the user's role with permissions from the database
+            var role = await _context.EmployeeRoles
+                .Where(r => roles.Contains(r.Name))
+                .Select(r => new
+                {
+                    r.ManageVehicles,
+                    r.ManageEmployees,
+                    r.ManageRentals,
+                    r.ManageLeaves,
+                    r.ManageSchedule
+                })
+                .FirstOrDefaultAsync();
+
+            if (role == null)
+                return false;
+
+            // Map permission name to the corresponding property
+            return permission switch
+            {
+                "ManageVehicles" => role.ManageVehicles,
+                "ManageEmployees" => role.ManageEmployees,
+                "ManageRentals" => role.ManageRentals,
+                "ManageLeaves" => role.ManageLeaves,
+                "ManageSchedule" => role.ManageSchedule,
+                _ => false
+            };
+        }
+
+        #endregion
 
         // Build a search query for roles
         protected override Expression<Func<EmployeeRole, bool>> BuildSearchQuery(string search)

@@ -98,6 +98,10 @@ namespace BackOffice.ViewModels.Other
                     var user = await ApiClient.GetAsync<EmployeeDto>($"Employees/{response.UserId}");
                     SessionManager.Set("User", user);
 
+                    // Store user roles in the session
+                    var roles = await ApiClient.GetAsync<List<string>>($"EmployeeRoles/user/{response.UserId}/roles");
+                    SessionManager.Set("Roles", roles);
+
                     // Notify successful login
                     WeakReferenceMessenger.Default.Send(new Messenger("LoginSuccessful"));
                 }
