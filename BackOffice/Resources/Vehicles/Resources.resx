@@ -277,4 +277,10 @@
   <data name="ErrorPurchasePrice2" xml:space="preserve">
     <value>Purchase price is required.</value>
   </data>
+  <data name="SelectVehicleStatus" xml:space="preserve">
+    <value>Select Vehicle Status</value>
+  </data>
+  <data name="VehicleStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
 </root>

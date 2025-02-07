@@ -20,6 +20,7 @@ namespace BackOffice.ViewModels.Vehicles
         public SelectorDialogParameters SelectVehicleModelParameters { get; set; }
         public SelectorDialogParameters SelectVehicleTypeParameters { get; set; }
         public SelectorDialogParameters SelectRentalPlaceParameters { get; set; }
+        public SelectorDialogParameters SelectVehicleStatusParameters { get; set; }
 
         public VehiclesViewModel() : base("Vehicles", LocalizationHelper.GetString("Vehicles", "DisplayName"))
         {
@@ -32,7 +33,7 @@ namespace BackOffice.ViewModels.Vehicles
                     EditableModel.VehicleModel ??= new VehicleModelDto();
                     EditableModel.VehicleModel = (VehicleModelDto)result;
                 },
-                Title = LocalizationHelper.GetString("Vehicles", "SelectVehicleModelTitle")
+                Title = LocalizationHelper.GetString("Vehicles", "SelectVehicleModel")
             };
 
             SelectVehicleTypeParameters = new SelectorDialogParameters
@@ -44,7 +45,7 @@ namespace BackOffice.ViewModels.Vehicles
                     EditableModel.VehicleType ??= new VehicleTypeDto();
                     EditableModel.VehicleType = (VehicleTypeDto)result;
                 },
-                Title = LocalizationHelper.GetString("Vehicles", "SelectVehicleTypeTitle")
+                Title = LocalizationHelper.GetString("Vehicles", "SelectVehicleType")
             };
 
             SelectRentalPlaceParameters = new SelectorDialogParameters
@@ -56,7 +57,19 @@ namespace BackOffice.ViewModels.Vehicles
                     EditableModel.RentalPlace ??= new RentalPlaceDto();
                     EditableModel.RentalPlace = (RentalPlaceDto)result;
                 },
-                Title = LocalizationHelper.GetString("Vehicles", "SelectRentalPlaceTitle")
+                Title = LocalizationHelper.GetString("Vehicles", "SelectRentalPlace")
+            };
+
+            SelectVehicleStatusParameters = new SelectorDialogParameters
+            {
+                SelectorViewModelType = typeof(VehicleStatusesViewModel),
+                SelectorView = new VehicleStatusesView(),
+                TargetProperty = result =>
+                {
+                    EditableModel.VehicleStatus ??= new VehicleStatusDto();
+                    EditableModel.VehicleStatus = (VehicleStatusDto)result;
+                },
+                Title = LocalizationHelper.GetString("Vehicles", "SelectVehicleStatus")
             };
 
             CreateModelCommand = new AsyncRelayCommand(() => CreateModelAsync(EditableModel));
@@ -78,7 +91,7 @@ namespace BackOffice.ViewModels.Vehicles
                 { nameof(EditableModel.NextMaintenanceDate), ValidateNextMaintenanceDate },
                 { nameof(EditableModel.PurchaseDate), ValidatePurchaseDate },
                 { nameof(EditableModel.PurchasePrice), ValidatePurchasePrice },
-                { nameof(EditableModel.Status), ValidateStatus },
+                { nameof(EditableModel.VehicleStatus), ValidateVehicleStatus },
                 { nameof(EditableModel.CustomDailyRate), ValidateCustomDailyRate },
                 { nameof(EditableModel.CustomWeeklyRate), ValidateCustomWeeklyRate },
                 { nameof(EditableModel.CustomDeposit), ValidateCustomDeposit },
@@ -225,13 +238,13 @@ namespace BackOffice.ViewModels.Vehicles
         }
 
         // Validation method for Status
-        private void ValidateStatus()
+        private void ValidateVehicleStatus()
         {
-            ClearErrors(nameof(EditableModel.Status));
+            ClearErrors(nameof(EditableModel.VehicleStatus));
 
-            if (string.IsNullOrWhiteSpace(EditableModel.Status))
+            if (EditableModel.VehicleStatus == null)
             {
-                AddError(nameof(EditableModel.Status), LocalizationHelper.GetString("Vehicles", "ErrorStatus1"));
+                AddError(nameof(EditableModel.VehicleStatus), LocalizationHelper.GetString("Vehicles", "ErrorStatus1"));
             }
         }
 

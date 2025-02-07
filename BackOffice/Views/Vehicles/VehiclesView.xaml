@@ -178,20 +178,22 @@
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
                             <Label Content="{x:Static res:Resources.Status}" />
-                            <ComboBox x:Name="StatusField" Text="{Binding EditableModel.Status, UpdateSourceTrigger=PropertyChanged}">
-                                <ComboBox.ItemsSource>
-                                    <x:Array Type="system:String">
-                                        <system:String>InService</system:String>
-                                        <system:String>OutOfService</system:String>
-                                        <system:String>InMaintenance</system:String>
-                                        <system:String>Rented</system:String>
-                                    </x:Array>
-                                </ComboBox.ItemsSource>
-                            </ComboBox>
+                            <TextBox
+                                x:Name="StatusField"
+                                IsReadOnly="True"
+                                Text="{Binding EditableModel.VehicleStatus.StatusName, UpdateSourceTrigger=PropertyChanged}" />
                             <TextBlock
-                                helpers:ValidationHelper.PropertyName="Status"
+                                helpers:ValidationHelper.PropertyName="VehicleStatus"
                                 Foreground="{StaticResource ErrorBrush}"
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectVehicleStatusParameters}"
+                                Content="{x:Static res:Resources.SelectVehicleStatus}"
+                                Style="{StaticResource DefaultButtonStyle}" />
 
                             <Label Content="{x:Static res:Resources.CustomDailyRate}" />
                             <TextBox x:Name="CustomDailyRateField" Text="{Binding EditableModel.CustomDailyRate, UpdateSourceTrigger=PropertyChanged}">
@@ -372,6 +374,7 @@
                         <DataGridTextColumn Binding="{Binding VehicleModel.Name}" Header="{x:Static res:Resources.VehicleModel}" />
                         <DataGridTextColumn Binding="{Binding RentalPlace.Address.Country.Name}" Header="{x:Static res:Resources.Country}" />
                         <DataGridTextColumn Binding="{Binding RentalPlace.Address.City}" Header="{x:Static res:Resources.City}" />
+                        <DataGridTextColumn Binding="{Binding VehicleStatus.StatusName}" Header="{x:Static res:Resources.VehicleStatus}" />
                         <DataGridTextColumn Binding="{Binding Vin}" Header="VIN" />
                         <DataGridTextColumn Binding="{Binding LicensePlate}" Header="{x:Static res:Resources.LicensePlate}" />
                         <DataGridTextColumn Binding="{Binding Color}" Header="{x:Static res:Resources.Color}" />

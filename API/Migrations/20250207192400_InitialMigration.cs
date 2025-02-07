@@ -45,8 +45,8 @@ namespace API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Abbreviation = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: false),
-                    DialingCode = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: false)
+                    Abbreviation = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: false),
+                    DialingCode = table.Column<string>(type: "varchar(30)", unicode: false, maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -182,7 +182,7 @@ namespace API.Migrations
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -287,7 +287,7 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "VehicleOptionalInformationDto",
+                name: "VehicleOptionalInformation",
                 columns: table => new
                 {
                     VehicleOptionalInformationID = table.Column<int>(type: "int", nullable: false)
@@ -318,6 +318,20 @@ namespace API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("VehicleStatistics_pk", x => x.VehicleStatisticsID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VehicleStatuses",
+                columns: table => new
+                {
+                    VehicleStatusID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StatusName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("VehicleStatus_pk", x => x.VehicleStatusID);
                 });
 
             migrationBuilder.CreateTable(
@@ -512,6 +526,9 @@ namespace API.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CompanyName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    ApprovedA = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    ApprovedB = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    ApprovedC = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -582,6 +599,7 @@ namespace API.Migrations
                     VehicleStatisticsID = table.Column<int>(type: "int", nullable: false),
                     VehicleOptionalInformationID = table.Column<int>(type: "int", nullable: false),
                     RentalPlaceID = table.Column<int>(type: "int", nullable: false),
+                    VehicleStatusID = table.Column<int>(type: "int", nullable: false),
                     LocationID = table.Column<int>(type: "int", nullable: false),
                     VIN = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
                     LicensePlate = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
@@ -593,7 +611,6 @@ namespace API.Migrations
                     NextMaintenanceDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     PurchasePrice = table.Column<decimal>(type: "money", nullable: false),
-                    Status = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: false, defaultValue: "OutOfService"),
                     CustomDailyRate = table.Column<decimal>(type: "money", nullable: true),
                     CustomWeeklyRate = table.Column<decimal>(type: "money", nullable: true),
                     CustomDeposit = table.Column<decimal>(type: "money", nullable: true),
@@ -625,7 +642,7 @@ namespace API.Migrations
                     table.ForeignKey(
                         name: "Vehicles_VehicleOptionalInformation",
                         column: x => x.VehicleOptionalInformationID,
-                        principalTable: "VehicleOptionalInformationDto",
+                        principalTable: "VehicleOptionalInformation",
                         principalColumn: "VehicleOptionalInformationID");
                     table.ForeignKey(
                         name: "Vehicles_VehicleStatistics",
@@ -633,10 +650,41 @@ namespace API.Migrations
                         principalTable: "VehicleStatistics",
                         principalColumn: "VehicleStatisticsID");
                     table.ForeignKey(
+                        name: "Vehicles_VehicleStatus",
+                        column: x => x.VehicleStatusID,
+                        principalTable: "VehicleStatuses",
+                        principalColumn: "VehicleStatusID");
+                    table.ForeignKey(
                         name: "Vehicles_VehicleTypes",
                         column: x => x.VehicleTypeID,
                         principalTable: "VehicleTypes",
                         principalColumn: "VehicleTypeID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RentalRequests",
+                columns: table => new
+                {
+                    RentalRequestID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerID = table.Column<int>(type: "int", nullable: false),
+                    VehicleID = table.Column<int>(type: "int", nullable: false),
+                    RequestDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(getdate())"),
+                    RequestStatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("RentalRequests_pk", x => x.RentalRequestID);
+                    table.ForeignKey(
+                        name: "RentalRequests_Customers",
+                        column: x => x.CustomerID,
+                        principalTable: "Customers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "RentalRequests_Vehicles",
+                        column: x => x.VehicleID,
+                        principalTable: "Vehicles",
+                        principalColumn: "VehicleID");
                 });
 
             migrationBuilder.CreateTable(
@@ -719,18 +767,10 @@ namespace API.Migrations
                 {
                     EmployeeFinancesID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ApprovedByID = table.Column<int>(type: "int", nullable: false),
                     BaseSalary = table.Column<decimal>(type: "money", nullable: true),
                     HourlyRate = table.Column<decimal>(type: "money", nullable: true),
-                    Bonuses = table.Column<decimal>(type: "money", nullable: false),
-                    Allowances = table.Column<decimal>(type: "money", nullable: false),
-                    Deductions = table.Column<decimal>(type: "money", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(getdate())"),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
+                    EmployeeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1107,9 +1147,9 @@ namespace API.Migrations
                 column: "EmployeeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeFinances_ApprovedByID",
+                name: "IX_EmployeeFinances_EmployeeId",
                 table: "EmployeeFinances",
-                column: "ApprovedByID");
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmployeeLeave_ApprovedByID",
@@ -1224,6 +1264,16 @@ namespace API.Migrations
                 column: "LocationID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RentalRequests_CustomerID",
+                table: "RentalRequests",
+                column: "CustomerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RentalRequests_VehicleID",
+                table: "RentalRequests",
+                column: "VehicleID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Rentals_CustomerID",
                 table: "Rentals",
                 column: "CustomerID");
@@ -1279,6 +1329,11 @@ namespace API.Migrations
                 column: "VehicleStatisticsID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Vehicles_VehicleStatusID",
+                table: "Vehicles",
+                column: "VehicleStatusID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Vehicles_VehicleTypeID",
                 table: "Vehicles",
                 column: "VehicleTypeID");
@@ -1319,9 +1374,9 @@ namespace API.Migrations
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "EmployeeFinances_Employees_ApprovedByID",
+                name: "FK_EmployeeFinances_Employees_EmployeeId",
                 table: "EmployeeFinances",
-                column: "ApprovedByID",
+                column: "EmployeeId",
                 principalTable: "Employees",
                 principalColumn: "Id");
         }
@@ -1346,7 +1401,7 @@ namespace API.Migrations
                 table: "RentalPlaces");
 
             migrationBuilder.DropForeignKey(
-                name: "EmployeeFinances_Employees_ApprovedByID",
+                name: "FK_EmployeeFinances_Employees_EmployeeId",
                 table: "EmployeeFinances");
 
             migrationBuilder.DropTable(
@@ -1375,6 +1430,9 @@ namespace API.Migrations
 
             migrationBuilder.DropTable(
                 name: "News");
+
+            migrationBuilder.DropTable(
+                name: "RentalRequests");
 
             migrationBuilder.DropTable(
                 name: "EmployeeRoles");
@@ -1419,10 +1477,13 @@ namespace API.Migrations
                 name: "VehicleModels");
 
             migrationBuilder.DropTable(
-                name: "VehicleOptionalInformationDto");
+                name: "VehicleOptionalInformation");
 
             migrationBuilder.DropTable(
                 name: "VehicleStatistics");
+
+            migrationBuilder.DropTable(
+                name: "VehicleStatuses");
 
             migrationBuilder.DropTable(
                 name: "VehicleTypes");

@@ -12,6 +12,7 @@ namespace BackOffice.Models.DTOs.Vehicles
         public int VehicleId { get; set; }
         public int VehicleTypeId { get; set; }
         public int VehicleModelId { get; set; }
+        public int VehicleStatusId { get; set; }
         public int VehicleStatisticsId { get; set; }
         public int VehicleOptionalInformationId { get; set; }
         public int RentalPlaceId { get; set; }
@@ -127,17 +128,6 @@ namespace BackOffice.Models.DTOs.Vehicles
             }
         }
 
-        private string _status = string.Empty;
-        public string Status
-        {
-            get => _status;
-            set
-            {
-                _status = value;
-                OnPropertyChanged();
-            }
-        }
-
         private decimal? _customDailyRate;
         public decimal? CustomDailyRate
         {
@@ -223,6 +213,17 @@ namespace BackOffice.Models.DTOs.Vehicles
             set
             {
                 _rentalPlace = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VehicleStatusDto? _vehicleStatus;
+        public VehicleStatusDto? VehicleStatus
+        {
+            get => _vehicleStatus;
+            set
+            {
+                _vehicleStatus = value;
                 OnPropertyChanged();
             }
         }

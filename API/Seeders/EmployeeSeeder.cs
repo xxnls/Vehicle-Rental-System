@@ -14,23 +14,25 @@ namespace API.Seeders
         private readonly EmployeeRolesService _roleManager;
         private readonly EmployeePositionsService _employeePositionsService;
         private readonly RentalPlacesService _rentalPlacesService;
+        private readonly UserManager<Employee> _userManager;
 
-        public EmployeeSeeder(EmployeesService employeesService, EmployeeRolesService rolesManager, EmployeePositionsService employeePositionsService, RentalPlacesService rentalPlacesService)
+        public EmployeeSeeder(EmployeesService employeesService, EmployeeRolesService rolesManager, EmployeePositionsService employeePositionsService, RentalPlacesService rentalPlacesService, UserManager<Employee> userManager)
         {
             _employeesService = employeesService;
             _roleManager = rolesManager;
             _employeePositionsService = employeePositionsService;
             _rentalPlacesService = rentalPlacesService;
+            _userManager = userManager;
         }
 
         public static async Task SeedAsync(EmployeesService employeesService, EmployeeRolesService rolesManager,
-            EmployeePositionsService employeePositionsService, RentalPlacesService rentalPlacesService)
+            EmployeePositionsService employeePositionsService, RentalPlacesService rentalPlacesService, UserManager<Employee> userManager)
         {
             try
             {
                 // Create new employee position
                 var existingPositions = await employeePositionsService.GetAllAsync();
-                if (existingPositions == null && existingPositions.TotalItemCount == 0)
+                if (existingPositions.TotalItemCount == 0)
                 {
                     var position = new EmployeePositionDto { Title = "Admin" };
                     await employeePositionsService.CreateAsync(position);
@@ -38,7 +40,7 @@ namespace API.Seeders
 
                 // Create new rental place
                 var existingRentalPlaces = await rentalPlacesService.GetAllAsync();
-                if (existingRentalPlaces == null && existingRentalPlaces.TotalItemCount == 0)
+                if (existingRentalPlaces.TotalItemCount == 0)
                 {
                     var rentalPlace = new RentalPlaceDto
                     {
@@ -63,7 +65,7 @@ namespace API.Seeders
 
                 // Create Admin employee
                 var existingEmployees = await employeesService.GetAllAsync();
-                if (existingEmployees == null && existingEmployees.TotalItemCount == 0)
+                if (existingEmployees.TotalItemCount == 0)
                 {
                     var admin = new EmployeeDto
                     {
@@ -97,8 +99,9 @@ namespace API.Seeders
                     await rolesManager.AssignRoleAsync(createdAdmin.Id.ToString(), "Admin");
 
                     // Change username
-                    createdAdmin.UserName = "admin";
-                    await employeesService.UpdateAsync(createdAdmin.Id, createdAdmin);
+                    //createdAdmin.UserName = "admin";
+                    //await employeesService.UpdateAsync(createdAdmin.Id, createdAdmin);
+                    await userManager.SetUserNameAsync(await employeesService.FindEntityById(createdAdmin.Id), "admin");
                 }
 
                 Console.WriteLine("Admin user created successfully.");

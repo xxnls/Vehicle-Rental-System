@@ -10,19 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BackOffice.Views
+namespace BackOffice.Views.Vehicles
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for VehicleStatusesView.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class VehicleStatusesView : UserControl
     {
-        public LoginWindow()
+        public VehicleStatusesView()
         {
             InitializeComponent();
-            LoginField.Text = "admin";
         }
     }
 }

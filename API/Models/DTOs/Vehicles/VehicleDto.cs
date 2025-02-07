@@ -1,5 +1,6 @@
 ﻿using API.Interfaces;
 using API.Models.DTOs.Other;
+using API.Models.Vehicles;
 
 namespace API.Models.DTOs.Vehicles
 {
@@ -10,6 +11,7 @@ namespace API.Models.DTOs.Vehicles
         public int VehicleModelId { get; set; }
         public int VehicleStatisticsId { get; set; }
         public int VehicleOptionalInformationId { get; set; }
+        public int VehicleStatusId { get; set; }
         public int RentalPlaceId { get; set; }
         public int LocationId { get; set; }
         public string Vin { get; set; } = string.Empty;
@@ -22,7 +24,6 @@ namespace API.Models.DTOs.Vehicles
         public DateTime? NextMaintenanceDate { get; set; }
         public DateTime PurchaseDate { get; set; }
         public decimal PurchasePrice { get; set; }
-        public string Status { get; set; } = string.Empty;
         public decimal? CustomDailyRate { get; set; }
         public decimal? CustomWeeklyRate { get; set; }
         public decimal? CustomDeposit { get; set; }
@@ -37,6 +38,7 @@ namespace API.Models.DTOs.Vehicles
         public VehicleTypeDto? VehicleType { get; set; }
         public VehicleModelDto? VehicleModel { get; set; }
         public RentalPlaceDto? RentalPlace { get; set; }
+        public VehicleStatusDto? VehicleStatus { get; set; }
         public VehicleStatisticsDto? VehicleStatistics { get; set; }
         public VehicleOptionalInformationDto? VehicleOptionalInformation { get; set; }
         public LocationDto? Location { get; set; }

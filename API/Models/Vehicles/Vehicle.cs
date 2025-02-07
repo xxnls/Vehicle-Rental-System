@@ -66,7 +66,7 @@ public partial class Vehicle : IBaseModel
 
     public virtual Location Location { get; set; } = null!;
 
-    public virtual VehicleStatus VehicleStatus { get; set; }
+    public virtual VehicleStatus VehicleStatus { get; set; } = null!;
 
     public virtual RentalPlace RentalPlace { get; set; } = null!;
 

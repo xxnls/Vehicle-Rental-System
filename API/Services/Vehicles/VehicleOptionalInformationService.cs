@@ -97,7 +97,7 @@ namespace API.Services.Vehicles
 
         public override async Task<VehicleOptionalInformation> FindEntityById(int id)
         {
-            return await _apiDbContext.VehicleOptionalInformations
+            return await _apiDbContext.VehicleOptionalInformation
                 .FirstOrDefaultAsync(voi => voi.VehicleOptionalInformationId == id);
         }
     }

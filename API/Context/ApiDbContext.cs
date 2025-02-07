@@ -81,7 +81,7 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
 
     public virtual DbSet<VehicleModel> VehicleModels { get; set; }
 
-    public virtual DbSet<VehicleOptionalInformation> VehicleOptionalInformations { get; set; }
+    public virtual DbSet<VehicleOptionalInformation> VehicleOptionalInformation { get; set; }
 
     public virtual DbSet<VehicleStatistic> VehicleStatistics { get; set; }
 
@@ -748,8 +748,6 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
         modelBuilder.Entity<VehicleOptionalInformation>(entity =>
         {
             entity.HasKey(e => e.VehicleOptionalInformationId).HasName("VehicleOptionalInformation_pk");
-
-            entity.ToTable("VehicleOptionalInformation");
 
             entity.Property(e => e.VehicleOptionalInformationId).HasColumnName("VehicleOptionalInformationID");
         });

@@ -35,6 +35,7 @@ builder.Services.AddScoped<EmployeeFinancesService>();
 builder.Services.AddScoped<EmployeeStatisticsService>();
 
 builder.Services.AddScoped<VehiclesService>();
+builder.Services.AddScoped<VehicleStatusesService>();
 builder.Services.AddScoped<VehicleBrandsService>();
 builder.Services.AddScoped<VehicleModelsService>();
 builder.Services.AddScoped<VehicleTypesService>();
@@ -102,11 +103,12 @@ using (var scope = app.Services.CreateScope())
     var employees = scope.ServiceProvider.GetRequiredService<EmployeesService>();
     var employeePositions = scope.ServiceProvider.GetRequiredService<EmployeePositionsService>();
     var rentalPlaces = scope.ServiceProvider.GetRequiredService<RentalPlacesService>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<Employee>>();
 
     await CountrySeeder.SeedAsync(countriesService);
     await EmployeeRolesSeeder.SeedAsync(roleManager);
     await DictionaryTablesSeeder.SeedAsync(dictionaryTablesService);
-    await EmployeeSeeder.SeedAsync(employees, employeeRoles, employeePositions, rentalPlaces);
+    await EmployeeSeeder.SeedAsync(employees, employeeRoles, employeePositions, rentalPlaces, userManager);
 }
 
 // Configure the HTTP request pipeline.

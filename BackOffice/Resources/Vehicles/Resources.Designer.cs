@@ -565,6 +565,15 @@ namespace BackOffice.Resources.Vehicles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Vehicle Status.
+        /// </summary>
+        public static string SelectVehicleStatus {
+            get {
+                return ResourceManager.GetString("SelectVehicleStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Vehicle Type.
         /// </summary>
         public static string SelectVehicleType {
@@ -588,6 +597,15 @@ namespace BackOffice.Resources.Vehicles {
         public static string VehicleModel {
             get {
                 return ResourceManager.GetString("VehicleModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string VehicleStatus {
+            get {
+                return ResourceManager.GetString("VehicleStatus", resourceCulture);
             }
         }
         

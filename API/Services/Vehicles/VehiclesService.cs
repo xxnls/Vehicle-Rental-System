@@ -19,6 +19,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
     private readonly VehicleStatisticsService _statisticsService;
     private readonly VehicleModelsService _vehicleModelsService;
     private readonly VehicleTypesService _vehicleTypesService;
+    private readonly VehicleStatusesService _vehicleStatusService;
 
     public VehiclesService(
         ApiDbContext context,
@@ -28,7 +29,8 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
         VehicleTypesService vehicleTypesService,
         VehicleModelsService vehicleModelsService,
         AddressesService addressesService,
-        RentalPlacesService rentalPlacesService)
+        RentalPlacesService rentalPlacesService,
+        VehicleStatusesService vehicleStatusService)
         : base(context)
     {
         _apiDbContext = context;
@@ -39,6 +41,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
         _vehicleModelsService = vehicleModelsService;
         _addressesService = addressesService;
         _rentalPlacesService = rentalPlacesService;
+        _vehicleStatusService = vehicleStatusService;
     }
 
     public override async Task<VehicleDto> CreateAsync(VehicleDto createDto)
@@ -90,6 +93,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
                 VehicleOptionalInformationId = createdOptionalInformation.VehicleOptionalInformationId,
                 RentalPlaceId = createDto.RentalPlace.RentalPlaceId,
                 LocationId = createdLocation.LocationId,
+                VehicleStatusId = createDto.VehicleStatus.VehicleStatusId,
 
                 Vin = createDto.Vin,
                 LicensePlate = createDto.LicensePlate,
@@ -101,7 +105,6 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
                 NextMaintenanceDate = createDto.NextMaintenanceDate,
                 PurchaseDate = createDto.PurchaseDate,
                 PurchasePrice = createDto.PurchasePrice,
-                Status = createDto.Status,
 
                 // If custom rates are not provided, use the default rates from Vehicle Type
                 CustomDailyRate = createDto.CustomDailyRate ?? createDto.VehicleType.BaseDailyRate,
@@ -178,7 +181,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             (v.NextMaintenanceDate != null && v.NextMaintenanceDate.Value.ToString().Contains(search)) ||
             v.PurchaseDate.ToString().Contains(search) ||
             v.PurchasePrice.ToString().Contains(search) ||
-            // (v.Status != null && v.Status.Contains(search)) || TODO: Implement status
+            v.VehicleStatus.StatusName.Contains(search) ||
             (v.CustomDailyRate != null && v.CustomDailyRate.Value.ToString().Contains(search)) ||
             (v.CustomWeeklyRate != null && v.CustomWeeklyRate.Value.ToString().Contains(search)) ||
             (v.CustomDeposit != null && v.CustomDeposit.Value.ToString().Contains(search)) ||
@@ -203,17 +206,12 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
         return MapSingleEntityToDto(entity);
     }
 
-    //public override async Task<VehicleDto> UpdateAsync(int id, VehicleDto updateDto)
-    //{
-    //    await _optionalInformationService.UpdateAsync(updateDto.VehicleOptionalInformationId, updateDto.VehicleOptionalInformation);
-    //    return await base.UpdateAsync(id, updateDto);
-    //}
-
     protected override void UpdateEntity(Vehicle entity, VehicleDto model)
     {
         entity.VehicleTypeId = model.VehicleType.VehicleTypeId;
         entity.VehicleModelId = model.VehicleModel.VehicleModelId;
         entity.RentalPlaceId = model.RentalPlace.RentalPlaceId;
+        entity.VehicleStatusId = model.VehicleStatus.VehicleStatusId;
         entity.Vin = model.Vin;
         entity.LicensePlate = model.LicensePlate;
         entity.Color = model.Color;
@@ -224,7 +222,6 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
         entity.NextMaintenanceDate = model.NextMaintenanceDate;
         entity.PurchaseDate = model.PurchaseDate;
         entity.PurchasePrice = model.PurchasePrice;
-        // entity.Status = model.Status; TODO: Implement status
         entity.IsAvailableForRent = model.IsAvailableForRent;
         entity.Notes = model.Notes;
 
@@ -264,6 +261,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             .Include(v => v.VehicleType)
             .Include(v => v.VehicleModel)
             .Include(v => v.VehicleModel.VehicleBrand)
+            .Include(v => v.VehicleStatus)
             .Include(v => v.RentalPlace)
             .Include(v => v.RentalPlace.Address)
             .Include(v => v.RentalPlace.Address.Country)
@@ -279,6 +277,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             .Include(v => v.VehicleType)
             .Include(v => v.VehicleModel)
             .Include(v => v.VehicleModel.VehicleBrand)
+            .Include(v => v.VehicleStatus)
             .Include(v => v.RentalPlace)
             .Include(v => v.RentalPlace.Address)
             .Include(v => v.RentalPlace.Address.Country)
@@ -298,6 +297,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             VehicleModelId = dto.VehicleModelId,
             VehicleStatisticsId = dto.VehicleStatisticsId,
             VehicleOptionalInformationId = dto.VehicleOptionalInformationId,
+            VehicleStatusId = dto.VehicleStatusId,
             RentalPlaceId = dto.RentalPlaceId,
             LocationId = dto.LocationId,
             Vin = dto.Vin,
@@ -310,7 +310,6 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             NextMaintenanceDate = dto.NextMaintenanceDate,
             PurchaseDate = dto.PurchaseDate,
             PurchasePrice = dto.PurchasePrice,
-            // Status = dto.Status, TODO: Implement status
             CustomDailyRate = dto.CustomDailyRate,
             CustomWeeklyRate = dto.CustomWeeklyRate,
             CustomDeposit = dto.CustomDeposit,
@@ -330,6 +329,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             VehicleModelId = v.VehicleModelId,
             VehicleStatisticsId = v.VehicleStatisticsId,
             VehicleOptionalInformationId = v.VehicleOptionalInformationId,
+            VehicleStatusId = v.VehicleStatusId,
             RentalPlaceId = v.RentalPlaceId,
             LocationId = v.LocationId,
             Vin = v.Vin,
@@ -342,7 +342,6 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             NextMaintenanceDate = v.NextMaintenanceDate,
             PurchaseDate = v.PurchaseDate,
             PurchasePrice = v.PurchasePrice,
-            // Status = v.Status, TODO: Implement status
             CustomDailyRate = v.CustomDailyRate,
             CustomWeeklyRate = v.CustomWeeklyRate,
             CustomDeposit = v.CustomDeposit,
@@ -353,6 +352,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             VehicleType = v.VehicleType != null ? _vehicleTypesService.MapSingleEntityToDto(v.VehicleType) : null,
             VehicleModel = v.VehicleModel != null ? _vehicleModelsService.MapSingleEntityToDto(v.VehicleModel) : null,
             RentalPlace = v.RentalPlace != null ? _rentalPlacesService.MapSingleEntityToDto(v.RentalPlace) : null,
+            VehicleStatus = v.VehicleStatus != null ? _vehicleStatusService.MapSingleEntityToDto(v.VehicleStatus) : null,
             VehicleStatistics = v.VehicleStatistics != null ? _statisticsService.MapSingleEntityToDto(v.VehicleStatistics) : null,
             VehicleOptionalInformation = v.VehicleOptionalInformation != null
                 ? _optionalInformationService.MapSingleEntityToDto(v.VehicleOptionalInformation)
@@ -382,7 +382,6 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             NextMaintenanceDate = entity.NextMaintenanceDate,
             PurchaseDate = entity.PurchaseDate,
             PurchasePrice = entity.PurchasePrice,
-            // Status = entity.Status, TODO: Implement status
             CustomDailyRate = entity.CustomDailyRate,
             CustomWeeklyRate = entity.CustomWeeklyRate,
             CustomDeposit = entity.CustomDeposit,
@@ -395,6 +394,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             VehicleType = entity.VehicleType != null ? _vehicleTypesService.MapSingleEntityToDto(entity.VehicleType) : null,
             VehicleModel = entity.VehicleModel != null ? _vehicleModelsService.MapSingleEntityToDto(entity.VehicleModel) : null,
             RentalPlace = entity.RentalPlace != null ? _rentalPlacesService.MapSingleEntityToDto(entity.RentalPlace) : null,
+            VehicleStatus = entity.VehicleStatus != null ? _vehicleStatusService.MapSingleEntityToDto(entity.VehicleStatus) : null,
             VehicleStatistics = entity.VehicleStatistics != null ? _statisticsService.MapSingleEntityToDto(entity.VehicleStatistics) : null,
             VehicleOptionalInformation = entity.VehicleOptionalInformation != null
                 ? _optionalInformationService.MapSingleEntityToDto(entity.VehicleOptionalInformation)

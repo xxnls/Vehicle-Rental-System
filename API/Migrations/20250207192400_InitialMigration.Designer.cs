@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20250207145710_BusinessProcesses")]
-    partial class BusinessProcesses
+    [Migration("20250207192400_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1397,7 +1397,7 @@ namespace API.Migrations
                     b.HasKey("VehicleOptionalInformationId")
                         .HasName("VehicleOptionalInformation_pk");
 
-                    b.ToTable("VehicleOptionalInformation", (string)null);
+                    b.ToTable("VehicleOptionalInformation");
                 });
 
             modelBuilder.Entity("API.Models.Vehicles.VehicleStatistic", b =>

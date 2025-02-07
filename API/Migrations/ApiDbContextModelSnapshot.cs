@@ -1394,7 +1394,7 @@ namespace API.Migrations
                     b.HasKey("VehicleOptionalInformationId")
                         .HasName("VehicleOptionalInformation_pk");
 
-                    b.ToTable("VehicleOptionalInformation", (string)null);
+                    b.ToTable("VehicleOptionalInformation");
                 });
 
             modelBuilder.Entity("API.Models.Vehicles.VehicleStatistic", b =>
