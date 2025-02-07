@@ -546,10 +546,19 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.HasKey(e => e.RentalRequestId).HasName("RentalRequests_pk");
 
             entity.Property(e => e.RentalRequestId).HasColumnName("RentalRequestID");
-            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
-            entity.Property(e => e.VehicleId).HasColumnName("VehicleID");
-            entity.Property(e => e.RequestDate).HasColumnType("datetime2").HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.RequestStatus).HasConversion<string>();
+            entity.Property(e => e.CustomerId).HasColumnName("CustomerID").IsRequired();
+            entity.Property(e => e.VehicleId).HasColumnName("VehicleID").IsRequired();
+            entity.Property(e => e.RequestDate).HasColumnType("datetime2").HasDefaultValueSql("(getdate())").IsRequired();
+            entity.Property(e => e.StartDate).HasColumnType("datetime2").IsRequired();
+            entity.Property(e => e.EndDate).HasColumnType("datetime2").IsRequired();
+            entity.Property(e => e.TotalCost).HasColumnType("decimal(18, 2)").IsRequired();
+            entity.Property(e => e.RequestStatus).HasConversion<string>().HasDefaultValue(RentalRequestStatus.Pending).IsRequired();
+            entity.Property(e => e.PaymentStatus).HasConversion<string>().HasDefaultValue(PaymentStatus.Pending).IsRequired();
+            entity.Property(e => e.Notes).HasMaxLength(500);
+            entity.Property(e => e.IsActive).HasDefaultValue(true).IsRequired();
+            entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())").IsRequired();
+            entity.Property(e => e.ModifiedDate).IsRequired(false);
+            entity.Property(e => e.DeletedDate).IsRequired(false);
 
             entity.HasOne(d => d.Customer).WithMany(p => p.RentalRequests)
                 .HasForeignKey(d => d.CustomerId)

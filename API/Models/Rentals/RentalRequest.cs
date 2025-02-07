@@ -1,4 +1,5 @@
-﻿using API.Models.Customers;
+﻿using API.Interfaces;
+using API.Models.Customers;
 using API.Models.Vehicles;
 
 namespace API.Models.Rentals
@@ -11,14 +12,32 @@ namespace API.Models.Rentals
         Cancelled
     }
 
-    public partial class RentalRequest
+    public enum PaymentStatus
+    {
+        Pending,
+        Paid,
+        Cancelled
+    }
+
+    public partial class RentalRequest : IBaseModel
     {
         public int RentalRequestId { get; set; }
         public int CustomerId { get; set; }
-        public virtual Customer Customer { get; set; }
         public int VehicleId { get; set; }
-        public virtual Vehicle Vehicle { get; set; }
         public DateTime RequestDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public decimal TotalCost { get; set; }
         public RentalRequestStatus RequestStatus { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
+        public string? Notes { get; set; } = null!;
+        public bool IsActive { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
+
+        // Navigation properties
+        public virtual Customer Customer { get; set; } = null!;
+        public virtual Vehicle Vehicle { get; set; } = null!;
     }
 }

@@ -15,6 +15,7 @@ using API.Services.Employees;
 using API.Models.Employees;
 using API.Services.Customers;
 using API.Models.Customers;
+using API.Services.Rentals;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +51,8 @@ builder.Services.AddScoped<AddressesService>();
 builder.Services.AddScoped<CustomerTypesService>();
 builder.Services.AddScoped<CustomerStatisticsService>();
 builder.Services.AddScoped<CustomersService>();
+
+builder.Services.AddScoped<RentalRequestsService>();
 
 
 builder.Services.AddIdentityCore<Employee>(options => { })

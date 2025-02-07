@@ -1,9 +1,10 @@
-﻿using API.Models.DTOs.Customers;
+﻿using API.Interfaces;
+using API.Models.DTOs.Customers;
 using API.Models.DTOs.Vehicles;
 
 namespace API.Models.DTOs.Rentals
 {
-    public enum RentalRequestStatus // Define the enum
+    public enum RentalRequestStatus
     {
         Pending,
         Approved,
@@ -11,14 +12,32 @@ namespace API.Models.DTOs.Rentals
         Cancelled
     }
 
-    public class RentalRequestDto
+    public enum PaymentStatus
+    {
+        Pending,
+        Paid,
+        Cancelled
+    }
+
+    public class RentalRequestDto : IBaseModel
     {
         public int RentalRequestId { get; set; }
         public int CustomerId { get; set; }
-        public CustomerDto Customer { get; set; }
         public int VehicleId { get; set; }
-        public VehicleDto Vehicle { get; set; }
         public DateTime RequestDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public decimal TotalCost { get; set; }
         public RentalRequestStatus RequestStatus { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
+        public string? Notes { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
+
+        // Navigation properties
+        public CustomerDto Customer { get; set; }
+        public VehicleDto Vehicle { get; set; }
     }
 }

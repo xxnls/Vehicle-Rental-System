@@ -16,6 +16,7 @@ using BackOffice.ViewModels.Employees;
 using BackOffice.ViewModels.Other;
 using BackOffice.ViewModels.Vehicles;
 using BackOffice.ViewModels.Customers;
+using BackOffice.ViewModels.Rentals;
 
 namespace BackOffice.ViewModels
 {
@@ -196,9 +197,11 @@ namespace BackOffice.ViewModels
                 { "VehicleModelsViewModel", new VehicleModelsViewModel() },
                 { "VehicleTypesViewModel", new VehicleTypesViewModel() },
                 { "VehiclesViewModel", new VehiclesViewModel() },
+
                 { "RentalPlacesViewModel", new RentalPlacesViewModel() },
                 { "AddressesViewModel", new AddressesViewModel() },
                 { "CountriesViewModel", new CountriesViewModel() },
+
                 { "Employees", new EmployeesViewModel() },
                 { "EmployeeShiftTypesViewModel", new EmployeeShiftTypesViewModel() },
                 { "EmployeeLeaveTypesViewModel", new EmployeeLeaveTypesViewModel() },
@@ -206,8 +209,11 @@ namespace BackOffice.ViewModels
                 { "EmployeeSchedulesViewModel", new EmployeeSchedulesViewModel() },
                 { "EmployeeRolesViewModel", new EmployeeRolesViewModel() },
                 { "RolesAssignmentViewModel", new RolesAssignmentViewModel() },
+
                 { "CustomerTypesViewModel", new CustomerTypesViewModel() },
-                { "CustomersViewModel", new CustomersViewModel()}
+                { "CustomersViewModel", new CustomersViewModel()},
+
+                { "RentalRequestsViewModel", new RentalRequestsViewModel() }
             };
 
             // Load user

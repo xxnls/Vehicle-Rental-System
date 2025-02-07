@@ -1,0 +1,199 @@
+﻿<UserControl
+    x:Class="BackOffice.Views.Rentals.RentalRequestsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+    xmlns:helpers="clr-namespace:BackOffice.Helpers"
+    xmlns:local="clr-namespace:BackOffice.Views.Rentals"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rentals="clr-namespace:BackOffice.ViewModels.Rentals"
+    xmlns:res="clr-namespace:BackOffice.Resources.RentalRequests"
+    xmlns:res1="clr-namespace:BackOffice.Models.DTOs.Rentals"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <rentals:RentalRequestsViewModel x:Name="DataContext" />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="ContentStringFormat" Value="{}{0}:" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <!--  Create/Edit Form  -->
+            <Grid Visibility="{Binding IsCreatingOrEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Style="{StaticResource CreateEditBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Left Column  -->
+                        <StackPanel
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Orientation="Vertical">
+
+                            <Label Content="{x:Static res:Resources.Customer}" />
+                            <TextBox IsReadOnly="True">
+                                <TextBox.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="EditableModel.Customer.FirstName" />
+                                        <Binding Path="EditableModel.Customer.LastName" />
+                                    </MultiBinding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Customer"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectCustomerParameters}"
+                                Content="{x:Static res:Resources.SelectCustomer}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+
+                            <Label Content="{x:Static res:Resources.Vehicle}" />
+                            <TextBox IsReadOnly="True">
+                                <TextBox.Text>
+                                    <MultiBinding StringFormat="{}{0} {1} - {2}">
+                                        <Binding Path="EditableModel.Vehicle.VehicleModel.VehicleBrand.Name" />
+                                        <Binding Path="EditableModel.Vehicle.VehicleModel.Name" />
+                                        <Binding Path="EditableModel.Vehicle.LicensePlate" />
+                                    </MultiBinding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Vehicle"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectVehicleParameters}"
+                                Content="{x:Static res:Resources.SelectVehicle}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+                        </StackPanel>
+
+                        <!--  Right Column  -->
+                        <StackPanel
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            Orientation="Vertical">
+
+                            <!--  Request Details Section  -->
+                            <DockPanel Height="25">
+                                <Label Content="{x:Static res:Resources.RequestDetails}" DockPanel.Dock="Left" />
+                                <Separator />
+                            </DockPanel>
+
+                            <Label Content="{x:Static res:Resources.RequestDate}" />
+                            <DatePicker SelectedDate="{Binding EditableModel.RequestDate, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="RequestDate"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.RequestStatus}" />
+                            <ComboBox ItemsSource="{Binding Source={helpers:EnumBindingSource {x:Type res1:RentalRequestStatus}}}" SelectedItem="{Binding EditableModel.RequestStatus, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="RequestStatus"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!--  Create/Edit Save/Cancel Controls  -->
+                <customControls:CreateEditSaveCancelControl
+                    Grid.Row="1"
+                    CancelCommand="{Binding SwitchToListModeCommand}"
+                    HasErrors="{Binding HasErrors}"
+                    SaveCommand="{Binding CreateModelCommand}"
+                    Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <customControls:CreateEditSaveCancelControl
+                    Grid.Row="1"
+                    CancelCommand="{Binding SwitchToListModeCommand}"
+                    HasErrors="{Binding HasErrors}"
+                    SaveCommand="{Binding UpdateModelCommand}"
+                    Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </Grid>
+
+            <!--  List View  -->
+            <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid>
+                    <customControls:CRUDButtonsControl
+                        AddCommand="{Binding SwitchToCreateModeCommand}"
+                        DeleteCommand="{Binding DeleteModelCommand}"
+                        DeleteVisibility="{Binding ShowDeleted, Converter={StaticResource InverseBooleanConverter}}"
+                        EditCommand="{Binding SwitchToEditModeCommand}"
+                        LoadCommand="{Binding LoadModelsCommand}"
+                        RestoreCommand="{Binding RestoreModelCommand}"
+                        RestoreCommandParameter="{Binding EditableModel.RentalRequestId}"
+                        RestoreVisibility="{Binding ShowDeleted}" />
+
+                    <customControls:SearchControl SearchCommand="{Binding SearchCommand}" />
+
+                    <customControls:FilterButtonsControl
+                        Grid.Column="2"
+                        Margin="0,0,5,0"
+                        ShowDeletedModelsCommand="{Binding ShowDeletedModelsCommand}"
+                        ShowFilterOptionsCommand="{Binding ShowFilterOptionsCommand}" />
+                </Grid>
+
+                <DataGrid
+                    x:Name="MainDataGrid"
+                    ItemsSource="{Binding Models}"
+                    SelectedItem="{Binding EditableModel, Mode=TwoWay}"
+                    Style="{StaticResource DefaultDataGridStyle}">
+                    <DataGrid.InputBindings>
+                        <MouseBinding
+                            Command="{Binding ShowDetailedInfoCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Mode=OneWay}"
+                            Gesture="LeftDoubleClick" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding RentalRequestId}" Header="ID" />
+                        <DataGridTextColumn Binding="{Binding Customer.FullName}" Header="{x:Static res:Resources.Customer}" />
+                        <DataGridTextColumn Binding="{Binding Vehicle.MakeModel}" Header="{x:Static res:Resources.Vehicle}" />
+                        <DataGridTextColumn Binding="{Binding RequestDate, StringFormat=d}" Header="{x:Static res:Resources.RequestDate}" />
+                        <DataGridTextColumn Binding="{Binding RequestStatus}" Header="{x:Static res:Resources.RequestStatus}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!--  Pagination  -->
+                <customControls:PaginationControl
+                    CanLoadNextPage="{Binding CanLoadNextPage}"
+                    CanLoadPreviousPage="{Binding CanLoadPreviousPage}"
+                    CurrentPage="{Binding CurrentPage}"
+                    ModelsPerPage="{Binding PageSize}"
+                    NextPageCommand="{Binding LoadNextPageCommand}"
+                    PreviousPageCommand="{Binding LoadPreviousPageCommand}"
+                    TotalItemCount="{Binding TotalItemCount}" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

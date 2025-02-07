@@ -7,6 +7,8 @@
     xmlns:employeesviews="clr-namespace:BackOffice.Views.Employees"
     xmlns:other="clr-namespace:BackOffice.ViewModels.Other"
     xmlns:otherviews="clr-namespace:BackOffice.Views.Other"
+    xmlns:rentals="clr-namespace:BackOffice.ViewModels.Rentals"
+    xmlns:rentalviews="clr-namespace:BackOffice.Views.Rentals"
     xmlns:vehicles="clr-namespace:BackOffice.ViewModels.Vehicles"
     xmlns:vm="clr-namespace:BackOffice.ViewModels"
     xmlns:vw="clr-namespace:BackOffice.Views"
@@ -80,7 +82,9 @@
         <customerviews:CustomersView />
     </DataTemplate>
 
-
+    <DataTemplate DataType="{x:Type rentals:RentalRequestsViewModel}">
+        <rentalviews:RentalRequestsView />
+    </DataTemplate>
 
     <Storyboard x:Key="ExpandSidebar">
         <DoubleAnimation

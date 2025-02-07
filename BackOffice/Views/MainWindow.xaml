@@ -221,6 +221,32 @@
                             Content="Customer Types" />
                     </StackPanel>
                 </Expander>
+
+                <!--  Rentals  -->
+                <Expander
+                    Margin="0,0,0,5"
+                    Padding="3,5"
+                    Background="{StaticResource DarkerPrimaryBrush}"
+                    Foreground="White"
+                    Header="Rentals">
+                    <Expander.Resources>
+                        <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
+                    </Expander.Resources>
+                    <StackPanel>
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="RentalRequestsViewModel"
+                            Content="Rental Requests" />
+                        <!--<Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="CustomerTypesViewModel"
+                            Content="Customer Types" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="CustomerTypesViewModel"
+                            Content="Customer Types" />-->
+                    </StackPanel>
+                </Expander>
             </StackPanel>
         </Grid>
 
