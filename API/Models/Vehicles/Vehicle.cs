@@ -20,6 +20,8 @@ public partial class Vehicle : IBaseModel
 
     public int RentalPlaceId { get; set; }
 
+    public int VehicleStatusId { get; set; }
+
     public int LocationId { get; set; }
 
     public string? Vin { get; set; }
@@ -41,8 +43,6 @@ public partial class Vehicle : IBaseModel
     public DateTime PurchaseDate { get; set; }
 
     public decimal PurchasePrice { get; set; }
-
-    public string Status { get; set; } = null!;
 
     public decimal? CustomDailyRate { get; set; }
 
@@ -66,7 +66,11 @@ public partial class Vehicle : IBaseModel
 
     public virtual Location Location { get; set; } = null!;
 
+    public virtual VehicleStatus VehicleStatus { get; set; }
+
     public virtual RentalPlace RentalPlace { get; set; } = null!;
+
+    public virtual ICollection<RentalRequest> RentalRequests { get; set; }
 
     public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();
 

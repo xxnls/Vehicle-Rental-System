@@ -178,7 +178,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             (v.NextMaintenanceDate != null && v.NextMaintenanceDate.Value.ToString().Contains(search)) ||
             v.PurchaseDate.ToString().Contains(search) ||
             v.PurchasePrice.ToString().Contains(search) ||
-            (v.Status != null && v.Status.Contains(search)) ||
+            // (v.Status != null && v.Status.Contains(search)) || TODO: Implement status
             (v.CustomDailyRate != null && v.CustomDailyRate.Value.ToString().Contains(search)) ||
             (v.CustomWeeklyRate != null && v.CustomWeeklyRate.Value.ToString().Contains(search)) ||
             (v.CustomDeposit != null && v.CustomDeposit.Value.ToString().Contains(search)) ||
@@ -224,7 +224,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
         entity.NextMaintenanceDate = model.NextMaintenanceDate;
         entity.PurchaseDate = model.PurchaseDate;
         entity.PurchasePrice = model.PurchasePrice;
-        entity.Status = model.Status;
+        // entity.Status = model.Status; TODO: Implement status
         entity.IsAvailableForRent = model.IsAvailableForRent;
         entity.Notes = model.Notes;
 
@@ -310,7 +310,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             NextMaintenanceDate = dto.NextMaintenanceDate,
             PurchaseDate = dto.PurchaseDate,
             PurchasePrice = dto.PurchasePrice,
-            Status = dto.Status,
+            // Status = dto.Status, TODO: Implement status
             CustomDailyRate = dto.CustomDailyRate,
             CustomWeeklyRate = dto.CustomWeeklyRate,
             CustomDeposit = dto.CustomDeposit,
@@ -342,7 +342,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             NextMaintenanceDate = v.NextMaintenanceDate,
             PurchaseDate = v.PurchaseDate,
             PurchasePrice = v.PurchasePrice,
-            Status = v.Status,
+            // Status = v.Status, TODO: Implement status
             CustomDailyRate = v.CustomDailyRate,
             CustomWeeklyRate = v.CustomWeeklyRate,
             CustomDeposit = v.CustomDeposit,
@@ -382,7 +382,7 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             NextMaintenanceDate = entity.NextMaintenanceDate,
             PurchaseDate = entity.PurchaseDate,
             PurchasePrice = entity.PurchasePrice,
-            Status = entity.Status,
+            // Status = entity.Status, TODO: Implement status
             CustomDailyRate = entity.CustomDailyRate,
             CustomWeeklyRate = entity.CustomWeeklyRate,
             CustomDeposit = entity.CustomDeposit,

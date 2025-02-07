@@ -200,7 +200,7 @@ namespace API.Services.Employees
             entity.TerminationDate = model.TerminationDate;
             entity.Status = model.Status;
             entity.Email = model.Email;
-            // entity.UserName = model.UserName;
+            entity.UserName = model.UserName;
 
             // Update navigation properties if provided
             if (model.EmployeePosition != null)

@@ -27,6 +27,12 @@ namespace API.Models.DTOs.Customers
 
         public string? Password { get; set; } // Added for creation
 
+        public bool? ApprovedA { get; set; }
+
+        public bool? ApprovedB { get; set; }
+
+        public bool? ApprovedC { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public DateTime? ModifiedDate { get; set; }

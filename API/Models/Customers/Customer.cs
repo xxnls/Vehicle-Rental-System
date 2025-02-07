@@ -20,6 +20,12 @@ public partial class Customer : IdentityUser<int>, IBaseModel
 
     public string? CompanyName { get; set; }
 
+    public bool ApprovedA { get; set; } // For Motorcycles
+
+    public bool ApprovedB { get; set; } // For Cars
+
+    public bool ApprovedC { get; set; } // For Trucks
+
     public DateTime CreatedDate { get; set; }
 
     public DateTime? ModifiedDate { get; set; }
@@ -37,4 +43,6 @@ public partial class Customer : IdentityUser<int>, IBaseModel
     public virtual ICollection<Document> Documents { get; set; } = new List<Document>();
 
     public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();
+
+    public virtual ICollection<RentalRequest> RentalRequests { get; set; } = new List<RentalRequest>();
 }

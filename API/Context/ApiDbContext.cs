@@ -65,11 +65,15 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
 
     public virtual DbSet<NewsType> NewsTypes { get; set; }
 
+    public virtual DbSet<RentalRequest> RentalRequests { get; set; }
+
     public virtual DbSet<PostRentalReport> PostRentalReports { get; set; }
 
     public virtual DbSet<Rental> Rentals { get; set; }
 
     public virtual DbSet<RentalPlace> RentalPlaces { get; set; }
+
+    public virtual DbSet<VehicleStatus> VehicleStatuses { get; set; }
 
     public virtual DbSet<Vehicle> Vehicles { get; set; }
 
@@ -144,6 +148,10 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.FirstName).HasMaxLength(50);
             entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.LastName).HasMaxLength(50);
+            entity.Property(e => e.ApprovedA).HasColumnType("bit").HasDefaultValue(false);
+            entity.Property(e => e.ApprovedB).HasColumnType("bit").HasDefaultValue(false);
+            entity.Property(e => e.ApprovedC).HasColumnType("bit").HasDefaultValue(false);
+
 
             entity.HasOne(d => d.Address).WithMany(p => p.Customers)
                 .HasForeignKey(d => d.AddressId)
@@ -533,6 +541,27 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.TypeName).HasMaxLength(200);
         });
 
+        modelBuilder.Entity<RentalRequest>(entity =>
+        {
+            entity.HasKey(e => e.RentalRequestId).HasName("RentalRequests_pk");
+
+            entity.Property(e => e.RentalRequestId).HasColumnName("RentalRequestID");
+            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+            entity.Property(e => e.VehicleId).HasColumnName("VehicleID");
+            entity.Property(e => e.RequestDate).HasColumnType("datetime2").HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.RequestStatus).HasConversion<string>();
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.RentalRequests)
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("RentalRequests_Customers");
+
+            entity.HasOne(d => d.Vehicle).WithMany(p => p.RentalRequests)
+                .HasForeignKey(d => d.VehicleId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("RentalRequests_Vehicles");
+        });
+
         modelBuilder.Entity<PostRentalReport>(entity =>
         {
             entity.HasKey(e => e.PostRentalReportId).HasName("PostRentalReports_pk");
@@ -607,6 +636,15 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
                 .HasConstraintName("RentalPlaces_Locations");
         });
 
+        modelBuilder.Entity<VehicleStatus>(entity =>
+        {
+            entity.HasKey(e => e.VehicleStatusId).HasName("VehicleStatus_pk");
+
+            entity.Property(e => e.VehicleStatusId).HasColumnName("VehicleStatusID");
+            entity.Property(e => e.StatusName).HasMaxLength(50).IsRequired();
+            entity.Property(e => e.Description).HasMaxLength(255);
+        });
+
         modelBuilder.Entity<Vehicle>(entity =>
         {
             entity.HasKey(e => e.VehicleId).HasName("VehicleID");
@@ -625,10 +663,11 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.Notes).HasMaxLength(500);
             entity.Property(e => e.PurchasePrice).HasColumnType("money");
             entity.Property(e => e.RentalPlaceId).HasColumnName("RentalPlaceID");
-            entity.Property(e => e.Status)
-                .HasMaxLength(20)
-                .IsUnicode(false)
-                .HasDefaultValue("OutOfService");
+            //entity.Property(e => e.Status)
+            //    .HasMaxLength(20)
+            //    .IsUnicode(false)
+            //    .HasDefaultValue("OutOfService");
+            entity.Property(e => e.VehicleStatusId).HasColumnName("VehicleStatusID");
             entity.Property(e => e.VehicleModelId).HasColumnName("VehicleModelID");
             entity.Property(e => e.VehicleOptionalInformationId).HasColumnName("VehicleOptionalInformationID");
             entity.Property(e => e.VehicleStatisticsId).HasColumnName("VehicleStatisticsID");
@@ -637,6 +676,11 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("VIN");
+
+            entity.HasOne(d => d.VehicleStatus).WithMany(p => p.Vehicles)
+                .HasForeignKey(d => d.VehicleStatusId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Vehicles_VehicleStatus");
 
             entity.HasOne(d => d.Location).WithMany(p => p.Vehicles)
                 .HasForeignKey(d => d.LocationId)

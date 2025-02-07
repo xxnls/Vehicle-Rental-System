@@ -97,9 +97,16 @@ using (var scope = app.Services.CreateScope())
 {
     var countriesService = scope.ServiceProvider.GetRequiredService<CountriesService>();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<EmployeeRole>>();
+    var dictionaryTablesService = scope.ServiceProvider.GetRequiredService<ApiDbContext>();
+    var employeeRoles = scope.ServiceProvider.GetRequiredService<EmployeeRolesService>();
+    var employees = scope.ServiceProvider.GetRequiredService<EmployeesService>();
+    var employeePositions = scope.ServiceProvider.GetRequiredService<EmployeePositionsService>();
+    var rentalPlaces = scope.ServiceProvider.GetRequiredService<RentalPlacesService>();
 
     await CountrySeeder.SeedAsync(countriesService);
     await EmployeeRolesSeeder.SeedAsync(roleManager);
+    await DictionaryTablesSeeder.SeedAsync(dictionaryTablesService);
+    await EmployeeSeeder.SeedAsync(employees, employeeRoles, employeePositions, rentalPlaces);
 }
 
 // Configure the HTTP request pipeline.
