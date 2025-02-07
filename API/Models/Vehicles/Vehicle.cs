@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using API.Interfaces;
 using API.Models.Other;
+using API.Models.Rentals;
 
 namespace API.Models.Vehicles;
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using API.Interfaces;
+using API.Models.Rentals;
 
 namespace API.Models.Employees;
 

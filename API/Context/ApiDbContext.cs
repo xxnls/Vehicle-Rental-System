@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using API.Models.Vehicles;
 using API.Models.Other;
 using API.Models.Employees;
+using API.Models.Rentals;
 
 namespace API.Context;
 

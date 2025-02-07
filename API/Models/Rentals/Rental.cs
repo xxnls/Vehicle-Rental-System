@@ -3,10 +3,11 @@ using API.Models.Employees;
 using API.Models.Vehicles;
 using System;
 using System.Collections.Generic;
+using API.Interfaces;
 
-namespace API.Models;
+namespace API.Models.Rentals;
 
-public partial class Rental
+public partial class Rental : IBaseModel
 {
     public int RentalId { get; set; }
 
