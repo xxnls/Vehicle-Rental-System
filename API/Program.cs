@@ -16,6 +16,7 @@ using API.Models.Employees;
 using API.Services.Customers;
 using API.Models.Customers;
 using API.Services.Rentals;
+using API.BusinessLogic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,6 +54,9 @@ builder.Services.AddScoped<CustomerStatisticsService>();
 builder.Services.AddScoped<CustomersService>();
 
 builder.Services.AddScoped<RentalRequestsService>();
+
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+builder.Services.AddTransient<IRentalCostCalculator, RentalCostCalculator>();
 
 
 builder.Services.AddIdentityCore<Employee>(options => { })

@@ -1,36 +1,46 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!-- Primary color -->
+    <!--  Primary color  -->
     <Color x:Key="PrimaryColor">#23A159</Color>
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
 
-    <!-- Darker primary color -->
+    <!--  Darker primary color  -->
     <Color x:Key="DarkerPrimaryColor">#156337</Color>
     <SolidColorBrush x:Key="DarkerPrimaryBrush" Color="{StaticResource DarkerPrimaryColor}" />
 
-    <!--Background color-->
+    <!--  Background color  -->
     <Color x:Key="BackgroundColor">#F5F5F5</Color>
     <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}" />
 
-    <!--Warnings-->
+    <!--  Warnings  -->
     <Color x:Key="WarningColor">#FFC107</Color>
     <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningColor}" />
 
-    <!--Errors-->
+    <!--  Errors  -->
     <Color x:Key="ErrorColor">#DC3545</Color>
     <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource ErrorColor}" />
 
-    <!--Disabled-->
+    <!--  Disabled  -->
     <Color x:Key="DisabledColor">#6C6C6C</Color>
-    <SolidColorBrush x:Key="DisabledBrush" Color="{StaticResource DisabledColor}"/>
+    <SolidColorBrush x:Key="DisabledBrush" Color="{StaticResource DisabledColor}" />
 
-    <!--Button Enabled Foreground-->
+    <!--  Button Enabled Foreground  -->
     <Color x:Key="ButtonEnabledForegroundColor">#ffffff</Color>
-    <SolidColorBrush x:Key="ButtonEnabledForegroundBrush" Color="{StaticResource ButtonEnabledForegroundColor}"/>
+    <SolidColorBrush x:Key="ButtonEnabledForegroundBrush" Color="{StaticResource ButtonEnabledForegroundColor}" />
 
-    <!--Button Disabled Foreground-->
+    <!--  Button Disabled Foreground  -->
     <Color x:Key="ButtonDisabledForegroundColor">#000000</Color>
-    <SolidColorBrush x:Key="ButtonDisabledForegroundBrush" Color="{StaticResource ButtonDisabledForegroundColor}"/>
+    <SolidColorBrush x:Key="ButtonDisabledForegroundBrush" Color="{StaticResource ButtonDisabledForegroundColor}" />
+
+    <Color x:Key="PendingColor">#FFC107</Color>
+    <SolidColorBrush x:Key="PendingBrush" Color="{StaticResource PendingColor}" />
+    <Color x:Key="ApprovedColor">#28A745</Color>
+    <SolidColorBrush x:Key="ApprovedBrush" Color="{StaticResource ApprovedColor}" />
+    <Color x:Key="PaidColor">#28A745</Color>
+    <SolidColorBrush x:Key="PaidBrush" Color="{StaticResource PaidColor}" />
+    <Color x:Key="RejectedColor">#DC3545</Color>
+    <SolidColorBrush x:Key="RejectedBrush" Color="{StaticResource RejectedColor}" />
+    <Color x:Key="CancelledColor">#FF7B00</Color>
+    <SolidColorBrush x:Key="CancelledBrush" Color="{StaticResource CancelledColor}" />
 
 </ResourceDictionary>

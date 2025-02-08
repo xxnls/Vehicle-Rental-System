@@ -6,6 +6,7 @@ using API.Models.DTOs.Vehicles;
 using API.Models.DTOs.Rentals;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using API.BusinessLogic;
 using API.Models.Rentals;
 using API.Services.Customers;
 using API.Services.Vehicles;
@@ -19,15 +20,18 @@ namespace API.Services.Rentals
         private readonly ApiDbContext _context;
         private readonly CustomersService _customersService;
         private readonly VehiclesService _vehiclesService;
+        private readonly IRentalCostCalculator _rentalCostCalculator;
 
         public RentalRequestsService(
             ApiDbContext context,
             CustomersService customersService,
-            VehiclesService vehiclesService) : base(context)
+            VehiclesService vehiclesService,
+            IRentalCostCalculator rentalCostCalculator) : base(context)
         {
             _context = context;
             _customersService = customersService;
             _vehiclesService = vehiclesService;
+            _rentalCostCalculator = rentalCostCalculator;
         }
 
         protected override Expression<Func<RentalRequest, bool>> BuildSearchQuery(string search)
@@ -185,44 +189,11 @@ namespace API.Services.Rentals
 
         public override async Task<RentalRequestDto> CreateAsync(RentalRequestDto rentalRequestDto)
         {
-            using var transaction = await _context.Database.BeginTransactionAsync();
+            await using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                // Validate the Customer and Vehicle in the DTO
-                if (rentalRequestDto.Customer == null || rentalRequestDto.Vehicle == null)
-                {
-                    throw new ArgumentException("Customer and Vehicle are required.");
-                }
-
-                // Calculate TotalCost based on rental duration and vehicle pricing
-                var vehicle = await _vehiclesService.GetByIdAsync(rentalRequestDto.Vehicle.VehicleId);
-                if (vehicle == null)
-                {
-                    throw new ArgumentException("Vehicle not found.");
-                }
-
-                // Calculate rental duration in days
-                var rentalDuration = (rentalRequestDto.EndDate - rentalRequestDto.StartDate).TotalDays + 1;
-
-                // Ensure rental duration is at least 1 day
-                if (rentalDuration < 1)
-                {
-                    throw new ArgumentException("Rental duration must be at least 1 day.");
-                }
-
-                // Calculate TotalCost using custom daily rate if available, otherwise use base daily rate
-                if (vehicle.CustomDailyRate.HasValue)
-                {
-                    rentalRequestDto.TotalCost = (decimal)rentalDuration * vehicle.CustomDailyRate.Value;
-                }
-                else
-                {
-                    if (vehicle.VehicleType == null)
-                    {
-                        throw new ArgumentException("Vehicle type or base daily rate is missing.");
-                    }
-                    rentalRequestDto.TotalCost = (decimal)rentalDuration * vehicle.VehicleType.BaseDailyRate;
-                }
+                // Use calculator
+                rentalRequestDto.TotalCost = await _rentalCostCalculator.Calculate(rentalRequestDto);
 
                 // Create the rental request entity
                 var rentalRequest = new RentalRequest
@@ -258,7 +229,7 @@ namespace API.Services.Rentals
         // Custom method for soft deleting a rental request
         public override async Task<bool> DeleteAsync(int id)
         {
-            using var transaction = await _context.Database.BeginTransactionAsync();
+            await using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
                 var rentalRequest = await FindEntityById(id);
