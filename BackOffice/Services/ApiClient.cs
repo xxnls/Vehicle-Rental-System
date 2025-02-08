@@ -55,10 +55,85 @@ namespace BackOffice.Services
         /// </summary>
         public async Task<TResponse> PostAsync<TRequest, TResponse>(string endpoint, TRequest data)
         {
-            var response = await _httpClient.PostAsJsonAsync(endpoint, data, _jsonOptions);
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<TResponse>(_jsonOptions);
+            if (string.IsNullOrWhiteSpace(endpoint))
+            {
+                throw new ArgumentException("Endpoint cannot be null or empty.", nameof(endpoint));
+            }
+
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data), "Request data cannot be null.");
+            }
+
+            try
+            {
+                // Serialize the request data (for logging)
+                var jsonData = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
+
+                // Log the request details
+                Debug.WriteLine($"Sending POST request to: {endpoint}");
+                Debug.WriteLine($"Request Data: {jsonData}");
+
+                // Ensure the HttpClient is properly configured
+                if (_httpClient == null)
+                {
+                    throw new InvalidOperationException("HttpClient is not initialized.");
+                }
+
+                // Create the HTTP content
+                var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                // Send the request
+                var response = await _httpClient.PostAsync(endpoint, content);
+
+                // Log the response status code
+                Debug.WriteLine($"Response Status Code: {response.StatusCode}");
+
+                // Check for success *before* reading the content to avoid exceptions on error
+                response.EnsureSuccessStatusCode(); // Throws if not successful
+
+                // Read and return the response content
+                var responseContent = await response.Content.ReadAsStringAsync(); // For debugging
+                Debug.WriteLine($"Response Content: {responseContent}"); // Log the response
+
+                return JsonSerializer.Deserialize<TResponse>(responseContent, _jsonOptions); // Deserialize manually
+
+            }
+            catch (HttpRequestException ex)
+            {
+                Debug.WriteLine($"HTTP Request Failed: {ex.Message}");
+
+                // Capture response content for more details if available
+                if (ex.Data.Contains("ResponseContent"))
+                {
+                    Debug.WriteLine($"Response Content: {ex.Data["ResponseContent"]}");
+                }
+
+                throw new ApplicationException("An error occurred while sending the request. Please check the request data and try again.", ex);
+            }
+            catch (TaskCanceledException ex)
+            {
+                Debug.WriteLine($"Request Timeout: {ex.Message}");
+                throw new ApplicationException("The request timed out. Please check your network connection and try again.", ex);
+            }
+            catch (JsonException ex) // Catch JSON deserialization errors
+            {
+                Debug.WriteLine($"JSON Deserialization Error: {ex.Message}");
+                throw new ApplicationException("Error deserializing the response from the server.", ex);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Unexpected Error: {ex.Message}");
+                throw new ApplicationException("An unexpected error occurred. Please try again later.", ex);
+            }
         }
+
+        //public async Task<TResponse> PostAsync<TRequest, TResponse>(string endpoint, TRequest data)
+        //{
+        //    var response = await _httpClient.PostAsJsonAsync(endpoint, data, _jsonOptions);
+        //    response.EnsureSuccessStatusCode();
+        //    return await response.Content.ReadFromJsonAsync<TResponse>(_jsonOptions);
+        //}
 
         /// <summary>
         /// Sends a PUT request with data as JSON.
@@ -132,11 +207,6 @@ namespace BackOffice.Services
                 throw new ApplicationException("An unexpected error occurred. Please try again later.", ex);
             }
         }
-        //public async Task PutAsync<TRequest>(string endpoint, TRequest data)
-        //{
-        //    var response = await _httpClient.PutAsJsonAsync(endpoint, data, _jsonOptions);
-        //    response.EnsureSuccessStatusCode();
-        //}
 
         /// <summary>
         /// Sends a DELETE request.

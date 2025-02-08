@@ -121,4 +121,52 @@
   <data name="RequestStatus" xml:space="preserve">
     <value>Request status</value>
   </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="TotalCost" xml:space="preserve">
+    <value>Rental cost</value>
+  </data>
+  <data name="PaymentStatus" xml:space="preserve">
+    <value>Payment status</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="BasicInformation" xml:space="preserve">
+    <value>Basic Information</value>
+  </data>
+  <data name="ErrorCustomer1" xml:space="preserve">
+    <value>Customer is required.</value>
+  </data>
+  <data name="ErrorVehicle1" xml:space="preserve">
+    <value>Vehicle is required.</value>
+  </data>
+  <data name="ErrorRequestDate1" xml:space="preserve">
+    <value>Request date is required.</value>
+  </data>
+  <data name="ErrorRequestDate2" xml:space="preserve">
+    <value>Request date is invalid.</value>
+  </data>
+  <data name="ErrorStartDate3" xml:space="preserve">
+    <value>Start date cannot be after end date.</value>
+  </data>
+  <data name="ErrorStartDate2" xml:space="preserve">
+    <value>Start date is invalid.</value>
+  </data>
+  <data name="ErrorStartDate1" xml:space="preserve">
+    <value>Start date is required.</value>
+  </data>
+  <data name="ErrorEndDate1" xml:space="preserve">
+    <value>End date is required.</value>
+  </data>
+  <data name="ErrorEndDate2" xml:space="preserve">
+    <value>End date is invalid.</value>
+  </data>
+  <data name="ErrorEndDate3" xml:space="preserve">
+    <value>End date cannot be before start date.</value>
+  </data>
 </root>

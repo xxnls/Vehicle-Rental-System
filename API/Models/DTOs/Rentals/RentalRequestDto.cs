@@ -28,8 +28,8 @@ namespace API.Models.DTOs.Rentals
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public decimal TotalCost { get; set; }
-        public RentalRequestStatus RequestStatus { get; set; }
-        public PaymentStatus PaymentStatus { get; set; }
+        public string? RequestStatus { get; set; } // String property in DTO
+        public string? PaymentStatus { get; set; } // String property in DTO
         public string? Notes { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }

@@ -32,7 +32,7 @@ namespace BackOffice.ViewModels.Rentals
                     EditableModel.Customer ??= new CustomerDto();
                     EditableModel.Customer = (CustomerDto)result;
                 },
-                Title = LocalizationHelper.GetString("RentalRequests", "SelectCustomerTitle")
+                Title = LocalizationHelper.GetString("RentalRequests", "SelectCustomer")
             };
 
             SelectVehicleParameters = new SelectorDialogParameters
@@ -44,7 +44,7 @@ namespace BackOffice.ViewModels.Rentals
                     EditableModel.Vehicle ??= new VehicleDto();
                     EditableModel.Vehicle = (VehicleDto)result;
                 },
-                Title = LocalizationHelper.GetString("RentalRequests", "SelectVehicleTitle")
+                Title = LocalizationHelper.GetString("RentalRequests", "SelectVehicle")
             };
 
             CreateModelCommand = new AsyncRelayCommand(() => CreateModelAsync(EditableModel));
@@ -59,7 +59,8 @@ namespace BackOffice.ViewModels.Rentals
                 { nameof(EditableModel.Customer), ValidateCustomer },
                 { nameof(EditableModel.Vehicle), ValidateVehicle },
                 { nameof(EditableModel.RequestDate), ValidateRequestDate },
-                { nameof(EditableModel.RequestStatus), ValidateRequestStatus }
+                { nameof(EditableModel.StartDate),  ValidateStartDate },
+                { nameof(EditableModel.EndDate), ValidateEndDate }
             };
         }
 
@@ -102,14 +103,39 @@ namespace BackOffice.ViewModels.Rentals
             }
         }
 
-        // Validation method for RequestStatus
-        private void ValidateRequestStatus()
+        // Validation method for StartDate
+        private void ValidateStartDate()
         {
-            ClearErrors(nameof(EditableModel.RequestStatus));
-
-            if (!Enum.IsDefined(typeof(RentalRequestStatus), EditableModel.RequestStatus))
+            ClearErrors(nameof(EditableModel.StartDate));
+            if (EditableModel.StartDate == default)
             {
-                AddError(nameof(EditableModel.RequestStatus), LocalizationHelper.GetString("RentalRequests", "ErrorRequestStatus1"));
+                AddError(nameof(EditableModel.StartDate), LocalizationHelper.GetString("RentalRequests", "ErrorStartDate1"));
+            }
+            else if (EditableModel.StartDate < DateTime.Now.AddDays(-1))
+            {
+                AddError(nameof(EditableModel.StartDate), LocalizationHelper.GetString("RentalRequests", "ErrorStartDate2"));
+            }
+            else if (EditableModel.StartDate > EditableModel.EndDate)
+            {
+                AddError(nameof(EditableModel.StartDate), LocalizationHelper.GetString("RentalRequests", "ErrorStartDate3"));
+            }
+        }
+
+        // Validation method for EndDate
+        private void ValidateEndDate()
+        {
+            ClearErrors(nameof(EditableModel.EndDate));
+            if (EditableModel.EndDate == default)
+            {
+                AddError(nameof(EditableModel.EndDate), LocalizationHelper.GetString("RentalRequests", "ErrorEndDate1"));
+            }
+            else if (EditableModel.EndDate < DateTime.Now)
+            {
+                AddError(nameof(EditableModel.EndDate), LocalizationHelper.GetString("RentalRequests", "ErrorEndDate2"));
+            }
+            else if (EditableModel.EndDate < EditableModel.StartDate)
+            {
+                AddError(nameof(EditableModel.EndDate), LocalizationHelper.GetString("RentalRequests", "ErrorEndDate3"));
             }
         }
 

@@ -61,6 +61,15 @@ namespace BackOffice.Resources.RentalRequests {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Basic Information.
+        /// </summary>
+        public static string BasicInformation {
+            get {
+                return ResourceManager.GetString("BasicInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer.
         /// </summary>
         public static string Customer {
@@ -75,6 +84,123 @@ namespace BackOffice.Resources.RentalRequests {
         public static string DisplayName {
             get {
                 return ResourceManager.GetString("DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date.
+        /// </summary>
+        public static string EndDate {
+            get {
+                return ResourceManager.GetString("EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer is required..
+        /// </summary>
+        public static string ErrorCustomer1 {
+            get {
+                return ResourceManager.GetString("ErrorCustomer1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date is required..
+        /// </summary>
+        public static string ErrorEndDate1 {
+            get {
+                return ResourceManager.GetString("ErrorEndDate1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date is invalid..
+        /// </summary>
+        public static string ErrorEndDate2 {
+            get {
+                return ResourceManager.GetString("ErrorEndDate2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End date cannot be before start date..
+        /// </summary>
+        public static string ErrorEndDate3 {
+            get {
+                return ResourceManager.GetString("ErrorEndDate3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Request date is required..
+        /// </summary>
+        public static string ErrorRequestDate1 {
+            get {
+                return ResourceManager.GetString("ErrorRequestDate1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Request date is invalid..
+        /// </summary>
+        public static string ErrorRequestDate2 {
+            get {
+                return ResourceManager.GetString("ErrorRequestDate2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start date is required..
+        /// </summary>
+        public static string ErrorStartDate1 {
+            get {
+                return ResourceManager.GetString("ErrorStartDate1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start date is invalid..
+        /// </summary>
+        public static string ErrorStartDate2 {
+            get {
+                return ResourceManager.GetString("ErrorStartDate2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start date cannot be after end date..
+        /// </summary>
+        public static string ErrorStartDate3 {
+            get {
+                return ResourceManager.GetString("ErrorStartDate3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle is required..
+        /// </summary>
+        public static string ErrorVehicle1 {
+            get {
+                return ResourceManager.GetString("ErrorVehicle1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        public static string Notes {
+            get {
+                return ResourceManager.GetString("Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment status.
+        /// </summary>
+        public static string PaymentStatus {
+            get {
+                return ResourceManager.GetString("PaymentStatus", resourceCulture);
             }
         }
         
@@ -120,6 +246,24 @@ namespace BackOffice.Resources.RentalRequests {
         public static string SelectVehicle {
             get {
                 return ResourceManager.GetString("SelectVehicle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start date.
+        /// </summary>
+        public static string StartDate {
+            get {
+                return ResourceManager.GetString("StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rental cost.
+        /// </summary>
+        public static string TotalCost {
+            get {
+                return ResourceManager.GetString("TotalCost", resourceCulture);
             }
         }
         

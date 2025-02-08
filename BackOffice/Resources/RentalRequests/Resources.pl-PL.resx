@@ -116,9 +116,57 @@
     <value>Szczegóły Prośby Wynajmu</value>
   </data>
   <data name="RequestDate" xml:space="preserve">
-    <value>Data wpłynięcia prośby</value>
+    <value>Wpłynięcie prośby</value>
   </data>
   <data name="RequestStatus" xml:space="preserve">
     <value>Status prośby</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start wynajmu</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Zakończenie wynajmu</value>
+  </data>
+  <data name="TotalCost" xml:space="preserve">
+    <value>Koszt wynajmu</value>
+  </data>
+  <data name="PaymentStatus" xml:space="preserve">
+    <value>Status płatności</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notatki</value>
+  </data>
+  <data name="BasicInformation" xml:space="preserve">
+    <value>Podstawowe Informacje</value>
+  </data>
+  <data name="ErrorCustomer1" xml:space="preserve">
+    <value>Klient jest wymagany.</value>
+  </data>
+  <data name="ErrorVehicle1" xml:space="preserve">
+    <value>Pojazd jest wymagany.</value>
+  </data>
+  <data name="ErrorRequestDate1" xml:space="preserve">
+    <value>Data złożenia prośby jest wymagana.</value>
+  </data>
+  <data name="ErrorRequestDate2" xml:space="preserve">
+    <value>Data złożenia prośby jest nieprawidłowa.</value>
+  </data>
+  <data name="ErrorStartDate3" xml:space="preserve">
+    <value>Data rozpoczęcia wynajmu nie może być po dacie zakończenia wynajmu.</value>
+  </data>
+  <data name="ErrorStartDate2" xml:space="preserve">
+    <value>Data rozpoczęcia wynajmu jest nieprawidłowa.</value>
+  </data>
+  <data name="ErrorStartDate1" xml:space="preserve">
+    <value>Data rozpoczęcia wynajmu jest wymagana.</value>
+  </data>
+  <data name="ErrorEndDate1" xml:space="preserve">
+    <value>Data zakończenia wynajmu jest wymagana.</value>
+  </data>
+  <data name="ErrorEndDate2" xml:space="preserve">
+    <value>Data zakończenia wynajmu jest nieprawidłowa.</value>
+  </data>
+  <data name="ErrorEndDate3" xml:space="preserve">
+    <value>Data zakończenia wynajmu nie może być przed datą rozpoczęcia wynajmu.</value>
   </data>
 </root>

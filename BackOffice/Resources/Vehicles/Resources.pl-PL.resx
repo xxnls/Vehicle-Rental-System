@@ -197,7 +197,7 @@
     <value>Informacje Dodatkowe</value>
   </data>
   <data name="DataGridCustomDailyRate" xml:space="preserve">
-    <value>Stawka dniowa</value>
+    <value>Stawka dzienna</value>
   </data>
   <data name="DataGridCustomWeeklyRate" xml:space="preserve">
     <value>Stawka tygodniowa</value>

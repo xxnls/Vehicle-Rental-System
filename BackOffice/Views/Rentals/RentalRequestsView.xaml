@@ -50,6 +50,13 @@
                             Grid.Column="0"
                             Orientation="Vertical">
 
+
+                            <!--  Request Details Section  -->
+                            <DockPanel Height="25">
+                                <Label Content="{x:Static res:Resources.BasicInformation}" DockPanel.Dock="Left" />
+                                <Separator />
+                            </DockPanel>
+
                             <Label Content="{x:Static res:Resources.Customer}" />
                             <TextBox IsReadOnly="True">
                                 <TextBox.Text>
@@ -116,10 +123,57 @@
                                 Foreground="{StaticResource ErrorBrush}"
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
-                            <Label Content="{x:Static res:Resources.RequestStatus}" />
-                            <ComboBox ItemsSource="{Binding Source={helpers:EnumBindingSource {x:Type res1:RentalRequestStatus}}}" SelectedItem="{Binding EditableModel.RequestStatus, UpdateSourceTrigger=PropertyChanged}" />
+                            <Label Content="{x:Static res:Resources.StartDate}" />
+                            <DatePicker SelectedDate="{Binding EditableModel.StartDate, UpdateSourceTrigger=PropertyChanged}" />
                             <TextBlock
-                                helpers:ValidationHelper.PropertyName="RequestStatus"
+                                helpers:ValidationHelper.PropertyName="StartDate"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.EndDate}" />
+                            <DatePicker SelectedDate="{Binding EditableModel.EndDate, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="EndDate"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <StackPanel Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label Content="{x:Static res:Resources.TotalCost}" />
+                                <TextBox Text="{Binding EditableModel.TotalCost, StringFormat=N2}" />
+                                <TextBlock
+                                    helpers:ValidationHelper.PropertyName="TotalCost"
+                                    Foreground="{StaticResource ErrorBrush}"
+                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            </StackPanel>
+
+                            <StackPanel Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label Content="{x:Static res:Resources.RequestStatus}" />
+                                <ComboBox
+                                    ItemsSource="{Binding Source={helpers:EnumBindingSource {x:Type res1:RentalRequestStatus}}}"
+                                    SelectedItem="{Binding EditableModel.RequestStatus, UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding EditableModel.RequestStatus, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    helpers:ValidationHelper.PropertyName="RequestStatus"
+                                    Foreground="{StaticResource ErrorBrush}"
+                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            </StackPanel>
+
+                            <StackPanel Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label Content="{x:Static res:Resources.PaymentStatus}" />
+                                <ComboBox
+                                    ItemsSource="{Binding Source={helpers:EnumBindingSource {x:Type res1:PaymentStatus}}}"
+                                    SelectedItem="{Binding EditableModel.PaymentStatus, UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding EditableModel.PaymentStatus, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    helpers:ValidationHelper.PropertyName="PaymentStatus"
+                                    Foreground="{StaticResource ErrorBrush}"
+                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            </StackPanel>
+
+                            <Label Content="{x:Static res:Resources.Notes}" />
+                            <TextBox Text="{Binding EditableModel.Notes, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Notes"
                                 Foreground="{StaticResource ErrorBrush}"
                                 Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                         </StackPanel>
@@ -177,10 +231,36 @@
                     </DataGrid.InputBindings>
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding RentalRequestId}" Header="ID" />
-                        <DataGridTextColumn Binding="{Binding Customer.FullName}" Header="{x:Static res:Resources.Customer}" />
-                        <DataGridTextColumn Binding="{Binding Vehicle.MakeModel}" Header="{x:Static res:Resources.Vehicle}" />
-                        <DataGridTextColumn Binding="{Binding RequestDate, StringFormat=d}" Header="{x:Static res:Resources.RequestDate}" />
+                        <DataGridTextColumn Header="{x:Static res:Resources.Customer}">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="Customer.FirstName" />
+                                    <Binding Path="Customer.LastName" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static res:Resources.Vehicle}">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1} - {2}">
+                                    <Binding Path="Vehicle.VehicleModel.VehicleBrand.Name" />
+                                    <Binding Path="Vehicle.VehicleModel.Name" />
+                                    <Binding Path="Vehicle.LicensePlate" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding RequestDate, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static res:Resources.RequestDate}" />
+                        <DataGridTextColumn Binding="{Binding StartDate, StringFormat=dd/MM/yyyy}" Header="{x:Static res:Resources.StartDate}" />
+                        <DataGridTextColumn Binding="{Binding EndDate, StringFormat=dd/MM/yyyy}" Header="{x:Static res:Resources.EndDate}" />
+                        <DataGridTextColumn Binding="{Binding TotalCost}" Header="{x:Static res:Resources.TotalCost}" />
                         <DataGridTextColumn Binding="{Binding RequestStatus}" Header="{x:Static res:Resources.RequestStatus}" />
+                        <DataGridTextColumn Binding="{Binding PaymentStatus}" Header="{x:Static res:Resources.PaymentStatus}" />
+                        <DataGridTextColumn Binding="{Binding Notes}" Header="{x:Static res:Resources.Notes}" />
+                        <DataGridTextColumn Binding="{Binding CreatedDate, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static generic:Resources.CreatedDate}" />
+                        <DataGridTextColumn Binding="{Binding ModifiedDate, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static generic:Resources.ModifiedDate}" />
+                        <DataGridTextColumn
+                            Binding="{Binding DeletedDate, StringFormat=dd/MM/yyyy HH:mm}"
+                            Header="{x:Static generic:Resources.DeletedDate}"
+                            Visibility="{Binding ShowDeleted, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference Name=DataContext}}" />
                     </DataGrid.Columns>
                 </DataGrid>
 

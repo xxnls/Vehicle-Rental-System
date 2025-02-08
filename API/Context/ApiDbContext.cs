@@ -551,7 +551,7 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.RequestDate).HasColumnType("datetime2").HasDefaultValueSql("(getdate())").IsRequired();
             entity.Property(e => e.StartDate).HasColumnType("datetime2").IsRequired();
             entity.Property(e => e.EndDate).HasColumnType("datetime2").IsRequired();
-            entity.Property(e => e.TotalCost).HasColumnType("decimal(18, 2)").IsRequired();
+            entity.Property(e => e.TotalCost).HasColumnType("money").IsRequired();
             entity.Property(e => e.RequestStatus).HasConversion<string>().HasDefaultValue(RentalRequestStatus.Pending).IsRequired();
             entity.Property(e => e.PaymentStatus).HasConversion<string>().HasDefaultValue(PaymentStatus.Pending).IsRequired();
             entity.Property(e => e.Notes).HasMaxLength(500);
