@@ -247,6 +247,31 @@
                             Content="Customer Types" />-->
                     </StackPanel>
                 </Expander>
+
+                <Expander
+                    Margin="0,0,0,5"
+                    Padding="3,5"
+                    Background="{StaticResource DarkerPrimaryBrush}"
+                    Foreground="White"
+                    Header="Rental Manager">
+                    <Expander.Resources>
+                        <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
+                    </Expander.Resources>
+                    <StackPanel>
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="RentalApprovalsViewModel"
+                            Content="Requests Approval" />
+                        <!--<Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="CustomerTypesViewModel"
+                            Content="Customer Types" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="CustomerTypesViewModel"
+                            Content="Customer Types" />-->
+                    </StackPanel>
+                </Expander>
             </StackPanel>
         </Grid>
 

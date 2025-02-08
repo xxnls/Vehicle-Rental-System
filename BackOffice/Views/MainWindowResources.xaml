@@ -86,6 +86,10 @@
         <rentalviews:RentalRequestsView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type rentals:RentalApprovalsViewModel}">
+        <rentalviews:RentalApprovalsView />
+    </DataTemplate>
+
     <Storyboard x:Key="ExpandSidebar">
         <DoubleAnimation
             Storyboard.TargetName="Sidebar"

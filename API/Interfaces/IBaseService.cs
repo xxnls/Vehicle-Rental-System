@@ -12,7 +12,8 @@ namespace API.Interfaces
             DateTime? createdAfter = null,
             DateTime? modifiedBefore = null,
             DateTime? modifiedAfter = null,
-            int pageSize = 10);
+            int pageSize = 10,
+            IQueryable<TEntity>? preFilteredQuery = null);
         Task<TResponseDto> GetByIdAsync(int id);
         Task<TResponseDto> CreateAsync(TCreateDto entity);
         Task<TResponseDto> UpdateAsync(int id, TCreateDto entity);

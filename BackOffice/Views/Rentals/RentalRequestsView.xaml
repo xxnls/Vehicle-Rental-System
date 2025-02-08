@@ -11,6 +11,7 @@
     xmlns:rentals="clr-namespace:BackOffice.ViewModels.Rentals"
     xmlns:res="clr-namespace:BackOffice.Resources.RentalRequests"
     xmlns:res1="clr-namespace:BackOffice.Models.DTOs.Rentals"
+    xmlns:veh="clr-namespace:BackOffice.Resources.Vehicles"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -248,6 +249,8 @@
                                 </MultiBinding>
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
+                        <DataGridCheckBoxColumn Binding="{Binding Vehicle.IsAvailableForRent}" Header="{x:Static veh:Resources.IsAvailableForRent}" />
+                        <DataGridTextColumn Binding="{Binding Vehicle.VehicleStatus.StatusName}" Header="{x:Static veh:Resources.VehicleStatus}" />
                         <DataGridTextColumn Binding="{Binding RequestDate, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static res:Resources.RequestDate}" />
                         <DataGridTextColumn Binding="{Binding StartDate, StringFormat=dd/MM/yyyy}" Header="{x:Static res:Resources.StartDate}" />
                         <DataGridTextColumn Binding="{Binding EndDate, StringFormat=dd/MM/yyyy}" Header="{x:Static res:Resources.EndDate}" />

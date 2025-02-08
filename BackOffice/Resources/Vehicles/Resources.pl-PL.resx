@@ -155,7 +155,7 @@
     <value>Niestandardowa kaucja</value>
   </data>
   <data name="IsAvailableForRent" xml:space="preserve">
-    <value>Czy jest dostępny do wynajęcia?</value>
+    <value>Dostępność</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notatki</value>

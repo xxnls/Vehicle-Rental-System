@@ -23,7 +23,8 @@ namespace API.Controllers
             DateTime? createdAfter,
             DateTime? modifiedBefore,
             DateTime? modifiedAfter,
-            int pageSize)
+            int pageSize,
+            IQueryable<TEntity>? preFilteredQuery)
         {
             var entities = await _service.GetAllAsync(
                 search, 
@@ -33,7 +34,8 @@ namespace API.Controllers
                 createdAfter, 
                 modifiedBefore, 
                 modifiedAfter,
-                pageSize);
+                pageSize,
+                preFilteredQuery);
 
             return Ok(entities);
         }

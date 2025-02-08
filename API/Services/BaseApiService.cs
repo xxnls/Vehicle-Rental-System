@@ -102,7 +102,8 @@ namespace API.Services
             DateTime? createdAfter = null,
             DateTime? modifiedBefore = null,
             DateTime? modifiedAfter = null,
-            int pageSize = 10
+            int pageSize = 10,
+            IQueryable<TEntity>? preFilteredQuery = null
             )
         {
             if (page <= 0 || pageSize <= 0)
@@ -111,7 +112,7 @@ namespace API.Services
             }
 
             // Start with base query
-            IQueryable<TEntity> query = _dbSet;
+            IQueryable<TEntity> query = preFilteredQuery ?? _dbSet;
 
             // Apply includes if specified
             query = IncludeRelatedEntities(query);

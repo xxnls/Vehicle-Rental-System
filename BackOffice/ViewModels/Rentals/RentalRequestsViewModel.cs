@@ -97,10 +97,10 @@ namespace BackOffice.ViewModels.Rentals
             {
                 AddError(nameof(EditableModel.RequestDate), LocalizationHelper.GetString("RentalRequests", "ErrorRequestDate1"));
             }
-            else if (EditableModel.RequestDate > DateTime.Now)
-            {
-                AddError(nameof(EditableModel.RequestDate), LocalizationHelper.GetString("RentalRequests", "ErrorRequestDate2"));
-            }
+            //else if (EditableModel.RequestDate > DateTime.Now)
+            //{
+            //    AddError(nameof(EditableModel.RequestDate), LocalizationHelper.GetString("RentalRequests", "ErrorRequestDate2"));
+            //}
         }
 
         // Validation method for StartDate
@@ -111,10 +111,10 @@ namespace BackOffice.ViewModels.Rentals
             {
                 AddError(nameof(EditableModel.StartDate), LocalizationHelper.GetString("RentalRequests", "ErrorStartDate1"));
             }
-            else if (EditableModel.StartDate < DateTime.Now.AddDays(-1))
-            {
-                AddError(nameof(EditableModel.StartDate), LocalizationHelper.GetString("RentalRequests", "ErrorStartDate2"));
-            }
+            //else if (EditableModel.StartDate < DateTime.Now.AddDays(-1))
+            //{
+            //    AddError(nameof(EditableModel.StartDate), LocalizationHelper.GetString("RentalRequests", "ErrorStartDate2"));
+            //}
             else if (EditableModel.StartDate > EditableModel.EndDate)
             {
                 AddError(nameof(EditableModel.StartDate), LocalizationHelper.GetString("RentalRequests", "ErrorStartDate3"));
@@ -129,10 +129,10 @@ namespace BackOffice.ViewModels.Rentals
             {
                 AddError(nameof(EditableModel.EndDate), LocalizationHelper.GetString("RentalRequests", "ErrorEndDate1"));
             }
-            else if (EditableModel.EndDate < DateTime.Now)
-            {
-                AddError(nameof(EditableModel.EndDate), LocalizationHelper.GetString("RentalRequests", "ErrorEndDate2"));
-            }
+            //else if (EditableModel.EndDate < DateTime.Now)
+            //{
+            //    AddError(nameof(EditableModel.EndDate), LocalizationHelper.GetString("RentalRequests", "ErrorEndDate2"));
+            //}
             else if (EditableModel.EndDate < EditableModel.StartDate)
             {
                 AddError(nameof(EditableModel.EndDate), LocalizationHelper.GetString("RentalRequests", "ErrorEndDate3"));

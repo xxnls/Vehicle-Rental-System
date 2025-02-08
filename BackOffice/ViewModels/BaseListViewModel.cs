@@ -82,6 +82,9 @@ namespace BackOffice.ViewModels
                 DeleteModelCommand?.NotifyCanExecuteChanged();
                 SwitchToEditModeCommand.NotifyCanExecuteChanged();
                 RestoreModelCommand.NotifyCanExecuteChanged();
+                ApproveRequestCommand?.NotifyCanExecuteChanged();
+                RejectRequestCommand?.NotifyCanExecuteChanged();
+                CancelRequestCommand?.NotifyCanExecuteChanged();
             }
         }
 
@@ -288,6 +291,9 @@ namespace BackOffice.ViewModels
         public AsyncRelayCommand<int> RestoreModelCommand { get; set; }
         public ICommand ShowDetailedInfoCommand { get; }
         public ICommand ShowSelectorDialogCommand { get; }
+        public AsyncRelayCommand? ApproveRequestCommand { get; set; }
+        public AsyncRelayCommand? RejectRequestCommand { get; set; }
+        public AsyncRelayCommand? CancelRequestCommand { get; set; }
 
         #endregion
 
@@ -344,7 +350,7 @@ namespace BackOffice.ViewModels
         /// <param name="searchInput">
         /// Optional. A string used to filter the results. If <c>null</c> or whitespace, all data is loaded without filtering.
         /// </param>
-        protected async Task LoadModelsAsync(string? searchInput = null)
+        protected virtual async Task LoadModelsAsync(string? searchInput = null)
         {
             try
             {

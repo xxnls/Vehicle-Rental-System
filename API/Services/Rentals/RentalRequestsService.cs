@@ -134,6 +134,22 @@ namespace API.Services.Rentals
             return MapSingleEntityToDto(entity);
         }
 
+        public async Task<PaginatedResult<RentalRequestDto>> GetPendingRequestsAsync(
+            string? search = null,
+            int page = 1,
+            int pageSize = 10,
+            DateTime? createdBefore = null,
+            DateTime? createdAfter = null,
+            DateTime? modifiedBefore = null,
+            DateTime? modifiedAfter = null)
+        {
+            var query = _context.RentalRequests
+                .Where(r => r.RequestStatus == RentalRequestStatus.Pending.ToString() && r.IsActive); // The critical filter
+
+            return await GetAllAsync(
+                search, page, false, createdBefore, createdAfter, modifiedBefore, modifiedAfter, pageSize, query);
+        }
+
         protected override void UpdateEntity(RentalRequest entity, RentalRequestDto model)
         {
             entity.StartDate = model.StartDate;
@@ -169,6 +185,7 @@ namespace API.Services.Rentals
                 .Include(r => r.Customer.Address)
                 .Include(r => r.Customer.Address.Country)
                 .Include(r => r.Vehicle)
+                .Include(r => r.Vehicle.VehicleStatus)
                 .Include(r => r.Vehicle.VehicleType)
                 .Include(r => r.Vehicle.VehicleModel)
                 .Include(r => r.Vehicle.VehicleModel.VehicleBrand)
@@ -182,6 +199,7 @@ namespace API.Services.Rentals
                 .Include(r => r.Customer.Address)
                 .Include(r => r.Customer.Address.Country)
                 .Include(r => r.Vehicle)
+                .Include(r => r.Vehicle.VehicleStatus)
                 .Include(r => r.Vehicle.VehicleType)
                 .Include(r => r.Vehicle.VehicleModel)
                 .Include(r => r.Vehicle.VehicleModel.VehicleBrand);

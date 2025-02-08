@@ -155,7 +155,7 @@
     <value>Custom deposit</value>
   </data>
   <data name="IsAvailableForRent" xml:space="preserve">
-    <value>Is available for rent?</value>
+    <value>Availability</value>
   </data>
   <data name="Notes" xml:space="preserve">
     <value>Notes</value>

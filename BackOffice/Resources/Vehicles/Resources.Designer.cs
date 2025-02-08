@@ -448,7 +448,7 @@ namespace BackOffice.Resources.Vehicles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Is available for rent?.
+        ///   Looks up a localized string similar to Availability.
         /// </summary>
         public static string IsAvailableForRent {
             get {

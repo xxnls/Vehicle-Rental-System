@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Windows.Xps;
 using Formatting = System.Xml.Formatting;
 
 namespace BackOffice.Services
@@ -37,10 +38,42 @@ namespace BackOffice.Services
         /// </summary>
         public async Task<T> GetAsync<T>(string endpoint)
         {
-            var response = await _httpClient.GetAsync(endpoint);
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<T>(_jsonOptions);
+            Debug.WriteLine($"Sending GET request to: {endpoint}");
+
+            try
+            {
+                var response = await _httpClient.GetAsync(endpoint);
+                response.EnsureSuccessStatusCode(); // Throw if not successful
+                return await response.Content.ReadFromJsonAsync<T>(_jsonOptions);
+            }
+            catch (HttpRequestException ex)
+            {
+                string responseContent = null;
+                if (ex.Data.Contains("ResponseContent"))
+                {
+                    responseContent = ex.Data["ResponseContent"] as string;
+                }
+
+                Debug.WriteLine(ex, $"HTTP GET Request Failed: {ex.Message}. Response Content: {responseContent}");
+                throw new ApplicationException("Error occurred during GET request.", ex); // Custom exception
+            }
+            catch (JsonException ex) // Catch JSON deserialization errors
+            {
+                Debug.WriteLine(ex, $"JSON Deserialization Error: {ex.Message}");
+                throw new ApplicationException("Error deserializing the response from the server.", ex);
+            }
+            catch (Exception ex) // Catch other exceptions
+            {
+                Debug.WriteLine(ex, $"Unexpected Error during GET: {ex.Message}");
+                throw new ApplicationException("An unexpected error occurred during GET.", ex);
+            }
         }
+        //public async Task<T> GetAsync<T>(string endpoint)
+        //{
+        //    var response = await _httpClient.GetAsync(endpoint);
+        //    response.EnsureSuccessStatusCode();
+        //    return await response.Content.ReadFromJsonAsync<T>(_jsonOptions);
+        //}
 
 
         public async Task<T> GetAsync<T>(string endpoint, int? id)
