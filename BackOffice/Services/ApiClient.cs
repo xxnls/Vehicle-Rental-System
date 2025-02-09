@@ -241,6 +241,65 @@ namespace BackOffice.Services
             }
         }
 
+        public async Task PutAsync(string endpoint)
+        {
+            if (string.IsNullOrWhiteSpace(endpoint))
+            {
+                throw new ArgumentException("Endpoint cannot be null or empty.", nameof(endpoint));
+            }
+
+            try
+            {
+                // Log the request details
+                Debug.WriteLine($"Sending PUT request to: {endpoint}");
+                Debug.WriteLine("Request Data: No data");
+
+                // Ensure the HttpClient is properly configured
+                if (_httpClient == null)
+                {
+                    throw new InvalidOperationException("HttpClient is not initialized.");
+                }
+
+                // Send the request without content
+                var response = await _httpClient.PutAsync(endpoint, null);
+
+                // Log the response status code
+                Debug.WriteLine($"Response Status Code: {response.StatusCode}");
+
+                // Ensure the request was successful
+                response.EnsureSuccessStatusCode();
+
+                // Optionally, log the response content
+                var responseContent = await response.Content.ReadAsStringAsync();
+                Debug.WriteLine($"Response Content: {responseContent}");
+            }
+            catch (HttpRequestException ex)
+            {
+                // Log the HTTP request exception
+                Debug.WriteLine($"HTTP Request Failed: {ex.Message}");
+
+                // Capture the response content for more details
+                if (ex.Data.Contains("ResponseContent"))
+                {
+                    Debug.WriteLine($"Response Content: {ex.Data["ResponseContent"]}");
+                }
+
+                throw new ApplicationException("An error occurred while sending the request. Please check the request data and try again.", ex);
+            }
+            catch (TaskCanceledException ex)
+            {
+                // Handle timeout issues
+                Debug.WriteLine($"Request Timeout: {ex.Message}");
+                throw new ApplicationException("The request timed out. Please check your network connection and try again.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Log any other exceptions
+                Debug.WriteLine($"Unexpected Error: {ex.Message}");
+                throw new ApplicationException("An unexpected error occurred. Please try again later.", ex);
+            }
+        }
+
         /// <summary>
         /// Sends a DELETE request.
         /// </summary>

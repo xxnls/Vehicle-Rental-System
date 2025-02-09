@@ -211,4 +211,7 @@
   <data name="ErrorName3" xml:space="preserve">
     <value>Name cannot exceed 50 characters.</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
 </root>

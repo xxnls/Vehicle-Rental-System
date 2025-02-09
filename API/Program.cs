@@ -57,6 +57,7 @@ builder.Services.AddScoped<RentalRequestsService>();
 
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddTransient<IRentalCostCalculator, RentalCostCalculator>();
+builder.Services.AddTransient<IRentalProcessing, RentalProcessing>();
 
 
 builder.Services.AddIdentityCore<Employee>(options => { })

@@ -70,6 +70,15 @@ namespace BackOffice.Resources.RentalRequests {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot approve rental request. Vehicle is not available..
+        /// </summary>
+        public static string CannotApprove {
+            get {
+                return ResourceManager.GetString("CannotApprove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer.
         /// </summary>
         public static string Customer {
@@ -93,6 +102,15 @@ namespace BackOffice.Resources.RentalRequests {
         public static string EndDate {
             get {
                 return ResourceManager.GetString("EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while checking vehicle availabilty..
+        /// </summary>
+        public static string ErrorCheckingAvailability {
+            get {
+                return ResourceManager.GetString("ErrorCheckingAvailability", resourceCulture);
             }
         }
         

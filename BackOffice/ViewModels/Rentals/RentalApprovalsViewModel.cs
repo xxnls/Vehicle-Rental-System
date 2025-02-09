@@ -1,8 +1,10 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using BackOffice.Helpers;
 using BackOffice.Interfaces;
 using BackOffice.Models;
 using BackOffice.Models.DTOs.Rentals;
+using BackOffice.Models.DTOs.Vehicles;
 using CommunityToolkit.Mvvm.Input;
 
 namespace BackOffice.ViewModels.Rentals
@@ -26,13 +28,89 @@ namespace BackOffice.ViewModels.Rentals
             ValidationRules = new Dictionary<string, Action>();
         }
 
+        //private async Task UpdateRequestStatusAsync(RentalRequestDto? request, RentalRequestStatus status)
+        //{
+        //    if (request == null)
+        //        return;
+
+        //    request.RequestStatus = status.ToString();
+        //    await UpdateModelAsync(request.RentalRequestId, request);
+        //}
+
         private async Task UpdateRequestStatusAsync(RentalRequestDto? request, RentalRequestStatus status)
         {
             if (request == null)
                 return;
 
-            request.RequestStatus = status.ToString();
-            await UpdateModelAsync(request.RentalRequestId, request);
+            if (status == RentalRequestStatus.Approved)
+            {
+                try
+                {
+                    if (!await CanApproveRentalRequestAsync(request))
+                    {
+                        // Show dialog using MessageBox
+                        MessageBox.Show(
+                            LocalizationHelper.GetString("RentalRequests", "CannotApprove"),
+                            LocalizationHelper.GetString("RentalRequests", "ErrorCheckingAvailability"),
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    // Approve the request
+                    await ApiClient.PutAsync($"RentalRequests/{request.RentalRequestId}/approve");
+                }
+                catch (Exception ex)
+                {
+                    // Show error dialog
+                    MessageBox.Show(
+                        LocalizationHelper.GetString("RentalRequests", "ErrorCheckingAvailability") +
+                        $" {ex.Message}", // Localized message
+                        LocalizationHelper.GetString("Generic", "Error"), // Localized title
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                    return;
+                }
+            }
+            else
+            {
+                // Reject or cancel the request
+                request.RequestStatus = status.ToString();
+                await UpdateModelAsync(request.RentalRequestId, request);
+            }
+
+            // Refresh the list
+            await LoadModelsAsync(CurrentSearchInput);
+        }
+
+        private async Task<bool> CanApproveRentalRequestAsync(RentalRequestDto request)
+        {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
+            try
+            {
+                IsBusy = true;
+
+                // Get the vehicle
+                var vehicle = await ApiClient.GetAsync<VehicleDto>($"Vehicles/{request.VehicleId}");
+
+                if (vehicle == null)
+                {
+                    return false;
+                }
+
+                // Check both IsAvailableForRent and VehicleStatusId
+                return vehicle is { IsAvailableForRent: true, VehicleStatus.StatusName: "Available" };
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         protected override async Task LoadModelsAsync(string? searchInput = null)

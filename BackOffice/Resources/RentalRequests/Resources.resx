@@ -169,4 +169,10 @@
   <data name="ErrorEndDate3" xml:space="preserve">
     <value>End date cannot be before start date.</value>
   </data>
+  <data name="CannotApprove" xml:space="preserve">
+    <value>Cannot approve rental request. Vehicle is not available.</value>
+  </data>
+  <data name="ErrorCheckingAvailability" xml:space="preserve">
+    <value>Error while checking vehicle availabilty.</value>
+  </data>
 </root>

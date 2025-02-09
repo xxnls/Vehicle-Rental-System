@@ -169,4 +169,10 @@
   <data name="ErrorEndDate3" xml:space="preserve">
     <value>Data zakończenia wynajmu nie może być przed datą rozpoczęcia wynajmu.</value>
   </data>
+  <data name="CannotApprove" xml:space="preserve">
+    <value>Nie można zatwierdzić prośby wynajmu. Wybrany pojazd jest niedostępny.</value>
+  </data>
+  <data name="ErrorCheckingAvailability" xml:space="preserve">
+    <value>Błąd podczas sprawdzania dostępności pojazdu.</value>
+  </data>
 </root>

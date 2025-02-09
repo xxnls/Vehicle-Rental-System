@@ -1,4 +1,5 @@
-﻿using API.Models.DTOs.Rentals;
+﻿using API.BusinessLogic;
+using API.Models.DTOs.Rentals;
 using API.Models.Rentals;
 using API.Services.Rentals;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,11 @@ namespace API.Controllers.Rentals
     public class RentalRequestsController : BaseApiController<RentalRequest, RentalRequestDto, RentalRequestDto>
     {
         private readonly RentalRequestsService _service;
-        public RentalRequestsController(RentalRequestsService service) : base(service)
+        private readonly IRentalProcessing _rentalProcessing;
+        public RentalRequestsController(RentalRequestsService service, IRentalProcessing rentalProcessing) : base(service)
         {
             _service = service;
+            _rentalProcessing = rentalProcessing;
         }
 
         protected override int GetEntityId(RentalRequestDto entity)
@@ -40,6 +43,28 @@ namespace API.Controllers.Rentals
             catch (Exception ex)
             {
                 return StatusCode(500, "An error occurred while retrieving pending requests.");
+            }
+        }
+
+        [HttpPut("{id}/approve")]
+        public async Task<IActionResult> ApproveRentalRequest(int id)
+        {
+            try
+            {
+                var rentalDto = await _rentalProcessing.ApproveRentalRequestAsync(id);
+                return Ok(rentalDto);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while approving the request.");
             }
         }
     }
