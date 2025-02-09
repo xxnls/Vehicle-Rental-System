@@ -214,4 +214,7 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
 </root>

@@ -1,0 +1,240 @@
+﻿<UserControl
+    x:Class="BackOffice.Views.Rentals.PaymentsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+    xmlns:helpers="clr-namespace:BackOffice.Helpers"
+    xmlns:local="clr-namespace:BackOffice.Views.Rentals"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rentals="clr-namespace:BackOffice.ViewModels.Rentals"
+    xmlns:res="clr-namespace:BackOffice.Resources.Payments"
+    xmlns:res1="clr-namespace:BackOffice.Models.DTOs.Rentals"
+    xmlns:rq="clr-namespace:BackOffice.Resources.RentalRequests"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.DataContext>
+        <rentals:PaymentsViewModel x:Name="DataContext" />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="ContentStringFormat" Value="{}{0}:" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <Grid Visibility="{Binding IsCreatingOrEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Style="{StaticResource CreateEditBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Orientation="Vertical">
+                            <DockPanel Height="25">
+                                <Label Content="{x:Static res:Resources.BasicInformation}" DockPanel.Dock="Left" />
+                                <Separator />
+                            </DockPanel>
+
+                            <Label Content="{x:Static rq:Resources.Customer}" />
+                            <TextBox IsReadOnly="True">
+                                <TextBox.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="EditableModel.Customer.FirstName" />
+                                        <Binding Path="EditableModel.Customer.LastName" />
+                                    </MultiBinding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Customer"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectCustomerParameters}"
+                                Content="{x:Static rq:Resources.SelectCustomer}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+
+                            <Label Content="{x:Static res:Resources.Rent}" />
+                            <TextBox IsReadOnly="True">
+                                <TextBox.Text>
+                                    <MultiBinding StringFormat="{}{0} - {1} {2} {3}">
+                                        <Binding Path="EditableModel.Rent.RentalId" />
+                                        <Binding Path="EditableModel.Rent.Vehicle.VehicleModel.VehicleBrand.Name" />
+                                        <Binding Path="EditableModel.Rent.Vehicle.VehicleModel.Name" />
+                                        <Binding Path="EditableModel.Rent.StartDate" />
+                                    </MultiBinding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Rent"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectRentalParameters}"
+                                Content="{x:Static res:Resources.SelectRental}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+
+                            <Label Content="{x:Static res:Resources.PaymentMethod}" />
+                            <ComboBox
+                                ItemsSource="{Binding Source={helpers:EnumBindingSource {x:Type res1:PaymentMethod}}}"
+                                SelectedItem="{Binding EditableModel.PaymentMethod, UpdateSourceTrigger=PropertyChanged}"
+                                Text="{Binding EditableModel.PaymentMethod, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="PaymentMethod"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.Amount}" />
+                            <TextBox Text="{Binding EditableModel.Amount, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Amount"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.PaymentDate}" />
+                            <DatePicker SelectedDate="{Binding EditableModel.PaymentDate, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="PaymentDate"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                        </StackPanel>
+
+                        <StackPanel
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            Orientation="Vertical">
+                            <DockPanel Height="25">
+                                <Label Content="{x:Static res:Resources.AdditionalInformation}" DockPanel.Dock="Left" />
+                                <Separator />
+                            </DockPanel>
+
+                            <Label Content="{x:Static generic:Resources.Status}" />
+                            <ComboBox
+                                ItemsSource="{Binding Source={helpers:EnumBindingSource {x:Type res1:PaymentStatus}}}"
+                                SelectedItem="{Binding EditableModel.TransactionStatus, UpdateSourceTrigger=PropertyChanged}"
+                                Text="{Binding EditableModel.TransactionStatus, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="TransactionStatus"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.FailReason}" />
+                            <TextBox Text="{Binding EditableModel.FailReason}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="FailReason"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.RefundReason}" />
+                            <TextBox Text="{Binding EditableModel.RefundReason}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="RefundReason"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <customControls:CreateEditSaveCancelControl
+                    Grid.Row="1"
+                    CancelCommand="{Binding SwitchToListModeCommand}"
+                    HasErrors="{Binding HasErrors}"
+                    SaveCommand="{Binding CreateModelCommand}"
+                    Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <customControls:CreateEditSaveCancelControl
+                    Grid.Row="1"
+                    CancelCommand="{Binding SwitchToListModeCommand}"
+                    HasErrors="{Binding HasErrors}"
+                    SaveCommand="{Binding UpdateModelCommand}"
+                    Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </Grid>
+
+            <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid>
+                    <customControls:CRUDButtonsControl
+                        AddCommand="{Binding SwitchToCreateModeCommand}"
+                        DeleteCommand="{Binding DeleteModelCommand}"
+                        DeleteVisibility="{Binding ShowDeleted, Converter={StaticResource InverseBooleanConverter}}"
+                        EditCommand="{Binding SwitchToEditModeCommand}"
+                        LoadCommand="{Binding LoadModelsCommand}"
+                        RestoreCommand="{Binding RestoreModelCommand}"
+                        RestoreCommandParameter="{Binding EditableModel.PaymentId}"
+                        RestoreVisibility="{Binding ShowDeleted}" />
+                    <customControls:SearchControl SearchCommand="{Binding SearchCommand}" />
+                    <customControls:FilterButtonsControl
+                        Grid.Column="2"
+                        Margin="0,0,5,0"
+                        ShowDeletedModelsCommand="{Binding ShowDeletedModelsCommand}"
+                        ShowFilterOptionsCommand="{Binding ShowFilterOptionsCommand}" />
+                </Grid>
+
+                <DataGrid
+                    x:Name="MainDataGrid"
+                    ItemsSource="{Binding Models}"
+                    SelectedItem="{Binding EditableModel, Mode=TwoWay}"
+                    Style="{StaticResource DefaultDataGridStyle}">
+                    <DataGrid.InputBindings>
+                        <MouseBinding
+                            Command="{Binding ShowDetailedInfoCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Mode=OneWay}"
+                            Gesture="LeftDoubleClick" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding PaymentId}" Header="ID" />
+                        <DataGridTextColumn Header="{x:Static rq:Resources.Customer}">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="Customer.FirstName" />
+                                    <Binding Path="Customer.LastName" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding RentId}" />
+                        <DataGridTextColumn Binding="{Binding PaymentMethod}" Header="{x:Static res:Resources.PaymentMethod}" />
+                        <DataGridTextColumn Binding="{Binding TransactionStatus}" Header="Status" />
+                        <DataGridTextColumn Binding="{Binding Amount, StringFormat=N2}" Header="{x:Static res:Resources.Amount}" />
+                        <DataGridTextColumn Binding="{Binding PaymentDate, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static res:Resources.PaymentDate}" />
+                        <DataGridTextColumn Binding="{Binding FailReason}" Header="{x:Static res:Resources.FailReason}" />
+                        <DataGridTextColumn Binding="{Binding RefundReason}" Header="{x:Static res:Resources.RefundReason}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <customControls:PaginationControl
+                    CanLoadNextPage="{Binding CanLoadNextPage}"
+                    CanLoadPreviousPage="{Binding CanLoadPreviousPage}"
+                    CurrentPage="{Binding CurrentPage}"
+                    ModelsPerPage="{Binding PageSize}"
+                    NextPageCommand="{Binding LoadNextPageCommand}"
+                    PreviousPageCommand="{Binding LoadPreviousPageCommand}"
+                    TotalItemCount="{Binding TotalItemCount}" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

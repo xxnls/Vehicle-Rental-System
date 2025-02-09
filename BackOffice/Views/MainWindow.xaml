@@ -241,10 +241,10 @@
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="RentalsViewModel"
                             Content="Rentals" />
-                        <!--<Button
+                        <Button
                             Command="{Binding ChangeWorkspaceCommand}"
-                            CommandParameter="CustomerTypesViewModel"
-                            Content="Customer Types" />-->
+                            CommandParameter="PaymentsViewModel"
+                            Content="Payments" />
                     </StackPanel>
                 </Expander>
 

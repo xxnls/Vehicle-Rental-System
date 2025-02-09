@@ -1,8 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using API.Models.Customers;
+﻿using API.Models.DTOs.Customers;
 
-namespace API.Models.Rentals
+namespace API.Models.DTOs.Rentals
 {
     public enum PaymentMethod
     {
@@ -15,7 +13,7 @@ namespace API.Models.Rentals
         Other
     }
 
-    public class Payment
+    public class PaymentDto
     {
         public int PaymentId { get; set; }
         public int CustomerId { get; set; }
@@ -27,7 +25,7 @@ namespace API.Models.Rentals
         public string? FailReason { get; set; }
         public string? RefundReason { get; set; }
 
-        public virtual Customer Customer { get; set; }
-        public virtual Rental Rent { get; set; } 
+        public CustomerDto Customer { get; set; }
+        public RentalDto Rent { get; set; }
     }
 }

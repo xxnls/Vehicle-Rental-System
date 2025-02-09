@@ -53,6 +53,8 @@ builder.Services.AddScoped<CustomerTypesService>();
 builder.Services.AddScoped<CustomerStatisticsService>();
 builder.Services.AddScoped<CustomersService>();
 
+builder.Services.AddScoped<PaymentsService>();
+
 builder.Services.AddScoped<RentalRequestsService>();
 builder.Services.AddScoped<RentalsService>();
 

@@ -97,124 +97,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Name" xml:space="preserve">
-    <value>Nazwa</value>
+  <data name="Payments" xml:space="preserve">
+    <value>Payments</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Opis</value>
+  <data name="SelectCustomer" xml:space="preserve">
+    <value>Select Customer</value>
   </data>
-  <data name="CreatedDate" xml:space="preserve">
-    <value>Data utworzenia</value>
+  <data name="SelectRental" xml:space="preserve">
+    <value>Select Rental</value>
   </data>
-  <data name="ModifiedDate" xml:space="preserve">
-    <value>Data zmodyfikowania</value>
+  <data name="ErrorCustomer1" xml:space="preserve">
+    <value>Customer is required.</value>
   </data>
-  <data name="DeletedDate" xml:space="preserve">
-    <value>Data usunięcia</value>
+  <data name="ErrorRent1" xml:space="preserve">
+    <value>Rent is required.</value>
   </data>
-  <data name="CreatedBefore" xml:space="preserve">
-    <value>Utworzono przed:</value>
+  <data name="ErrorAmount1" xml:space="preserve">
+    <value>Amount is invalid.</value>
   </data>
-  <data name="CreatedAfter" xml:space="preserve">
-    <value>Utworzono po:</value>
+  <data name="ErrorPaymentDate1" xml:space="preserve">
+    <value>Payment date is required.</value>
   </data>
-  <data name="ModifiedBefore" xml:space="preserve">
-    <value>Zmodyfikowano przed:</value>
+  <data name="ErrorPaymentDate2" xml:space="preserve">
+    <value>Payment date is invalid.</value>
   </data>
-  <data name="ModifiedAfter" xml:space="preserve">
-    <value>Zmodyfikowano po:</value>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>Payment method</value>
   </data>
-  <data name="Filter" xml:space="preserve">
-    <value>Filtruj</value>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
   </data>
-  <data name="Reset" xml:space="preserve">
-    <value>Resetuj</value>
+  <data name="PaymentDate" xml:space="preserve">
+    <value>Payment date</value>
   </data>
-  <data name="PaginationTotalItems" xml:space="preserve">
-    <value>Łączna ilość elementów: </value>
+  <data name="FailReason" xml:space="preserve">
+    <value>Fail reason</value>
   </data>
-  <data name="PaginationShowing1" xml:space="preserve">
-    <value>Wyświetlam </value>
+  <data name="RefundReason" xml:space="preserve">
+    <value>Refund reason</value>
   </data>
-  <data name="PaginationShowing2" xml:space="preserve">
-    <value> elementów na stronę.</value>
+  <data name="BasicInformation" xml:space="preserve">
+    <value>Basic Information</value>
   </data>
-  <data name="USEditSelect" xml:space="preserve">
-    <value>Proszę wybrać element do edycji.</value>
+  <data name="AdditionalInformation" xml:space="preserve">
+    <value>Additional Information</value>
   </data>
-  <data name="USLoadShowingDeleted" xml:space="preserve">
-    <value>Wyświetlam tylko usunięte </value>
+  <data name="Rent" xml:space="preserve">
+    <value>Rent</value>
   </data>
-  <data name="USLoadSuccess" xml:space="preserve">
-    <value> załadowano pomyślnie.</value>
-  </data>
-  <data name="USLoadSearchCompleted1" xml:space="preserve">
-    <value>Wyszukiwanie </value>
-  </data>
-  <data name="USLoadSearchCompleted2" xml:space="preserve">
-    <value> zakończone </value>
-  </data>
-  <data name="USLoadSearchCompleted3" xml:space="preserve">
-    <value>wyników</value>
-  </data>
-  <data name="USLoadError1" xml:space="preserve">
-    <value>Błąd podczas ładowania elementów: </value>
-  </data>
-  <data name="USLoadError2" xml:space="preserve">
-    <value>Błąd podczas wyszukiwania elementów: </value>
-  </data>
-  <data name="USCreateError1" xml:space="preserve">
-    <value>Błąd podczas tworzenia nowego elementu.</value>
-  </data>
-  <data name="USCreateSuccess" xml:space="preserve">
-    <value> stworzony/a pomyślnie.</value>
-  </data>
-  <data name="USCreateError2" xml:space="preserve">
-    <value>Błąd podczas tworzenia</value>
-  </data>
-  <data name="USUpdateSelect" xml:space="preserve">
-    <value>Proszę wybrać element do edycji.</value>
-  </data>
-  <data name="USUpdateSuccess" xml:space="preserve">
-    <value> zmodyfikowany/a pomyślnie.</value>
-  </data>
-  <data name="USUpdateError" xml:space="preserve">
-    <value>Bład podczas modyfikowania</value>
-  </data>
-  <data name="USDeleteSelect" xml:space="preserve">
-    <value>Proszę wybrać element do usunięcia.</value>
-  </data>
-  <data name="USDeleteSuccess" xml:space="preserve">
-    <value> usunięty pomyślnie.</value>
-  </data>
-  <data name="USDeleteError" xml:space="preserve">
-    <value>Błąd podczas usuwania</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Zapisz</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Anuluj</value>
-  </data>
-  <data name="USRestoreSelect" xml:space="preserve">
-    <value>Proszę wybrać element do przywrócenia.</value>
-  </data>
-  <data name="NoData" xml:space="preserve">
-    <value>&lt;brak danych&gt;</value>
-  </data>
-  <data name="ErrorName1" xml:space="preserve">
-    <value>Nazwa nie może być pusta.</value>
-  </data>
-  <data name="ErrorName2" xml:space="preserve">
-    <value>Nazwa musi mieć przynajmniej 3 znaki.</value>
-  </data>
-  <data name="ErrorName3" xml:space="preserve">
-    <value>Nazwa nie może mieć więcej niż 50 znaków.</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Błąd</value>
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>Status</value>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Payments</value>
   </data>
 </root>
