@@ -20,7 +20,7 @@ namespace BackOffice.Models.DTOs.Rentals
     public enum PaymentStatus
     {
         Pending,
-        Paid,
+        Completed,
         Failed,
         Refunded
     }

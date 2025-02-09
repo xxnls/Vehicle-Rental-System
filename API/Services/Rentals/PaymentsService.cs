@@ -4,6 +4,7 @@ using API.Models.Rentals;
 using API.Services.Customers;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using API.BusinessLogic;
 
 namespace API.Services.Rentals
 {
@@ -12,15 +13,18 @@ namespace API.Services.Rentals
         private readonly ApiDbContext _context;
         private readonly CustomersService _customersService;
         private readonly RentalsService _rentalsService;
+        private readonly ITransactionHandler _transactionHandler;
 
         public PaymentsService(
             ApiDbContext context,
             CustomersService customersService,
-            RentalsService rentalsService) : base(context)
+            RentalsService rentalsService,
+            ITransactionHandler transactionHandler) : base(context)
         {
             _context = context;
             _customersService = customersService;
             _rentalsService = rentalsService;
+            _transactionHandler = transactionHandler;
         }
 
         protected override Expression<Func<Payment, bool>> BuildSearchQuery(string search)
@@ -121,9 +125,12 @@ namespace API.Services.Rentals
                     FailReason = paymentDto.FailReason,
                     RefundReason = paymentDto.RefundReason 
                 };
-
+                
                 _context.Payments.Add(payment);
                 await _context.SaveChangesAsync();
+
+                // Handle payment
+                await _transactionHandler.HandlePaymentAsync(payment.RentId);
 
                 return MapSingleEntityToDto(payment);
             }

@@ -81,13 +81,38 @@
                 <Setter Property="Background" Value="{StaticResource PendingBrush}" />
                 <Setter Property="Foreground" Value="Black" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding PaymentStatus}" Value="Paid">
+            <DataTrigger Binding="{Binding PaymentStatus}" Value="Completed">
                 <Setter Property="Background" Value="{StaticResource PaidBrush}" />
                 <Setter Property="Foreground" Value="White" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding PaymentStatus}" Value="Cancelled">
-                <Setter Property="Background" Value="{StaticResource CancelledBrush}" />
+            <DataTrigger Binding="{Binding PaymentStatus}" Value="Failed">
+                <Setter Property="Background" Value="{StaticResource RejectedBrush}" />
+                <Setter Property="Foreground" Value="White" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding PaymentStatus}" Value="Refunded">
+                <Setter Property="Background" Value="{StaticResource InProgressBrush}" />
+                <Setter Property="Foreground" Value="White" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="TransactionStatusCellStyle" TargetType="DataGridCell">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding TransactionStatus}" Value="Pending">
+                <Setter Property="Background" Value="{StaticResource PendingBrush}" />
                 <Setter Property="Foreground" Value="Black" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding TransactionStatus}" Value="Completed">
+                <Setter Property="Background" Value="{StaticResource PaidBrush}" />
+                <Setter Property="Foreground" Value="White" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding TransactionStatus}" Value="Failed">
+                <Setter Property="Background" Value="{StaticResource RejectedBrush}" />
+                <Setter Property="Foreground" Value="White" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding TransactionStatus}" Value="Refunded">
+                <Setter Property="Background" Value="{StaticResource InProgressBrush}" />
+                <Setter Property="Foreground" Value="White" />
             </DataTrigger>
         </Style.Triggers>
     </Style>

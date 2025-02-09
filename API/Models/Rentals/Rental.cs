@@ -18,7 +18,7 @@ namespace API.Models.Rentals
     public enum PaymentStatus
     {
         Pending,
-        Paid,
+        Completed,
         Failed,
         Refunded 
     }

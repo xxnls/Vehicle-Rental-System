@@ -22,7 +22,7 @@ namespace BackOffice.Models.DTOs.Rentals
     {
         public int PaymentId { get; set; }
         public int CustomerId { get; set; }
-        public int? RentId { get; set; }
+        public int RentId { get; set; }
 
         private decimal _amount;
 

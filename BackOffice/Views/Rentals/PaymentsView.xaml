@@ -217,7 +217,10 @@
                         </DataGridTextColumn>
                         <DataGridTextColumn Binding="{Binding RentId}" />
                         <DataGridTextColumn Binding="{Binding PaymentMethod}" Header="{x:Static res:Resources.PaymentMethod}" />
-                        <DataGridTextColumn Binding="{Binding TransactionStatus}" Header="Status" />
+                        <DataGridTextColumn
+                            Binding="{Binding TransactionStatus}"
+                            CellStyle="{StaticResource TransactionStatusCellStyle}"
+                            Header="Status" />
                         <DataGridTextColumn Binding="{Binding Amount, StringFormat=N2}" Header="{x:Static res:Resources.Amount}" />
                         <DataGridTextColumn Binding="{Binding PaymentDate, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static res:Resources.PaymentDate}" />
                         <DataGridTextColumn Binding="{Binding FailReason}" Header="{x:Static res:Resources.FailReason}" />
