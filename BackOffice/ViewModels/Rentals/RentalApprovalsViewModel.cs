@@ -30,15 +30,11 @@ namespace BackOffice.ViewModels.Rentals
             ValidationRules = new Dictionary<string, Action>();
         }
 
-        private async Task UpdateRequestStatusAsync(RentalRequestDto? request, RentalRequestStatus status)
+        private async Task UpdateRequestStatusAsync(RentalRequestDto request, RentalRequestStatus status)
         {
-            if (request == null)
-                return;
-
             if (SessionManager.Get("User") != null)
             {
                 request.ModifiedByEmployee = (EmployeeDto?)SessionManager.Get("User");
-                await UpdateModelAsync(request.RentalRequestId, request);
             }
             else
             {
@@ -61,7 +57,7 @@ namespace BackOffice.ViewModels.Rentals
                     }
 
                     // Approve the request
-                    await ApiClient.PutAsync($"RentalRequests/{request.RentalRequestId}/approve");
+                    await ApiClient.PutAsync("RentalRequests/approve", request);
                 }
                 catch (Exception ex)
                 {

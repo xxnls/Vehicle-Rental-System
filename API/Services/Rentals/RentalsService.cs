@@ -12,6 +12,7 @@ using API.Models.Rentals;
 using API.Services.Customers;
 using API.Services.Employees;
 using API.Services.Vehicles;
+using Microsoft.EntityFrameworkCore.Storage;
 using RentalStatus = API.Models.DTOs.Rentals.RentalStatus;
 
 namespace API.Services.Rentals
@@ -234,7 +235,6 @@ namespace API.Services.Rentals
 
         public override async Task<RentalDto> CreateAsync(RentalDto rentalDto)
         {
-            await using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
                 // Use calculator again to avoid mistakes
@@ -257,13 +257,10 @@ namespace API.Services.Rentals
                 _context.Rentals.Add(rental);
                 await _context.SaveChangesAsync();
 
-                await transaction.CommitAsync();
-
                 return MapSingleEntityToDto(rental);
             }
             catch (Exception ex)
             {
-                await transaction.RollbackAsync();
                 throw new ApplicationException("An error occurred while creating the rental.", ex);
             }
         }

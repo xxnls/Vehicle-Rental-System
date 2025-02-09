@@ -13,29 +13,28 @@ namespace API.BusinessLogic
         private readonly RentalRequestsService _rentalRequestsService;
         private readonly VehiclesService _vehiclesService;
         private readonly VehicleStatusesService _vehicleStatusesService;
-        // private readonly RentalsService _rentalRepository;
+        private readonly RentalsService _rentalService;
         private readonly ApiDbContext _context;
 
         public RentalProcessing(
             RentalRequestsService rentalRequestsService,
             VehiclesService vehiclesService,
             VehicleStatusesService vehicleStatusesService,
-            // RentalsService rentalRepository,
+            RentalsService rentalService,
             ApiDbContext context)
         {
             _rentalRequestsService = rentalRequestsService;
             _vehiclesService = vehiclesService;
             _vehicleStatusesService = vehicleStatusesService;
-            // _rentalRepository = rentalRepository;
+            _rentalService = rentalService;
             _context = context;
         }
 
-        public async Task<bool> ApproveRentalRequestAsync(int rentalRequestId)
+        public async Task<bool> ApproveRentalRequestAsync(RentalRequestDto rentalRequest)
         {
             await using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                var rentalRequest = await _rentalRequestsService.GetByIdAsync(rentalRequestId);
                 if (rentalRequest == null)
                 {
                     throw new ArgumentNullException(nameof(rentalRequest), "Rental request not found.");
@@ -52,22 +51,22 @@ namespace API.BusinessLogic
                 }
 
                 rentalRequest.RequestStatus = RentalRequestStatus.Approved.ToString();
-                await _rentalRequestsService.UpdateAsync(rentalRequestId, rentalRequest);
+                await _rentalRequestsService.UpdateAsync(rentalRequest.RentalRequestId, rentalRequest);
 
                 // Change vehicle status to rented
                 await ChangeVehicleStatusAsync(rentalRequest.VehicleId, 2);
 
                 var rental = new RentalDto
                 {
-                    VehicleId = rentalRequest.VehicleId,
-                    CustomerId = rentalRequest.CustomerId,
+                    Vehicle = rentalRequest.Vehicle,
+                    Customer = rentalRequest.Customer,
+                    StartedByEmployee = rentalRequest.ModifiedByEmployee,
                     StartDate = rentalRequest.StartDate,
                     EndDate = rentalRequest.EndDate,
-                    // ... set other properties
                 };
 
-                // TODO: ADDING RENTAL
-                //await _context.Rentals.AddAsync(rental); // Add to the correct DbSet
+                await _rentalService.CreateAsync(rental);
+
                 await _context.SaveChangesAsync();
 
                 await transaction.CommitAsync();
@@ -117,7 +116,7 @@ namespace API.BusinessLogic
 
     public interface IRentalProcessing
     {
-        Task<bool> ApproveRentalRequestAsync(int rentalRequestId);
+        Task<bool> ApproveRentalRequestAsync(RentalRequestDto rentalRequest);
         Task<bool> IsVehicleAvailableAsync(int vehicleId);
         Task ChangeVehicleStatusAsync(int vehicleId, int statusId);
     }

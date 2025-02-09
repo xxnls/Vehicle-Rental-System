@@ -46,12 +46,12 @@ namespace API.Controllers.Rentals
             }
         }
 
-        [HttpPut("{id}/approve")]
-        public async Task<IActionResult> ApproveRentalRequest(int id)
+        [HttpPut("approve")]
+        public async Task<IActionResult> ApproveRentalRequest(RentalRequestDto rentalRequest)
         {
             try
             {
-                var rentalDto = await _rentalProcessing.ApproveRentalRequestAsync(id);
+                var rentalDto = await _rentalProcessing.ApproveRentalRequestAsync(rentalRequest);
                 return Ok(rentalDto);
             }
             catch (ArgumentNullException ex)
