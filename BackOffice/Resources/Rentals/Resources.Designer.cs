@@ -79,6 +79,33 @@ namespace BackOffice.Resources.Rentals {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deposit.
+        /// </summary>
+        public static string DepositAmount {
+            get {
+                return ResourceManager.GetString("DepositAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deposit refund.
+        /// </summary>
+        public static string DepositRefundAmount {
+            get {
+                return ResourceManager.GetString("DepositRefundAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deposit status.
+        /// </summary>
+        public static string DepositStatus {
+            get {
+                return ResourceManager.GetString("DepositStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rentals.
         /// </summary>
         public static string DisplayName {

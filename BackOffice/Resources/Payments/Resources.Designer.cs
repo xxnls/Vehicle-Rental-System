@@ -88,6 +88,15 @@ namespace BackOffice.Resources.Payments {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deposit refund.
+        /// </summary>
+        public static string DepositRefundAmount {
+            get {
+                return ResourceManager.GetString("DepositRefundAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payments.
         /// </summary>
         public static string DisplayName {

@@ -624,11 +624,14 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.RentalId).HasColumnName("RentalID");
             entity.Property(e => e.Cost).HasColumnType("money");
             entity.Property(e => e.FinalCost).HasColumnType("money");
+            entity.Property(e => e.DepositAmount).HasColumnType("money").HasDefaultValue(0);
+            entity.Property(e => e.DepositRefundAmount).HasColumnType("money");
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.FinishedByEmployeeId).HasColumnName("FinishedByEmployeeID");
             entity.Property(e => e.RentalStatus).HasConversion<string>().HasDefaultValue(RentalStatus.AwaitingPickup).IsRequired();
             entity.Property(e => e.PaymentStatus).HasConversion<string>().HasDefaultValue(PaymentStatus.Pending).IsRequired();
+            entity.Property(e => e.DepositStatus).HasConversion<string>().HasDefaultValue(DepositStatus.Pending).IsRequired();
             entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.PostRentalReportId).HasColumnName("PostRentalReportID");
             entity.Property(e => e.StartedByEmployeeId).HasColumnName("StartedByEmployeeID");

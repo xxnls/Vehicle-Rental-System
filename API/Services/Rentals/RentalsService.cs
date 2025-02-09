@@ -13,6 +13,7 @@ using API.Services.Customers;
 using API.Services.Employees;
 using API.Services.Vehicles;
 using Microsoft.EntityFrameworkCore.Storage;
+using DepositStatus = API.Models.Rentals.DepositStatus;
 using RentalStatus = API.Models.DTOs.Rentals.RentalStatus;
 using PaymentStatus = API.Models.DTOs.Rentals.PaymentStatus;
 
@@ -52,6 +53,9 @@ namespace API.Services.Rentals
                 r.EndDate.ToString().Contains(search) ||
                 r.RentalStatus.Contains(search) ||
                 r.PaymentStatus.Contains(search) ||
+                r.DepositStatus.Contains(search) ||
+                r.DepositAmount.ToString().Contains(search) ||
+                r.DepositRefundAmount.ToString().Contains(search) ||
                 r.Cost.ToString().Contains(search);
         }
 
@@ -73,10 +77,13 @@ namespace API.Services.Rentals
                 FinishedByEmployeeId = model.FinishedByEmployeeId,
                 RentalStatus = model.RentalStatus,
                 PaymentStatus = model.PaymentStatus,
+                DepositStatus = model.DepositStatus,
                 StartDate = model.StartDate,
                 EndDate = model.EndDate,
                 PickupDateTime = model.PickupDateTime,
                 FinishDateTime = model.FinishDateTime,
+                DepositAmount = model.DepositAmount,
+                DepositRefundAmount = model.DepositRefundAmount,
                 Cost = model.Cost,
                 FinalCost = model.FinalCost,
                 IsActive = model.IsActive,
@@ -101,10 +108,13 @@ namespace API.Services.Rentals
                 FinishedByEmployee = r.FinishedByEmployee != null ? _employeesService.MapSingleEntityToDto(r.FinishedByEmployee) : null,
                 RentalStatus = r.RentalStatus,
                 PaymentStatus = r.PaymentStatus,
+                DepositStatus = r.DepositStatus,
                 StartDate = r.StartDate,
                 EndDate = r.EndDate,
                 PickupDateTime = r.PickupDateTime,
                 FinishDateTime = r.FinishDateTime,
+                DepositAmount = r.DepositAmount,
+                DepositRefundAmount = r.DepositRefundAmount,
                 Cost = r.Cost,
                 FinalCost = r.FinalCost,
                 IsActive = r.IsActive,
@@ -129,10 +139,13 @@ namespace API.Services.Rentals
                 FinishedByEmployee = entity.FinishedByEmployee != null ? _employeesService.MapSingleEntityToDto(entity.FinishedByEmployee) : null,
                 RentalStatus = entity.RentalStatus,
                 PaymentStatus = entity.PaymentStatus,
+                DepositStatus = entity.DepositStatus,
                 StartDate = entity.StartDate,
                 EndDate = entity.EndDate,
                 PickupDateTime = entity.PickupDateTime,
                 FinishDateTime = entity.FinishDateTime,
+                DepositAmount = entity.DepositAmount,
+                DepositRefundAmount = entity.DepositRefundAmount,
                 Cost = entity.Cost,
                 FinalCost = entity.FinalCost,
                 IsActive = entity.IsActive,
@@ -174,10 +187,13 @@ namespace API.Services.Rentals
             entity.EndDate = model.EndDate;
             entity.PickupDateTime = model.PickupDateTime;
             entity.FinishDateTime = model.FinishDateTime;
+            entity.DepositAmount = model.DepositAmount;
+            entity.DepositRefundAmount = model.DepositRefundAmount;
             entity.Cost = model.Cost;
             entity.FinalCost = model.FinalCost;
             entity.RentalStatus = model.RentalStatus;
             entity.PaymentStatus = model.PaymentStatus;
+            entity.DepositStatus = model.DepositStatus;
 
             // Update navigation properties if provided
             if (model.Customer != null)
@@ -253,9 +269,11 @@ namespace API.Services.Rentals
                     StartedByEmployeeId = rentalDto.StartedByEmployee.Id,
                     RentalStatus = RentalStatus.AwaitingPickup.ToString(), // Set initial status
                     PaymentStatus = PaymentStatus.Pending.ToString(), // Set initial status
+                    DepositStatus = DepositStatus.Pending.ToString(), // Set initial status
                     StartDate = rentalDto.StartDate,
                     EndDate = rentalDto.EndDate,
                     Cost = rentalDto.Cost,
+                    DepositAmount = rentalDto.DepositAmount,
                     IsActive = true,
                     CreatedDate = DateTime.UtcNow,
                     ModifiedDate = DateTime.UtcNow

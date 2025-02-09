@@ -25,6 +25,15 @@ namespace BackOffice.Models.DTOs.Rentals
         Refunded
     }
 
+    public enum DepositStatus
+    {
+        Pending,
+        NotTaken,
+        PartiallyRefunded,
+        FullyRefunded,
+        AppliedToCost
+    }
+
     public class RentalDto : BaseDtoModel
     {
         public int RentalId { get; set; }
@@ -62,6 +71,20 @@ namespace BackOffice.Models.DTOs.Rentals
                 if (_paymentStatus != value)
                 {
                     _paymentStatus = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string? _depositStatus;
+        public string? DepositStatus
+        {
+            get => _depositStatus;
+            set
+            {
+                if (_depositStatus != value)
+                {
+                    _depositStatus = value;
                     OnPropertyChanged();
                 }
             }
@@ -118,6 +141,34 @@ namespace BackOffice.Models.DTOs.Rentals
                 if (_finishDateTime != value)
                 {
                     _finishDateTime = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private decimal _depositAmount;
+        public decimal DepositAmount
+        {
+            get => _depositAmount;
+            set
+            {
+                if (_depositAmount != value)
+                {
+                    _depositAmount = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private decimal? _depositRefundAmount;
+        public decimal? DepositRefundAmount
+        {
+            get => _depositRefundAmount;
+            set
+            {
+                if (_depositRefundAmount != value)
+                {
+                    _depositRefundAmount = value;
                     OnPropertyChanged();
                 }
             }

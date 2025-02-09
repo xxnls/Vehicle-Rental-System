@@ -121,4 +121,13 @@
   <data name="FinishDateTime" xml:space="preserve">
     <value>Finish date</value>
   </data>
+  <data name="DepositRefundAmount" xml:space="preserve">
+    <value>Deposit refund</value>
+  </data>
+  <data name="DepositAmount" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="DepositStatus" xml:space="preserve">
+    <value>Deposit status</value>
+  </data>
 </root>

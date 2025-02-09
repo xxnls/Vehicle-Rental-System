@@ -33,8 +33,8 @@ namespace API.BusinessLogic
                     .Where(p => p.TransactionStatus == "Completed")
                     .Sum(p => p.Amount);
 
-                // Check if total paid is greater than or equal to the cost
-                if (totalPaid >= rent.Cost)
+                // Check if total paid is greater than or equal to the cost + deposit amount
+                if (totalPaid >= (rent.Cost + rent.DepositAmount))
                 {
                     rent.PaymentStatus = PaymentStatus.Completed.ToString();
 

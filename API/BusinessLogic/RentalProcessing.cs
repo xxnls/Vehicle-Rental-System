@@ -63,6 +63,9 @@ namespace API.BusinessLogic
                     StartedByEmployee = rentalRequest.ModifiedByEmployee,
                     StartDate = rentalRequest.StartDate,
                     EndDate = rentalRequest.EndDate,
+
+                    // Check if the custom deposit is set, otherwise set it to the base deposit of type
+                    DepositAmount = rentalRequest.Vehicle.CustomDeposit ?? rentalRequest.Vehicle.VehicleType.BaseDeposit,
                 };
 
                 await _rentalService.CreateAsync(rental);

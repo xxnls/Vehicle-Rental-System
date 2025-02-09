@@ -119,6 +119,16 @@
                                     helpers:ValidationHelper.PropertyName="PaymentStatus"
                                     Foreground="{StaticResource ErrorBrush}"
                                     Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                                <Label Content="{x:Static res:Resources.DepositStatus}" />
+                                <ComboBox
+                                    ItemsSource="{Binding Source={helpers:EnumBindingSource {x:Type res1:DepositStatus}}}"
+                                    SelectedItem="{Binding EditableModel.DepositStatus, UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding EditableModel.DepositStatus, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    helpers:ValidationHelper.PropertyName="DepositStatus"
+                                    Foreground="{StaticResource ErrorBrush}"
+                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                             </StackPanel>
 
                         </StackPanel>
@@ -169,6 +179,22 @@
                                     Value="{Binding EditableModel.FinishDateTime, UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBlock
                                     helpers:ValidationHelper.PropertyName="FinishDateTime"
+                                    Foreground="{StaticResource ErrorBrush}"
+                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            </StackPanel>
+
+                            <Label Content="{x:Static res:Resources.DepositAmount}" />
+                            <TextBox Text="{Binding EditableModel.DepositAmount, StringFormat=N2}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="DepositAmount"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <StackPanel Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label Content="{x:Static res:Resources.DepositRefundAmount}" />
+                                <TextBox Text="{Binding EditableModel.DepositRefundAmount, StringFormat=N2}" />
+                                <TextBlock
+                                    helpers:ValidationHelper.PropertyName="DepositRefundAmount"
                                     Foreground="{StaticResource ErrorBrush}"
                                     Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                             </StackPanel>
@@ -267,6 +293,12 @@
                         <DataGridTextColumn Binding="{Binding PickupDateTime, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static res:Resources.PickupDateTime}" />
                         <DataGridTextColumn Binding="{Binding FinishDateTime, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static res:Resources.FinishDateTime}" />
 
+                        <DataGridTextColumn
+                            Binding="{Binding DepositStatus}"
+                            CellStyle="{StaticResource DepositStatusCellStyle}"
+                            Header="{x:Static res:Resources.DepositStatus}" />
+                        <DataGridTextColumn Binding="{Binding DepositAmount}" Header="{x:Static res:Resources.DepositAmount}" />
+                        <DataGridTextColumn Binding="{Binding DepositRefundAmount}" Header="{x:Static res:Resources.DepositRefundAmount}" />
                         <DataGridTextColumn Binding="{Binding Cost, StringFormat=N2}" Header="{x:Static res:Resources.Cost}" />
                         <DataGridTextColumn Binding="{Binding FinalCost, StringFormat=N2}" Header="{x:Static res:Resources.FinalCost}" />
 

@@ -121,4 +121,13 @@
   <data name="FinishDateTime" xml:space="preserve">
     <value>Data zdania</value>
   </data>
+  <data name="DepositRefundAmount" xml:space="preserve">
+    <value>Zwrot kaucji</value>
+  </data>
+  <data name="DepositAmount" xml:space="preserve">
+    <value>Kaucja</value>
+  </data>
+  <data name="DepositStatus" xml:space="preserve">
+    <value>Status kaucji</value>
+  </data>
 </root>

@@ -24,6 +24,15 @@ namespace API.Models.DTOs.Rentals
         Refunded
     }
 
+    public enum DepositStatus
+    {
+        Pending,
+        NotTaken,
+        PartiallyRefunded,
+        FullyRefunded,
+        AppliedToCost
+    }
+
     public class RentalDto : IBaseModel, IRentalCostCalculation
     {
         public int RentalId { get; set; }
@@ -42,6 +51,8 @@ namespace API.Models.DTOs.Rentals
 
         public string? PaymentStatus { get; set; }
 
+        public string? DepositStatus { get; set; }
+
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
@@ -49,6 +60,10 @@ namespace API.Models.DTOs.Rentals
         public DateTime? PickupDateTime { get; set; }
 
         public DateTime? FinishDateTime { get; set; }
+
+        public decimal DepositAmount { get; set; }
+
+        public decimal? DepositRefundAmount { get; set; }
 
         public decimal Cost { get; set; }
 
