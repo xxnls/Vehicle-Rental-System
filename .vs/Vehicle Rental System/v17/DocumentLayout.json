@@ -3,44 +3,28 @@
   "WorkspaceRootPath": "G:\\Vehicle Rental System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\rentals\\rentalsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\rentals\\rentalsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\businesslogic\\transactionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\businesslogic\\transactionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewmodels\\rentals\\pickupsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\rentals\\pickupsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\rentals\\rentalsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\rentals\\rentalsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewresources\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewresources\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\rentals\\rental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\rentals\\rental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\businesslogic\\rentalprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\businesslogic\\rentalprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\rentals\\paymentsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\rentals\\paymentsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\businesslogic\\transactionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\businesslogic\\transactionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\vehicles\\vehiclesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\vehicles\\vehiclesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\rentals\\pickupsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\rentals\\pickupsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\dtos\\rentals\\rentaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\dtos\\rentals\\rentaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\context\\apidbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\context\\apidbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\controllers\\rentals\\rentalscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\controllers\\rentals\\rentalscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,138 +34,87 @@
       "DocumentGroups": [
         {
           "DockedHeight": 730,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Colors.xaml",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewResources\\Colors.xaml",
-              "RelativeDocumentMoniker": "BackOffice\\ViewResources\\Colors.xaml",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewResources\\Colors.xaml",
-              "RelativeToolTip": "BackOffice\\ViewResources\\Colors.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-09T19:53:46.1Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RentalsView.xaml",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\Rentals\\RentalsView.xaml",
-              "RelativeDocumentMoniker": "BackOffice\\Views\\Rentals\\RentalsView.xaml",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Rentals\\RentalsView.xaml",
-              "RelativeToolTip": "BackOffice\\Views\\Rentals\\RentalsView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-09T19:47:39.567Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TransactionHandler.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\BusinessLogic\\TransactionHandler.cs",
-              "RelativeDocumentMoniker": "API\\BusinessLogic\\TransactionHandler.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\BusinessLogic\\TransactionHandler.cs",
-              "RelativeToolTip": "API\\BusinessLogic\\TransactionHandler.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA5wC0AAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T19:46:27.909Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{79664857-03bf-4bca-aa54-ec998b3328f8}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "VehiclesService.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\Vehicles\\VehiclesService.cs",
-              "RelativeDocumentMoniker": "API\\Services\\Vehicles\\VehiclesService.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\Vehicles\\VehiclesService.cs",
-              "RelativeToolTip": "API\\Services\\Vehicles\\VehiclesService.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T19:44:01.059Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RentalProcessing.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\BusinessLogic\\RentalProcessing.cs",
-              "RelativeDocumentMoniker": "API\\BusinessLogic\\RentalProcessing.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\BusinessLogic\\RentalProcessing.cs",
-              "RelativeToolTip": "API\\BusinessLogic\\RentalProcessing.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAowEQAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T19:39:00.009Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "RentalsService.cs",
               "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\Rentals\\RentalsService.cs",
               "RelativeDocumentMoniker": "API\\Services\\Rentals\\RentalsService.cs",
               "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\Rentals\\RentalsService.cs",
               "RelativeToolTip": "API\\Services\\Rentals\\RentalsService.cs",
-              "ViewState": "AgIAAP8AAAAAAAAAAAAswBMBAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAP8AAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T19:35:00.375Z",
+              "WhenOpened": "2025-02-09T22:06:07.396Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PaymentsService.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\Rentals\\PaymentsService.cs",
-              "RelativeDocumentMoniker": "API\\Services\\Rentals\\PaymentsService.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\Rentals\\PaymentsService.cs",
-              "RelativeToolTip": "API\\Services\\Rentals\\PaymentsService.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "TransactionHandler.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\BusinessLogic\\TransactionHandler.cs",
+              "RelativeDocumentMoniker": "API\\BusinessLogic\\TransactionHandler.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\BusinessLogic\\TransactionHandler.cs",
+              "RelativeToolTip": "API\\BusinessLogic\\TransactionHandler.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T19:34:59.027Z",
+              "WhenOpened": "2025-02-09T22:05:12.594Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "RentalDto.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\Rentals\\RentalDto.cs",
-              "RelativeDocumentMoniker": "API\\Models\\DTOs\\Rentals\\RentalDto.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\Rentals\\RentalDto.cs",
-              "RelativeToolTip": "API\\Models\\DTOs\\Rentals\\RentalDto.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAwEYAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "RentalProcessing.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\BusinessLogic\\RentalProcessing.cs",
+              "RelativeDocumentMoniker": "API\\BusinessLogic\\RentalProcessing.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\BusinessLogic\\RentalProcessing.cs",
+              "RelativeToolTip": "API\\BusinessLogic\\RentalProcessing.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAowHMAAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T19:32:16.807Z",
+              "WhenOpened": "2025-02-09T21:58:20.398Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ApiDbContext.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Context\\ApiDbContext.cs",
-              "RelativeDocumentMoniker": "API\\Context\\ApiDbContext.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Context\\ApiDbContext.cs",
-              "RelativeToolTip": "API\\Context\\ApiDbContext.cs",
-              "ViewState": "AgIAAGMCAAAAAAAAAAAAAHECAABFAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "RentalsController.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Controllers\\Rentals\\RentalsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\Rentals\\RentalsController.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Controllers\\Rentals\\RentalsController.cs",
+              "RelativeToolTip": "API\\Controllers\\Rentals\\RentalsController.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAA5wDEAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T19:28:34.471Z",
+              "WhenOpened": "2025-02-09T21:45:03.894Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PickupsViewModel.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Rentals\\PickupsViewModel.cs",
+              "RelativeDocumentMoniker": "BackOffice\\ViewModels\\Rentals\\PickupsViewModel.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Rentals\\PickupsViewModel.cs*",
+              "RelativeToolTip": "BackOffice\\ViewModels\\Rentals\\PickupsViewModel.cs*",
+              "ViewState": "AgIAABwAAAAAAAAAAAAgwFcAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T21:37:50.549Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Rental.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\Rentals\\Rental.cs",
-              "RelativeDocumentMoniker": "API\\Models\\Rentals\\Rental.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\Rentals\\Rental.cs",
-              "RelativeToolTip": "API\\Models\\Rentals\\Rental.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwBUAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-09T19:25:40.053Z",
+              "Title": "PickupsView.xaml",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\Rentals\\PickupsView.xaml",
+              "RelativeDocumentMoniker": "BackOffice\\Views\\Rentals\\PickupsView.xaml",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Rentals\\PickupsView.xaml",
+              "RelativeToolTip": "BackOffice\\Views\\Rentals\\PickupsView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-09T21:36:54.523Z",
               "EditorCaption": ""
             }
           ]

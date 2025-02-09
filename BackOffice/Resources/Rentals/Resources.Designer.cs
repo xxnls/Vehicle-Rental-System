@@ -115,6 +115,42 @@ namespace BackOffice.Resources.Rentals {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pickups.
+        /// </summary>
+        public static string DisplayNamePickups {
+            get {
+                return ResourceManager.GetString("DisplayNamePickups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error..
+        /// </summary>
+        public static string ErrorMarkingPickup {
+            get {
+                return ResourceManager.GetString("ErrorMarkingPickup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while trying to mark a rent as picked up. Rent payment isn&apos;t complete..
+        /// </summary>
+        public static string ErrorMarkingPickupPaymentText {
+            get {
+                return ResourceManager.GetString("ErrorMarkingPickupPaymentText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while trying to mark a rent as picked up. Rent isn&apos;t waiting for pickup..
+        /// </summary>
+        public static string ErrorMarkingPickupText {
+            get {
+                return ResourceManager.GetString("ErrorMarkingPickupText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Final cost.
         /// </summary>
         public static string FinalCost {

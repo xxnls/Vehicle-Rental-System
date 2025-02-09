@@ -130,4 +130,16 @@
   <data name="DepositStatus" xml:space="preserve">
     <value>Deposit status</value>
   </data>
+  <data name="DisplayNamePickups" xml:space="preserve">
+    <value>Pickups</value>
+  </data>
+  <data name="ErrorMarkingPickupText" xml:space="preserve">
+    <value>Error while trying to mark a rent as picked up. Rent isn't waiting for pickup.</value>
+  </data>
+  <data name="ErrorMarkingPickup" xml:space="preserve">
+    <value>Error.</value>
+  </data>
+  <data name="ErrorMarkingPickupPaymentText" xml:space="preserve">
+    <value>Error while trying to mark a rent as picked up. Rent payment isn't complete.</value>
+  </data>
 </root>

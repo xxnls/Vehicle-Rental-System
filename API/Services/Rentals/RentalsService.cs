@@ -165,7 +165,7 @@ namespace API.Services.Rentals
             return MapSingleEntityToDto(entity);
         }
 
-        public async Task<PaginatedResult<RentalDto>> GetActiveRentalsAsync(
+        public async Task<PaginatedResult<RentalDto>> GetAwaitingRentalsAsync(
             string? search = null,
             int page = 1,
             int pageSize = 10,
@@ -175,7 +175,7 @@ namespace API.Services.Rentals
             DateTime? modifiedAfter = null)
         {
             var query = _context.Rentals
-                .Where(r => r.RentalStatus == RentalStatus.InProgress.ToString() && r.IsActive); // Filter for active rentals
+                .Where(r => r.RentalStatus == RentalStatus.AwaitingPickup.ToString() && r.IsActive);
 
             return await GetAllAsync(
                 search, page, false, createdBefore, createdAfter, modifiedBefore, modifiedAfter, pageSize, query);

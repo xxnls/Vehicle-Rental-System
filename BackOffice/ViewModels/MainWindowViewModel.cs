@@ -216,6 +216,7 @@ namespace BackOffice.ViewModels
                 { "RentalRequestsViewModel", new RentalRequestsViewModel() },
                 { "RentalApprovalsViewModel", new RentalApprovalsViewModel() },
                 { "RentalsViewModel", new RentalsViewModel() },
+                { "PickupsViewModel", new PickupsViewModel() },
 
                 { "PaymentsViewModel", new PaymentsViewModel() }
             };

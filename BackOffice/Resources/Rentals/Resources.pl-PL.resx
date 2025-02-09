@@ -130,4 +130,16 @@
   <data name="DepositStatus" xml:space="preserve">
     <value>Status kaucji</value>
   </data>
+  <data name="DisplayNamePickups" xml:space="preserve">
+    <value>Odbiory</value>
+  </data>
+  <data name="ErrorMarkingPickupText" xml:space="preserve">
+    <value>Błąd podczas próby ustawienia wypożyczenia jako odebrane. Wypożyczenie nie czeka na odbiór.</value>
+  </data>
+  <data name="ErrorMarkingPickup" xml:space="preserve">
+    <value>Błąd.</value>
+  </data>
+  <data name="ErrorMarkingPickupPaymentText" xml:space="preserve">
+    <value>Błąd podczas próby ustawienia wypożyczenia jako odebrane. Brak zapłaty za wypożyczenie.</value>
+  </data>
 </root>
