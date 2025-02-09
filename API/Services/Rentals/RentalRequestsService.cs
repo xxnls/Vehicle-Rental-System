@@ -50,7 +50,6 @@ namespace API.Services.Rentals
                 r.StartDate.ToString().Contains(search) ||
                 r.EndDate.ToString().Contains(search) ||
                 r.RequestStatus.ToString().Contains(search) ||
-                r.PaymentStatus.ToString().Contains(search) ||
                 r.Notes.Contains(search);
         }
 
@@ -74,7 +73,6 @@ namespace API.Services.Rentals
                 EndDate = model.EndDate,
                 TotalCost = model.TotalCost,
                 RequestStatus = model.RequestStatus,
-                PaymentStatus = model.PaymentStatus,
                 Notes = model.Notes,
                 IsActive = model.IsActive,
                 CreatedDate = model.CreatedDate,
@@ -99,7 +97,6 @@ namespace API.Services.Rentals
                 EndDate = r.EndDate,
                 TotalCost = r.TotalCost,
                 RequestStatus = r.RequestStatus,
-                PaymentStatus = r.PaymentStatus,
                 Notes = r.Notes,
                 IsActive = r.IsActive,
                 CreatedDate = r.CreatedDate,
@@ -124,7 +121,6 @@ namespace API.Services.Rentals
                 EndDate = entity.EndDate,
                 TotalCost = entity.TotalCost,
                 RequestStatus = entity.RequestStatus,
-                PaymentStatus = entity.PaymentStatus,
                 Notes = entity.Notes,
                 IsActive = entity.IsActive,
                 CreatedDate = entity.CreatedDate,
@@ -165,7 +161,6 @@ namespace API.Services.Rentals
             entity.EndDate = model.EndDate;
             entity.TotalCost = model.TotalCost;
             entity.RequestStatus = model.RequestStatus;
-            entity.PaymentStatus = model.PaymentStatus;
             entity.Notes = model.Notes;
 
             // Update navigation properties if provided
@@ -239,7 +234,6 @@ namespace API.Services.Rentals
                     EndDate = rentalRequestDto.EndDate,
                     TotalCost = rentalRequestDto.TotalCost,
                     RequestStatus = RentalRequestStatus.Pending.ToString(), // Set RequestStatus to Pending
-                    PaymentStatus = PaymentStatus.Pending.ToString(),       // Set PaymentStatus to Pending
                     Notes = rentalRequestDto.Notes,
                     IsActive = true,
                     CreatedDate = DateTime.UtcNow,

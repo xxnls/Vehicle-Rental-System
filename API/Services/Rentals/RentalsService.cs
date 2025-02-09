@@ -14,6 +14,7 @@ using API.Services.Employees;
 using API.Services.Vehicles;
 using Microsoft.EntityFrameworkCore.Storage;
 using RentalStatus = API.Models.DTOs.Rentals.RentalStatus;
+using PaymentStatus = API.Models.DTOs.Rentals.PaymentStatus;
 
 namespace API.Services.Rentals
 {
@@ -50,6 +51,7 @@ namespace API.Services.Rentals
                 r.StartDate.ToString().Contains(search) ||
                 r.EndDate.ToString().Contains(search) ||
                 r.RentalStatus.Contains(search) ||
+                r.PaymentStatus.Contains(search) ||
                 r.Cost.ToString().Contains(search);
         }
 
@@ -70,6 +72,7 @@ namespace API.Services.Rentals
                 StartedByEmployeeId = model.StartedByEmployeeId,
                 FinishedByEmployeeId = model.FinishedByEmployeeId,
                 RentalStatus = model.RentalStatus,
+                PaymentStatus = model.PaymentStatus,
                 StartDate = model.StartDate,
                 EndDate = model.EndDate,
                 PickupDateTime = model.PickupDateTime,
@@ -97,6 +100,7 @@ namespace API.Services.Rentals
                 FinishedByEmployeeId = r.FinishedByEmployeeId,
                 FinishedByEmployee = r.FinishedByEmployee != null ? _employeesService.MapSingleEntityToDto(r.FinishedByEmployee) : null,
                 RentalStatus = r.RentalStatus,
+                PaymentStatus = r.PaymentStatus,
                 StartDate = r.StartDate,
                 EndDate = r.EndDate,
                 PickupDateTime = r.PickupDateTime,
@@ -124,6 +128,7 @@ namespace API.Services.Rentals
                 FinishedByEmployeeId = entity.FinishedByEmployeeId,
                 FinishedByEmployee = entity.FinishedByEmployee != null ? _employeesService.MapSingleEntityToDto(entity.FinishedByEmployee) : null,
                 RentalStatus = entity.RentalStatus,
+                PaymentStatus = entity.PaymentStatus,
                 StartDate = entity.StartDate,
                 EndDate = entity.EndDate,
                 PickupDateTime = entity.PickupDateTime,
@@ -172,6 +177,7 @@ namespace API.Services.Rentals
             entity.Cost = model.Cost;
             entity.FinalCost = model.FinalCost;
             entity.RentalStatus = model.RentalStatus;
+            entity.PaymentStatus = model.PaymentStatus;
 
             // Update navigation properties if provided
             if (model.Customer != null)
@@ -246,6 +252,7 @@ namespace API.Services.Rentals
                     VehicleId = rentalDto.Vehicle.VehicleId,
                     StartedByEmployeeId = rentalDto.StartedByEmployee.Id,
                     RentalStatus = RentalStatus.AwaitingPickup.ToString(), // Set initial status
+                    PaymentStatus = PaymentStatus.Pending.ToString(), // Set initial status
                     StartDate = rentalDto.StartDate,
                     EndDate = rentalDto.EndDate,
                     Cost = rentalDto.Cost,

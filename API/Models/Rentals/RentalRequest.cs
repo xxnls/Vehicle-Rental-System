@@ -13,13 +13,6 @@ namespace API.Models.Rentals
         Cancelled
     }
 
-    public enum PaymentStatus
-    {
-        Pending,
-        Paid,
-        Cancelled
-    }
-
     public partial class RentalRequest : IBaseModel
     {
         public int RentalRequestId { get; set; }
@@ -31,7 +24,6 @@ namespace API.Models.Rentals
         public DateTime EndDate { get; set; }
         public decimal TotalCost { get; set; }
         public string? RequestStatus { get; set; } // Store as string
-        public string? PaymentStatus { get; set; } // Store as string
         public string? Notes { get; set; } = null!;
         public bool IsActive { get; set; }
         public DateTime CreatedDate { get; set; }

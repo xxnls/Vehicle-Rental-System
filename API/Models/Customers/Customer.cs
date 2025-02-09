@@ -45,4 +45,6 @@ public partial class Customer : IdentityUser<int>, IBaseModel
     public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();
 
     public virtual ICollection<RentalRequest> RentalRequests { get; set; } = new List<RentalRequest>();
+
+    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
 }

@@ -16,6 +16,14 @@ namespace API.Models.DTOs.Rentals
         Cancelled
     }
 
+    public enum PaymentStatus
+    {
+        Pending,
+        Paid,
+        Failed,
+        Refunded
+    }
+
     public class RentalDto : IBaseModel, IRentalCostCalculation
     {
         public int RentalId { get; set; }
@@ -31,6 +39,8 @@ namespace API.Models.DTOs.Rentals
         public int? FinishedByEmployeeId { get; set; }
 
         public string? RentalStatus { get; set; }
+
+        public string? PaymentStatus { get; set; }
 
         public DateTime StartDate { get; set; }
 

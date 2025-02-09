@@ -15,6 +15,14 @@ namespace API.Models.Rentals
         Cancelled
     }
 
+    public enum PaymentStatus
+    {
+        Pending,
+        Paid,
+        Failed,
+        Refunded 
+    }
+
     public partial class Rental : IBaseModel
     {
         public int RentalId { get; set; }
@@ -30,6 +38,8 @@ namespace API.Models.Rentals
         public int? FinishedByEmployeeId { get; set; }
 
         public string? RentalStatus { get; set; }
+
+        public string? PaymentStatus { get; set; }
 
         public DateTime StartDate { get; set; }
 
@@ -62,5 +72,7 @@ namespace API.Models.Rentals
         public virtual Employee StartedByEmployee { get; set; } = null!;
 
         public virtual Vehicle Vehicle { get; set; } = null!;
+
+        public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
     }
 }

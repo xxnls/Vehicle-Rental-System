@@ -109,6 +109,16 @@
                                     helpers:ValidationHelper.PropertyName="RentalStatus"
                                     Foreground="{StaticResource ErrorBrush}"
                                     Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                                <Label Content="{x:Static rq:Resources.PaymentStatus}" />
+                                <ComboBox
+                                    ItemsSource="{Binding Source={helpers:EnumBindingSource {x:Type res1:PaymentStatus}}}"
+                                    SelectedItem="{Binding EditableModel.PaymentStatus, UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding EditableModel.PaymentStatus, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    helpers:ValidationHelper.PropertyName="PaymentStatus"
+                                    Foreground="{StaticResource ErrorBrush}"
+                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                             </StackPanel>
 
                         </StackPanel>
@@ -248,6 +258,10 @@
                             Binding="{Binding RentalStatus}"
                             CellStyle="{StaticResource RentalStatusCellStyle}"
                             Header="Status" />
+                        <DataGridTextColumn
+                            Binding="{Binding PaymentStatus}"
+                            CellStyle="{StaticResource PaymentStatusCellStyle}"
+                            Header="{x:Static rq:Resources.PaymentStatus}" />
                         <DataGridTextColumn Binding="{Binding StartDate, StringFormat=dd/MM/yyyy}" Header="{x:Static rq:Resources.StartDate}" />
                         <DataGridTextColumn Binding="{Binding EndDate, StringFormat=dd/MM/yyyy}" Header="{x:Static rq:Resources.EndDate}" />
                         <DataGridTextColumn Binding="{Binding PickupDateTime, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static res:Resources.PickupDateTime}" />

@@ -159,18 +159,6 @@
                                     Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                             </StackPanel>
 
-                            <StackPanel Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <Label Content="{x:Static res:Resources.PaymentStatus}" />
-                                <ComboBox
-                                    ItemsSource="{Binding Source={helpers:EnumBindingSource {x:Type res1:PaymentStatus}}}"
-                                    SelectedItem="{Binding EditableModel.PaymentStatus, UpdateSourceTrigger=PropertyChanged}"
-                                    Text="{Binding EditableModel.PaymentStatus, UpdateSourceTrigger=PropertyChanged}" />
-                                <TextBlock
-                                    helpers:ValidationHelper.PropertyName="PaymentStatus"
-                                    Foreground="{StaticResource ErrorBrush}"
-                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
-                            </StackPanel>
-
                             <Label Content="{x:Static res:Resources.Notes}" />
                             <TextBox Text="{Binding EditableModel.Notes, UpdateSourceTrigger=PropertyChanged}" />
                             <TextBlock
@@ -259,10 +247,6 @@
                             Binding="{Binding RequestStatus}"
                             CellStyle="{StaticResource RequestStatusCellStyle}"
                             Header="{x:Static res:Resources.RequestStatus}" />
-                        <DataGridTextColumn
-                            Binding="{Binding PaymentStatus}"
-                            CellStyle="{StaticResource PaymentStatusCellStyle}"
-                            Header="{x:Static res:Resources.PaymentStatus}" />
                         <DataGridTextColumn Binding="{Binding Notes}" Header="{x:Static res:Resources.Notes}" />
                         <DataGridTextColumn Header="{x:Static res:Resources.ModifiedByEmployee}">
                             <DataGridTextColumn.Binding>

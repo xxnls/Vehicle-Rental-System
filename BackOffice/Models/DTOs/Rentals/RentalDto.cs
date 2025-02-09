@@ -17,6 +17,14 @@ namespace BackOffice.Models.DTOs.Rentals
         Cancelled
     }
 
+    public enum PaymentStatus
+    {
+        Pending,
+        Paid,
+        Failed,
+        Refunded
+    }
+
     public class RentalDto : BaseDtoModel
     {
         public int RentalId { get; set; }
@@ -40,6 +48,20 @@ namespace BackOffice.Models.DTOs.Rentals
                 if (_rentalStatus != value)
                 {
                     _rentalStatus = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string? _paymentStatus;
+        public string? PaymentStatus
+        {
+            get => _paymentStatus;
+            set
+            {
+                if (_paymentStatus != value)
+                {
+                    _paymentStatus = value;
                     OnPropertyChanged();
                 }
             }

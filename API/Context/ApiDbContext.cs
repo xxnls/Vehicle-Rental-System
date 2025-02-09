@@ -65,6 +65,8 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
 
     public virtual DbSet<NewsType> NewsTypes { get; set; }
 
+    public virtual DbSet<Payment> Payments { get; set; }
+
     public virtual DbSet<RentalRequest> RentalRequests { get; set; }
 
     public virtual DbSet<PostRentalReport> PostRentalReports { get; set; }
@@ -541,6 +543,31 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.TypeName).HasMaxLength(200);
         });
 
+        modelBuilder.Entity<Payment>(entity =>
+        {
+            entity.HasKey(e => e.PaymentId);
+
+            entity.ToTable("Payments");
+
+            entity.Property(e => e.PaymentId).HasColumnName("PaymentID");
+            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+            entity.Property(e => e.RentId).HasColumnName("RentID");
+            entity.Property(e => e.Amount).HasColumnType("money");
+            entity.Property(e => e.PaymentDate).HasColumnType("datetime2");
+            entity.Property(e => e.PaymentMethod).HasConversion<string>().IsRequired();
+            entity.Property(e => e.TransactionStatus).HasConversion<string>().HasDefaultValue(PaymentStatus.Pending);
+            entity.Property(e => e.RefundReason).HasMaxLength(200);
+            entity.Property(e => e.FailReason).HasMaxLength(200);
+
+            entity.HasOne(d => d.Rent).WithMany(p => p.Payments)
+                .HasForeignKey(d => d.RentId)
+                .HasConstraintName("FK_Payments_Rentals");
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.Payments)
+                .HasForeignKey(d => d.CustomerId)
+                .HasConstraintName("FK_Payments_Customers");
+        });
+
         modelBuilder.Entity<RentalRequest>(entity =>
         {
             entity.HasKey(e => e.RentalRequestId).HasName("RentalRequests_pk");
@@ -554,7 +581,6 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.TotalCost).HasColumnType("money").IsRequired();
             entity.Property(e => e.ModifiedByEmployeeId).HasColumnName("ModifiedByEmployeeID");
             entity.Property(e => e.RequestStatus).HasConversion<string>().HasDefaultValue(RentalRequestStatus.Pending).IsRequired();
-            entity.Property(e => e.PaymentStatus).HasConversion<string>().HasDefaultValue(PaymentStatus.Pending).IsRequired();
             entity.Property(e => e.Notes).HasMaxLength(500);
             entity.Property(e => e.IsActive).HasDefaultValue(true).IsRequired();
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())").IsRequired();
@@ -602,6 +628,7 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.FinishedByEmployeeId).HasColumnName("FinishedByEmployeeID");
             entity.Property(e => e.RentalStatus).HasConversion<string>().HasDefaultValue(RentalStatus.AwaitingPickup).IsRequired();
+            entity.Property(e => e.PaymentStatus).HasConversion<string>().HasDefaultValue(PaymentStatus.Pending).IsRequired();
             entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.PostRentalReportId).HasColumnName("PostRentalReportID");
             entity.Property(e => e.StartedByEmployeeId).HasColumnName("StartedByEmployeeID");
