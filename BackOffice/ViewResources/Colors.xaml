@@ -42,5 +42,7 @@
     <SolidColorBrush x:Key="RejectedBrush" Color="{StaticResource RejectedColor}" />
     <Color x:Key="CancelledColor">#FF7B00</Color>
     <SolidColorBrush x:Key="CancelledBrush" Color="{StaticResource CancelledColor}" />
+    <Color x:Key="InProgressColor">#007BFF</Color>
+    <SolidColorBrush x:Key="InProgressBrush" Color="{StaticResource InProgressColor}" />
 
 </ResourceDictionary>

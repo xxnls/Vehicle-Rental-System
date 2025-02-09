@@ -59,5 +59,77 @@ namespace BackOffice.Resources.Rentals {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basic Information.
+        /// </summary>
+        public static string BasicInformation {
+            get {
+                return ResourceManager.GetString("BasicInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cost.
+        /// </summary>
+        public static string Cost {
+            get {
+                return ResourceManager.GetString("Cost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rentals.
+        /// </summary>
+        public static string DisplayName {
+            get {
+                return ResourceManager.GetString("DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Final cost.
+        /// </summary>
+        public static string FinalCost {
+            get {
+                return ResourceManager.GetString("FinalCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish date.
+        /// </summary>
+        public static string FinishDateTime {
+            get {
+                return ResourceManager.GetString("FinishDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pickup date.
+        /// </summary>
+        public static string PickupDateTime {
+            get {
+                return ResourceManager.GetString("PickupDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rental Dates.
+        /// </summary>
+        public static string RentalDates {
+            get {
+                return ResourceManager.GetString("RentalDates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Started by.
+        /// </summary>
+        public static string StartedByEmployee {
+            get {
+                return ResourceManager.GetString("StartedByEmployee", resourceCulture);
+            }
+        }
     }
 }

@@ -92,6 +92,27 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="RentalStatusCellStyle" TargetType="DataGridCell">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RentalStatus}" Value="AwaitingPickup">
+                <Setter Property="Background" Value="{StaticResource PendingBrush}" />
+                <Setter Property="Foreground" Value="Black" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RentalStatus}" Value="Finished">
+                <Setter Property="Background" Value="{StaticResource ApprovedBrush}" />
+                <Setter Property="Foreground" Value="White" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RentalStatus}" Value="InProgress">
+                <Setter Property="Background" Value="{StaticResource InProgressBrush}" />
+                <Setter Property="Foreground" Value="White" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding RentalStatus}" Value="Cancelled">
+                <Setter Property="Background" Value="{StaticResource RejectedBrush}" />
+                <Setter Property="Foreground" Value="White" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
     <!--  Style for the buttons in the CRUDButtonsControl  -->
     <Style x:Key="DefaultButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />

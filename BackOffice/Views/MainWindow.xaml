@@ -237,11 +237,11 @@
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="RentalRequestsViewModel"
                             Content="Rental Requests" />
-                        <!--<Button
-                            Command="{Binding ChangeWorkspaceCommand}"
-                            CommandParameter="CustomerTypesViewModel"
-                            Content="Customer Types" />
                         <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="RentalsViewModel"
+                            Content="Rentals" />
+                        <!--<Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="CustomerTypesViewModel"
                             Content="Customer Types" />-->
