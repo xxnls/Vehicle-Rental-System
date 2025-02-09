@@ -57,14 +57,14 @@ namespace API.BusinessLogic
                 // Change vehicle status to rented
                 await ChangeVehicleStatusAsync(rentalRequest.VehicleId, 2);
 
-                //var rental = new RentalDto
-                //{
-                //    VehicleId = rentalRequest.VehicleId,
-                //    CustomerId = rentalRequest.CustomerId,
-                //    StartDate = rentalRequest.StartDate,
-                //    EndDate = rentalRequest.EndDate,
-                //    // ... set other properties
-                //};
+                var rental = new RentalDto
+                {
+                    VehicleId = rentalRequest.VehicleId,
+                    CustomerId = rentalRequest.CustomerId,
+                    StartDate = rentalRequest.StartDate,
+                    EndDate = rentalRequest.EndDate,
+                    // ... set other properties
+                };
 
                 // TODO: ADDING RENTAL
                 //await _context.Rentals.AddAsync(rental); // Add to the correct DbSet

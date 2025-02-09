@@ -8,7 +8,15 @@ using API.Models.Vehicles;
 
 namespace API.Models.DTOs.Rentals
 {
-    public class RentalDto : IBaseModel
+    public enum RentalStatus
+    {
+        AwaitingPickup,
+        InProgress,
+        Finished,
+        Cancelled
+    }
+
+    public class RentalDto : IBaseModel, IRentalCostCalculation
     {
         public int RentalId { get; set; }
 
@@ -22,17 +30,19 @@ namespace API.Models.DTOs.Rentals
 
         public int? FinishedByEmployeeId { get; set; }
 
+        public string? RentalStatus { get; set; }
+
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
 
-        public DateTime? ActualStartDate { get; set; }
+        public DateTime? PickupDateTime { get; set; }
 
-        public DateTime? ActualEndDate { get; set; }
+        public DateTime? FinishDateTime { get; set; }
 
         public decimal Cost { get; set; }
 
-        public decimal? ActualCost { get; set; }
+        public decimal? FinalCost { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

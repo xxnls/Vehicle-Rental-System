@@ -4,6 +4,7 @@ using API.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250209003438_RentalTweaks")]
+    partial class RentalTweaks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1133,10 +1136,6 @@ namespace API.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
-                    b.Property<int?>("ModifiedByEmployeeId")
-                        .HasColumnType("int")
-                        .HasColumnName("ModifiedByEmployeeID");
-
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
@@ -1175,8 +1174,6 @@ namespace API.Migrations
                         .HasName("RentalRequests_pk");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("ModifiedByEmployeeId");
 
                     b.HasIndex("VehicleId");
 
@@ -2167,11 +2164,6 @@ namespace API.Migrations
                         .IsRequired()
                         .HasConstraintName("RentalRequests_Customers");
 
-                    b.HasOne("API.Models.Employees.Employee", "ModifiedByEmployee")
-                        .WithMany("RentalRequests")
-                        .HasForeignKey("ModifiedByEmployeeId")
-                        .HasConstraintName("RentalRequests_Employees");
-
                     b.HasOne("API.Models.Vehicles.Vehicle", "Vehicle")
                         .WithMany("RentalRequests")
                         .HasForeignKey("VehicleId")
@@ -2179,8 +2171,6 @@ namespace API.Migrations
                         .HasConstraintName("RentalRequests_Vehicles");
 
                     b.Navigation("Customer");
-
-                    b.Navigation("ModifiedByEmployee");
 
                     b.Navigation("Vehicle");
                 });
@@ -2573,8 +2563,6 @@ namespace API.Migrations
                     b.Navigation("PostRentalReports");
 
                     b.Navigation("RentalFinishedByEmployees");
-
-                    b.Navigation("RentalRequests");
 
                     b.Navigation("RentalStartedByEmployees");
                 });

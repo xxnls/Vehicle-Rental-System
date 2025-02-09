@@ -205,6 +205,15 @@ namespace BackOffice.Resources.RentalRequests {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modified by.
+        /// </summary>
+        public static string ModifiedByEmployee {
+            get {
+                return ResourceManager.GetString("ModifiedByEmployee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notes.
         /// </summary>
         public static string Notes {

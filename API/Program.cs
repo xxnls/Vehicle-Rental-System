@@ -54,6 +54,7 @@ builder.Services.AddScoped<CustomerStatisticsService>();
 builder.Services.AddScoped<CustomersService>();
 
 builder.Services.AddScoped<RentalRequestsService>();
+builder.Services.AddScoped<RentalsService>();
 
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddTransient<IRentalCostCalculator, RentalCostCalculator>();

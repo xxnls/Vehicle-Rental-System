@@ -1,5 +1,6 @@
 ﻿using API.Interfaces;
 using API.Models.Customers;
+using API.Models.Employees;
 using API.Models.Vehicles;
 
 namespace API.Models.Rentals
@@ -24,6 +25,7 @@ namespace API.Models.Rentals
         public int RentalRequestId { get; set; }
         public int CustomerId { get; set; }
         public int VehicleId { get; set; }
+        public int? ModifiedByEmployeeId { get; set; }
         public DateTime RequestDate { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -39,5 +41,7 @@ namespace API.Models.Rentals
         // Navigation properties
         public virtual Customer Customer { get; set; } = null!;
         public virtual Vehicle Vehicle { get; set; } = null!;
+
+        public virtual Employee? ModifiedByEmployee { get; set; }
     }
 }

@@ -83,5 +83,7 @@ public partial class Employee : IdentityUser<int>, IBaseModel
 
     public virtual ICollection<Rental> RentalStartedByEmployees { get; set; } = new List<Rental>();
 
+    public virtual ICollection<RentalRequest> RentalRequests { get; set; } = new List<RentalRequest>();
+
     public virtual Employee? Supervisor { get; set; }
 }

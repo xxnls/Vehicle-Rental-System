@@ -4,6 +4,7 @@ using API.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250209013543_AddedApprovedByEmployee")]
+    partial class AddedApprovedByEmployee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1113,6 +1116,10 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RentalRequestId"));
 
+                    b.Property<int?>("ApprovedByEmployeeId")
+                        .HasColumnType("int")
+                        .HasColumnName("ApprovedByEmployeeID");
+
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -1132,10 +1139,6 @@ namespace API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
-
-                    b.Property<int?>("ModifiedByEmployeeId")
-                        .HasColumnType("int")
-                        .HasColumnName("ModifiedByEmployeeID");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -1174,9 +1177,9 @@ namespace API.Migrations
                     b.HasKey("RentalRequestId")
                         .HasName("RentalRequests_pk");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("ApprovedByEmployeeId");
 
-                    b.HasIndex("ModifiedByEmployeeId");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("VehicleId");
 
@@ -2161,16 +2164,16 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Rentals.RentalRequest", b =>
                 {
+                    b.HasOne("API.Models.Employees.Employee", "ApprovedByEmployee")
+                        .WithMany("RentalRequests")
+                        .HasForeignKey("ApprovedByEmployeeId")
+                        .HasConstraintName("RentalRequests_Employees");
+
                     b.HasOne("API.Models.Customers.Customer", "Customer")
                         .WithMany("RentalRequests")
                         .HasForeignKey("CustomerId")
                         .IsRequired()
                         .HasConstraintName("RentalRequests_Customers");
-
-                    b.HasOne("API.Models.Employees.Employee", "ModifiedByEmployee")
-                        .WithMany("RentalRequests")
-                        .HasForeignKey("ModifiedByEmployeeId")
-                        .HasConstraintName("RentalRequests_Employees");
 
                     b.HasOne("API.Models.Vehicles.Vehicle", "Vehicle")
                         .WithMany("RentalRequests")
@@ -2178,9 +2181,9 @@ namespace API.Migrations
                         .IsRequired()
                         .HasConstraintName("RentalRequests_Vehicles");
 
-                    b.Navigation("Customer");
+                    b.Navigation("ApprovedByEmployee");
 
-                    b.Navigation("ModifiedByEmployee");
+                    b.Navigation("Customer");
 
                     b.Navigation("Vehicle");
                 });

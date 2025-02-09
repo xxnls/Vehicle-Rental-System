@@ -175,4 +175,7 @@
   <data name="ErrorCheckingAvailability" xml:space="preserve">
     <value>Error while checking vehicle availabilty.</value>
   </data>
+  <data name="ModifiedByEmployee" xml:space="preserve">
+    <value>Modified by</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
 ﻿using BackOffice.Models.DTOs.Customers;
+using BackOffice.Models.DTOs.Employees;
 using BackOffice.Models.DTOs.Vehicles;
 
 namespace BackOffice.Models.DTOs.Rentals
@@ -23,6 +24,7 @@ namespace BackOffice.Models.DTOs.Rentals
         public int RentalRequestId { get; set; }
         public int CustomerId { get; set; }
         public int VehicleId { get; set; }
+        public int? ModifiedByEmployeeId { get; set; }
 
         private DateTime _requestDate = DateTime.Now;
         public DateTime RequestDate
@@ -145,6 +147,20 @@ namespace BackOffice.Models.DTOs.Rentals
                 if (_vehicle != value)
                 {
                     _vehicle = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private EmployeeDto? _modifiedByEmployee;
+        public EmployeeDto? ModifiedByEmployee
+        {
+            get => _modifiedByEmployee;
+            set
+            {
+                if (_modifiedByEmployee != value)
+                {
+                    _modifiedByEmployee = value;
                     OnPropertyChanged();
                 }
             }

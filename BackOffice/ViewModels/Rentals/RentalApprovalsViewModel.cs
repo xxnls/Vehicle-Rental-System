@@ -1,8 +1,10 @@
 ﻿using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Input;
 using BackOffice.Helpers;
 using BackOffice.Interfaces;
 using BackOffice.Models;
+using BackOffice.Models.DTOs.Employees;
 using BackOffice.Models.DTOs.Rentals;
 using BackOffice.Models.DTOs.Vehicles;
 using CommunityToolkit.Mvvm.Input;
@@ -28,19 +30,20 @@ namespace BackOffice.ViewModels.Rentals
             ValidationRules = new Dictionary<string, Action>();
         }
 
-        //private async Task UpdateRequestStatusAsync(RentalRequestDto? request, RentalRequestStatus status)
-        //{
-        //    if (request == null)
-        //        return;
-
-        //    request.RequestStatus = status.ToString();
-        //    await UpdateModelAsync(request.RentalRequestId, request);
-        //}
-
         private async Task UpdateRequestStatusAsync(RentalRequestDto? request, RentalRequestStatus status)
         {
             if (request == null)
                 return;
+
+            if (SessionManager.Get("User") != null)
+            {
+                request.ModifiedByEmployee = (EmployeeDto?)SessionManager.Get("User");
+                await UpdateModelAsync(request.RentalRequestId, request);
+            }
+            else
+            {
+                return;
+            }
 
             if (status == RentalRequestStatus.Approved)
             {

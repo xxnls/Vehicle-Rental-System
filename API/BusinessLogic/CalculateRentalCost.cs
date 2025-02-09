@@ -1,4 +1,5 @@
-﻿using API.Models.DTOs.Rentals;
+﻿using API.Interfaces;
+using API.Models.DTOs.Rentals;
 using API.Models.Vehicles;
 using API.Services.Vehicles;
 using Microsoft.Extensions.Configuration;
@@ -11,7 +12,7 @@ namespace API.BusinessLogic
         /// <summary>
         /// Calculate the total cost of a rental request.
         /// </summary>
-        /// <param name="rentalRequestDto">
+        /// <param name="rental">
         /// The rental request DTO.
         /// </param>
         /// <returns>
@@ -21,19 +22,19 @@ namespace API.BusinessLogic
         /// Thrown when the rental duration is less than the minimum rental days, the vehicle is not found,
         /// the vehicle type or base daily rate is missing,or the customer and vehicle are required.
         /// </exception>
-        public async Task<decimal> Calculate(RentalRequestDto rentalRequestDto)
+        public async Task<decimal> Calculate(IRentalCostCalculation rental)
         {
             var countInclusive = configuration.GetValue<bool>("RentalSettings:CountRentalDayInclusive");
             var minimumRentalDays = configuration.GetValue<int>("RentalSettings:MinimumRentalDays");
 
             // Validate the Customer and Vehicle in the rental request
-            if (rentalRequestDto.Customer == null || rentalRequestDto.Vehicle == null)
+            if (rental.Customer == null || rental.Vehicle == null)
             {
                 throw new ArgumentException("Customer and Vehicle are required.");
             }
 
             // Get the fresh vehicle data from the database
-            var vehicle = await vehiclesService.GetByIdAsync(rentalRequestDto.Vehicle.VehicleId);
+            var vehicle = await vehiclesService.GetByIdAsync(rental.Vehicle.VehicleId);
 
             // If vehicle is not found, throw an exception
             if (vehicle == null)
@@ -42,7 +43,7 @@ namespace API.BusinessLogic
             }
 
             // Calculate rental duration
-            var rentalDuration = (rentalRequestDto.EndDate - rentalRequestDto.StartDate).TotalDays;
+            var rentalDuration = (rental.EndDate - rental.StartDate).TotalDays;
 
             // If countInclusive is true, add 1 to the rental duration
             if (countInclusive)
@@ -55,6 +56,7 @@ namespace API.BusinessLogic
             decimal totalCost;
 
             // If custom daily rate is set, use it, otherwise use the base daily rate
+            // TODO: Apply discounts
             if (vehicle.CustomDailyRate.HasValue)
             {
                 totalCost = (decimal)rentalDuration * vehicle.CustomDailyRate.Value;
@@ -74,6 +76,6 @@ namespace API.BusinessLogic
 
     public interface IRentalCostCalculator
     { 
-        Task<decimal> Calculate(RentalRequestDto rentalRequestDto);
+        Task<decimal> Calculate(IRentalCostCalculation rental);
     }
 }

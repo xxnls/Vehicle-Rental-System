@@ -264,6 +264,14 @@
                             CellStyle="{StaticResource PaymentStatusCellStyle}"
                             Header="{x:Static res:Resources.PaymentStatus}" />
                         <DataGridTextColumn Binding="{Binding Notes}" Header="{x:Static res:Resources.Notes}" />
+                        <DataGridTextColumn Header="{x:Static res:Resources.ModifiedByEmployee}">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="ModifiedByEmployee.FirstName" />
+                                    <Binding Path="ModifiedByEmployee.LastName" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
                         <DataGridTextColumn Binding="{Binding CreatedDate, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static generic:Resources.CreatedDate}" />
                         <DataGridTextColumn Binding="{Binding ModifiedDate, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static generic:Resources.ModifiedDate}" />
                         <DataGridTextColumn

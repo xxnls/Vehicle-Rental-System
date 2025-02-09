@@ -552,6 +552,7 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.StartDate).HasColumnType("datetime2").IsRequired();
             entity.Property(e => e.EndDate).HasColumnType("datetime2").IsRequired();
             entity.Property(e => e.TotalCost).HasColumnType("money").IsRequired();
+            entity.Property(e => e.ModifiedByEmployeeId).HasColumnName("ModifiedByEmployeeID");
             entity.Property(e => e.RequestStatus).HasConversion<string>().HasDefaultValue(RentalRequestStatus.Pending).IsRequired();
             entity.Property(e => e.PaymentStatus).HasConversion<string>().HasDefaultValue(PaymentStatus.Pending).IsRequired();
             entity.Property(e => e.Notes).HasMaxLength(500);
@@ -569,6 +570,11 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
                 .HasForeignKey(d => d.VehicleId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("RentalRequests_Vehicles");
+
+            entity.HasOne(d => d.ModifiedByEmployee).WithMany(p => p.RentalRequests)
+                .HasForeignKey(d => d.ModifiedByEmployeeId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("RentalRequests_Employees");
         });
 
         modelBuilder.Entity<PostRentalReport>(entity =>
@@ -590,11 +596,12 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.HasKey(e => e.RentalId).HasName("Rentals_pk");
 
             entity.Property(e => e.RentalId).HasColumnName("RentalID");
-            entity.Property(e => e.ActualCost).HasColumnType("money");
             entity.Property(e => e.Cost).HasColumnType("money");
+            entity.Property(e => e.FinalCost).HasColumnType("money");
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
             entity.Property(e => e.FinishedByEmployeeId).HasColumnName("FinishedByEmployeeID");
+            entity.Property(e => e.RentalStatus).HasConversion<string>().HasDefaultValue(RentalStatus.AwaitingPickup).IsRequired();
             entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.PostRentalReportId).HasColumnName("PostRentalReportID");
             entity.Property(e => e.StartedByEmployeeId).HasColumnName("StartedByEmployeeID");
@@ -672,10 +679,6 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.Notes).HasMaxLength(500);
             entity.Property(e => e.PurchasePrice).HasColumnType("money");
             entity.Property(e => e.RentalPlaceId).HasColumnName("RentalPlaceID");
-            //entity.Property(e => e.Status)
-            //    .HasMaxLength(20)
-            //    .IsUnicode(false)
-            //    .HasDefaultValue("OutOfService");
             entity.Property(e => e.VehicleStatusId).HasColumnName("VehicleStatusID");
             entity.Property(e => e.VehicleModelId).HasColumnName("VehicleModelID");
             entity.Property(e => e.VehicleOptionalInformationId).HasColumnName("VehicleOptionalInformationID");

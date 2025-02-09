@@ -2,6 +2,7 @@
 using API.Models;
 using API.Models.DTOs;
 using API.Models.DTOs.Customers;
+using API.Models.DTOs.Employees;
 using API.Models.DTOs.Vehicles;
 using API.Models.DTOs.Rentals;
 using Microsoft.EntityFrameworkCore;
@@ -11,12 +12,11 @@ using API.Models.Rentals;
 using API.Services.Customers;
 using API.Services.Employees;
 using API.Services.Vehicles;
-using RentalRequestStatus = API.Models.Rentals.RentalRequestStatus;
-using PaymentStatus = API.Models.Rentals.PaymentStatus;
+using RentalStatus = API.Models.DTOs.Rentals.RentalStatus;
 
 namespace API.Services.Rentals
 {
-    public class RentalRequestsService : BaseApiService<RentalRequest, RentalRequestDto, RentalRequestDto>
+    public class RentalsService : BaseApiService<Rental, RentalDto, RentalDto>
     {
         private readonly ApiDbContext _context;
         private readonly CustomersService _customersService;
@@ -24,7 +24,7 @@ namespace API.Services.Rentals
         private readonly EmployeesService _employeesService;
         private readonly IRentalCostCalculator _rentalCostCalculator;
 
-        public RentalRequestsService(
+        public RentalsService(
             ApiDbContext context,
             CustomersService customersService,
             VehiclesService vehiclesService,
@@ -34,48 +34,47 @@ namespace API.Services.Rentals
             _context = context;
             _customersService = customersService;
             _vehiclesService = vehiclesService;
-            _rentalCostCalculator = rentalCostCalculator;
             _employeesService = employeesService;
+            _rentalCostCalculator = rentalCostCalculator;
         }
 
-        protected override Expression<Func<RentalRequest, bool>> BuildSearchQuery(string search)
+        protected override Expression<Func<Rental, bool>> BuildSearchQuery(string search)
         {
             return r =>
-                r.RentalRequestId.ToString().Contains(search) ||
+                r.RentalId.ToString().Contains(search) ||
                 r.Customer.FirstName.Contains(search) ||
                 r.Customer.LastName.Contains(search) ||
                 r.Vehicle.VehicleModel.Name.Contains(search) ||
                 r.Vehicle.VehicleModel.VehicleBrand.Name.Contains(search) ||
-                r.RequestDate.ToString().Contains(search) ||
                 r.StartDate.ToString().Contains(search) ||
                 r.EndDate.ToString().Contains(search) ||
-                r.RequestStatus.ToString().Contains(search) ||
-                r.PaymentStatus.ToString().Contains(search) ||
-                r.Notes.Contains(search);
+                r.RentalStatus.Contains(search) ||
+                r.Cost.ToString().Contains(search);
         }
 
-        protected override Expression<Func<RentalRequest, bool>> GetActiveFilter(bool showDeleted)
+        protected override Expression<Func<Rental, bool>> GetActiveFilter(bool showDeleted)
         {
-            return v => v.IsActive != showDeleted;
+            return r => r.IsActive != showDeleted;
         }
 
         #region Mapping
 
-        public override RentalRequest MapToEntity(RentalRequestDto model)
+        public override Rental MapToEntity(RentalDto model)
         {
-            return new RentalRequest
+            return new Rental
             {
-                RentalRequestId = model.RentalRequestId,
+                RentalId = model.RentalId,
                 CustomerId = model.CustomerId,
                 VehicleId = model.VehicleId,
-                ModifiedByEmployeeId = model.ModifiedByEmployeeId,
-                RequestDate = model.RequestDate,
+                StartedByEmployeeId = model.StartedByEmployeeId,
+                FinishedByEmployeeId = model.FinishedByEmployeeId,
+                RentalStatus = model.RentalStatus,
                 StartDate = model.StartDate,
                 EndDate = model.EndDate,
-                TotalCost = model.TotalCost,
-                RequestStatus = model.RequestStatus,
-                PaymentStatus = model.PaymentStatus,
-                Notes = model.Notes,
+                PickupDateTime = model.PickupDateTime,
+                FinishDateTime = model.FinishDateTime,
+                Cost = model.Cost,
+                FinalCost = model.FinalCost,
                 IsActive = model.IsActive,
                 CreatedDate = model.CreatedDate,
                 ModifiedDate = model.ModifiedDate,
@@ -83,24 +82,26 @@ namespace API.Services.Rentals
             };
         }
 
-        public override Expression<Func<RentalRequest, RentalRequestDto>> MapToDto()
+        public override Expression<Func<Rental, RentalDto>> MapToDto()
         {
-            return r => new RentalRequestDto
+            return r => new RentalDto
             {
-                RentalRequestId = r.RentalRequestId,
+                RentalId = r.RentalId,
                 CustomerId = r.CustomerId,
                 Customer = r.Customer != null ? _customersService.MapSingleEntityToDto(r.Customer) : null,
                 VehicleId = r.VehicleId,
                 Vehicle = r.Vehicle != null ? _vehiclesService.MapSingleEntityToDto(r.Vehicle) : null,
-                ModifiedByEmployeeId = r.ModifiedByEmployeeId,
-                ModifiedByEmployee = r.ModifiedByEmployee != null ? _employeesService.MapSingleEntityToDto(r.ModifiedByEmployee) : null,
-                RequestDate = r.RequestDate,
+                StartedByEmployeeId = r.StartedByEmployeeId,
+                StartedByEmployee = r.StartedByEmployee != null ? _employeesService.MapSingleEntityToDto(r.StartedByEmployee) : null,
+                FinishedByEmployeeId = r.FinishedByEmployeeId,
+                FinishedByEmployee = r.FinishedByEmployee != null ? _employeesService.MapSingleEntityToDto(r.FinishedByEmployee) : null,
+                RentalStatus = r.RentalStatus,
                 StartDate = r.StartDate,
                 EndDate = r.EndDate,
-                TotalCost = r.TotalCost,
-                RequestStatus = r.RequestStatus,
-                PaymentStatus = r.PaymentStatus,
-                Notes = r.Notes,
+                PickupDateTime = r.PickupDateTime,
+                FinishDateTime = r.FinishDateTime,
+                Cost = r.Cost,
+                FinalCost = r.FinalCost,
                 IsActive = r.IsActive,
                 CreatedDate = r.CreatedDate,
                 ModifiedDate = r.ModifiedDate,
@@ -108,24 +109,26 @@ namespace API.Services.Rentals
             };
         }
 
-        public override RentalRequestDto MapSingleEntityToDto(RentalRequest entity)
+        public override RentalDto MapSingleEntityToDto(Rental entity)
         {
-            return new RentalRequestDto
+            return new RentalDto
             {
-                RentalRequestId = entity.RentalRequestId,
+                RentalId = entity.RentalId,
                 CustomerId = entity.CustomerId,
                 Customer = entity.Customer != null ? _customersService.MapSingleEntityToDto(entity.Customer) : null,
                 VehicleId = entity.VehicleId,
                 Vehicle = entity.Vehicle != null ? _vehiclesService.MapSingleEntityToDto(entity.Vehicle) : null,
-                ModifiedByEmployeeId = entity.ModifiedByEmployeeId,
-                ModifiedByEmployee = entity.ModifiedByEmployee != null ? _employeesService.MapSingleEntityToDto(entity.ModifiedByEmployee) : null,
-                RequestDate = entity.RequestDate,
+                StartedByEmployeeId = entity.StartedByEmployeeId,
+                StartedByEmployee = entity.StartedByEmployee != null ? _employeesService.MapSingleEntityToDto(entity.StartedByEmployee) : null,
+                FinishedByEmployeeId = entity.FinishedByEmployeeId,
+                FinishedByEmployee = entity.FinishedByEmployee != null ? _employeesService.MapSingleEntityToDto(entity.FinishedByEmployee) : null,
+                RentalStatus = entity.RentalStatus,
                 StartDate = entity.StartDate,
                 EndDate = entity.EndDate,
-                TotalCost = entity.TotalCost,
-                RequestStatus = entity.RequestStatus,
-                PaymentStatus = entity.PaymentStatus,
-                Notes = entity.Notes,
+                PickupDateTime = entity.PickupDateTime,
+                FinishDateTime = entity.FinishDateTime,
+                Cost = entity.Cost,
+                FinalCost = entity.FinalCost,
                 IsActive = entity.IsActive,
                 CreatedDate = entity.CreatedDate,
                 ModifiedDate = entity.ModifiedDate,
@@ -135,15 +138,15 @@ namespace API.Services.Rentals
 
         #endregion
 
-        public override async Task<RentalRequestDto> GetByIdAsync(int id)
+        public override async Task<RentalDto> GetByIdAsync(int id)
         {
             var entity = await FindEntityById(id);
-            if (entity == null) throw new KeyNotFoundException($"{typeof(RentalRequest).Name} not found");
+            if (entity == null) throw new KeyNotFoundException($"{typeof(Rental).Name} not found");
 
             return MapSingleEntityToDto(entity);
         }
 
-        public async Task<PaginatedResult<RentalRequestDto>> GetPendingRequestsAsync(
+        public async Task<PaginatedResult<RentalDto>> GetActiveRentalsAsync(
             string? search = null,
             int page = 1,
             int pageSize = 10,
@@ -152,25 +155,26 @@ namespace API.Services.Rentals
             DateTime? modifiedBefore = null,
             DateTime? modifiedAfter = null)
         {
-            var query = _context.RentalRequests
-                .Where(r => r.RequestStatus == RentalRequestStatus.Pending.ToString() && r.IsActive); // The critical filter
+            var query = _context.Rentals
+                .Where(r => r.RentalStatus == RentalStatus.InProgress.ToString() && r.IsActive); // Filter for active rentals
 
             return await GetAllAsync(
                 search, page, false, createdBefore, createdAfter, modifiedBefore, modifiedAfter, pageSize, query);
         }
 
-        protected override void UpdateEntity(RentalRequest entity, RentalRequestDto model)
+        protected override void UpdateEntity(Rental entity, RentalDto model)
         {
             entity.StartDate = model.StartDate;
             entity.EndDate = model.EndDate;
-            entity.TotalCost = model.TotalCost;
-            entity.RequestStatus = model.RequestStatus;
-            entity.PaymentStatus = model.PaymentStatus;
-            entity.Notes = model.Notes;
+            entity.PickupDateTime = model.PickupDateTime;
+            entity.FinishDateTime = model.FinishDateTime;
+            entity.Cost = model.Cost;
+            entity.FinalCost = model.FinalCost;
+            entity.RentalStatus = model.RentalStatus;
 
             // Update navigation properties if provided
             if (model.Customer != null)
-            { 
+            {
                 entity.CustomerId = model.Customer.Id;
             }
 
@@ -179,9 +183,14 @@ namespace API.Services.Rentals
                 entity.VehicleId = model.Vehicle.VehicleId;
             }
 
-            if (model.ModifiedByEmployee != null)
+            if (model.StartedByEmployee != null)
             {
-                entity.ModifiedByEmployeeId = model.ModifiedByEmployee.Id;
+                entity.StartedByEmployeeId = model.StartedByEmployee.Id;
+            }
+
+            if (model.FinishedByEmployee != null)
+            {
+                entity.FinishedByEmployeeId = model.FinishedByEmployee.Id;
             }
 
             // Restore the entity
@@ -192,86 +201,85 @@ namespace API.Services.Rentals
             }
         }
 
-        public override async Task<RentalRequest> FindEntityById(int id)
+        public override async Task<Rental> FindEntityById(int id)
         {
-            return await _context.RentalRequests
+            return await _context.Rentals
                 .Include(r => r.Customer)
                 .Include(r => r.Customer.Address)
                 .Include(r => r.Customer.Address.Country)
-                .Include(r => r.ModifiedByEmployee)
                 .Include(r => r.Vehicle)
                 .Include(r => r.Vehicle.VehicleStatus)
                 .Include(r => r.Vehicle.VehicleType)
                 .Include(r => r.Vehicle.VehicleModel)
                 .Include(r => r.Vehicle.VehicleModel.VehicleBrand)
-                .FirstOrDefaultAsync(r => r.RentalRequestId == id);
+                .Include(r => r.StartedByEmployee)
+                .Include(r => r.FinishedByEmployee)
+                .FirstOrDefaultAsync(r => r.RentalId == id);
         }
 
-        protected override IQueryable<RentalRequest> IncludeRelatedEntities(IQueryable<RentalRequest> query)
+        protected override IQueryable<Rental> IncludeRelatedEntities(IQueryable<Rental> query)
         {
             return query
                 .Include(r => r.Customer)
                 .Include(r => r.Customer.Address)
                 .Include(r => r.Customer.Address.Country)
-                .Include(r => r.ModifiedByEmployee)
                 .Include(r => r.Vehicle)
                 .Include(r => r.Vehicle.VehicleStatus)
                 .Include(r => r.Vehicle.VehicleType)
                 .Include(r => r.Vehicle.VehicleModel)
-                .Include(r => r.Vehicle.VehicleModel.VehicleBrand);
+                .Include(r => r.Vehicle.VehicleModel.VehicleBrand)
+                .Include(r => r.StartedByEmployee)
+                .Include(r => r.FinishedByEmployee);
         }
 
-        public override async Task<RentalRequestDto> CreateAsync(RentalRequestDto rentalRequestDto)
+        public override async Task<RentalDto> CreateAsync(RentalDto rentalDto)
         {
             await using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                // Use calculator
-                rentalRequestDto.TotalCost = await _rentalCostCalculator.Calculate(rentalRequestDto);
+                // Use calculator again to avoid mistakes
+                rentalDto.Cost = await _rentalCostCalculator.Calculate(rentalDto);
 
-                // Create the rental request entity
-                var rentalRequest = new RentalRequest
+                var rental = new Rental
                 {
-                    CustomerId = rentalRequestDto.Customer.Id,
-                    VehicleId = rentalRequestDto.Vehicle.VehicleId,
-                    RequestDate = DateTime.UtcNow,
-                    StartDate = rentalRequestDto.StartDate,
-                    EndDate = rentalRequestDto.EndDate,
-                    TotalCost = rentalRequestDto.TotalCost,
-                    RequestStatus = RentalRequestStatus.Pending.ToString(), // Set RequestStatus to Pending
-                    PaymentStatus = PaymentStatus.Pending.ToString(),       // Set PaymentStatus to Pending
-                    Notes = rentalRequestDto.Notes,
+                    CustomerId = rentalDto.Customer.Id,
+                    VehicleId = rentalDto.Vehicle.VehicleId,
+                    StartedByEmployeeId = rentalDto.StartedByEmployee.Id,
+                    RentalStatus = RentalStatus.AwaitingPickup.ToString(), // Set initial status
+                    StartDate = rentalDto.StartDate,
+                    EndDate = rentalDto.EndDate,
+                    Cost = rentalDto.Cost,
                     IsActive = true,
                     CreatedDate = DateTime.UtcNow,
                     ModifiedDate = DateTime.UtcNow
                 };
 
-                _context.RentalRequests.Add(rentalRequest);
+                _context.Rentals.Add(rental);
                 await _context.SaveChangesAsync();
 
                 await transaction.CommitAsync();
 
-                return MapSingleEntityToDto(rentalRequest);
+                return MapSingleEntityToDto(rental);
             }
             catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                throw new ApplicationException("An error occurred while creating the rental request.", ex);
+                throw new ApplicationException("An error occurred while creating the rental.", ex);
             }
         }
 
-        // Custom method for soft deleting a rental request
+        // Custom method for soft deleting a rental
         public override async Task<bool> DeleteAsync(int id)
         {
             await using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                var rentalRequest = await FindEntityById(id);
-                if (rentalRequest == null)
+                var rental = await FindEntityById(id);
+                if (rental == null)
                     return false;
 
-                var rentalRequestDeleted = await base.DeleteAsync(id);
-                if (!rentalRequestDeleted)
+                var rentalDeleted = await base.DeleteAsync(id);
+                if (!rentalDeleted)
                     return false;
 
                 await transaction.CommitAsync();
