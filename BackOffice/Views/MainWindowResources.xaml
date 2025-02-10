@@ -30,6 +30,10 @@
         <vwv:VehiclesView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vehicles:VehicleMaintenanceViewModel}">
+        <vwv:VehicleMaintenanceView />
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type other:CountriesViewModel}">
         <otherviews:CountriesView />
     </DataTemplate>

@@ -88,6 +88,8 @@ namespace BackOffice.ViewModels
                 MarkPickupCommand?.NotifyCanExecuteChanged();
                 MarkReturnCommand?.NotifyCanExecuteChanged();
                 MarkReturnCommandWithIssues?.NotifyCanExecuteChanged();
+                MarkMaintainedCommand?.NotifyCanExecuteChanged();
+                SendToServiceCommand?.NotifyCanExecuteChanged();
             }
         }
 
@@ -300,6 +302,8 @@ namespace BackOffice.ViewModels
         public AsyncRelayCommand? MarkPickupCommand { get; set; }
         public AsyncRelayCommand? MarkReturnCommand { get; set; }
         public AsyncRelayCommand? MarkReturnCommandWithIssues { get; set; }
+        public AsyncRelayCommand? MarkMaintainedCommand { get; set; }
+        public AsyncRelayCommand? SendToServiceCommand { get; set; }
 
         #endregion
 

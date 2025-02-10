@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using API.Context;
+using API.Models;
 using API.Models.DTOs.Other;
 using API.Models.DTOs.Vehicles;
 using API.Models.Vehicles;
@@ -159,6 +160,22 @@ public class VehiclesService : BaseApiService<Vehicle, VehicleDto, VehicleDto>
             await transaction.RollbackAsync();
             throw;
         }
+    }
+
+    public async Task<PaginatedResult<VehicleDto>> GetVehiclesMaintenanceAsync(
+        string? search = null,
+        int page = 1,
+        int pageSize = 10,
+        DateTime? createdBefore = null,
+        DateTime? createdAfter = null,
+        DateTime? modifiedBefore = null,
+        DateTime? modifiedAfter = null)
+    {
+        var query = _apiDbContext.Vehicles
+            .Where(r => r.VehicleStatusId == 3 && r.IsActive);
+
+        return await GetAllAsync(
+            search, page, false, createdBefore, createdAfter, modifiedBefore, modifiedAfter, pageSize, query);
     }
 
     protected override Expression<Func<Vehicle, bool>> BuildSearchQuery(string search)

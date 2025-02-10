@@ -197,6 +197,7 @@ namespace BackOffice.ViewModels
                 { "VehicleModelsViewModel", new VehicleModelsViewModel() },
                 { "VehicleTypesViewModel", new VehicleTypesViewModel() },
                 { "VehiclesViewModel", new VehiclesViewModel() },
+                { "VehicleMaintenanceViewModel", new VehicleMaintenanceViewModel() },
 
                 { "RentalPlacesViewModel", new RentalPlacesViewModel() },
                 { "AddressesViewModel", new AddressesViewModel() },
@@ -226,7 +227,7 @@ namespace BackOffice.ViewModels
             CurrentUser = (EmployeeDto)SessionManager.Get("User");
 
             // Set default workspace
-            CurrentWorkspace = _viewModelMappings["ReturnsViewModel"];
+            CurrentWorkspace = _viewModelMappings["VehicleMaintenanceViewModel"];
 
             ToggleSidebarCommand = new RelayCommand(ToggleSidebar);
             LogoutCommand = new RelayCommand(Logout);

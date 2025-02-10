@@ -18,8 +18,8 @@ namespace API.Seeders
             {
                 new() { StatusName = "Available", Description = "Vehicle is available for rent." },
                 new() { StatusName = "Rented", Description = "Vehicle is currently rented." },
-                new() { StatusName = "UnderInspection", Description = "Vehicle is under inspection after return." },
                 new() { StatusName = "Maintenance", Description = "Vehicle is undergoing maintenance." },
+                new() { StatusName = "InService", Description = "Vehicle is in service." },
                 new() { StatusName = "OutOfService", Description = "Vehicle is temporarily out of service." }
             };
 

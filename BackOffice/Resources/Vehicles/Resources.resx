@@ -283,4 +283,7 @@
   <data name="VehicleStatus" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="Service" xml:space="preserve">
+    <value>Service</value>
+  </data>
 </root>

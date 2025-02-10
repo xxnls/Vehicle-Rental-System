@@ -1,0 +1,120 @@
+﻿<UserControl
+    x:Class="BackOffice.Views.Vehicles.VehicleMaintenanceView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+    xmlns:helpers="clr-namespace:BackOffice.Helpers"
+    xmlns:local="clr-namespace:BackOffice.Views.Vehicles"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:BackOffice.Resources.Vehicles"
+    xmlns:vehicles="clr-namespace:BackOffice.ViewModels.Vehicles"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <vehicles:VehicleMaintenanceViewModel x:Name="DataContext" />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="ContentStringFormat" Value="{}{0}:" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+
+            <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="5,0,0,0">
+
+                        <Button Command="{Binding LoadModelsCommand}" Style="{StaticResource DefaultButtonStyle}">
+                            <Image Source="/ViewResources/Icons/reload.png" />
+                        </Button>
+
+                        <Button Command="{Binding MarkMaintainedCommand}" Style="{StaticResource DefaultButtonStyle}">
+                            <Image Source="/ViewResources/Icons/check_circle.png" />
+                        </Button>
+
+                        <Button
+                            Width="100"
+                            Command="{Binding SendToServiceCommand}"
+                            Style="{StaticResource DefaultButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="0,3,5,0" Text="{x:Static res:Resources.Service}" />
+                                <Image Source="/ViewResources/Icons/return_issue.png" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+
+                    <customControls:SearchControl Grid.Column="1" SearchCommand="{Binding SearchCommand}" />
+                </Grid>
+
+                <!--  Data Grid  -->
+                <DataGrid
+                    x:Name="MainDataGrid"
+                    ItemsSource="{Binding Models}"
+                    SelectedItem="{Binding EditableModel, Mode=TwoWay}"
+                    Style="{StaticResource DefaultDataGridStyle}">
+                    <DataGrid.InputBindings>
+                        <MouseBinding
+                            Command="{Binding ShowDetailedInfoCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Mode=OneWay}"
+                            Gesture="LeftDoubleClick" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding VehicleId}" Header="ID" />
+                        <DataGridTextColumn Binding="{Binding VehicleType.Name}" Header="{x:Static res:Resources.VehicleType}" />
+                        <DataGridTextColumn Binding="{Binding VehicleModel.VehicleBrand.Name}" Header="{x:Static res:Resources.Brand}" />
+                        <DataGridTextColumn Binding="{Binding VehicleModel.Name}" Header="{x:Static res:Resources.VehicleModel}" />
+                        <DataGridTextColumn Binding="{Binding RentalPlace.Address.Country.Name}" Header="{x:Static res:Resources.Country}" />
+                        <DataGridTextColumn Binding="{Binding RentalPlace.Address.City}" Header="{x:Static res:Resources.City}" />
+                        <DataGridTextColumn Binding="{Binding VehicleStatus.StatusName}" Header="{x:Static res:Resources.VehicleStatus}" />
+                        <DataGridTextColumn Binding="{Binding Vin}" Header="VIN" />
+                        <DataGridTextColumn Binding="{Binding LicensePlate}" Header="{x:Static res:Resources.LicensePlate}" />
+                        <DataGridTextColumn Binding="{Binding Color}" Header="{x:Static res:Resources.Color}" />
+                        <DataGridTextColumn Binding="{Binding ManufactureYear}" Header="{x:Static res:Resources.ManufactureYear}" />
+                        <DataGridTextColumn Binding="{Binding CurrentMileage}" Header="{x:Static res:Resources.CurrentMileage}" />
+                        <DataGridTextColumn Binding="{Binding LastMaintenanceMileage}" Header="{x:Static res:Resources.LastMaintenanceMileage}" />
+                        <DataGridTextColumn Binding="{Binding LastMaintenanceDate}" Header="{x:Static res:Resources.LastMaintenanceDate}" />
+                        <DataGridTextColumn Binding="{Binding NextMaintenanceDate}" Header="{x:Static res:Resources.NextMaintenanceDate}" />
+                        <DataGridTextColumn Binding="{Binding PurchaseDate}" Header="{x:Static res:Resources.PurchaseDate}" />
+                        <DataGridTextColumn Binding="{Binding PurchasePrice}" Header="{x:Static res:Resources.PurchasePrice}" />
+                        <DataGridTextColumn Binding="{Binding Status}" Header="{x:Static res:Resources.Status}" />
+                        <DataGridTextColumn Binding="{Binding CustomDailyRate}" Header="{x:Static res:Resources.DataGridCustomDailyRate}" />
+                        <DataGridTextColumn Binding="{Binding CustomWeeklyRate}" Header="{x:Static res:Resources.DataGridCustomWeeklyRate}" />
+                        <DataGridTextColumn Binding="{Binding CustomDeposit}" Header="{x:Static res:Resources.DataGridCustomDeposit}" />
+                        <DataGridCheckBoxColumn Binding="{Binding IsAvailableForRent}" Header="{x:Static res:Resources.DataGridAvailable}" />
+                        <DataGridTextColumn Binding="{Binding Notes}" Header="{x:Static res:Resources.Notes}" />
+                        <DataGridTextColumn Binding="{Binding CreatedDate}" Header="{x:Static generic:Resources.CreatedDate}" />
+                        <DataGridTextColumn Binding="{Binding ModifiedDate}" Header="{x:Static generic:Resources.ModifiedDate}" />
+                        <DataGridTextColumn
+                            Binding="{Binding DeletedDate}"
+                            Header="{x:Static generic:Resources.DeletedDate}"
+                            Visibility="{Binding ShowDeleted, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference Name=DataContext}}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!--  Pagination  -->
+                <customControls:PaginationControl
+                    CanLoadNextPage="{Binding CanLoadNextPage}"
+                    CanLoadPreviousPage="{Binding CanLoadPreviousPage}"
+                    CurrentPage="{Binding CurrentPage}"
+                    ModelsPerPage="{Binding PageSize}"
+                    NextPageCommand="{Binding LoadNextPageCommand}"
+                    PreviousPageCommand="{Binding LoadPreviousPageCommand}"
+                    TotalItemCount="{Binding TotalItemCount}" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

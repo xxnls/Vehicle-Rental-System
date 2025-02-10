@@ -113,6 +113,10 @@
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="VehicleModelsViewModel"
                             Content="Vehicle Models" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="VehicleMaintenanceViewModel"
+                            Content="Vehicle Maintenance" />
                     </StackPanel>
                 </Expander>
 
