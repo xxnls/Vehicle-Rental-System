@@ -35,7 +35,7 @@ namespace API.BusinessLogic
 
                 // Firstly, check if rent has DamageFeePaymentStatus as Pending
                 if (rent.DamageFeePaymentStatus == PaymentStatus.Pending.ToString())
-                {//Math.Min(rent.DepositRefundAmount ?? 0, rent.DepositAmount)
+                {
                     if (totalPaid >= rent.FinalCost - (rent.DepositAmount - rent.DepositRefundAmount))
                     {
                         rent.DamageFeePaymentStatus = PaymentStatus.Completed.ToString();

@@ -229,6 +229,7 @@ namespace BackOffice.ViewModels.Rentals
                 }
 
                 rental.PostRentalReport = report;
+                rental.DamageFee ??= 0;
 
                 rental.FinalCost = rental.Cost + rental.DamageFee + actualDeduction;
 

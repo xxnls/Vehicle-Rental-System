@@ -258,7 +258,7 @@ namespace BackOffice.Models.DTOs.Rentals
             }
         }
 
-        private PostRentalReportDto? _postRentalReport = new();
+        private PostRentalReportDto? _postRentalReport;
         public PostRentalReportDto? PostRentalReport
         {
             get => _postRentalReport;
