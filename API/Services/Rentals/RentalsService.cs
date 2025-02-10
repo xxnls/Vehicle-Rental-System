@@ -258,6 +258,7 @@ namespace API.Services.Rentals
         {
             return await _context.Rentals
                 .Include(r => r.Customer)
+                .Include(r => r.Customer.CustomerType)
                 .Include(r => r.Customer.Address)
                 .Include(r => r.Customer.Address.Country)
                 .Include(r => r.Vehicle)
@@ -274,6 +275,7 @@ namespace API.Services.Rentals
         {
             return query
                 .Include(r => r.Customer)
+                .Include(r => r.Customer.CustomerType)
                 .Include(r => r.Customer.Address)
                 .Include(r => r.Customer.Address.Country)
                 .Include(r => r.Vehicle)

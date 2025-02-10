@@ -56,7 +56,6 @@ namespace API.BusinessLogic
             decimal totalCost;
 
             // If custom daily rate is set, use it, otherwise use the base daily rate
-            // TODO: Apply discounts
             if (vehicle.CustomDailyRate.HasValue)
             {
                 totalCost = (decimal)rentalDuration * vehicle.CustomDailyRate.Value;
@@ -69,6 +68,10 @@ namespace API.BusinessLogic
             // If total cost is 0, throw an exception
             if (totalCost == 0)
                 throw new ArgumentException("Vehicle type or base daily rate is missing.");
+
+            // Apply customer discount
+            if (rental.Customer.CustomerType.DiscountPercent != null)
+                totalCost -= (totalCost * ((decimal)rental.Customer.CustomerType.DiscountPercent / 100));
 
             return totalCost;
         }
