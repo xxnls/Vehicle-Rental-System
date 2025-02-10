@@ -1,6 +1,7 @@
 ﻿using API.Context;
 using API.Models.DTOs.Rentals;
 using API.Models.Rentals;
+using API.Services.PostRentalReports;
 using API.Services.Rentals;
 using API.Services.Vehicles;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ namespace API.BusinessLogic
         private readonly VehiclesService _vehiclesService;
         private readonly VehicleStatusesService _vehicleStatusesService;
         private readonly RentalsService _rentalService;
+        private readonly PostRentalReportsService _postRentalReportService;
         private readonly ApiDbContext _context;
 
         public RentalProcessing(
@@ -23,12 +25,14 @@ namespace API.BusinessLogic
             VehiclesService vehiclesService,
             VehicleStatusesService vehicleStatusesService,
             RentalsService rentalService,
+            PostRentalReportsService postRentalReportsService,
             ApiDbContext context)
         {
             _rentalRequestsService = rentalRequestsService;
             _vehiclesService = vehiclesService;
             _vehicleStatusesService = vehicleStatusesService;
             _rentalService = rentalService;
+            _postRentalReportService = postRentalReportsService;
             _context = context;
         }
 
@@ -107,6 +111,7 @@ namespace API.BusinessLogic
         {
             try
             {
+                // Get fresh rental data
                 var rental = await _rentalService.GetByIdAsync(rentalDto.RentalId);
 
                 if (rental.RentalStatus != RentalStatus.AwaitingPickup.ToString())
@@ -125,6 +130,58 @@ namespace API.BusinessLogic
             catch (Exception e)
             {
                 throw new Exception("An error occurred while marking the rental as picked up.");
+            }
+        }
+
+        /// <summary>
+        /// Mark a rental as returned.
+        /// </summary>
+        /// <param name="rentalDto"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="Exception"></exception>
+        public async Task<bool> MarkReturnAsync(RentalDto rentalDto)
+        {
+            try
+            {
+                // Get fresh rental data
+                var rental = await _rentalService.GetByIdAsync(rentalDto.RentalId);
+
+                if (rental.RentalStatus != RentalStatus.InProgress.ToString())
+                    throw new InvalidOperationException("Rental is not in progress.");
+
+                // Change vehicle status to under inspection
+                await ChangeVehicleStatusAsync(rental.VehicleId, 3);
+
+                // Create PostRentalReport
+                await _postRentalReportService.CreateAsync(rentalDto.PostRentalReport);
+
+                // Mark the rental as finished, update all properties that are needed
+                rental.RentalStatus = RentalStatus.Finished.ToString();
+                rental.FinishDateTime = DateTime.UtcNow;
+                rental.FinishedByEmployee = rentalDto.FinishedByEmployee;
+                rental.DepositStatus = rentalDto.DepositStatus;
+                rental.DepositRefundAmount = rentalDto.DepositRefundAmount;
+                rental.FinalCost = rentalDto.FinalCost;
+                rental.DamageFee = rentalDto.DamageFee;
+
+                // If there is a damage fee, set the damage fee payment status to pending
+                if (rental.DamageFee is > 0)
+                {
+                    rental.DamageFeePaymentStatus = PaymentStatus.Pending.ToString();
+                }
+                else
+                {
+                    rental.DamageFee = 0;
+                }
+
+                await _rentalService.UpdateAsync(rental.RentalId, rental);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("An error occurred while marking the rental as returned.");
             }
         }
 
@@ -164,5 +221,6 @@ namespace API.BusinessLogic
         Task<bool> IsVehicleAvailableAsync(int vehicleId);
         Task ChangeVehicleStatusAsync(int vehicleId, int statusId);
         Task<bool> MarkPickupAsync(RentalDto rentalDto);
+        Task<bool> MarkReturnAsync(RentalDto rentalDto);
     }
 }

@@ -53,7 +53,53 @@ namespace API.Controllers.Rentals
             try
             {
                 // Mark the rental as picked up
-                var rentalDto = await _rentalProcessing.MarkPickupAsync(rental);
+                await _rentalProcessing.MarkPickupAsync(rental);
+                return Ok(rental);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while marking a rent.");
+            }
+        }
+
+        [HttpGet("inprogress")]
+        public async Task<IActionResult> GetInProgressRentals(
+            string? search = null,
+            int page = 1,
+            int pageSize = 10,
+            DateTime? createdBefore = null,
+            DateTime? createdAfter = null,
+            DateTime? modifiedBefore = null,
+            DateTime? modifiedAfter = null)
+        {
+            try
+            {
+                var paginatedResult = await _service.GetInProgressRentalsAsync(
+                    search, page, pageSize, createdBefore, createdAfter, modifiedBefore, modifiedAfter);
+
+                return Ok(paginatedResult);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while retrieving in progress rentals.");
+            }
+        }
+
+        [HttpPut("mark-return")]
+        public async Task<IActionResult> MarkReturn(RentalDto rental)
+        {
+            try
+            {
+                // Mark the rental as returned
+                await _rentalProcessing.MarkReturnAsync(rental);
                 return Ok(rental);
             }
             catch (ArgumentNullException ex)

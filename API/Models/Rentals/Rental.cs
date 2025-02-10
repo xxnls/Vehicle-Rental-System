@@ -29,7 +29,7 @@ namespace API.Models.Rentals
         NotTaken,
         PartiallyRefunded,
         FullyRefunded,
-        AppliedToCost
+        FullyTaken
     }
 
     public partial class Rental : IBaseModel
@@ -52,6 +52,8 @@ namespace API.Models.Rentals
 
         public string? DepositStatus { get; set; }
 
+        public string? DamageFeePaymentStatus { get; set; }
+
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
@@ -67,6 +69,8 @@ namespace API.Models.Rentals
         public decimal Cost { get; set; }
 
         public decimal? FinalCost { get; set; }
+
+        public decimal? DamageFee { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

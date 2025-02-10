@@ -56,6 +56,7 @@ namespace API.Services.Rentals
                 r.DepositStatus.Contains(search) ||
                 r.DepositAmount.ToString().Contains(search) ||
                 r.DepositRefundAmount.ToString().Contains(search) ||
+                r.DamageFee.ToString().Contains(search) ||
                 r.Cost.ToString().Contains(search);
         }
 
@@ -78,6 +79,7 @@ namespace API.Services.Rentals
                 RentalStatus = model.RentalStatus,
                 PaymentStatus = model.PaymentStatus,
                 DepositStatus = model.DepositStatus,
+                DamageFeePaymentStatus = model.DamageFeePaymentStatus,
                 StartDate = model.StartDate,
                 EndDate = model.EndDate,
                 PickupDateTime = model.PickupDateTime,
@@ -86,6 +88,7 @@ namespace API.Services.Rentals
                 DepositRefundAmount = model.DepositRefundAmount,
                 Cost = model.Cost,
                 FinalCost = model.FinalCost,
+                DamageFee = model.DamageFee,
                 IsActive = model.IsActive,
                 CreatedDate = model.CreatedDate,
                 ModifiedDate = model.ModifiedDate,
@@ -109,6 +112,7 @@ namespace API.Services.Rentals
                 RentalStatus = r.RentalStatus,
                 PaymentStatus = r.PaymentStatus,
                 DepositStatus = r.DepositStatus,
+                DamageFeePaymentStatus = r.DamageFeePaymentStatus,
                 StartDate = r.StartDate,
                 EndDate = r.EndDate,
                 PickupDateTime = r.PickupDateTime,
@@ -117,6 +121,7 @@ namespace API.Services.Rentals
                 DepositRefundAmount = r.DepositRefundAmount,
                 Cost = r.Cost,
                 FinalCost = r.FinalCost,
+                DamageFee = r.DamageFee,
                 IsActive = r.IsActive,
                 CreatedDate = r.CreatedDate,
                 ModifiedDate = r.ModifiedDate,
@@ -140,6 +145,7 @@ namespace API.Services.Rentals
                 RentalStatus = entity.RentalStatus,
                 PaymentStatus = entity.PaymentStatus,
                 DepositStatus = entity.DepositStatus,
+                DamageFeePaymentStatus = entity.DamageFeePaymentStatus,
                 StartDate = entity.StartDate,
                 EndDate = entity.EndDate,
                 PickupDateTime = entity.PickupDateTime,
@@ -148,6 +154,7 @@ namespace API.Services.Rentals
                 DepositRefundAmount = entity.DepositRefundAmount,
                 Cost = entity.Cost,
                 FinalCost = entity.FinalCost,
+                DamageFee = entity.DamageFee,
                 IsActive = entity.IsActive,
                 CreatedDate = entity.CreatedDate,
                 ModifiedDate = entity.ModifiedDate,
@@ -181,6 +188,22 @@ namespace API.Services.Rentals
                 search, page, false, createdBefore, createdAfter, modifiedBefore, modifiedAfter, pageSize, query);
         }
 
+        public async Task<PaginatedResult<RentalDto>> GetInProgressRentalsAsync(
+            string? search = null,
+            int page = 1,
+            int pageSize = 10,
+            DateTime? createdBefore = null,
+            DateTime? createdAfter = null,
+            DateTime? modifiedBefore = null,
+            DateTime? modifiedAfter = null)
+        {
+            var query = _context.Rentals
+                .Where(r => r.RentalStatus == RentalStatus.InProgress.ToString() && r.IsActive);
+
+            return await GetAllAsync(
+                search, page, false, createdBefore, createdAfter, modifiedBefore, modifiedAfter, pageSize, query);
+        }
+
         protected override void UpdateEntity(Rental entity, RentalDto model)
         {
             entity.StartDate = model.StartDate;
@@ -191,9 +214,11 @@ namespace API.Services.Rentals
             entity.DepositRefundAmount = model.DepositRefundAmount;
             entity.Cost = model.Cost;
             entity.FinalCost = model.FinalCost;
+            entity.DamageFee = model.DamageFee;
             entity.RentalStatus = model.RentalStatus;
             entity.PaymentStatus = model.PaymentStatus;
             entity.DepositStatus = model.DepositStatus;
+            entity.DamageFeePaymentStatus = model.DamageFeePaymentStatus;
 
             // Update navigation properties if provided
             if (model.Customer != null)
@@ -214,6 +239,11 @@ namespace API.Services.Rentals
             if (model.FinishedByEmployee != null)
             {
                 entity.FinishedByEmployeeId = model.FinishedByEmployee.Id;
+            }
+
+            if (model.PostRentalReport != null)
+            {
+                entity.PostRentalReportId = model.PostRentalReport.PostRentalReportId;
             }
 
             // Restore the entity
@@ -276,7 +306,6 @@ namespace API.Services.Rentals
                     DepositAmount = rentalDto.DepositAmount,
                     IsActive = true,
                     CreatedDate = DateTime.UtcNow,
-                    ModifiedDate = DateTime.UtcNow
                 };
 
                 _context.Rentals.Add(rental);

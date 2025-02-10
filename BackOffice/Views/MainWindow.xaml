@@ -266,10 +266,10 @@
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="PickupsViewModel"
                             Content="Pickups" />
-                        <!--<Button
+                        <Button
                             Command="{Binding ChangeWorkspaceCommand}"
-                            CommandParameter="CustomerTypesViewModel"
-                            Content="Customer Types" />-->
+                            CommandParameter="ReturnsViewModel"
+                            Content="Returns" />
                     </StackPanel>
                 </Expander>
             </StackPanel>

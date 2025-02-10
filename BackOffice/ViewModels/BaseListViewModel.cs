@@ -86,6 +86,8 @@ namespace BackOffice.ViewModels
                 RejectRequestCommand?.NotifyCanExecuteChanged();
                 CancelRequestCommand?.NotifyCanExecuteChanged();
                 MarkPickupCommand?.NotifyCanExecuteChanged();
+                MarkReturnCommand?.NotifyCanExecuteChanged();
+                MarkReturnCommandWithIssues?.NotifyCanExecuteChanged();
             }
         }
 
@@ -296,6 +298,8 @@ namespace BackOffice.ViewModels
         public AsyncRelayCommand? RejectRequestCommand { get; set; }
         public AsyncRelayCommand? CancelRequestCommand { get; set; }
         public AsyncRelayCommand? MarkPickupCommand { get; set; }
+        public AsyncRelayCommand? MarkReturnCommand { get; set; }
+        public AsyncRelayCommand? MarkReturnCommandWithIssues { get; set; }
 
         #endregion
 

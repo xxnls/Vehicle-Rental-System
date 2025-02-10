@@ -33,20 +33,35 @@ namespace API.BusinessLogic
                     .Where(p => p.TransactionStatus == "Completed")
                     .Sum(p => p.Amount);
 
-                // Check if total paid is greater than or equal to the cost + deposit amount
-                if (totalPaid >= (rent.Cost + rent.DepositAmount))
-                {
-                    rent.PaymentStatus = PaymentStatus.Completed.ToString();
-
-                    // TODO: Handle overpayment (create a refund record, update customer balance, etc.)
-                    //if (totalPaid > rent.Cost)
-                    //{
-                    //    var overpayment = totalPaid - rent.Cost;
-                    //}
+                // Firstly, check if rent has DamageFeePaymentStatus as Pending
+                if (rent.DamageFeePaymentStatus == PaymentStatus.Pending.ToString())
+                {//Math.Min(rent.DepositRefundAmount ?? 0, rent.DepositAmount)
+                    if (totalPaid >= rent.FinalCost - (rent.DepositAmount - rent.DepositRefundAmount))
+                    {
+                        rent.DamageFeePaymentStatus = PaymentStatus.Completed.ToString();
+                    }
+                    else
+                    {
+                        rent.DamageFeePaymentStatus = PaymentStatus.Pending.ToString();
+                    }
                 }
                 else
                 {
-                    rent.PaymentStatus = PaymentStatus.Pending.ToString();
+                    // Check if total paid is greater than or equal to the cost + deposit amount
+                    if (totalPaid >= (rent.Cost + rent.DepositAmount))
+                    {
+                        rent.PaymentStatus = PaymentStatus.Completed.ToString();
+
+                        // TODO: Handle overpayment (create a refund record, update customer balance, etc.)
+                        //if (totalPaid > rent.Cost)
+                        //{
+                        //    var overpayment = totalPaid - rent.Cost;
+                        //}
+                    }
+                    else
+                    {
+                        rent.PaymentStatus = PaymentStatus.Pending.ToString();
+                    }
                 }
 
                 await _context.SaveChangesAsync();
@@ -54,7 +69,7 @@ namespace API.BusinessLogic
             }
             catch (Exception ex)
             {
-                await transaction.RollbackAsync(); 
+                await transaction.RollbackAsync();
                 throw new ApplicationException("Error handling payment.", ex);
             }
         }

@@ -131,6 +131,53 @@
                                     Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                             </StackPanel>
 
+                            <Label Content="{x:Static res:Resources.DepositAmount}" />
+                            <TextBox Text="{Binding EditableModel.DepositAmount, StringFormat=N2}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="DepositAmount"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <StackPanel Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label Content="{x:Static res:Resources.DepositRefundAmount}" />
+                                <TextBox Text="{Binding EditableModel.DepositRefundAmount, StringFormat=N2}" />
+                                <TextBlock
+                                    helpers:ValidationHelper.PropertyName="DepositRefundAmount"
+                                    Foreground="{StaticResource ErrorBrush}"
+                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                                <Label Content="{x:Static res:Resources.DamageFeePaymentStatus}" />
+                                <ComboBox
+                                    ItemsSource="{Binding Source={helpers:EnumBindingSource {x:Type res1:PaymentStatus}}}"
+                                    SelectedItem="{Binding EditableModel.DamageFeePaymentStatus, UpdateSourceTrigger=PropertyChanged}"
+                                    Text="{Binding EditableModel.DamageFeePaymentStatus, UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock
+                                    helpers:ValidationHelper.PropertyName="DamageFeePaymentStatus"
+                                    Foreground="{StaticResource ErrorBrush}"
+                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                                <Label Content="{x:Static res:Resources.DamageFee}" />
+                                <TextBox Text="{Binding EditableModel.DamageFee, StringFormat=N2}" />
+                                <TextBlock
+                                    helpers:ValidationHelper.PropertyName="DamageFee"
+                                    Foreground="{StaticResource ErrorBrush}"
+                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            </StackPanel>
+
+                            <Label Content="{x:Static res:Resources.Cost}" />
+                            <TextBox Text="{Binding EditableModel.Cost, StringFormat=N2}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Cost"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <Label Content="{x:Static res:Resources.FinalCost}" />
+                            <TextBox Text="{Binding EditableModel.FinalCost, StringFormat=N2}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="FinalCost"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
                         </StackPanel>
 
                         <StackPanel
@@ -182,37 +229,6 @@
                                     Foreground="{StaticResource ErrorBrush}"
                                     Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                             </StackPanel>
-
-                            <Label Content="{x:Static res:Resources.DepositAmount}" />
-                            <TextBox Text="{Binding EditableModel.DepositAmount, StringFormat=N2}" />
-                            <TextBlock
-                                helpers:ValidationHelper.PropertyName="DepositAmount"
-                                Foreground="{StaticResource ErrorBrush}"
-                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
-
-                            <StackPanel Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <Label Content="{x:Static res:Resources.DepositRefundAmount}" />
-                                <TextBox Text="{Binding EditableModel.DepositRefundAmount, StringFormat=N2}" />
-                                <TextBlock
-                                    helpers:ValidationHelper.PropertyName="DepositRefundAmount"
-                                    Foreground="{StaticResource ErrorBrush}"
-                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
-                            </StackPanel>
-
-                            <Label Content="{x:Static res:Resources.Cost}" />
-                            <TextBox Text="{Binding EditableModel.Cost, StringFormat=N2}" />
-                            <TextBlock
-                                helpers:ValidationHelper.PropertyName="Cost"
-                                Foreground="{StaticResource ErrorBrush}"
-                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
-
-                            <Label Content="{x:Static res:Resources.FinalCost}" />
-                            <TextBox Text="{Binding EditableModel.FinalCost, StringFormat=N2}" />
-                            <TextBlock
-                                helpers:ValidationHelper.PropertyName="FinalCost"
-                                Foreground="{StaticResource ErrorBrush}"
-                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
-
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -301,6 +317,11 @@
                         <DataGridTextColumn Binding="{Binding DepositRefundAmount}" Header="{x:Static res:Resources.DepositRefundAmount}" />
                         <DataGridTextColumn Binding="{Binding Cost, StringFormat=N2}" Header="{x:Static res:Resources.Cost}" />
                         <DataGridTextColumn Binding="{Binding FinalCost, StringFormat=N2}" Header="{x:Static res:Resources.FinalCost}" />
+                        <DataGridTextColumn Binding="{Binding DamageFee, StringFormat=N2}" Header="{x:Static res:Resources.DamageFee}" />
+                        <DataGridTextColumn
+                            Binding="{Binding DamageFeePaymentStatus}"
+                            CellStyle="{StaticResource DamageFeePaymentStatusCellStyle}"
+                            Header="{x:Static res:Resources.DamageFeePaymentStatus}" />
 
                         <DataGridTextColumn Header="{x:Static res:Resources.StartedByEmployee}">
                             <DataGridTextColumn.Binding>

@@ -102,6 +102,10 @@
         <rentalviews:PickupsView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type rentals:ReturnsViewModel}">
+        <rentalviews:ReturnsView />
+    </DataTemplate>
+
     <Storyboard x:Key="ExpandSidebar">
         <DoubleAnimation
             Storyboard.TargetName="Sidebar"

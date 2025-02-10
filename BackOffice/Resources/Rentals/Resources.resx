@@ -142,4 +142,28 @@
   <data name="ErrorMarkingPickupPaymentText" xml:space="preserve">
     <value>Error while trying to mark a rent as picked up. Rent payment isn't complete.</value>
   </data>
+  <data name="DisplayNameReturns" xml:space="preserve">
+    <value>Returns</value>
+  </data>
+  <data name="DamageFee" xml:space="preserve">
+    <value>Damage fee</value>
+  </data>
+  <data name="DamageFeePaymentStatus" xml:space="preserve">
+    <value>Fee payment status</value>
+  </data>
+  <data name="DepositDeduction" xml:space="preserve">
+    <value>Deposit deduction</value>
+  </data>
+  <data name="IsCarRefueled" xml:space="preserve">
+    <value>Is car refueled?</value>
+  </data>
+  <data name="IsCarDamaged" xml:space="preserve">
+    <value>Is car damaged?</value>
+  </data>
+  <data name="IsCustomerLate" xml:space="preserve">
+    <value>Is customer late?</value>
+  </data>
+  <data name="ErrorDepositDeduction1" xml:space="preserve">
+    <value>Deposit deduction cannot be higher than deposit amount.</value>
+  </data>
 </root>

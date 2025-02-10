@@ -24,6 +24,7 @@
     <None Remove="ViewResources\Icons\reload.png" />
     <None Remove="ViewResources\Icons\removed.png" />
     <None Remove="ViewResources\Icons\restore.png" />
+    <None Remove="ViewResources\Icons\return_issue.png" />
     <None Remove="ViewResources\Icons\search.png" />
   </ItemGroup>
 
@@ -181,6 +182,7 @@
     <Resource Include="ViewResources\Icons\reload.png" />
     <Resource Include="ViewResources\Icons\removed.png" />
     <Resource Include="ViewResources\Icons\restore.png" />
+    <Resource Include="ViewResources\Icons\return_issue.png" />
     <Resource Include="ViewResources\Icons\search.png" />
   </ItemGroup>
 

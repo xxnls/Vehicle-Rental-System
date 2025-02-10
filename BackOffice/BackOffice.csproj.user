@@ -91,6 +91,9 @@
     <Compile Update="Views\Rentals\RentalsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Rentals\ReturnsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SelectWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -202,6 +205,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Rentals\RentalsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Rentals\ReturnsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SelectWindow.xaml">

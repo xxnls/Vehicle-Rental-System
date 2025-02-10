@@ -17,6 +17,7 @@ using API.Services.Customers;
 using API.Models.Customers;
 using API.Services.Rentals;
 using API.BusinessLogic;
+using API.Services.PostRentalReports;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +58,7 @@ builder.Services.AddScoped<PaymentsService>();
 
 builder.Services.AddScoped<RentalRequestsService>();
 builder.Services.AddScoped<RentalsService>();
+builder.Services.AddScoped<PostRentalReportsService>();
 
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddTransient<IRentalCostCalculator, RentalCostCalculator>();

@@ -31,7 +31,7 @@ namespace BackOffice.Models.DTOs.Rentals
         NotTaken,
         PartiallyRefunded,
         FullyRefunded,
-        AppliedToCost
+        FullyTaken
     }
 
     public class RentalDto : BaseDtoModel
@@ -85,6 +85,20 @@ namespace BackOffice.Models.DTOs.Rentals
                 if (_depositStatus != value)
                 {
                     _depositStatus = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string? _damageFeePaymentStatus;
+        public string? DamageFeePaymentStatus
+        {
+            get => _damageFeePaymentStatus;
+            set
+            {
+                if (_damageFeePaymentStatus != value)
+                {
+                    _damageFeePaymentStatus = value;
                     OnPropertyChanged();
                 }
             }
@@ -202,6 +216,20 @@ namespace BackOffice.Models.DTOs.Rentals
             }
         }
 
+        private decimal? _damageFee;
+        public decimal? DamageFee
+        {
+            get => _damageFee;
+            set
+            {
+                if (_damageFee != value)
+                {
+                    _damageFee = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private CustomerDto _customer = null!;
         public CustomerDto Customer
         {
@@ -230,7 +258,7 @@ namespace BackOffice.Models.DTOs.Rentals
             }
         }
 
-        private PostRentalReportDto? _postRentalReport;
+        private PostRentalReportDto? _postRentalReport = new();
         public PostRentalReportDto? PostRentalReport
         {
             get => _postRentalReport;
@@ -267,6 +295,20 @@ namespace BackOffice.Models.DTOs.Rentals
                 if (_vehicle != value)
                 {
                     _vehicle = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private decimal _depositDeduction = 0;
+        public decimal DepositDeduction
+        {
+            get => _depositDeduction;
+            set
+            {
+                if (_depositDeduction != value)
+                {
+                    _depositDeduction = value;
                     OnPropertyChanged();
                 }
             }

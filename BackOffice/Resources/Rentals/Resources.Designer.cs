@@ -79,11 +79,38 @@ namespace BackOffice.Resources.Rentals {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Damage fee.
+        /// </summary>
+        public static string DamageFee {
+            get {
+                return ResourceManager.GetString("DamageFee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fee payment status.
+        /// </summary>
+        public static string DamageFeePaymentStatus {
+            get {
+                return ResourceManager.GetString("DamageFeePaymentStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deposit.
         /// </summary>
         public static string DepositAmount {
             get {
                 return ResourceManager.GetString("DepositAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deposit deduction.
+        /// </summary>
+        public static string DepositDeduction {
+            get {
+                return ResourceManager.GetString("DepositDeduction", resourceCulture);
             }
         }
         
@@ -120,6 +147,24 @@ namespace BackOffice.Resources.Rentals {
         public static string DisplayNamePickups {
             get {
                 return ResourceManager.GetString("DisplayNamePickups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Returns.
+        /// </summary>
+        public static string DisplayNameReturns {
+            get {
+                return ResourceManager.GetString("DisplayNameReturns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deposit deduction cannot be higher than deposit amount..
+        /// </summary>
+        public static string ErrorDepositDeduction1 {
+            get {
+                return ResourceManager.GetString("ErrorDepositDeduction1", resourceCulture);
             }
         }
         
@@ -165,6 +210,33 @@ namespace BackOffice.Resources.Rentals {
         public static string FinishDateTime {
             get {
                 return ResourceManager.GetString("FinishDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is car damaged?.
+        /// </summary>
+        public static string IsCarDamaged {
+            get {
+                return ResourceManager.GetString("IsCarDamaged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is car refueled?.
+        /// </summary>
+        public static string IsCarRefueled {
+            get {
+                return ResourceManager.GetString("IsCarRefueled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is customer late?.
+        /// </summary>
+        public static string IsCustomerLate {
+            get {
+                return ResourceManager.GetString("IsCustomerLate", resourceCulture);
             }
         }
         
