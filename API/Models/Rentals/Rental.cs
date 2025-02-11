@@ -4,6 +4,7 @@ using API.Models.Vehicles;
 using System;
 using System.Collections.Generic;
 using API.Interfaces;
+using API.Models.FileSystem;
 
 namespace API.Models.Rentals
 {

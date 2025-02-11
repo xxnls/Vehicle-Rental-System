@@ -1,9 +1,10 @@
-﻿using System;
+﻿using API.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace API.Models;
+namespace API.Models.FileSystem;
 
-public partial class DocumentType
+public partial class DocumentType : IBaseModel
 {
     public int DocumentTypeId { get; set; }
 

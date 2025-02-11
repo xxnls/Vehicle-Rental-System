@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using API.Interfaces;
 using API.Models.Rentals;
+using API.Models.FileSystem;
 
 namespace API.Models.Customers;
 

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using API.Models.Vehicles;
 using API.Models.Other;
 using API.Models.Employees;
+using API.Models.FileSystem;
 using API.Models.Rentals;
 
 namespace API.Context;
@@ -276,7 +277,7 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.DocumentTypeId).HasColumnName("DocumentTypeID");
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.Description).HasMaxLength(400);
-            entity.Property(e => e.FileExtension).HasMaxLength(10);
+            entity.Property(e => e.FileExtension).HasMaxLength(100);
             entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.MaxFileSizeMb).HasColumnName("MaxFileSizeMB");
             entity.Property(e => e.Name).HasMaxLength(200);

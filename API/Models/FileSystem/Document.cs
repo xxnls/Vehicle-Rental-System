@@ -5,10 +5,11 @@ using API.Models.Rentals;
 using API.Models.Vehicles;
 using System;
 using System.Collections.Generic;
+using API.Interfaces;
 
-namespace API.Models;
+namespace API.Models.FileSystem;
 
-public partial class Document
+public partial class Document : IBaseModel
 {
     public int DocumentId { get; set; }
 
@@ -35,6 +36,8 @@ public partial class Document
     public string OriginalFileName { get; set; } = null!;
 
     public double FileSizeMb { get; set; }
+
+    public byte[] FileContent { get; set; } = null!;
 
     public DateTime CreatedDate { get; set; }
 

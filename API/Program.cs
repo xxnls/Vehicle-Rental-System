@@ -18,6 +18,7 @@ using API.Models.Customers;
 using API.Services.Rentals;
 using API.BusinessLogic;
 using API.Services.PostRentalReports;
+using API.Services.FileSystem;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,6 +56,10 @@ builder.Services.AddScoped<CustomerStatisticsService>();
 builder.Services.AddScoped<CustomersService>();
 
 builder.Services.AddScoped<PaymentsService>();
+
+builder.Services.AddScoped<DocumentTypesService>();
+builder.Services.AddScoped<DocumentCategoriesService>();
+builder.Services.AddScoped<FileSystemService>();
 
 builder.Services.AddScoped<RentalRequestsService>();
 builder.Services.AddScoped<RentalsService>();
