@@ -3,24 +3,8 @@
   "WorkspaceRootPath": "G:\\Vehicle Rental System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\helpers\\fileviewerhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\helpers\\fileviewerhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewmodels\\filesystem\\filesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\filesystem\\filesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\filesystem\\filesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\filesystem\\filesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\filesystem\\filesystemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\filesystem\\filesystemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,64 +23,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\App.xaml.cs",
-              "RelativeDocumentMoniker": "BackOffice\\App.xaml.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\App.xaml.cs",
-              "RelativeToolTip": "BackOffice\\App.xaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABQAAAAhAAAAAAAAAA==",
+              "Title": "FileSystemService.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\FileSystem\\FileSystemService.cs",
+              "RelativeDocumentMoniker": "API\\Services\\FileSystem\\FileSystemService.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\FileSystem\\FileSystemService.cs",
+              "RelativeToolTip": "API\\Services\\FileSystem\\FileSystemService.cs",
+              "ViewState": "AgIAANwAAAAAAAAAAAAYwP4AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T03:15:40.038Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "App.xaml",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\App.xaml",
-              "RelativeDocumentMoniker": "BackOffice\\App.xaml",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\App.xaml",
-              "RelativeToolTip": "BackOffice\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-11T03:15:38.506Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FileViewerHelper.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Helpers\\FileViewerHelper.cs",
-              "RelativeDocumentMoniker": "BackOffice\\Helpers\\FileViewerHelper.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Helpers\\FileViewerHelper.cs",
-              "RelativeToolTip": "BackOffice\\Helpers\\FileViewerHelper.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAowGEAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T03:06:20.115Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FilesView.xaml",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\FileSystem\\FilesView.xaml",
-              "RelativeDocumentMoniker": "BackOffice\\Views\\FileSystem\\FilesView.xaml",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\FileSystem\\FilesView.xaml",
-              "RelativeToolTip": "BackOffice\\Views\\FileSystem\\FilesView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-11T02:20:08.799Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FilesViewModel.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\FileSystem\\FilesViewModel.cs",
-              "RelativeDocumentMoniker": "BackOffice\\ViewModels\\FileSystem\\FilesViewModel.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\FileSystem\\FilesViewModel.cs",
-              "RelativeToolTip": "BackOffice\\ViewModels\\FileSystem\\FilesViewModel.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T02:19:46.685Z",
+              "WhenOpened": "2025-02-11T23:38:02.127Z",
               "EditorCaption": ""
             }
           ]

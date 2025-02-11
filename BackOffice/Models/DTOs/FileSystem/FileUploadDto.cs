@@ -1,7 +1,8 @@
-﻿namespace API.Models.DTOs.FileSystem
+﻿namespace BackOffice.Models.DTOs.FileSystem
 {
-    public class DocumentCreateDto
+    public class FileUploadDto
     {
+        // public IFormFile File { get; set; }
         public int DocumentTypeId { get; set; }
         public int DocumentCategoryId { get; set; }
         public int? VehicleId { get; set; }

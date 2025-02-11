@@ -1,4 +1,5 @@
 ﻿using API.Models.DTOs.FileSystem;
+using API.Models.FileSystem;
 using API.Services.FileSystem;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,26 +7,33 @@ namespace API.Controllers.FileSystem
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class FileSystemController : ControllerBase
+    public class FileSystemController : BaseApiController<Document, DocumentDto, DocumentDto>
     {
         private readonly FileSystemService _fileSystemService;
 
-        public FileSystemController(FileSystemService fileSystemService)
+        public FileSystemController(FileSystemService service) : base(service)
         {
-            _fileSystemService = fileSystemService;
+            _fileSystemService = service;
         }
 
         // Upload a file
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadFile([FromForm] DocumentCreateDto createDto, IFormFile file)
+        public async Task<IActionResult> UploadFile([FromForm] FileUploadDto uploadDto)
         {
-            if (file == null || file.Length == 0)
+            try
             {
-                return BadRequest("No file uploaded.");
+                var document = await _fileSystemService.UploadFileAsync(uploadDto);
+                return CreatedAtAction(nameof(DownloadFile), new { id = document.DocumentId }, document);
             }
-
-            var document = await _fileSystemService.UploadFileAsync(file, createDto);
-            return CreatedAtAction(nameof(DownloadFile), new { id = document.DocumentId }, document);
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                return StatusCode(500, "An error occurred while uploading the file.");
+            }
         }
 
         // Download a file
@@ -43,17 +51,9 @@ namespace API.Controllers.FileSystem
             }
         }
 
-        // Delete a file
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFile(int id)
+        protected override int GetEntityId(DocumentDto entity)
         {
-            var success = await _fileSystemService.DeleteFileAsync(id);
-            if (!success)
-            {
-                return NotFound();
-            }
-
-            return NoContent();
+            return entity.DocumentId;
         }
     }
 }
