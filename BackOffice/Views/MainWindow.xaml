@@ -276,6 +276,23 @@
                             Content="Returns" />
                     </StackPanel>
                 </Expander>
+
+                <Expander
+                    Margin="0,0,0,5"
+                    Padding="3,5"
+                    Background="{StaticResource DarkerPrimaryBrush}"
+                    Foreground="White"
+                    Header="Files">
+                    <Expander.Resources>
+                        <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
+                    </Expander.Resources>
+                    <StackPanel>
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="FilesViewModel"
+                            Content="Manage Files" />
+                    </StackPanel>
+                </Expander>
             </StackPanel>
         </Grid>
 

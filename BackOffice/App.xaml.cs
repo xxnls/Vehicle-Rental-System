@@ -18,6 +18,10 @@ namespace BackOffice
         {
             base.OnStartup(e);
 
+            // Cleanup temp files
+            FileViewerHelper.CleanupTempFiles();
+
+            // Set language
             LocalizationHelper.SetLanguage(Settings.Default.Language);
 
             // Show LoginWindow on startup

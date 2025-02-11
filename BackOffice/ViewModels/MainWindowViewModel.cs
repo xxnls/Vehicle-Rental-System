@@ -16,6 +16,7 @@ using BackOffice.ViewModels.Employees;
 using BackOffice.ViewModels.Other;
 using BackOffice.ViewModels.Vehicles;
 using BackOffice.ViewModels.Customers;
+using BackOffice.ViewModels.FileSystem;
 using BackOffice.ViewModels.Rentals;
 
 namespace BackOffice.ViewModels
@@ -220,14 +221,16 @@ namespace BackOffice.ViewModels
                 { "PickupsViewModel", new PickupsViewModel() },
                 { "ReturnsViewModel", new ReturnsViewModel() },
 
-                { "PaymentsViewModel", new PaymentsViewModel() }
+                { "PaymentsViewModel", new PaymentsViewModel() },
+
+                { "FilesViewModel", new FilesViewModel() }
             };
 
             // Load user
             CurrentUser = (EmployeeDto)SessionManager.Get("User");
 
             // Set default workspace
-            CurrentWorkspace = _viewModelMappings["VehicleMaintenanceViewModel"];
+            CurrentWorkspace = _viewModelMappings["FilesViewModel"];
 
             ToggleSidebarCommand = new RelayCommand(ToggleSidebar);
             LogoutCommand = new RelayCommand(Logout);
