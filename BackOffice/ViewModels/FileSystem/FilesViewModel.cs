@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using BackOffice.Models.DTOs.Customers;
 using BackOffice.Models.DTOs.Employees;
 using BackOffice.Models.DTOs.FileSystem;
@@ -28,6 +29,9 @@ namespace BackOffice.ViewModels.FileSystem
 {
     public class FilesViewModel : BaseListViewModel<DocumentDto>, IListViewModel
     {
+
+        public ICommand ViewFileContentCommand { get; set; }
+        public ICommand DownloadFileContentCommand { get; set; }
         public SelectorDialogParameters SelectDocumentCategoryParameters { get; set; }
         public SelectorDialogParameters SelectDocumentTypeParameters { get; set; }
         public SelectorDialogParameters SelectCustomerParameters { get; set; }
@@ -131,6 +135,9 @@ namespace BackOffice.ViewModels.FileSystem
                 () => EditableModel != null
             );
 
+            ViewFileContentCommand = new AsyncRelayCommand<int>(FileHelper.ViewFile);
+            DownloadFileContentCommand = new AsyncRelayCommand<int>(FileHelper.DownloadFileWithDialog);
+
             // Validation rules
             ValidationRules = new Dictionary<string, Action>
             {
@@ -147,7 +154,6 @@ namespace BackOffice.ViewModels.FileSystem
                 { nameof(EditableModel.Rental), ValidateRental }
             };
         }
-
         #region Validation
         private void ValidateTitle()
         {

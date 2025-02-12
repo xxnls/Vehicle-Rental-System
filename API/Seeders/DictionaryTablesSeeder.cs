@@ -43,15 +43,23 @@ namespace API.Seeders
                     Name = "Image",
                     Description = "Image files",
                     FileExtension = ".jpg,.jpeg,.png,.gif",
-                    MaxFileSizeMb = 5,
+                    MaxFileSizeMb = 50,
                     IsActive = true
                 },
                 new()
                 {
                     Name = "Document",
                     Description = "General documents, contracts, invoices etc.",
-                    FileExtension = ".pdf,.docx,.doc",
-                    MaxFileSizeMb = 10,
+                    FileExtension = ".docx,.doc",
+                    MaxFileSizeMb = 50,
+                    IsActive = true
+                },
+                new()
+                {
+                    Name = "PDF File",
+                    Description = "General documents, contracts, invoices etc.",
+                    FileExtension = ".pdf",
+                    MaxFileSizeMb = 50,
                     IsActive = true
                 },
                 new()

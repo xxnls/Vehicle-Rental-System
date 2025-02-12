@@ -94,7 +94,8 @@
                                     <Button
                                         Width="75"
                                         Height="20"
-                                        Command="{Binding ViewFileCommand, RelativeSource={RelativeSource AncestorType=DataGridCell}}"
+                                        Command="{Binding DataContext.ViewFileContentCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding DocumentId}"
                                         Content="{x:Static res:Resources.View}"
                                         Style="{StaticResource DefaultButtonStyle}" />
                                 </DataTemplate>
@@ -107,7 +108,8 @@
                                     <Button
                                         Width="75"
                                         Height="20"
-                                        Command="{Binding DownloadFileCommand, RelativeSource={RelativeSource AncestorType=DataGridCell}}"
+                                        Command="{Binding DataContext.DownloadFileContentCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding DocumentId}"
                                         Content="{x:Static res:Resources.Download}"
                                         Style="{StaticResource DefaultButtonStyle}" />
                                 </DataTemplate>
