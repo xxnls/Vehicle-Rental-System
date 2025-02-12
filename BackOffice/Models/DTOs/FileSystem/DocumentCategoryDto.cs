@@ -13,9 +13,11 @@ namespace BackOffice.Models.DTOs.FileSystem
         private int? _parentCategoryId;
         private string _name;
         private string _description;
+        private DocumentCategoryDto? _parentCategory;
 
         public int? ParentCategoryId { get => _parentCategoryId; set { _parentCategoryId = value; OnPropertyChanged(); } }
         public string Name { get => _name; set { _name = value; OnPropertyChanged(); } }
         public string Description { get => _description; set { _description = value; OnPropertyChanged(); } }
+        public DocumentCategoryDto? ParentCategory { get => _parentCategory; set { _parentCategory = value; OnPropertyChanged(); } }
     }
 }

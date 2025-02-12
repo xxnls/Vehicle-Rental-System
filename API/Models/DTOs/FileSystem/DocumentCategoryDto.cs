@@ -1,4 +1,5 @@
 ﻿using API.Interfaces;
+using Microsoft.Identity.Client;
 
 namespace API.Models.DTOs.FileSystem
 {
@@ -12,5 +13,7 @@ namespace API.Models.DTOs.FileSystem
         public DateTime? ModifiedDate { get; set; }
         public DateTime? DeletedDate { get; set; }
         public bool IsActive { get; set; }
+
+        public DocumentCategoryDto? ParentCategory { get; set; }
     }
 }

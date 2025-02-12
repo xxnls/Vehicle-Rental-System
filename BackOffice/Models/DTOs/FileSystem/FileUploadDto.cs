@@ -2,7 +2,7 @@
 {
     public class FileUploadDto
     {
-        // public IFormFile File { get; set; }
+        public byte[] FileContent { get; set; }
         public int DocumentTypeId { get; set; }
         public int DocumentCategoryId { get; set; }
         public int? VehicleId { get; set; }

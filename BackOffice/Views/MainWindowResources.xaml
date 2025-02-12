@@ -116,6 +116,14 @@
         <fileviews:FilesView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type files:DocumentCategoriesViewModel}">
+        <fileviews:DocumentCategoriesView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type files:DocumentTypesViewModel}">
+        <fileviews:DocumentTypesView />
+    </DataTemplate>
+
     <Storyboard x:Key="ExpandSidebar">
         <DoubleAnimation
             Storyboard.TargetName="Sidebar"

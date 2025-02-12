@@ -37,7 +37,7 @@ public partial class Document : IBaseModel
 
     public double FileSizeMb { get; set; }
 
-    public byte[] FileContent { get; set; } = null!;
+    public byte[]? FileContent { get; set; } = null!;
 
     public DateTime CreatedDate { get; set; }
 

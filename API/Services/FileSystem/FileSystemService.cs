@@ -43,7 +43,14 @@ namespace API.Services.FileSystem
 
         protected override Expression<Func<Document, bool>> BuildSearchQuery(string search)
         {
-            return document => document.Title.Contains(search) || document.Description.Contains(search);
+            return document => document.Title.Contains(search) || 
+                               document.Description.Contains(search) ||
+                               document.DocumentId.ToString().Contains(search);
+        }
+
+        protected override Expression<Func<Document, bool>> GetActiveFilter(bool showDeleted)
+        {
+            return r => r.IsActive != showDeleted;
         }
 
         public override async Task<Document> FindEntityById(int id)
@@ -88,9 +95,12 @@ namespace API.Services.FileSystem
                 RentalId = dto.RentalId,
                 Title = dto.Title,
                 Description = dto.Description,
-                CreatedDate = DateTime.UtcNow,
+                CreatedDate = dto.CreatedDate,
                 CreatedByEmployeeId = dto.CreatedByEmployeeId,
-                IsActive = true
+                ModifiedDate = dto.ModifiedDate,
+                ModifiedByEmployeeId = dto.ModifiedByEmployeeId,
+                IsActive = dto.IsActive,
+                DeletedDate = dto.DeletedDate
             };
         }
 
@@ -172,43 +182,43 @@ namespace API.Services.FileSystem
             entity.ModifiedDate = DateTime.UtcNow;
             entity.ModifiedByEmployeeId = dto.ModifiedByEmployeeId;
 
-            if (entity.DocumentType != null)
+            if (dto.DocumentType != null)
             {
                 entity.DocumentTypeId = dto.DocumentType.DocumentTypeId;
             }
 
-            if (entity.DocumentCategory != null)
+            if (dto.DocumentCategory != null)
             {
                 entity.DocumentCategoryId = dto.DocumentCategory.DocumentCategoryId;
             }
 
-            if (entity.Vehicle != null)
+            if (dto.Vehicle != null)
             {
                 entity.VehicleId = dto.Vehicle.VehicleId;
             }
 
-            if (entity.Employee != null)
+            if (dto.Employee != null)
             {
                 entity.EmployeeId = dto.Employee.Id;
             }
 
-            if (entity.Customer != null)
+            if (dto.Customer != null)
             {
                 entity.CustomerId = dto.Customer.Id;
             }
 
-            if (entity.RentalPlace != null)
+            if (dto.RentalPlace != null)
             {
                 entity.RentalPlaceId = dto.RentalPlace.RentalPlaceId;
             }
 
-            if (entity.Rental != null)
+            if (dto.Rental != null)
             {
                 entity.RentalId = dto.Rental.RentalId;
             }
 
             // Restore the entity
-            if (entity.IsActive)
+            if (dto.IsActive)
             {
                 entity.DeletedDate = null;
                 entity.IsActive = true;

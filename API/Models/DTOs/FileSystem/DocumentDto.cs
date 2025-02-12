@@ -22,7 +22,7 @@ namespace API.Models.DTOs.FileSystem
         public string FileName { get; set; } = null!;
         public string OriginalFileName { get; set; } = null!;
         public double FileSizeMb { get; set; }
-        public byte[] FileContent { get; set; } = null!;
+        public byte[]? FileContent { get; set; } = null!;
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public DateTime? DeletedDate { get; set; }

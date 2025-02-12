@@ -75,7 +75,11 @@ namespace API.Services.FileSystem
                 CreatedDate = dc.CreatedDate,
                 ModifiedDate = dc.ModifiedDate,
                 DeletedDate = dc.DeletedDate,
-                IsActive = dc.IsActive
+                IsActive = dc.IsActive,
+                ParentCategory = dc.ParentCategory != null ? new DocumentCategoryDto
+                {
+                    Name = dc.ParentCategory.Name,
+                } : null
             };
         }
 
@@ -91,7 +95,11 @@ namespace API.Services.FileSystem
                 CreatedDate = entity.CreatedDate,
                 ModifiedDate = entity.ModifiedDate,
                 DeletedDate = entity.DeletedDate,
-                IsActive = entity.IsActive
+                IsActive = entity.IsActive,
+                ParentCategory = entity.ParentCategory != null ? new DocumentCategoryDto
+                {
+                Name = entity.ParentCategory.Name,
+            } : null
             };
         }
 

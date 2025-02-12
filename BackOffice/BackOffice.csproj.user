@@ -64,6 +64,12 @@
     <Compile Update="Views\Employees\EmployeesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\FileSystem\DocumentCategoriesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\FileSystem\DocumentTypesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\FileSystem\FilesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -184,6 +190,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Employees\EmployeesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\FileSystem\DocumentCategoriesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\FileSystem\DocumentTypesView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\FileSystem\FilesView.xaml">

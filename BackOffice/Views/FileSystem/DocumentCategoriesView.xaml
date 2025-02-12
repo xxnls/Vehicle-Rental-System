@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="BackOffice.Views.FileSystem.DocumentCategoriesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BackOffice.Views.FileSystem"
+             xmlns:fileSystem="clr-namespace:BackOffice.ViewModels.FileSystem"
+             xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+             xmlns:res="clr-namespace:BackOffice.Resources.Files"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <fileSystem:DocumentCategoriesViewModel x:Name="DataContext" />
+    </UserControl.DataContext>
+
+    <DataGrid
+        x:Name="MainDataGrid"
+        ItemsSource="{Binding Models}"
+        SelectedItem="{Binding EditableModel, Mode=TwoWay}"
+        Style="{StaticResource DefaultDataGridStyle}">
+        <DataGrid.InputBindings>
+            <MouseBinding
+                Command="{Binding ShowDetailedInfoCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Mode=OneWay}"
+                Gesture="LeftDoubleClick" />
+        </DataGrid.InputBindings>
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding DocumentCategoryId}" Header="ID" />
+            <DataGridTextColumn Binding="{Binding ParentCategory.Name}" Header="{x:Static res:Resources.ParentCategoryName}"/>
+            <DataGridTextColumn Binding="{Binding Name}" Header="{x:Static res:Resources.TypeName}" />
+            <DataGridTextColumn Binding="{Binding Description}" Header="{x:Static res:Resources.TypeDescription}" />
+            <DataGridTextColumn Binding="{Binding CreatedDate}" Header="{x:Static generic:Resources.CreatedDate}" />
+            <DataGridTextColumn Binding="{Binding ModifiedDate}" Header="{x:Static generic:Resources.ModifiedDate}" />
+            <DataGridTextColumn Binding="{Binding DeletedDate}" Header="{x:Static generic:Resources.DeletedDate}" />
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>

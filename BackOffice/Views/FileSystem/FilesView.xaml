@@ -2,9 +2,153 @@
     x:Class="BackOffice.Views.FileSystem.FilesView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fileSystem="clr-namespace:BackOffice.ViewModels.FileSystem"
+    xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+    xmlns:helpers="clr-namespace:BackOffice.Helpers"
     xmlns:local="clr-namespace:BackOffice.Views.FileSystem"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:res="clr-namespace:BackOffice.Resources.Files"
     d:DesignHeight="450"
     d:DesignWidth="800"
-    mc:Ignorable="d" />
+    mc:Ignorable="d">
+
+
+    <UserControl.DataContext>
+        <fileSystem:FilesViewModel x:Name="DataContext" />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="ContentStringFormat" Value="{}{0}:" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <Grid Visibility="{Binding IsCreatingOrEditing, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Style="{StaticResource CreateEditBorderStyle}" />
+
+                <customControls:CreateEditSaveCancelControl
+                    Grid.Row="1"
+                    CancelCommand="{Binding SwitchToListModeCommand}"
+                    HasErrors="{Binding HasErrors}"
+                    SaveCommand="{Binding CreateModelCommand}"
+                    Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <customControls:CreateEditSaveCancelControl
+                    Grid.Row="1"
+                    CancelCommand="{Binding SwitchToListModeCommand}"
+                    HasErrors="{Binding HasErrors}"
+                    SaveCommand="{Binding UpdateModelCommand}"
+                    Visibility="{Binding IsEditing, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </Grid>
+
+            <StackPanel Visibility="{Binding IsListVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid>
+                    <customControls:CRUDButtonsControl
+                        AddCommand="{Binding SwitchToCreateModeCommand}"
+                        DeleteCommand="{Binding DeleteModelCommand}"
+                        DeleteVisibility="{Binding ShowDeleted, Converter={StaticResource InverseBooleanConverter}}"
+                        EditCommand="{Binding SwitchToEditModeCommand}"
+                        LoadCommand="{Binding LoadModelsCommand}"
+                        RestoreCommand="{Binding RestoreModelCommand}"
+                        RestoreCommandParameter="{Binding EditableModel.DocumentId}"
+                        RestoreVisibility="{Binding ShowDeleted}" />
+                    <customControls:SearchControl SearchCommand="{Binding SearchCommand}" />
+                    <customControls:FilterButtonsControl
+                        Grid.Column="2"
+                        Margin="0,0,5,0"
+                        ShowDeletedModelsCommand="{Binding ShowDeletedModelsCommand}"
+                        ShowFilterOptionsCommand="{Binding ShowFilterOptionsCommand}" />
+                </Grid>
+
+                <DataGrid
+                    x:Name="MainDataGrid"
+                    ItemsSource="{Binding Models}"
+                    SelectedItem="{Binding EditableModel, Mode=TwoWay}"
+                    Style="{StaticResource DefaultDataGridStyle}">
+                    <DataGrid.InputBindings>
+                        <MouseBinding
+                            Command="{Binding ShowDetailedInfoCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Mode=OneWay}"
+                            Gesture="LeftDoubleClick" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding DocumentId}" Header="ID" />
+                        <DataGridTextColumn Binding="{Binding DocumentType.Name}" Header="{x:Static res:Resources.TypeName}" />
+                        <DataGridTextColumn Binding="{Binding DocumentCategory.Name}" Header="{x:Static res:Resources.Category}" />
+                        <DataGridTextColumn Binding="{Binding Title}" Header="{x:Static res:Resources.Title}" />
+                        <DataGridTextColumn Binding="{Binding Description}" Header="{x:Static res:Resources.Description}" />
+                        <DataGridTextColumn Binding="{Binding FileName}" Header="{x:Static res:Resources.FileName}" />
+                        <DataGridTextColumn Binding="{Binding OriginalFileName}" Header="{x:Static res:Resources.OriginalFileName}" />
+                        <DataGridTextColumn Binding="{Binding FileSizeMb, StringFormat=N2}" Header="{x:Static res:Resources.FileSizeMb}" />
+
+                        <DataGridTemplateColumn Header="{x:Static res:Resources.View}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                        Width="75"
+                                        Height="20"
+                                        Command="{Binding ViewFileCommand, RelativeSource={RelativeSource AncestorType=DataGridCell}}"
+                                        Content="{x:Static res:Resources.View}"
+                                        Style="{StaticResource DefaultButtonStyle}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="{x:Static res:Resources.Download}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                        Width="75"
+                                        Height="20"
+                                        Command="{Binding DownloadFileCommand, RelativeSource={RelativeSource AncestorType=DataGridCell}}"
+                                        Content="{x:Static res:Resources.Download}"
+                                        Style="{StaticResource DefaultButtonStyle}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="{x:Static res:Resources.CreatedByEmployee}">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="CreatedByEmployee.FirstName" />
+                                    <Binding Path="CreatedByEmployee.LastName" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="{x:Static res:Resources.ModifiedByEmployee}">
+                            <DataGridTextColumn.Binding>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="ModifiedByEmployee.FirstName" />
+                                    <Binding Path="ModifiedByEmployee.LastName" />
+                                </MultiBinding>
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding CreatedDate}" Header="{x:Static generic:Resources.CreatedDate}" />
+                        <DataGridTextColumn Binding="{Binding ModifiedDate}" Header="{x:Static generic:Resources.ModifiedDate}" />
+                        <DataGridTextColumn
+                            Binding="{Binding DeletedDate}"
+                            Header="{x:Static generic:Resources.DeletedDate}"
+                            Visibility="{Binding ShowDeleted, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference Name=DataContext}}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <customControls:PaginationControl
+                    CanLoadNextPage="{Binding CanLoadNextPage}"
+                    CanLoadPreviousPage="{Binding CanLoadPreviousPage}"
+                    CurrentPage="{Binding CurrentPage}"
+                    ModelsPerPage="{Binding PageSize}"
+                    NextPageCommand="{Binding LoadNextPageCommand}"
+                    PreviousPageCommand="{Binding LoadPreviousPageCommand}"
+                    TotalItemCount="{Binding TotalItemCount}" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl> 
