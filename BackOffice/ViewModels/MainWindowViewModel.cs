@@ -186,7 +186,7 @@ namespace BackOffice.ViewModels
             InitializePermissionsAsync();
 
             var doc = new DocumentGenerator();
-            doc.GenerateInvoice(null, null);
+            doc.GenerateInvoice(null);
 
             // Register to receive status messages
             WeakReferenceMessenger.Default.Register<Messenger>(this, (r, m) =>

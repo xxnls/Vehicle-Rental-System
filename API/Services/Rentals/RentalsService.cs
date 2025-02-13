@@ -267,6 +267,9 @@ namespace API.Services.Rentals
                 .Include(r => r.Vehicle.VehicleModel)
                 .Include(r => r.Vehicle.VehicleModel.VehicleBrand)
                 .Include(r => r.StartedByEmployee)
+                .Include(r => r.StartedByEmployee.RentalPlace)
+                .Include(r => r.StartedByEmployee.RentalPlace.Address)
+                .Include(r => r.StartedByEmployee.RentalPlace.Address.Country)
                 .Include(r => r.FinishedByEmployee)
                 .FirstOrDefaultAsync(r => r.RentalId == id);
         }
@@ -284,6 +287,9 @@ namespace API.Services.Rentals
                 .Include(r => r.Vehicle.VehicleModel)
                 .Include(r => r.Vehicle.VehicleModel.VehicleBrand)
                 .Include(r => r.StartedByEmployee)
+                .Include(r => r.StartedByEmployee.RentalPlace)
+                .Include(r => r.StartedByEmployee.RentalPlace.Address)
+                .Include(r => r.StartedByEmployee.RentalPlace.Address.Country)
                 .Include(r => r.FinishedByEmployee);
         }
 
