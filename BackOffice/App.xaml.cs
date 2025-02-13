@@ -18,6 +18,7 @@ namespace BackOffice
         {
             base.OnStartup(e);
 
+
             // Cleanup temp files
             FileHelper.CleanupTempFiles();
 
