@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "G:\\Vehicle Rental System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewmodels\\filesystem\\filesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\filesystem\\filesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\helpers\\fileviewerhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\helpers\\fileviewerhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\filesystem\\filesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\filesystem\\filesview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\seeders\\dictionarytablesseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\seeders\\dictionarytablesseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewmodels\\filesystem\\filesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\filesystem\\filesviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\filesystem\\filesystemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\filesystem\\filesystemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,28 +32,11 @@
         },
         {
           "DockedHeight": 239,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DictionaryTablesSeeder.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Seeders\\DictionaryTablesSeeder.cs",
-              "RelativeDocumentMoniker": "API\\Seeders\\DictionaryTablesSeeder.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Seeders\\DictionaryTablesSeeder.cs",
-              "RelativeToolTip": "API\\Seeders\\DictionaryTablesSeeder.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAowDsAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T18:59:43.555Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "FilesView.xaml",
               "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\FileSystem\\FilesView.xaml",
               "RelativeDocumentMoniker": "BackOffice\\Views\\FileSystem\\FilesView.xaml",
@@ -65,32 +44,37 @@
               "RelativeToolTip": "BackOffice\\Views\\FileSystem\\FilesView.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-02-12T17:02:23.182Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FileSystemService.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\FileSystem\\FileSystemService.cs",
+              "RelativeDocumentMoniker": "API\\Services\\FileSystem\\FileSystemService.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\FileSystem\\FileSystemService.cs",
+              "RelativeToolTip": "API\\Services\\FileSystem\\FileSystemService.cs",
+              "ViewState": "AgIAAK0AAAAAAAAAAAAAwM0AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T01:10:41.619Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FileViewerHelper.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Helpers\\FileViewerHelper.cs",
-              "RelativeDocumentMoniker": "BackOffice\\Helpers\\FileViewerHelper.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Helpers\\FileViewerHelper.cs",
-              "RelativeToolTip": "BackOffice\\Helpers\\FileViewerHelper.cs",
-              "ViewState": "AgIAAJsAAAAAAAAAAAAjwLEAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T17:00:42.759Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "FilesViewModel.cs",
               "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\FileSystem\\FilesViewModel.cs",
               "RelativeDocumentMoniker": "BackOffice\\ViewModels\\FileSystem\\FilesViewModel.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\FileSystem\\FilesViewModel.cs*",
-              "RelativeToolTip": "BackOffice\\ViewModels\\FileSystem\\FilesViewModel.cs*",
-              "ViewState": "AgIAAHwAAAAAAAAAAAArwI4AAAANAAAAAAAAAA==",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\FileSystem\\FilesViewModel.cs",
+              "RelativeToolTip": "BackOffice\\ViewModels\\FileSystem\\FilesViewModel.cs",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAswKcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T16:54:49.038Z",
+              "WhenOpened": "2025-02-13T01:04:02.26Z",
               "EditorCaption": ""
             }
           ]

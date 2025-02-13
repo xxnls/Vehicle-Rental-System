@@ -145,4 +145,76 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Files</value>
   </data>
+  <data name="SelectDocumentCategory" xml:space="preserve">
+    <value>Select Category</value>
+  </data>
+  <data name="SelectType" xml:space="preserve">
+    <value>Select Type</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Select File</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="BasicInformation" xml:space="preserve">
+    <value>Basic Information</value>
+  </data>
+  <data name="AssociatedEntities" xml:space="preserve">
+    <value>Associated Entities</value>
+  </data>
+  <data name="Vehicle" xml:space="preserve">
+    <value>Vehicle</value>
+  </data>
+  <data name="SelectVehicle" xml:space="preserve">
+    <value>Select Vehicle</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="SelectEmployee" xml:space="preserve">
+    <value>Select Employee</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="SelectCustomer" xml:space="preserve">
+    <value>Select Customer</value>
+  </data>
+  <data name="RentalPlace" xml:space="preserve">
+    <value>Rental Place</value>
+  </data>
+  <data name="SelectRentalPlace" xml:space="preserve">
+    <value>Select Rental Place</value>
+  </data>
+  <data name="Rental" xml:space="preserve">
+    <value>Rental</value>
+  </data>
+  <data name="SelectRental" xml:space="preserve">
+    <value>Select Rental</value>
+  </data>
+  <data name="UploadFileTitle" xml:space="preserve">
+    <value>Select a file to upload.</value>
+  </data>
+  <data name="FileUploadMessage" xml:space="preserve">
+    <value>Uploading file, please wait.</value>
+  </data>
+  <data name="ErrorTitle1" xml:space="preserve">
+    <value>Title is required.</value>
+  </data>
+  <data name="ErrorTitle2" xml:space="preserve">
+    <value>Title cannot exceed 200 characters.</value>
+  </data>
+  <data name="ErrorDescription1" xml:space="preserve">
+    <value>Description cannot exceed 400 characters.</value>
+  </data>
+  <data name="ErrorFileContent1" xml:space="preserve">
+    <value>File is required.</value>
+  </data>
+  <data name="ErrorDocumentType1" xml:space="preserve">
+    <value>File type is required.</value>
+  </data>
+  <data name="ErrorDocumentCategory1" xml:space="preserve">
+    <value>File category is required.</value>
+  </data>
 </root>

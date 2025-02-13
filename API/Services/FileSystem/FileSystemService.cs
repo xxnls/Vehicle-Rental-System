@@ -43,9 +43,13 @@ namespace API.Services.FileSystem
 
         protected override Expression<Func<Document, bool>> BuildSearchQuery(string search)
         {
-            return document => document.Title.Contains(search) || 
+            return document => document.Title.Contains(search) ||
                                document.Description.Contains(search) ||
-                               document.DocumentId.ToString().Contains(search);
+                               document.DocumentId.ToString().Contains(search) ||
+                               document.DocumentCategory.Name.Contains(search) ||
+                               document.DocumentType.Name.Contains(search) ||
+                               document.FileName.Contains(search) ||
+                               document.OriginalFileName.Contains(search);
         }
 
         protected override Expression<Func<Document, bool>> GetActiveFilter(bool showDeleted)
@@ -180,6 +184,7 @@ namespace API.Services.FileSystem
             entity.Title = dto.Title;
             entity.Description = dto.Description;
             entity.ModifiedDate = DateTime.UtcNow;
+            // entity.FileContent = dto.FileContent;
             entity.ModifiedByEmployeeId = dto.ModifiedByEmployeeId;
 
             if (dto.DocumentType != null)
@@ -192,30 +197,36 @@ namespace API.Services.FileSystem
                 entity.DocumentCategoryId = dto.DocumentCategory.DocumentCategoryId;
             }
 
-            if (dto.Vehicle != null)
-            {
-                entity.VehicleId = dto.Vehicle.VehicleId;
-            }
+            //entity.RentalId = dto.RentalId;
+            //entity.VehicleId = dto.VehicleId;
+            //entity.EmployeeId = dto.EmployeeId;
+            //entity.CustomerId = dto.CustomerId;
+            //entity.RentalPlaceId = dto.RentalPlaceId;
 
-            if (dto.Employee != null)
-            {
-                entity.EmployeeId = dto.Employee.Id;
-            }
+            //if (dto.Vehicle != null)
+            //{
+            //    entity.VehicleId = dto.Vehicle.VehicleId;
+            //}
 
-            if (dto.Customer != null)
-            {
-                entity.CustomerId = dto.Customer.Id;
-            }
+            //if (dto.Employee != null)
+            //{
+            //    entity.EmployeeId = dto.Employee.Id;
+            //}
 
-            if (dto.RentalPlace != null)
-            {
-                entity.RentalPlaceId = dto.RentalPlace.RentalPlaceId;
-            }
+            //if (dto.Customer != null)
+            //{
+            //    entity.CustomerId = dto.Customer.Id;
+            //}
 
-            if (dto.Rental != null)
-            {
-                entity.RentalId = dto.Rental.RentalId;
-            }
+            //if (dto.RentalPlace != null)
+            //{
+            //    entity.RentalPlaceId = dto.RentalPlace.RentalPlaceId;
+            //}
+
+            //if (dto.Rental != null)
+            //{
+            //    entity.RentalId = dto.Rental.RentalId;
+            //}
 
             // Restore the entity
             if (dto.IsActive)
@@ -228,7 +239,7 @@ namespace API.Services.FileSystem
         // Upload a file
         public async Task<DocumentDto> UploadFileAsync(FileUploadDto uploadDto)
         {
-            if (uploadDto.File == null || uploadDto.File.Length == 0)
+            if (uploadDto.FileContent == null || uploadDto.FileContent.Length == 0)
             {
                 throw new ArgumentException("No file uploaded or the file is empty.");
             }
@@ -254,15 +265,20 @@ namespace API.Services.FileSystem
             var category = await _documentCategoriesService.FindEntityById(uploadDto.DocumentCategoryId);
             var categoryName = !string.IsNullOrWhiteSpace(category.Name) ? category.Name : "";
 
-            // Process the file
-            using (var memoryStream = new MemoryStream())
-            {
-                await uploadDto.File.CopyToAsync(memoryStream);
+            // Extract extension
+            var extension = Path.GetExtension(uploadDto.FileName).TrimStart('.');
 
-                document.FileName = $"{categoryName}_{uploadDto.File.FileName}";
-                document.OriginalFileName = $"{categoryName}_{uploadDto.File.FileName}";
-                document.FileSizeMb = uploadDto.File.Length / 1024.0 / 1024.0;
-                document.FileContent = memoryStream.ToArray();
+            // Process the file
+            document.FileName = $"{categoryName}_{uploadDto.Title}.{extension}";
+            document.OriginalFileName = $"{categoryName}_{uploadDto.Title}.{extension}";
+            document.FileSizeMb = uploadDto.FileContent.Length / 1024.0 / 1024.0;
+            document.FileContent = uploadDto.FileContent;
+
+            // Check if file size is too large
+            var type = await _documentTypesService.FindEntityById(uploadDto.DocumentTypeId);
+            if (document.FileSizeMb > type.MaxFileSizeMb)
+            {
+                throw new ArgumentException($"File size is too large. Maximum file size is {type.MaxFileSizeMb} MB.");
             }
 
             _dbSet.Add(document);

@@ -206,7 +206,7 @@ namespace BackOffice.Helpers
                 {
                     FileName = document.FileName,
                     DefaultExt = fileExtension,
-                    Filter = $"{Path.GetFileNameWithoutExtension(document.FileName)} Files (*{fileExtension})|*{fileExtension}|All Files (*.*)|*.*", 
+                    Filter = $"{document.DocumentType.Name} Files (*{fileExtension})|*{fileExtension}|All Files (*.*)|*.*", 
                     Title = "Save File"
                 };
 

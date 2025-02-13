@@ -61,6 +61,24 @@ namespace BackOffice.Resources.Files {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Associated Entities.
+        /// </summary>
+        public static string AssociatedEntities {
+            get {
+                return ResourceManager.GetString("AssociatedEntities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Basic Information.
+        /// </summary>
+        public static string BasicInformation {
+            get {
+                return ResourceManager.GetString("BasicInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kategoria.
         /// </summary>
         public static string Category {
@@ -75,6 +93,15 @@ namespace BackOffice.Resources.Files {
         public static string CreatedByEmployee {
             get {
                 return ResourceManager.GetString("CreatedByEmployee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer.
+        /// </summary>
+        public static string Customer {
+            get {
+                return ResourceManager.GetString("Customer", resourceCulture);
             }
         }
         
@@ -106,6 +133,78 @@ namespace BackOffice.Resources.Files {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee.
+        /// </summary>
+        public static string Employee {
+            get {
+                return ResourceManager.GetString("Employee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description cannot exceed 400 characters..
+        /// </summary>
+        public static string ErrorDescription1 {
+            get {
+                return ResourceManager.GetString("ErrorDescription1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File category is required..
+        /// </summary>
+        public static string ErrorDocumentCategory1 {
+            get {
+                return ResourceManager.GetString("ErrorDocumentCategory1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File type is required..
+        /// </summary>
+        public static string ErrorDocumentType1 {
+            get {
+                return ResourceManager.GetString("ErrorDocumentType1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File is required..
+        /// </summary>
+        public static string ErrorFileContent1 {
+            get {
+                return ResourceManager.GetString("ErrorFileContent1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title is required..
+        /// </summary>
+        public static string ErrorTitle1 {
+            get {
+                return ResourceManager.GetString("ErrorTitle1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title cannot exceed 200 characters..
+        /// </summary>
+        public static string ErrorTitle2 {
+            get {
+                return ResourceManager.GetString("ErrorTitle2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string File {
+            get {
+                return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File name.
         /// </summary>
         public static string FileName {
@@ -120,6 +219,15 @@ namespace BackOffice.Resources.Files {
         public static string FileSizeMb {
             get {
                 return ResourceManager.GetString("FileSizeMb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uploading file, please wait..
+        /// </summary>
+        public static string FileUploadMessage {
+            get {
+                return ResourceManager.GetString("FileUploadMessage", resourceCulture);
             }
         }
         
@@ -147,6 +255,96 @@ namespace BackOffice.Resources.Files {
         public static string ParentCategoryName {
             get {
                 return ResourceManager.GetString("ParentCategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rental.
+        /// </summary>
+        public static string Rental {
+            get {
+                return ResourceManager.GetString("Rental", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rental Place.
+        /// </summary>
+        public static string RentalPlace {
+            get {
+                return ResourceManager.GetString("RentalPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Customer.
+        /// </summary>
+        public static string SelectCustomer {
+            get {
+                return ResourceManager.GetString("SelectCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Category.
+        /// </summary>
+        public static string SelectDocumentCategory {
+            get {
+                return ResourceManager.GetString("SelectDocumentCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Employee.
+        /// </summary>
+        public static string SelectEmployee {
+            get {
+                return ResourceManager.GetString("SelectEmployee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select File.
+        /// </summary>
+        public static string SelectFile {
+            get {
+                return ResourceManager.GetString("SelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Rental.
+        /// </summary>
+        public static string SelectRental {
+            get {
+                return ResourceManager.GetString("SelectRental", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Rental Place.
+        /// </summary>
+        public static string SelectRentalPlace {
+            get {
+                return ResourceManager.GetString("SelectRentalPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Type.
+        /// </summary>
+        public static string SelectType {
+            get {
+                return ResourceManager.GetString("SelectType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Vehicle.
+        /// </summary>
+        public static string SelectVehicle {
+            get {
+                return ResourceManager.GetString("SelectVehicle", resourceCulture);
             }
         }
         
@@ -192,6 +390,24 @@ namespace BackOffice.Resources.Files {
         public static string TypeName {
             get {
                 return ResourceManager.GetString("TypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a file to upload..
+        /// </summary>
+        public static string UploadFileTitle {
+            get {
+                return ResourceManager.GetString("UploadFileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle.
+        /// </summary>
+        public static string Vehicle {
+            get {
+                return ResourceManager.GetString("Vehicle", resourceCulture);
             }
         }
         

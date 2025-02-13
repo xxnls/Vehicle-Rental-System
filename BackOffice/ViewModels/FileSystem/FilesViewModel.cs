@@ -7,6 +7,7 @@ using BackOffice.Views.FileSystem;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -24,14 +25,15 @@ using BackOffice.Views.Customers;
 using BackOffice.Views.Employees;
 using BackOffice.Views.Rentals;
 using BackOffice.Views.Vehicles;
+using System.Windows;
 
 namespace BackOffice.ViewModels.FileSystem
 {
     public class FilesViewModel : BaseListViewModel<DocumentDto>, IListViewModel
     {
-
         public ICommand ViewFileContentCommand { get; set; }
         public ICommand DownloadFileContentCommand { get; set; }
+        public ICommand UploadFileCommand { get; set; }
         public SelectorDialogParameters SelectDocumentCategoryParameters { get; set; }
         public SelectorDialogParameters SelectDocumentTypeParameters { get; set; }
         public SelectorDialogParameters SelectCustomerParameters { get; set; }
@@ -64,7 +66,7 @@ namespace BackOffice.ViewModels.FileSystem
                     EditableModel.DocumentType ??= new DocumentTypeDto();
                     EditableModel.DocumentType = (DocumentTypeDto)result;
                 },
-                Title = LocalizationHelper.GetString("Files", "SelectDocumentType")
+                Title = LocalizationHelper.GetString("Files", "SelectType")
             };
 
             SelectCustomerParameters = new SelectorDialogParameters
@@ -137,23 +139,139 @@ namespace BackOffice.ViewModels.FileSystem
 
             ViewFileContentCommand = new AsyncRelayCommand<int>(FileHelper.ViewFile);
             DownloadFileContentCommand = new AsyncRelayCommand<int>(FileHelper.DownloadFileWithDialog);
+            UploadFileCommand = new AsyncRelayCommand(UploadFileAsync);
 
             // Validation rules
             ValidationRules = new Dictionary<string, Action>
             {
                 { nameof(EditableModel.Title), ValidateTitle },
                 { nameof(EditableModel.Description), ValidateDescription },
-                { nameof(EditableModel.FileName), ValidateFileName },
-                { nameof(EditableModel.FileContent), ValidateFileContent },
+                // { nameof(EditableModel.FileContent), ValidateFileContent },
                 { nameof(EditableModel.DocumentType), ValidateDocumentType },
-                { nameof(EditableModel.DocumentCategory), ValidateDocumentCategory },
-                { nameof(EditableModel.Customer), ValidateCustomer },
-                { nameof(EditableModel.Employee), ValidateEmployee },
-                { nameof(EditableModel.Vehicle), ValidateVehicle },
-                { nameof(EditableModel.RentalPlace), ValidateRentalPlace },
-                { nameof(EditableModel.Rental), ValidateRental }
+                { nameof(EditableModel.DocumentCategory), ValidateDocumentCategory }
             };
         }
+
+        protected async Task UpdateModelAsync(int id, DocumentDto model)
+        {
+            model.RentalPlace = null;
+            model.Rental = null;
+            model.Vehicle = null;
+            model.Customer = null;
+            model.Employee = null;
+
+            //model.RentalPlaceId = EditableModel.RentalPlaceId;
+            //model.RentalId = EditableModel.RentalId;
+            //model.VehicleId = EditableModel.VehicleId;
+            //model.CustomerId = EditableModel.CustomerId;
+            //model.EmployeeId = EditableModel.EmployeeId;
+
+            var user = (EmployeeDto)SessionManager.Get("User");
+            model.ModifiedByEmployeeId = user.Id;
+
+            await base.UpdateModelAsync(id, model);
+        }
+
+        protected override async Task RestoreModelAsync(int id, DocumentDto model)
+        {
+            if (model == null)
+            {
+                UpdateStatus(LocalizationHelper.GetString("Generic", "USRestoreSelect"));
+                return;
+            }
+
+            model.DeletedDate = null;
+            model.IsActive = true;
+
+            await UpdateModelAsync(id, model);
+        }
+
+        private new async Task CreateModelAsync(DocumentDto model)
+        {
+            try
+            {
+                IsBusy = true;
+
+                UpdateStatus(LocalizationHelper.GetString("Files", "FileUploadMessage"));
+
+                if (EditableModel == null)
+                {
+                    UpdateStatus(LocalizationHelper.GetString("Generic", "USCreateError1"));
+                    return;
+                }
+
+                var currentUser = (EmployeeDto)SessionManager.Get("User")!;
+
+                var fileUploadDto = new FileUploadDto
+                {
+                    FileContent = model.FileContent,
+                    DocumentTypeId = model.DocumentType.DocumentTypeId,
+                    DocumentCategoryId = model.DocumentCategory.DocumentCategoryId,
+                    VehicleId = model.Vehicle?.VehicleId,
+                    EmployeeId = model.Employee?.Id,
+                    CustomerId = model.Customer?.Id,
+                    RentalPlaceId = model.RentalPlace?.RentalPlaceId,
+                    RentalId = model.Rental?.RentalId,
+                    Title = model.Title,
+                    FileName = model.FileName,
+                    Description = model.Description,
+                    CreatedByEmployeeId = currentUser.Id
+                };
+
+                await ApiClient.PostAsync<FileUploadDto, DocumentDto>($"{EndPointName}/upload", fileUploadDto);
+                UpdateStatus(DisplayName + LocalizationHelper.GetString("Generic", "USCreateSuccess"));
+
+                await LoadModelsAsync();
+            }
+            catch (Exception ex)
+            {
+                UpdateStatus(LocalizationHelper.GetString("Generic", "USCreateError2") + $" {DisplayName}: {ex.Message}");
+            }
+            finally
+            {
+                IsBusy = false;
+                SwitchViewMode(ViewMode.List);
+            }
+        }
+
+        private async Task UploadFileAsync()
+        {
+            try
+            {
+                // Open a file dialog to select a file
+                var openFileDialog = new Microsoft.Win32.OpenFileDialog
+                {
+                    Filter = "All Files (*.*)|*.*", // Allow all file types
+                    Title = LocalizationHelper.GetString("Files", "UploadFileTitle")
+                };
+
+                // Show the dialog and check if the user selected a file
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    // Read the file content
+                    var filePath = openFileDialog.FileName;
+                    var fileName = Path.GetFileName(filePath);
+                    var fileContent = await File.ReadAllBytesAsync(filePath);
+
+                    // Set the file content and name in the EditableModel
+                    EditableModel.FileContent = fileContent;
+                    EditableModel.FileName = fileName;
+
+                    // Notify the UI that the file has been selected
+                    OnPropertyChanged(nameof(EditableModel.FileName));
+                    OnPropertyChanged(nameof(EditableModel.FileContent));
+
+                    // Clear any previous validation errors
+                    ClearErrors(nameof(EditableModel.FileContent));
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions (e.g., file access errors)
+                MessageBox.Show($"An error occurred while selecting the file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         #region Validation
         private void ValidateTitle()
         {
@@ -179,29 +297,15 @@ namespace BackOffice.ViewModels.FileSystem
             }
         }
 
-        private void ValidateFileName()
-        {
-            ClearErrors(nameof(EditableModel.FileName));
+        //private void ValidateFileContent()
+        //{
+        //    ClearErrors(nameof(EditableModel.FileContent));
 
-            if (string.IsNullOrWhiteSpace(EditableModel.FileName))
-            {
-                AddError(nameof(EditableModel.FileName), LocalizationHelper.GetString("Files", "ErrorFileName1"));
-            }
-            else if (EditableModel.FileName.Length > 200)
-            {
-                AddError(nameof(EditableModel.FileName), LocalizationHelper.GetString("Files", "ErrorFileName2"));
-            }
-        }
-
-        private void ValidateFileContent()
-        {
-            ClearErrors(nameof(EditableModel.FileContent));
-
-            if (EditableModel.FileContent == null || EditableModel.FileContent.Length == 0)
-            {
-                AddError(nameof(EditableModel.FileContent), LocalizationHelper.GetString("Files", "ErrorFileContent1"));
-            }
-        }
+        //    if (EditableModel.FileContent == null || EditableModel.FileContent.Length == 0 && IsCreating)
+        //    {
+        //        AddError(nameof(EditableModel.FileContent), LocalizationHelper.GetString("Files", "ErrorFileContent1"));
+        //    }
+        //}
 
         private void ValidateDocumentType()
         {
@@ -220,56 +324,6 @@ namespace BackOffice.ViewModels.FileSystem
             if (EditableModel.DocumentCategory == null)
             {
                 AddError(nameof(EditableModel.DocumentCategory), LocalizationHelper.GetString("Files", "ErrorDocumentCategory1"));
-            }
-        }
-
-        private void ValidateCustomer()
-        {
-            ClearErrors(nameof(EditableModel.Customer));
-
-            if (EditableModel.Customer == null && EditableModel.CustomerId.HasValue)
-            {
-                AddError(nameof(EditableModel.Customer), LocalizationHelper.GetString("Files", "ErrorCustomer1"));
-            }
-        }
-
-        private void ValidateEmployee()
-        {
-            ClearErrors(nameof(EditableModel.Employee));
-
-            if (EditableModel.Employee == null && EditableModel.EmployeeId.HasValue)
-            {
-                AddError(nameof(EditableModel.Employee), LocalizationHelper.GetString("Files", "ErrorEmployee1"));
-            }
-        }
-
-        private void ValidateVehicle()
-        {
-            ClearErrors(nameof(EditableModel.Vehicle));
-
-            if (EditableModel.Vehicle == null && EditableModel.VehicleId.HasValue)
-            {
-                AddError(nameof(EditableModel.Vehicle), LocalizationHelper.GetString("Files", "ErrorVehicle1"));
-            }
-        }
-
-        private void ValidateRentalPlace()
-        {
-            ClearErrors(nameof(EditableModel.RentalPlace));
-
-            if (EditableModel.RentalPlace == null && EditableModel.RentalPlaceId.HasValue)
-            {
-                AddError(nameof(EditableModel.RentalPlace), LocalizationHelper.GetString("Files", "ErrorRentalPlace1"));
-            }
-        }
-
-        private void ValidateRental()
-        {
-            ClearErrors(nameof(EditableModel.Rental));
-
-            if (EditableModel.Rental == null && EditableModel.RentalId.HasValue)
-            {
-                AddError(nameof(EditableModel.Rental), LocalizationHelper.GetString("Files", "ErrorRental1"));
             }
         }
         #endregion

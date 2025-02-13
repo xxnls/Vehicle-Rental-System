@@ -536,7 +536,7 @@ namespace BackOffice.ViewModels
         /// <param name="model">
         /// The model object to be restored.
         /// </param>
-        protected async Task RestoreModelAsync(int id, T? model)
+        protected virtual async Task RestoreModelAsync(int id, T? model)
         {
             if (model == null)
             {

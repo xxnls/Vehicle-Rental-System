@@ -84,12 +84,12 @@ namespace API.Seeders
         {
             var documentCategories = new List<DocumentCategory>
             {
-                new() { Name = "Employee", Description = "Employee related documents" },
-                new() { Name = "Vehicle", Description = "Vehicle related documents" },
-                new() { Name = "Customer", Description = "Customer related documents" },
-                new() { Name = "Financial", Description = "Financial documents" },
-                new() { Name = "Contracts", Description = "Contracts", ParentCategoryId = 1 },
-                new() { Name = "Signed Contracts", Description = "Signed contracts", ParentCategoryId = 1 }
+                new() { Name = "Employee", Description = "Employee related documents", IsActive = true },
+                new() { Name = "Vehicle", Description = "Vehicle related documents", IsActive = true },
+                new() { Name = "Customer", Description = "Customer related documents", IsActive = true },
+                new() { Name = "Financial", Description = "Financial documents", IsActive = true },
+                new() { Name = "Contracts", Description = "Contracts", ParentCategoryId = 1, IsActive = true },
+                new() { Name = "Signed Contracts", Description = "Signed contracts", ParentCategoryId = 1, IsActive = true }
             };
 
             // Check if ANY DocumentCategory exists before seeding

@@ -32,7 +32,192 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Border Grid.Row="0" Style="{StaticResource CreateEditBorderStyle}" />
+                <Border Grid.Row="0" Style="{StaticResource CreateEditBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Left Column  -->
+                        <StackPanel
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Orientation="Vertical">
+                            <DockPanel Height="25">
+                                <Label Content="{x:Static res:Resources.BasicInformation}" DockPanel.Dock="Left" />
+                                <Separator />
+                            </DockPanel>
+
+                            <!--  File Upload  -->
+                            <StackPanel Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label Content="{x:Static res:Resources.File}" />
+                                <TextBox IsReadOnly="True" Text="{Binding EditableModel.FileName}" />
+                                <Button
+                                    Width="150"
+                                    Margin="0,5,0,0"
+                                    HorizontalAlignment="Left"
+                                    Command="{Binding UploadFileCommand}"
+                                    Content="{x:Static res:Resources.SelectFile}"
+                                    Style="{StaticResource DefaultButtonStyle}" />
+                                <TextBlock
+                                    helpers:ValidationHelper.PropertyName="FileContent"
+                                    Foreground="{StaticResource ErrorBrush}"
+                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            </StackPanel>
+
+                            <!--  Document Type  -->
+                            <Label Content="{x:Static res:Resources.TypeName}" />
+                            <TextBox IsReadOnly="True" Text="{Binding EditableModel.DocumentType.Name}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="DocumentType"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectDocumentTypeParameters}"
+                                Content="{x:Static res:Resources.SelectType}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+
+                            <!--  Document Category  -->
+                            <Label Content="{x:Static res:Resources.Category}" />
+                            <TextBox IsReadOnly="True" Text="{Binding EditableModel.DocumentCategory.Name}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="DocumentCategory"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectDocumentCategoryParameters}"
+                                Content="{x:Static res:Resources.SelectDocumentCategory}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+
+                            <!--  Title  -->
+                            <Label Content="{x:Static res:Resources.Title}" />
+                            <TextBox Text="{Binding EditableModel.Title, UpdateSourceTrigger=PropertyChanged}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Title"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
+                            <!--  Description  -->
+                            <Label Content="{x:Static res:Resources.Description}" />
+                            <TextBox
+                                Height="60"
+                                AcceptsReturn="True"
+                                Text="{Binding EditableModel.Description, UpdateSourceTrigger=PropertyChanged}"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Description"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                        </StackPanel>
+
+                        <!--  Right Column  -->
+                        <StackPanel
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            Orientation="Vertical"
+                            Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                            <DockPanel Height="25">
+                                <Label Content="{x:Static res:Resources.AssociatedEntities}" DockPanel.Dock="Left" />
+                                <Separator />
+                            </DockPanel>
+
+                            <Label Content="{x:Static res:Resources.Vehicle}" />
+                            <TextBox IsReadOnly="True" Text="{Binding EditableModel.Vehicle.VehicleId}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Vehicle"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectVehicleParameters}"
+                                Content="{x:Static res:Resources.SelectVehicle}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+
+                            <!--  Employee  -->
+                            <Label Content="{x:Static res:Resources.Employee}" />
+                            <TextBox IsReadOnly="True" Text="{Binding EditableModel.Employee.Id}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Employee"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectEmployeeParameters}"
+                                Content="{x:Static res:Resources.SelectEmployee}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+
+                            <!--  Customer  -->
+                            <Label Content="{x:Static res:Resources.Customer}" />
+                            <TextBox IsReadOnly="True" Text="{Binding EditableModel.Customer.Id}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Customer"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectCustomerParameters}"
+                                Content="{x:Static res:Resources.SelectCustomer}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+
+                            <!--  Rental Place  -->
+                            <Label Content="{x:Static res:Resources.RentalPlace}" />
+                            <TextBox IsReadOnly="True" Text="{Binding EditableModel.RentalPlace.RentalPlaceId}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="RentalPlace"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectRentalPlaceParameters}"
+                                Content="{x:Static res:Resources.SelectRentalPlace}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+
+                            <!--  Rental  -->
+                            <Label Content="{x:Static res:Resources.Rental}" />
+                            <TextBox IsReadOnly="True" Text="{Binding EditableModel.Rental.RentalId}" />
+                            <TextBlock
+                                helpers:ValidationHelper.PropertyName="Rental"
+                                Foreground="{StaticResource ErrorBrush}"
+                                Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            <Button
+                                Width="150"
+                                Margin="0,5,0,0"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ShowSelectorDialogCommand}"
+                                CommandParameter="{Binding SelectRentalParameters}"
+                                Content="{x:Static res:Resources.SelectRental}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+
+                        </StackPanel>
+                    </Grid>
+                </Border>
 
                 <customControls:CreateEditSaveCancelControl
                     Grid.Row="1"
@@ -66,6 +251,14 @@
                         ShowDeletedModelsCommand="{Binding ShowDeletedModelsCommand}"
                         ShowFilterOptionsCommand="{Binding ShowFilterOptionsCommand}" />
                 </Grid>
+
+                <customControls:FilterOptionsControl
+                    CreatedAfter="{Binding CreatedAfter, Mode=TwoWay}"
+                    CreatedBefore="{Binding CreatedBefore, Mode=TwoWay}"
+                    FilterCommand="{Binding LoadModelsCommand}"
+                    ModifiedAfter="{Binding ModifiedAfter, Mode=TwoWay}"
+                    ModifiedBefore="{Binding ModifiedBefore, Mode=TwoWay}"
+                    Visibility="{Binding IsFiltering, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                 <DataGrid
                     x:Name="MainDataGrid"

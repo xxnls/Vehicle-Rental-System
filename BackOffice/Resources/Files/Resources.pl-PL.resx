@@ -145,4 +145,76 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Pliki</value>
   </data>
+  <data name="SelectDocumentCategory" xml:space="preserve">
+    <value>Wybierz Kategorie</value>
+  </data>
+  <data name="SelectType" xml:space="preserve">
+    <value>Wybierz Typ</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Wybierz Plik</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Plik</value>
+  </data>
+  <data name="BasicInformation" xml:space="preserve">
+    <value>Podstawowe Informacje</value>
+  </data>
+  <data name="AssociatedEntities" xml:space="preserve">
+    <value>Powiązane Elementy</value>
+  </data>
+  <data name="Vehicle" xml:space="preserve">
+    <value>Pojazd</value>
+  </data>
+  <data name="SelectVehicle" xml:space="preserve">
+    <value>Wybierz Pojazd</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Pracownik</value>
+  </data>
+  <data name="SelectEmployee" xml:space="preserve">
+    <value>Wybierz Pracownika</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Klient</value>
+  </data>
+  <data name="SelectCustomer" xml:space="preserve">
+    <value>Wybierz Klienta</value>
+  </data>
+  <data name="RentalPlace" xml:space="preserve">
+    <value>Placówka</value>
+  </data>
+  <data name="SelectRentalPlace" xml:space="preserve">
+    <value>Wybierz Placówkę</value>
+  </data>
+  <data name="Rental" xml:space="preserve">
+    <value>Wypożyczenie</value>
+  </data>
+  <data name="SelectRental" xml:space="preserve">
+    <value>Wybierz Wypożyczenie</value>
+  </data>
+  <data name="UploadFileTitle" xml:space="preserve">
+    <value>Wybierz plik do wysłania.</value>
+  </data>
+  <data name="FileUploadMessage" xml:space="preserve">
+    <value>Wysyłanie pliku, proszę czekać.</value>
+  </data>
+  <data name="ErrorTitle1" xml:space="preserve">
+    <value>Tytuł jest wymagany.</value>
+  </data>
+  <data name="ErrorTitle2" xml:space="preserve">
+    <value>Tytuł nie może przekraczać 200 znaków.</value>
+  </data>
+  <data name="ErrorDescription1" xml:space="preserve">
+    <value>Opis nie może przekraczać 400 znaków.</value>
+  </data>
+  <data name="ErrorFileContent1" xml:space="preserve">
+    <value>Plik jest wymagany.</value>
+  </data>
+  <data name="ErrorDocumentType1" xml:space="preserve">
+    <value>Typ pliku jest wymagany.</value>
+  </data>
+  <data name="ErrorDocumentCategory1" xml:space="preserve">
+    <value>Kategoria pliku jest wymagana.</value>
+  </data>
 </root>

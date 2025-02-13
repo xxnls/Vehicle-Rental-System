@@ -18,8 +18,13 @@ namespace API.Controllers.FileSystem
 
         // Upload a file
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadFile([FromForm] FileUploadDto uploadDto)
+        public async Task<IActionResult> UploadFile(FileUploadDto uploadDto)
         {
+            if (uploadDto.FileContent == null || uploadDto.FileContent.Length == 0)
+            {
+                return BadRequest("No file uploaded or the file is empty.");
+            }
+
             try
             {
                 var document = await _fileSystemService.UploadFileAsync(uploadDto);
