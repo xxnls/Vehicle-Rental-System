@@ -19,6 +19,7 @@ namespace API.BusinessLogic
         private readonly RentalsService _rentalService;
         private readonly PostRentalReportsService _postRentalReportService;
         private readonly ApiDbContext _context;
+        private readonly IDocumentGenerator _documentGenerator;
 
         public RentalProcessing(
             RentalRequestsService rentalRequestsService,
@@ -26,7 +27,8 @@ namespace API.BusinessLogic
             VehicleStatusesService vehicleStatusesService,
             RentalsService rentalService,
             PostRentalReportsService postRentalReportsService,
-            ApiDbContext context)
+            ApiDbContext context,
+            IDocumentGenerator documentGenerator)
         {
             _rentalRequestsService = rentalRequestsService;
             _vehiclesService = vehiclesService;
@@ -34,6 +36,7 @@ namespace API.BusinessLogic
             _rentalService = rentalService;
             _postRentalReportService = postRentalReportsService;
             _context = context;
+            _documentGenerator = documentGenerator;
         }
 
         /// <summary>
@@ -175,7 +178,10 @@ namespace API.BusinessLogic
                     rental.DamageFee = 0;
                 }
 
-                await _rentalService.UpdateAsync(rental.RentalId, rental);
+                var result = await _rentalService.UpdateAsync(rental.RentalId, rental);
+
+                // Generate invoice
+                await _documentGenerator.GenerateInvoiceAsync(result);
 
                 return true;
             }

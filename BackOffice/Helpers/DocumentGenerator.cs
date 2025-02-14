@@ -202,7 +202,7 @@ namespace BackOffice.Helpers
                             });
                         });
                 });
-            }).ShowInCompanionAsync();
+            }).GeneratePdf();
         }
     }
 }

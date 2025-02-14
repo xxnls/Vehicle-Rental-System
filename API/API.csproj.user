@@ -12,4 +12,9 @@
     <WebStackScaffolding_DbContextTypeFullName>API.Context.ApiDbContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
   </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Documents.pl-PL.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

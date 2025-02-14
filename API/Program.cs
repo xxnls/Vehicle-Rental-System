@@ -1,6 +1,8 @@
 //using API.Context;
 
+using System.Globalization;
 using System.Text;
+using API;
 using API.Context;
 using API.Models;
 using API.Services;
@@ -19,6 +21,9 @@ using API.Services.Rentals;
 using API.BusinessLogic;
 using API.Services.PostRentalReports;
 using API.Services.FileSystem;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
+using API.Resources;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -71,6 +76,27 @@ builder.Services.AddTransient<IRentalProcessing, RentalProcessing>();
 builder.Services.AddTransient<ITransactionHandler, TransactionHandler>();
 builder.Services.AddTransient<IDocumentGenerator, DocumentGenerator>();
 
+#region Localization
+
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+// Configure supported cultures
+var supportedCultures = new[]
+{
+    new CultureInfo("en-US"),
+    new CultureInfo("pl-PL")
+};
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    options.DefaultRequestCulture = new RequestCulture("en-US");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
+
+builder.Services.AddSingleton<ILocalizationService, LocalizationService>();
+
+#endregion
 
 builder.Services.AddIdentityCore<Employee>(options => { })
     .AddRoles<EmployeeRole>()
@@ -141,9 +167,13 @@ if (app.Environment.IsDevelopment())
 //app.MapIdentityApi<Employee>();
 //app.MapIdentityApi<Customer>();
 
+// Configure localization middleware
+var localizationOptions = app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value;
+app.UseRequestLocalization(localizationOptions);
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseHttpsRedirection();
 app.MapControllers();
-
+app.UseRequestLocalization();
 app.Run();
