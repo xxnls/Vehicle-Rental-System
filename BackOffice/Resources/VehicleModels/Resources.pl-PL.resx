@@ -172,4 +172,7 @@
   <data name="ErrorVehicleBrand1" xml:space="preserve">
     <value>Marka samochodu jest wymagana.</value>
   </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>URL Zdjęcia Modelu</value>
+  </data>
 </root>

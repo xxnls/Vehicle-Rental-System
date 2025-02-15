@@ -21,6 +21,8 @@ public partial class VehicleModel : IBaseModel
 
     public string? Description { get; set; }
 
+    public string? ImageUrl { get; set; }
+
     public DateTime CreatedDate { get; set; }
 
     public DateTime? ModifiedDate { get; set; }

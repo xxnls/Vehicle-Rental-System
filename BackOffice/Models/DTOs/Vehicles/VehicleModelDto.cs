@@ -61,6 +61,17 @@ namespace BackOffice.Models.DTOs.Vehicles
             }
         }
 
+        private string? _imageUrl;
+        public string? ImageUrl
+        {
+            get => _imageUrl;
+            set
+            {
+                _imageUrl = value;
+                OnPropertyChanged();
+            }
+        }
+
         // Navigation Properties
         private VehicleBrandDto _vehicleBrand = null!;
         public VehicleBrandDto VehicleBrand

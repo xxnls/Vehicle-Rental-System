@@ -85,6 +85,13 @@
                         Foreground="{StaticResource ErrorBrush}"
                         Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
 
+                    <Label Content="{x:Static res:Resources.ImageUrl}" />
+                    <TextBox x:Name="ImageUrlField" Text="{Binding EditableModel.ImageUrl, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        helpers:ValidationHelper.PropertyName="ImageUrl"
+                        Foreground="{StaticResource ErrorBrush}"
+                        Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+
                     <Label Content="{x:Static res:Resources.FuelType}" />
                     <ComboBox x:Name="FuelTypeComboBox" SelectedItem="{Binding EditableModel.FuelType, UpdateSourceTrigger=PropertyChanged}">
                         <ComboBox.ItemsSource>

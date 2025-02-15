@@ -59,6 +59,7 @@ builder.Services.AddScoped<AddressesService>();
 builder.Services.AddScoped<CustomerTypesService>();
 builder.Services.AddScoped<CustomerStatisticsService>();
 builder.Services.AddScoped<CustomersService>();
+builder.Services.AddScoped<CustomerAuthService>();
 
 builder.Services.AddScoped<PaymentsService>();
 
@@ -150,11 +151,18 @@ using (var scope = app.Services.CreateScope())
     var employeePositions = scope.ServiceProvider.GetRequiredService<EmployeePositionsService>();
     var rentalPlaces = scope.ServiceProvider.GetRequiredService<RentalPlacesService>();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<Employee>>();
+    var vehicleBrands = scope.ServiceProvider.GetRequiredService<VehicleBrandsService>();
+    var vehicleModels = scope.ServiceProvider.GetRequiredService<VehicleModelsService>();
+    var vehicleTypes = scope.ServiceProvider.GetRequiredService<VehicleTypesService>();
+    var vehicles = scope.ServiceProvider.GetRequiredService<VehiclesService>();
+    var vehicleStatuses = scope.ServiceProvider.GetRequiredService<VehicleStatusesService>();
 
     await CountrySeeder.SeedAsync(countriesService);
     await EmployeeRolesSeeder.SeedAsync(roleManager);
     await DictionaryTablesSeeder.SeedAsync(dictionaryTablesService);
     await EmployeeSeeder.SeedAsync(employees, employeeRoles, employeePositions, rentalPlaces, userManager);
+    await VehiclesSeeder.SeedAsync(dictionaryTablesService, vehicleBrands, vehicleModels, vehicleTypes, rentalPlaces,
+        vehicles, vehicleStatuses);
 }
 
 // Configure the HTTP request pipeline.

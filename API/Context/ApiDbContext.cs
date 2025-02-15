@@ -779,6 +779,7 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.VehicleModelId).HasColumnName("VehicleModelID");
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.Description).HasMaxLength(500);
+            entity.Property(e => e.ImageUrl).HasColumnName("ImageURL");
             entity.Property(e => e.FuelType).HasMaxLength(20);
             entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.Name).HasMaxLength(50);

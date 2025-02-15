@@ -172,4 +172,7 @@
   <data name="ErrorVehicleBrand1" xml:space="preserve">
     <value>Vehicle brand is required.</value>
   </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>Image URL</value>
+  </data>
 </root>

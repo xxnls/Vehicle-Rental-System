@@ -6,9 +6,6 @@ namespace API.Models.DTOs.Vehicles
     {
         public int VehicleModelId { get; set; }
 
-        // public int VehicleBrandId { get; set; }
-        // public string? VehicleBrandName { get; set; }
-
         public string Name { get; set; } = null!;
 
         public double? EngineSize { get; set; }
@@ -18,6 +15,8 @@ namespace API.Models.DTOs.Vehicles
         public string FuelType { get; set; } = null!;
 
         public string? Description { get; set; }
+
+        public string? ImageUrl { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

@@ -250,6 +250,15 @@ namespace BackOffice.Resources.VehicleModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image URL.
+        /// </summary>
+        public static string ImageUrl {
+            get {
+                return ResourceManager.GetString("ImageUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Petrol.
         /// </summary>
         public static string Petrol {
