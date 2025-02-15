@@ -25,7 +25,6 @@ namespace API.Seeders
             await SeedVehicleTypeAsync(dbContext, _vehicleTypesService);
             await SeedVehiclesAsync(dbContext, _vehicleModelsService, _vehiclesService, _vehicleStatusesService,
                 _vehicleTypesService, _rentalPlacesService);
-
         }
 
         private static async Task SeedVehicleBrandsAsync(ApiDbContext dbContext, VehicleBrandsService _vehicleBrandsService)
@@ -136,6 +135,15 @@ namespace API.Seeders
                     VehicleModel = focusModel,
                     VehicleStatus = available,
                     VehicleType = sedanType,
+                    VehicleOptionalInformation = new VehicleOptionalInformationDto
+                    {
+                        HasAirConditioning = true,
+                        HasAutomaticTransmission = true,
+                        HasBluetooth = true,
+                        HasCruiseControl = true,
+                        HasNavigation = true,
+                        HasParkingSensors = true,
+                    },
                     IsAvailableForRent = true,
                     RentalPlace = rentalPlace,
                     Vin = "00000000000000000",
@@ -151,6 +159,15 @@ namespace API.Seeders
                     VehicleModel = crvModel,
                     VehicleStatus = available,
                     VehicleType = suvType,
+                    VehicleOptionalInformation = new VehicleOptionalInformationDto
+                    {
+                        HasAirConditioning = true,
+                        HasAutomaticTransmission = true,
+                        HasBluetooth = true,
+                        HasCruiseControl = false,
+                        HasNavigation = true,
+                        HasParkingSensors = false,
+                    },
                     IsAvailableForRent = true,
                     RentalPlace = rentalPlace,
                     Vin = "11111111111111111",
@@ -166,6 +183,15 @@ namespace API.Seeders
                     VehicleModel = imprezaModel,
                     VehicleStatus = available,
                     VehicleType = hatchbackType,
+                    VehicleOptionalInformation = new VehicleOptionalInformationDto
+                    {
+                        HasAirConditioning = true,
+                        HasAutomaticTransmission = false,
+                        HasBluetooth = true,
+                        HasCruiseControl = true,
+                        HasNavigation = false,
+                        HasParkingSensors = false,
+                    },
                     IsAvailableForRent = true,
                     RentalPlace = rentalPlace,
                     Vin = "22222222222222222",

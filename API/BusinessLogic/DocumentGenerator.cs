@@ -244,7 +244,7 @@ namespace API.BusinessLogic
             {
                 FileContent = invoice,
                 FileName = $"Invoice_{rentalDto.RentalId}.pdf",
-                DocumentTypeId = 10,
+                DocumentTypeId = 3,
                 DocumentCategoryId = 4,
                 RentalId = rentalDto.RentalId,
                 CreatedByEmployeeId = rentalDto.StartedByEmployeeId,

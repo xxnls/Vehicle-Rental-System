@@ -156,6 +156,8 @@ using (var scope = app.Services.CreateScope())
     var vehicleTypes = scope.ServiceProvider.GetRequiredService<VehicleTypesService>();
     var vehicles = scope.ServiceProvider.GetRequiredService<VehiclesService>();
     var vehicleStatuses = scope.ServiceProvider.GetRequiredService<VehicleStatusesService>();
+    var customers = scope.ServiceProvider.GetRequiredService<CustomersService>();
+    var customerTypes = scope.ServiceProvider.GetRequiredService<CustomerTypesService>();
 
     await CountrySeeder.SeedAsync(countriesService);
     await EmployeeRolesSeeder.SeedAsync(roleManager);
@@ -163,6 +165,7 @@ using (var scope = app.Services.CreateScope())
     await EmployeeSeeder.SeedAsync(employees, employeeRoles, employeePositions, rentalPlaces, userManager);
     await VehiclesSeeder.SeedAsync(dictionaryTablesService, vehicleBrands, vehicleModels, vehicleTypes, rentalPlaces,
         vehicles, vehicleStatuses);
+    await CustomersSeeder.SeedAsync(dictionaryTablesService, customers, customerTypes);
 }
 
 // Configure the HTTP request pipeline.

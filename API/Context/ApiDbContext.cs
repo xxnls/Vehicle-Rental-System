@@ -764,7 +764,7 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
 
             entity.Property(e => e.VehicleBrandId).HasColumnName("VehicleBrandID");
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.Description).HasMaxLength(500);
+            entity.Property(e => e.Description).HasMaxLength(1000);
             entity.Property(e => e.LogoUrl)
                 .HasMaxLength(200)
                 .HasColumnName("LogoURL");
@@ -815,7 +815,7 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.BaseDeposit).HasColumnType("money");
             entity.Property(e => e.BaseWeeklyRate).HasColumnType("money");
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.Description).HasMaxLength(300);
+            entity.Property(e => e.Description).HasMaxLength(1000);
             entity.Property(e => e.IsActive).HasDefaultValue(true);
             entity.Property(e => e.Name).HasMaxLength(30);
             entity.Property(e => e.RequiredLicenseType)

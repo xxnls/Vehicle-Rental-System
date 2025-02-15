@@ -47,6 +47,7 @@ namespace API.Services.Vehicles
                 EngineSize = model.EngineSize,
                 HorsePower = model.HorsePower,
                 FuelType = model.FuelType,
+                ImageUrl = model.ImageUrl,
                 CreatedDate = model.CreatedDate,
                 ModifiedDate = model.ModifiedDate,
                 DeletedDate = model.DeletedDate,
@@ -66,6 +67,7 @@ namespace API.Services.Vehicles
                 EngineSize = vm.EngineSize,
                 HorsePower = vm.HorsePower,
                 FuelType = vm.FuelType,
+                ImageUrl = vm.ImageUrl,
                 CreatedDate = vm.CreatedDate,
                 ModifiedDate = vm.ModifiedDate,
                 DeletedDate = vm.DeletedDate,
@@ -84,6 +86,7 @@ namespace API.Services.Vehicles
                 Description = entity.Description,
                 EngineSize = entity.EngineSize,
                 HorsePower = entity.HorsePower,
+                ImageUrl = entity.ImageUrl,
                 FuelType = entity.FuelType,
                 CreatedDate = entity.CreatedDate,
                 ModifiedDate = entity.ModifiedDate,
@@ -111,6 +114,7 @@ namespace API.Services.Vehicles
             entity.Description = model.Description;
             entity.EngineSize = model.EngineSize;
             entity.HorsePower = model.HorsePower;
+            entity.ImageUrl = model.ImageUrl;
             entity.FuelType = model.FuelType;
             entity.VehicleBrandId = model.VehicleBrand.VehicleBrandId;
 
