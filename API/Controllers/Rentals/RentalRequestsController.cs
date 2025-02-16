@@ -23,6 +23,20 @@ namespace API.Controllers.Rentals
             return entity.RentalRequestId;
         }
 
+        [HttpGet("customer/{id}")]
+        public async Task<IActionResult> GetCustomerRentalRequests(int id)
+        {
+            try
+            {
+                var rentalRequests = await _service.GetCustomerRentalRequestsAsync(id);
+                return Ok(rentalRequests);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while retrieving rental requests.");
+            }
+        }
+
         [HttpGet("pending")]
         public async Task<IActionResult> GetPendingRequests(
             string? search = null,

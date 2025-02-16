@@ -139,6 +139,13 @@ namespace API.Services.Rentals
             return MapSingleEntityToDto(entity);
         }
 
+        public async Task<PaginatedResult<RentalRequestDto>> GetCustomerRentalRequestsAsync(int id)
+        {
+            var query = _context.RentalRequests
+                .Where(r => r.CustomerId == id && r.IsActive);
+            return await GetAllAsync(preFilteredQuery: query);
+        }
+
         public async Task<PaginatedResult<RentalRequestDto>> GetPendingRequestsAsync(
             string? search = null,
             int page = 1,
