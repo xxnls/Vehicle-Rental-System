@@ -85,6 +85,9 @@
     <Compile Update="Views\Other\RolesAssignmentView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Other\SettingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Rentals\PaymentsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -211,6 +214,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Other\RolesAssignmentView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Other\SettingsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Rentals\PaymentsView.xaml">

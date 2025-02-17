@@ -8,11 +8,12 @@
              xmlns:helpers="clr-namespace:BackOffice.Helpers"
              xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
              xmlns:res="clr-namespace:BackOffice.Resources.VehicleBrands"
+             xmlns:vehicles="clr-namespace:BackOffice.ViewModels.Vehicles"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.DataContext>
-        <vm:VehicleBrandsViewModel x:Name="DataContext"/>
+        <vehicles:VehicleBrandsViewModel x:Name="DataContext"/>
     </UserControl.DataContext>
 
     <StackPanel Orientation="Vertical">

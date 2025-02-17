@@ -1,18 +1,21 @@
-﻿<Application x:Class="BackOffice.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:BackOffice"
-             xmlns:helpers="clr-namespace:BackOffice.Helpers"
-             ShutdownMode="OnExplicitShutdown">
+﻿<Application
+    x:Class="BackOffice.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:BackOffice.Converters"
+    xmlns:helpers="clr-namespace:BackOffice.Helpers"
+    xmlns:local="clr-namespace:BackOffice"
+    ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/ViewResources/Colors.xaml" />
-                <ResourceDictionary Source="/ViewResources/Styles.xaml"/>
+                <ResourceDictionary Source="/ViewResources/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:MultiBooleanToVisibilityConverter x:Key="MultiBooleanToVisibilityConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

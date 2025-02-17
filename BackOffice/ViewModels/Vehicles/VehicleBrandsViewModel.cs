@@ -11,7 +11,7 @@ using BackOffice.Interfaces;
 using BackOffice.Models;
 using CommunityToolkit.Mvvm.Messaging;
 
-namespace BackOffice.ViewModels
+namespace BackOffice.ViewModels.Vehicles
 {
     public class VehicleBrandsViewModel : BaseListViewModel<VehicleBrandDto>, IListViewModel
     {

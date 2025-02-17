@@ -61,11 +61,263 @@ namespace BackOffice.Resources.MainWindow {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Addresses.
+        /// </summary>
+        public static string Addresses {
+            get {
+                return ResourceManager.GetString("Addresses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administrator.
+        /// </summary>
+        public static string Administrator {
+            get {
+                return ResourceManager.GetString("Administrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Countries.
+        /// </summary>
+        public static string Countries {
+            get {
+                return ResourceManager.GetString("Countries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customers.
+        /// </summary>
+        public static string Customers {
+            get {
+                return ResourceManager.GetString("Customers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer Types.
+        /// </summary>
+        public static string CustomerTypes {
+            get {
+                return ResourceManager.GetString("CustomerTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employees.
+        /// </summary>
+        public static string Employees {
+            get {
+                return ResourceManager.GetString("Employees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files.
+        /// </summary>
+        public static string Files {
+            get {
+                return ResourceManager.GetString("Files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language (will reset the window):.
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Leave Types.
+        /// </summary>
+        public static string LeaveTypes {
+            get {
+                return ResourceManager.GetString("LeaveTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Files.
+        /// </summary>
+        public static string ManageFiles {
+            get {
+                return ResourceManager.GetString("ManageFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Models per Page:.
+        /// </summary>
+        public static string ModelsPerPage {
+            get {
+                return ResourceManager.GetString("ModelsPerPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string Other {
+            get {
+                return ResourceManager.GetString("Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payments.
+        /// </summary>
+        public static string Payments {
+            get {
+                return ResourceManager.GetString("Payments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pickups.
+        /// </summary>
+        public static string Pickups {
+            get {
+                return ResourceManager.GetString("Pickups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Positions.
+        /// </summary>
+        public static string Positions {
+            get {
+                return ResourceManager.GetString("Positions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rental Manager.
+        /// </summary>
+        public static string RentalManager {
+            get {
+                return ResourceManager.GetString("RentalManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rental Places.
+        /// </summary>
+        public static string RentalPlaces {
+            get {
+                return ResourceManager.GetString("RentalPlaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rental Requests.
+        /// </summary>
+        public static string RentalRequests {
+            get {
+                return ResourceManager.GetString("RentalRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rentals.
+        /// </summary>
+        public static string Rentals {
+            get {
+                return ResourceManager.GetString("Rentals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Requests Approval.
+        /// </summary>
+        public static string RequestsApproval {
+            get {
+                return ResourceManager.GetString("RequestsApproval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Returns.
+        /// </summary>
+        public static string Returns {
+            get {
+                return ResourceManager.GetString("Returns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role Assignment.
+        /// </summary>
+        public static string RoleAssignment {
+            get {
+                return ResourceManager.GetString("RoleAssignment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roles.
+        /// </summary>
+        public static string Roles {
+            get {
+                return ResourceManager.GetString("Roles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schedules.
+        /// </summary>
+        public static string Schedules {
+            get {
+                return ResourceManager.GetString("Schedules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings saved successfully!.
+        /// </summary>
+        public static string SettingsSuccessful {
+            get {
+                return ResourceManager.GetString("SettingsSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ShiftTypes.
+        /// </summary>
+        public static string ShiftTypes {
+            get {
+                return ResourceManager.GetString("ShiftTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vehicle Brands.
         /// </summary>
         public static string VehicleBrandsSideMenu {
             get {
                 return ResourceManager.GetString("VehicleBrandsSideMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle Maintenance.
+        /// </summary>
+        public static string VehicleMaintenance {
+            get {
+                return ResourceManager.GetString("VehicleMaintenance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle Models.
+        /// </summary>
+        public static string VehicleModels {
+            get {
+                return ResourceManager.GetString("VehicleModels", resourceCulture);
             }
         }
         
@@ -81,9 +333,36 @@ namespace BackOffice.Resources.MainWindow {
         /// <summary>
         ///   Looks up a localized string similar to Vehicles.
         /// </summary>
+        public static string Vehicles {
+            get {
+                return ResourceManager.GetString("Vehicles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle Brands.
+        /// </summary>
+        public static string VehiclesBrands {
+            get {
+                return ResourceManager.GetString("VehiclesBrands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicles.
+        /// </summary>
         public static string VehiclesSideMenu {
             get {
                 return ResourceManager.GetString("VehiclesSideMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle Types.
+        /// </summary>
+        public static string VehicleTypes {
+            get {
+                return ResourceManager.GetString("VehicleTypes", resourceCulture);
             }
         }
         

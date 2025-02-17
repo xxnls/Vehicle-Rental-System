@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -110,7 +111,7 @@ namespace BackOffice.ViewModels
             }
         }
 
-        private readonly Dictionary<string, object> _viewModelMappings;
+        private readonly Dictionary<string, Func<object>> _viewModelMappings;
 
         public string FullName => CurrentUser.FirstName + " " + CurrentUser.LastName;
 
@@ -121,6 +122,17 @@ namespace BackOffice.ViewModels
             set
             {
                 _userRoles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _sidebarCollapsed;
+        public bool SidebarCollapsed
+        {
+            get => _sidebarCollapsed;
+            set
+            {
+                _sidebarCollapsed = value;
                 OnPropertyChanged();
             }
         }
@@ -142,7 +154,16 @@ namespace BackOffice.ViewModels
         private object _currentWorkspace;
         public object CurrentWorkspace
         {
-            get => _currentWorkspace;
+            get
+            {
+                if (_currentWorkspace == null)
+                {
+                    // Initialize the default ViewModel only when first accessed
+                    _currentWorkspace = _viewModelMappings["VehicleModelsViewModel"]();
+                    Debug.WriteLine(_currentWorkspace);
+                }
+                return _currentWorkspace;
+            }
             set
             {
                 _currentWorkspace = value;
@@ -185,6 +206,9 @@ namespace BackOffice.ViewModels
         {
             InitializePermissionsAsync();
 
+            // Initialize SidebarCollapsed based on the initial SidebarWidth
+            SidebarCollapsed = SidebarWidth != 46;
+
             // Register to receive status messages
             WeakReferenceMessenger.Default.Register<Messenger>(this, (r, m) =>
             {
@@ -192,45 +216,43 @@ namespace BackOffice.ViewModels
             });
 
             // Initialize mappings between string and view models
-            _viewModelMappings = new Dictionary<string, object>
+            _viewModelMappings = new Dictionary<string, Func<object>>
             {
-                { "VehicleBrandsViewModel", new VehicleBrandsViewModel() },
-                { "VehicleModelsViewModel", new VehicleModelsViewModel() },
-                { "VehicleTypesViewModel", new VehicleTypesViewModel() },
-                { "VehiclesViewModel", new VehiclesViewModel() },
-                { "VehicleMaintenanceViewModel", new VehicleMaintenanceViewModel() },
+                { "VehicleBrandsViewModel", () => new VehicleBrandsViewModel() },
+                { "VehicleModelsViewModel", () => new VehicleModelsViewModel() },
+                { "VehicleTypesViewModel", () => new VehicleTypesViewModel() },
+                { "VehiclesViewModel", () => new VehiclesViewModel() },
+                { "VehicleMaintenanceViewModel", () => new VehicleMaintenanceViewModel() },
 
-                { "RentalPlacesViewModel", new RentalPlacesViewModel() },
-                { "AddressesViewModel", new AddressesViewModel() },
-                { "CountriesViewModel", new CountriesViewModel() },
+                { "RentalPlacesViewModel", () => new RentalPlacesViewModel() },
+                { "AddressesViewModel", () => new AddressesViewModel() },
+                { "CountriesViewModel", () => new CountriesViewModel() },
+                { "SettingsViewModel", () => new SettingsViewModel() },
 
-                { "Employees", new EmployeesViewModel() },
-                { "EmployeeShiftTypesViewModel", new EmployeeShiftTypesViewModel() },
-                { "EmployeeLeaveTypesViewModel", new EmployeeLeaveTypesViewModel() },
-                { "EmployeePositionsViewModel", new EmployeePositionsViewModel() },
-                { "EmployeeSchedulesViewModel", new EmployeeSchedulesViewModel() },
-                { "EmployeeRolesViewModel", new EmployeeRolesViewModel() },
-                { "RolesAssignmentViewModel", new RolesAssignmentViewModel() },
+                { "Employees", () => new EmployeesViewModel() },
+                { "EmployeeShiftTypesViewModel", () => new EmployeeShiftTypesViewModel() },
+                { "EmployeeLeaveTypesViewModel", () => new EmployeeLeaveTypesViewModel() },
+                { "EmployeePositionsViewModel", () => new EmployeePositionsViewModel() },
+                { "EmployeeSchedulesViewModel", () => new EmployeeSchedulesViewModel() },
+                { "EmployeeRolesViewModel", () => new EmployeeRolesViewModel() },
+                { "RolesAssignmentViewModel", () => new RolesAssignmentViewModel() },
 
-                { "CustomerTypesViewModel", new CustomerTypesViewModel() },
-                { "CustomersViewModel", new CustomersViewModel()},
+                { "CustomerTypesViewModel", () => new CustomerTypesViewModel() },
+                { "CustomersViewModel", () => new CustomersViewModel() },
 
-                { "RentalRequestsViewModel", new RentalRequestsViewModel() },
-                { "RentalApprovalsViewModel", new RentalApprovalsViewModel() },
-                { "RentalsViewModel", new RentalsViewModel() },
-                { "PickupsViewModel", new PickupsViewModel() },
-                { "ReturnsViewModel", new ReturnsViewModel() },
+                { "RentalRequestsViewModel", () => new RentalRequestsViewModel() },
+                { "RentalApprovalsViewModel", () => new RentalApprovalsViewModel() },
+                { "RentalsViewModel", () => new RentalsViewModel() },
+                { "PickupsViewModel", () => new PickupsViewModel() },
+                { "ReturnsViewModel", () => new ReturnsViewModel() },
 
-                { "PaymentsViewModel", new PaymentsViewModel() },
+                { "PaymentsViewModel", () => new PaymentsViewModel() },
 
-                { "FilesViewModel", new FilesViewModel() }
+                { "FilesViewModel", () => new FilesViewModel() }
             };
 
             // Load user
             CurrentUser = (EmployeeDto)SessionManager.Get("User");
-
-            // Set default workspace
-            CurrentWorkspace = _viewModelMappings["FilesViewModel"];
 
             ToggleSidebarCommand = new RelayCommand(ToggleSidebar);
             LogoutCommand = new RelayCommand(Logout);
@@ -261,14 +283,16 @@ namespace BackOffice.ViewModels
 
         private void ToggleSidebar()
         {
-            SidebarWidth = SidebarWidth == 200 ? 52 : 200;
+            SidebarWidth = SidebarWidth == 200 ? 46 : 200;
+            SidebarCollapsed = !(SidebarWidth < 50);
         }
 
         private void ChangeWorkspace(object parameter)
         {
             if (parameter is string viewModelKey && _viewModelMappings.ContainsKey(viewModelKey))
             {
-                CurrentWorkspace = _viewModelMappings[viewModelKey];
+                // Create the ViewModel instance only when needed
+                CurrentWorkspace = _viewModelMappings[viewModelKey]();
             }
         }
 

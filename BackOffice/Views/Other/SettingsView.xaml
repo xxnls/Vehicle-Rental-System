@@ -1,0 +1,173 @@
+﻿<UserControl
+    x:Class="BackOffice.Views.Other.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:other="clr-namespace:BackOffice.ViewModels.Other"
+    xmlns:res="clr-namespace:BackOffice.Resources.MainWindow"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.DataContext>
+        <other:SettingsViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <!--  Custom Styles  -->
+        <Style TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="20" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+            <Setter Property="Background" Value="{StaticResource BackgroundBrush}" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Margin" Value="0,20,0,0" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="IsEnabled" Value="True" />
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{StaticResource DarkerPrimaryBrush}" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{StaticResource DisabledBrush}" />
+                    <Setter Property="Foreground" Value="{StaticResource ButtonDisabledForegroundColor}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--  Save Confirmation Animation  -->
+        <Storyboard x:Key="FadeInAnimation">
+            <DoubleAnimation
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.3" />
+        </Storyboard>
+        <Storyboard x:Key="FadeOutAnimation">
+            <DoubleAnimation
+                Storyboard.TargetProperty="Opacity"
+                From="1"
+                To="0"
+                Duration="0:0:0.3" />
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid Margin="20">
+        <!--  Card-like Border for Settings  -->
+        <Border>
+            <StackPanel>
+                <!--  ModelsPerPage Setting  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Content="{x:Static res:Resources.ModelsPerPage}" />
+                    <TextBox
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="0,0,10,0"
+                        Text="{Binding ModelsPerPage, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,0,0,0"
+                        Content="{x:Static res:Resources.Language}" />
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="35,0,0,15"
+                        Orientation="Horizontal">
+                        <Button
+                            Click="ChangeLanguage_OnClick"
+                            Command="{Binding ChangeLanguageCommand}"
+                            CommandParameter="en-US"
+                            Content="English" />
+                        <Button
+                            Click="ChangeLanguage_OnClick"
+                            Command="{Binding ChangeLanguageCommand}"
+                            CommandParameter="pl-PL"
+                            Content="Polish" />
+                    </StackPanel>
+
+                </Grid>
+
+                <!--  Save Button  -->
+                <Button
+                    HorizontalAlignment="Left"
+                    Command="{Binding SaveSettingsCommand}"
+                    Content="{x:Static generic:Resources.Save}" />
+            </StackPanel>
+        </Border>
+
+        <!--  Save Confirmation Message  -->
+        <Border
+            x:Name="SaveConfirmation"
+            Margin="0,0,0,20"
+            Padding="10,5"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Background="{StaticResource PrimaryBrush}"
+            CornerRadius="4"
+            Opacity="0"
+            Visibility="{Binding SaveConfirmationVisibility}">
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard Storyboard="{StaticResource FadeInAnimation}" />
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Unloaded">
+                    <BeginStoryboard Storyboard="{StaticResource FadeOutAnimation}" />
+                </EventTrigger>
+            </Border.Triggers>
+            <TextBlock
+                FontSize="14"
+                FontWeight="SemiBold"
+                Foreground="White"
+                Text="{x:Static res:Resources.SettingsSuccessful}" />
+        </Border>
+    </Grid>
+</UserControl>

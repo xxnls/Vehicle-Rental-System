@@ -22,16 +22,5 @@ namespace BackOffice.Views
         {
             InitializeComponent();
         }
-
-        private void ChangeLanguage_OnClick(object sender, RoutedEventArgs e)
-        {
-            // Refreshes the window after changing language
-            Dispatcher.BeginInvoke(new Action(() =>
-            {
-                var newWindow = new MainWindow();
-                newWindow.Show();
-                this.Close();
-            }), System.Windows.Threading.DispatcherPriority.Background);
-        }
     }
 }

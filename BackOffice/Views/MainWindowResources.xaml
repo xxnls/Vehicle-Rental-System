@@ -16,7 +16,7 @@
     xmlns:vw="clr-namespace:BackOffice.Views"
     xmlns:vwv="clr-namespace:BackOffice.Views.Vehicles">
 
-    <DataTemplate DataType="{x:Type vm:VehicleBrandsViewModel}">
+    <DataTemplate DataType="{x:Type vehicles:VehicleBrandsViewModel}">
         <vwv:VehicleBrandsView />
     </DataTemplate>
 
@@ -122,6 +122,10 @@
 
     <DataTemplate DataType="{x:Type files:DocumentTypesViewModel}">
         <fileviews:DocumentTypesView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type other:SettingsViewModel}">
+        <otherviews:SettingsView />
     </DataTemplate>
 
     <Storyboard x:Key="ExpandSidebar">

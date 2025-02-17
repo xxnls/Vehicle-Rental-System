@@ -69,6 +69,8 @@
                     Grid.Column="1"
                     Margin="5,5,5,5"
                     HorizontalAlignment="Right"
+                    Command="{Binding ChangeWorkspaceCommand}"
+                    CommandParameter="SettingsViewModel"
                     Style="{StaticResource SideBarButton}">
                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                         <Image
@@ -92,7 +94,8 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="{x:Static res:Resources.VehiclesSideMenu}">
+                    Header="{x:Static res:Resources.VehiclesSideMenu}"
+                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -100,23 +103,23 @@
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="VehiclesViewModel"
-                            Content="Vehicles" />
+                            Content="{x:Static res:Resources.Vehicles}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="VehicleTypesViewModel"
-                            Content="Vehicle Types" />
+                            Content="{x:Static res:Resources.VehicleTypes}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="VehicleBrandsViewModel"
-                            Content="Vehicle Brands" />
+                            Content="{x:Static res:Resources.VehiclesBrands}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="VehicleModelsViewModel"
-                            Content="Vehicle Models" />
+                            Content="{x:Static res:Resources.VehicleModels}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="VehicleMaintenanceViewModel"
-                            Content="Vehicle Maintenance" />
+                            Content="{x:Static res:Resources.VehicleMaintenance}" />
                     </StackPanel>
                 </Expander>
 
@@ -125,7 +128,8 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="Employees">
+                    Header="{x:Static res:Resources.Employees}"
+                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -133,23 +137,23 @@
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="Employees"
-                            Content="Employees" />
+                            Content="{x:Static res:Resources.Employees}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeeShiftTypesViewModel"
-                            Content="Shift Types" />
+                            Content="{x:Static res:Resources.ShiftTypes}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeeLeaveTypesViewModel"
-                            Content="Leave Types" />
+                            Content="{x:Static res:Resources.LeaveTypes}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeePositionsViewModel"
-                            Content="Positions" />
+                            Content="{x:Static res:Resources.Positions}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeeSchedulesViewModel"
-                            Content="Schedules" />
+                            Content="{x:Static res:Resources.Schedules}" />
                     </StackPanel>
                 </Expander>
 
@@ -159,7 +163,8 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="Other">
+                    Header="{x:Static res:Resources.Other}"
+                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -167,17 +172,15 @@
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="RentalPlacesViewModel"
-                            Content="Rental Places" />
+                            Content="{x:Static res:Resources.RentalPlaces}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="AddressesViewModel"
-                            Content="Addresses" />
+                            Content="{x:Static res:Resources.Addresses}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="CountriesViewModel"
-                            Content="Countries" />
-                        <Button Content="Settings" />
-                        <Button Content="Help" />
+                            Content="{x:Static res:Resources.Countries}" />
                     </StackPanel>
                 </Expander>
 
@@ -187,8 +190,13 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="Administrator"
-                    Visibility="{Binding IsUserAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Header="{x:Static res:Resources.Administrator}">
+                    <Expander.Visibility>
+                        <MultiBinding Converter="{StaticResource MultiBooleanToVisibilityConverter}">
+                            <Binding Path="SidebarCollapsed" />
+                            <Binding Path="IsUserAdmin" />
+                        </MultiBinding>
+                    </Expander.Visibility>
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -196,11 +204,11 @@
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeeRolesViewModel"
-                            Content="Roles" />
+                            Content="{x:Static res:Resources.Roles}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="RolesAssignmentViewModel"
-                            Content="Roles Assignment" />
+                            Content="{x:Static res:Resources.RoleAssignment}" />
                     </StackPanel>
                 </Expander>
 
@@ -210,7 +218,8 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="Customers">
+                    Header="{x:Static res:Resources.Customers}"
+                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -218,11 +227,11 @@
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="CustomersViewModel"
-                            Content="Customers" />
+                            Content="{x:Static res:Resources.Customers}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="CustomerTypesViewModel"
-                            Content="Customer Types" />
+                            Content="{x:Static res:Resources.CustomerTypes}" />
                     </StackPanel>
                 </Expander>
 
@@ -232,7 +241,8 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="Rentals">
+                    Header="{x:Static res:Resources.Rentals}"
+                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -240,15 +250,15 @@
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="RentalRequestsViewModel"
-                            Content="Rental Requests" />
+                            Content="{x:Static res:Resources.RentalRequests}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="RentalsViewModel"
-                            Content="Rentals" />
+                            Content="{x:Static res:Resources.Rentals}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="PaymentsViewModel"
-                            Content="Payments" />
+                            Content="{x:Static res:Resources.Payments}" />
                     </StackPanel>
                 </Expander>
 
@@ -257,7 +267,8 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="Rental Manager">
+                    Header="{x:Static res:Resources.RentalManager}"
+                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -265,15 +276,15 @@
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="RentalApprovalsViewModel"
-                            Content="Requests Approval" />
+                            Content="{x:Static res:Resources.RequestsApproval}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="PickupsViewModel"
-                            Content="Pickups" />
+                            Content="{x:Static res:Resources.Pickups}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="ReturnsViewModel"
-                            Content="Returns" />
+                            Content="{x:Static res:Resources.Returns}" />
                     </StackPanel>
                 </Expander>
 
@@ -282,7 +293,8 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="Files">
+                    Header="{x:Static res:Resources.Files}"
+                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -290,7 +302,7 @@
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="FilesViewModel"
-                            Content="Manage Files" />
+                            Content="{x:Static res:Resources.ManageFiles}" />
                     </StackPanel>
                 </Expander>
             </StackPanel>
@@ -316,7 +328,7 @@
                 <TextBlock VerticalAlignment="Center" Text="{Binding StatusMessage}" />
             </StatusBarItem>
 
-            <StatusBarItem HorizontalAlignment="Right">
+            <!--<StatusBarItem HorizontalAlignment="Right">
                 <Button
                     Click="ChangeLanguage_OnClick"
                     Command="{Binding ChangeLanguageCommand}"
@@ -324,15 +336,13 @@
                     Content="English" />
             </StatusBarItem>
 
-            <TextBlock Text="{Binding UserRoles}" />
-
             <StatusBarItem HorizontalAlignment="Right">
                 <Button
                     Click="ChangeLanguage_OnClick"
                     Command="{Binding ChangeLanguageCommand}"
                     CommandParameter="pl-PL"
                     Content="Polish" />
-            </StatusBarItem>
+            </StatusBarItem>-->
         </StatusBar>
     </Grid>
 </Window>

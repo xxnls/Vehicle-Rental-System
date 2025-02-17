@@ -109,4 +109,97 @@
   <data name="VehicleModelsSideMenu" xml:space="preserve">
     <value>Vehicle Models</value>
   </data>
+  <data name="ManageFiles" xml:space="preserve">
+    <value>Manage Files</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="Returns" xml:space="preserve">
+    <value>Returns</value>
+  </data>
+  <data name="Pickups" xml:space="preserve">
+    <value>Pickups</value>
+  </data>
+  <data name="RequestsApproval" xml:space="preserve">
+    <value>Requests Approval</value>
+  </data>
+  <data name="RentalManager" xml:space="preserve">
+    <value>Rental Manager</value>
+  </data>
+  <data name="Payments" xml:space="preserve">
+    <value>Payments</value>
+  </data>
+  <data name="Rentals" xml:space="preserve">
+    <value>Rentals</value>
+  </data>
+  <data name="RentalRequests" xml:space="preserve">
+    <value>Rental Requests</value>
+  </data>
+  <data name="CustomerTypes" xml:space="preserve">
+    <value>Customer Types</value>
+  </data>
+  <data name="Customers" xml:space="preserve">
+    <value>Customers</value>
+  </data>
+  <data name="RoleAssignment" xml:space="preserve">
+    <value>Role Assignment</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="Administrator" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="Countries" xml:space="preserve">
+    <value>Countries</value>
+  </data>
+  <data name="Addresses" xml:space="preserve">
+    <value>Addresses</value>
+  </data>
+  <data name="RentalPlaces" xml:space="preserve">
+    <value>Rental Places</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Schedules" xml:space="preserve">
+    <value>Schedules</value>
+  </data>
+  <data name="Positions" xml:space="preserve">
+    <value>Positions</value>
+  </data>
+  <data name="LeaveTypes" xml:space="preserve">
+    <value>Leave Types</value>
+  </data>
+  <data name="ShiftTypes" xml:space="preserve">
+    <value>ShiftTypes</value>
+  </data>
+  <data name="Employees" xml:space="preserve">
+    <value>Employees</value>
+  </data>
+  <data name="VehicleMaintenance" xml:space="preserve">
+    <value>Vehicle Maintenance</value>
+  </data>
+  <data name="VehicleModels" xml:space="preserve">
+    <value>Vehicle Models</value>
+  </data>
+  <data name="VehiclesBrands" xml:space="preserve">
+    <value>Vehicle Brands</value>
+  </data>
+  <data name="VehicleTypes" xml:space="preserve">
+    <value>Vehicle Types</value>
+  </data>
+  <data name="Vehicles" xml:space="preserve">
+    <value>Vehicles</value>
+  </data>
+  <data name="ModelsPerPage" xml:space="preserve">
+    <value>Models per Page:</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language (will reset the window):</value>
+  </data>
+  <data name="SettingsSuccessful" xml:space="preserve">
+    <value>Settings saved successfully!</value>
+  </data>
 </root>
