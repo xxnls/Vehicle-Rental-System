@@ -116,6 +116,6 @@
     <value>Start time cannot be after the end of a shift.</value>
   </data>
   <data name="ErrorTimeEnd1" xml:space="preserve">
-    <value>End time cannot be before the start of a shift</value>
+    <value>End time cannot be before the start of a shift.</value>
   </data>
 </root>

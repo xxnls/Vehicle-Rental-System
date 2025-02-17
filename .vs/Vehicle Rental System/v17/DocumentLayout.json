@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "G:\\Vehicle Rental System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\rentals\\rentalrequestsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\rentals\\rentalrequestsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\rentals\\rentalsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\rentals\\rentalsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\controllers\\baseapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\controllers\\baseapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\controllers\\rentals\\rentalrequestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\controllers\\rentals\\rentalrequestscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\baseapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\baseapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\controllers\\rentals\\rentalscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\controllers\\rentals\\rentalscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 578,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,54 +26,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BaseApiService.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\BaseApiService.cs",
-              "RelativeDocumentMoniker": "API\\Services\\BaseApiService.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\BaseApiService.cs",
-              "RelativeToolTip": "API\\Services\\BaseApiService.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAADgv2EAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T06:22:28.385Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RentalRequestsService.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\Rentals\\RentalRequestsService.cs",
-              "RelativeDocumentMoniker": "API\\Services\\Rentals\\RentalRequestsService.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\Rentals\\RentalRequestsService.cs",
-              "RelativeToolTip": "API\\Services\\Rentals\\RentalRequestsService.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAIwIsAAAAJAAAAAAAAAA==",
+              "Title": "RentalsService.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\Rentals\\RentalsService.cs",
+              "RelativeDocumentMoniker": "API\\Services\\Rentals\\RentalsService.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\Rentals\\RentalsService.cs",
+              "RelativeToolTip": "API\\Services\\Rentals\\RentalsService.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAwwLQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T05:16:05.625Z",
+              "WhenOpened": "2025-02-16T19:53:30.019Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BaseApiController.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Controllers\\BaseApiController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\BaseApiController.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Controllers\\BaseApiController.cs",
-              "RelativeToolTip": "API\\Controllers\\BaseApiController.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAhwDAAAAAiAAAAAAAAAA==",
+              "Title": "RentalsController.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Controllers\\Rentals\\RentalsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\Rentals\\RentalsController.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\Controllers\\Rentals\\RentalsController.cs",
+              "RelativeToolTip": "API\\Controllers\\Rentals\\RentalsController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwB0AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T05:12:41.214Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RentalRequestsController.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Controllers\\Rentals\\RentalRequestsController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\Rentals\\RentalRequestsController.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Controllers\\Rentals\\RentalRequestsController.cs",
-              "RelativeToolTip": "API\\Controllers\\Rentals\\RentalRequestsController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAowB0AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-16T05:12:32.424Z",
+              "WhenOpened": "2025-02-16T19:52:45.079Z",
               "EditorCaption": ""
             }
           ]

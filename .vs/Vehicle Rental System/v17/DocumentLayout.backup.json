@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "G:\\Vehicle Rental System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\services\\customers\\customersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\services\\customers\\customersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\businesslogic\\documentgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\businesslogic\\documentgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|g:\\vehicle rental system\\api\\models\\dtos\\customers\\customertypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7D3F482A-93FA-48F7-AFB4-5C0CCB062DDD}|API\\API.csproj|solutionrelative:api\\models\\dtos\\customers\\customertypedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\viewmodels\\rentals\\returnsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\viewmodels\\rentals\\returnsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,27 +27,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CustomersService.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Services\\Customers\\CustomersService.cs",
-              "RelativeDocumentMoniker": "API\\Services\\Customers\\CustomersService.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Services\\Customers\\CustomersService.cs",
-              "RelativeToolTip": "API\\Services\\Customers\\CustomersService.cs",
-              "ViewState": "AgIAAMQAAAAAAAAAAAAAwNEAAABAAAAAAAAAAA==",
+              "Title": "DocumentGenerator.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\BusinessLogic\\DocumentGenerator.cs",
+              "RelativeDocumentMoniker": "API\\BusinessLogic\\DocumentGenerator.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\API\\BusinessLogic\\DocumentGenerator.cs",
+              "RelativeToolTip": "API\\BusinessLogic\\DocumentGenerator.cs",
+              "ViewState": "AgIAANQAAAAAAAAAAAApwOcAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T20:52:43.315Z",
+              "WhenOpened": "2025-02-16T16:52:15.94Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CustomerTypeDto.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\Customers\\CustomerTypeDto.cs",
-              "RelativeDocumentMoniker": "API\\Models\\DTOs\\Customers\\CustomerTypeDto.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\API\\Models\\DTOs\\Customers\\CustomerTypeDto.cs",
-              "RelativeToolTip": "API\\Models\\DTOs\\Customers\\CustomerTypeDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "ReturnsViewModel.cs",
+              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Rentals\\ReturnsViewModel.cs",
+              "RelativeDocumentMoniker": "BackOffice\\ViewModels\\Rentals\\ReturnsViewModel.cs",
+              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\ViewModels\\Rentals\\ReturnsViewModel.cs",
+              "RelativeToolTip": "BackOffice\\ViewModels\\Rentals\\ReturnsViewModel.cs",
+              "ViewState": "AgIAAKEAAAAAAAAAAAAgwK8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-15T20:41:09.279Z",
+              "WhenOpened": "2025-02-16T16:21:26.33Z",
               "EditorCaption": ""
             }
           ]

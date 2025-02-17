@@ -38,28 +38,7 @@ namespace BackOffice.ViewModels.Other
                 () => EditableModel != null
             );
 
-            ValidationRules = new Dictionary<string, Action>
-            {
-            { nameof(EditableModel.Address.FirstLine), () =>
-                {
-                    if (EditableModel?.Address != null)
-                        ValidationRulesHelper.ValidateFirstLine(EditableModel.Address, AddError);
-                }
-            },
-            { nameof(EditableModel.Address.SecondLine), ValidateZipCode },
-            { "Address.ZipCode", () =>
-                {
-                    if (EditableModel?.Address != null)
-                        ValidationRulesHelper.ValidateZipCode(EditableModel.Address, AddError);
-                }
-            },
-            { "Address.City", () =>
-                {
-                    if (EditableModel?.Address != null)
-                        ValidationRulesHelper.ValidateCity(EditableModel.Address, AddError);
-                }
-            },
-            };
+            ValidationRules = new Dictionary<string, Action>();
         } 
 
         #region Methods

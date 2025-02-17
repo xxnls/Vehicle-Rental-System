@@ -24,6 +24,20 @@ namespace API.Controllers.Rentals
             return entity.RentalId;
         }
 
+        [HttpGet("customer/{id}")]
+        public async Task<IActionResult> GetCustomerRentals(int id)
+        {
+            try
+            {
+                var rentals = await _service.GetCustomerRentalsAsync(id);
+                return Ok(rentals);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while retrieving rentals.");
+            }
+        }
+
         [HttpGet("awaiting")]
         public async Task<IActionResult> GetAwaitingRentals(
             string? search = null,

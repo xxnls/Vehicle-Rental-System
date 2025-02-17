@@ -79,7 +79,7 @@ namespace BackOffice.Resources.EmployeeShiftTypes {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to End time cannot be before the start of a shift.
+        ///   Looks up a localized string similar to End time cannot be before the start of a shift..
         /// </summary>
         public static string ErrorTimeEnd1 {
             get {

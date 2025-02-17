@@ -226,7 +226,7 @@ namespace API.BusinessLogic
             }).GeneratePdf();
 
             var financeCategory = await _documentCategoriesService.GetByIdAsync(4);
-            var pdfType = await _documentTypesService.GetByIdAsync(10);
+            var pdfType = await _documentTypesService.GetByIdAsync(3);
 
             //Check if finance category is really financial category
             if (financeCategory is not { Name: "Financial" })
