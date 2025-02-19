@@ -79,6 +79,12 @@
     <Compile Update="Views\Other\CountriesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Other\LicenseApprovalRequestsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Other\MapView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Other\RentalPlacesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -208,6 +214,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Other\CountriesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Other\LicenseApprovalRequestsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Other\MapView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Other\RentalPlacesView.xaml">

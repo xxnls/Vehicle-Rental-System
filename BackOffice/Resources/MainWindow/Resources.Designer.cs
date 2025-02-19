@@ -142,11 +142,38 @@ namespace BackOffice.Resources.MainWindow {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to License Approval Requests.
+        /// </summary>
+        public static string LicenseApprovalRequests {
+            get {
+                return ResourceManager.GetString("LicenseApprovalRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage Files.
         /// </summary>
         public static string ManageFiles {
             get {
                 return ResourceManager.GetString("ManageFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map.
+        /// </summary>
+        public static string Map {
+            get {
+                return ResourceManager.GetString("Map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map.
+        /// </summary>
+        public static string MapDisplayName {
+            get {
+                return ResourceManager.GetString("MapDisplayName", resourceCulture);
             }
         }
         

@@ -90,6 +90,8 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
 
     public virtual DbSet<VehicleType> VehicleTypes { get; set; }
 
+    public virtual DbSet<LicenseApprovalRequests> LicenseApprovalRequests { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Server=localhost;Database=inz_veh;Trusted_Connection=True;TrustServerCertificate=True;");
@@ -821,6 +823,36 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
             entity.Property(e => e.RequiredLicenseType)
                 .HasMaxLength(20)
                 .HasDefaultValue("B");
+        });
+
+        modelBuilder.Entity<LicenseApprovalRequests>(entity =>
+        {
+            entity.HasKey(e => e.LicenseApprovalRequestId).HasName("LicenseApprovalRequests_pk");
+
+            entity.Property(e => e.LicenseApprovalRequestId).HasColumnName("LicenseApprovalRequestID");
+            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+            entity.Property(e => e.DocumentId).HasColumnName("DocumentID");
+            entity.Property(e => e.ApprovedByEmployeeId).HasColumnName("ApprovedByEmployeeID");
+            entity.Property(e => e.LicenseType).HasConversion<string>().HasDefaultValue(LicenseType.B).HasMaxLength(50).IsRequired();
+            entity.Property(e => e.RequestStatus).HasConversion<string>().HasDefaultValue(RequestStatus.Pending).HasMaxLength(50)
+                .IsRequired();
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
+            entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())").IsRequired();
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.LicenseApprovalRequests)
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("LicenseApprovalRequests_Customers");
+
+            entity.HasOne(d => d.Document).WithMany(p => p.LicenseApprovalRequests)
+                .HasForeignKey(d => d.DocumentId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("LicenseApprovalRequests_Documents");
+
+            entity.HasOne(d => d.ApprovedByEmployee).WithMany(p => p.LicenseApprovalRequests)
+                .HasForeignKey(d => d.ApprovedByEmployeeId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("LicenseApprovalRequests_Employees");
         });
 
         //modelBuilder.Ignore<IdentityUser<int>>();

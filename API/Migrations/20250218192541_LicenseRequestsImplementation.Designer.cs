@@ -4,6 +4,7 @@ using API.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250218192541_LicenseRequestsImplementation")]
+    partial class LicenseRequestsImplementation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,7 +79,7 @@ namespace API.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Addresses", (string)null);
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("API.Models.Customers.CustomerStatistic", b =>
@@ -108,7 +111,7 @@ namespace API.Migrations
                     b.HasKey("CustomerStatisticsId")
                         .HasName("CustomerStatistics_pk");
 
-                    b.ToTable("CustomerStatistics", (string)null);
+                    b.ToTable("CustomerStatistics");
                 });
 
             modelBuilder.Entity("API.Models.Customers.CustomerType", b =>
@@ -151,7 +154,7 @@ namespace API.Migrations
                     b.HasKey("CustomerTypeId")
                         .HasName("CustomerTypes_pk");
 
-                    b.ToTable("CustomerTypes", (string)null);
+                    b.ToTable("CustomerTypes");
                 });
 
             modelBuilder.Entity("API.Models.EmployeeAttendance", b =>
@@ -338,7 +341,7 @@ namespace API.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeFinances", (string)null);
+                    b.ToTable("EmployeeFinances");
                 });
 
             modelBuilder.Entity("API.Models.Employees.EmployeeLeaveType", b =>
@@ -365,7 +368,7 @@ namespace API.Migrations
                     b.HasKey("EmployeeLeaveTypeId")
                         .HasName("EmployeeLeaveTypes_pk");
 
-                    b.ToTable("EmployeeLeaveTypes", (string)null);
+                    b.ToTable("EmployeeLeaveTypes");
                 });
 
             modelBuilder.Entity("API.Models.Employees.EmployeePosition", b =>
@@ -407,7 +410,7 @@ namespace API.Migrations
                     b.HasKey("EmployeePositionId")
                         .HasName("EmployeePositions_pk");
 
-                    b.ToTable("EmployeePositions", (string)null);
+                    b.ToTable("EmployeePositions");
                 });
 
             modelBuilder.Entity("API.Models.Employees.EmployeeSchedule", b =>
@@ -471,7 +474,7 @@ namespace API.Migrations
 
                     b.HasIndex("PlaceOfWorkId");
 
-                    b.ToTable("EmployeeSchedules", (string)null);
+                    b.ToTable("EmployeeSchedules");
                 });
 
             modelBuilder.Entity("API.Models.Employees.EmployeeShiftType", b =>
@@ -512,7 +515,7 @@ namespace API.Migrations
                     b.HasKey("EmployeeShiftTypeId")
                         .HasName("EmployeeShiftTypes_pk");
 
-                    b.ToTable("EmployeeShiftTypes", (string)null);
+                    b.ToTable("EmployeeShiftTypes");
                 });
 
             modelBuilder.Entity("API.Models.Employees.EmployeeStatistic", b =>
@@ -551,7 +554,7 @@ namespace API.Migrations
                     b.HasKey("EmployeeStatisticsId")
                         .HasName("EmployeeStatistics_pk");
 
-                    b.ToTable("EmployeeStatistics", (string)null);
+                    b.ToTable("EmployeeStatistics");
                 });
 
             modelBuilder.Entity("API.Models.FileSystem.Document", b =>
@@ -662,7 +665,7 @@ namespace API.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("Documents", (string)null);
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("API.Models.FileSystem.DocumentCategory", b =>
@@ -708,7 +711,7 @@ namespace API.Migrations
 
                     b.HasIndex("ParentCategoryId");
 
-                    b.ToTable("DocumentCategories", (string)null);
+                    b.ToTable("DocumentCategories");
                 });
 
             modelBuilder.Entity("API.Models.FileSystem.DocumentType", b =>
@@ -757,7 +760,7 @@ namespace API.Migrations
                     b.HasKey("DocumentTypeId")
                         .HasName("DocumentTypes_pk");
 
-                    b.ToTable("DocumentTypes", (string)null);
+                    b.ToTable("DocumentTypes");
                 });
 
             modelBuilder.Entity("API.Models.News", b =>
@@ -815,7 +818,7 @@ namespace API.Migrations
 
                     b.HasIndex("NewsTypeId");
 
-                    b.ToTable("News", (string)null);
+                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("API.Models.NewsType", b =>
@@ -865,7 +868,7 @@ namespace API.Migrations
                     b.HasKey("NewsTypeId")
                         .HasName("NewsTypes_pk");
 
-                    b.ToTable("NewsTypes", (string)null);
+                    b.ToTable("NewsTypes");
                 });
 
             modelBuilder.Entity("API.Models.Other.Country", b =>
@@ -902,7 +905,7 @@ namespace API.Migrations
                     b.HasKey("CountryId")
                         .HasName("Countries_pk");
 
-                    b.ToTable("Countries", (string)null);
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("API.Models.Other.LicenseApprovalRequests", b =>
@@ -965,7 +968,7 @@ namespace API.Migrations
 
                     b.HasIndex("DocumentId");
 
-                    b.ToTable("LicenseApprovalRequests", (string)null);
+                    b.ToTable("LicenseApprovalRequests");
                 });
 
             modelBuilder.Entity("API.Models.Other.Location", b =>
@@ -1004,7 +1007,7 @@ namespace API.Migrations
                     b.HasKey("LocationId")
                         .HasName("Locations_pk");
 
-                    b.ToTable("Locations", (string)null);
+                    b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("API.Models.Other.RentalPlace", b =>
@@ -1047,7 +1050,7 @@ namespace API.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("RentalPlaces", (string)null);
+                    b.ToTable("RentalPlaces");
                 });
 
             modelBuilder.Entity("API.Models.Rentals.Payment", b =>
@@ -1131,7 +1134,7 @@ namespace API.Migrations
 
                     b.HasIndex("InspectorEmployeeId");
 
-                    b.ToTable("PostRentalReports", (string)null);
+                    b.ToTable("PostRentalReports");
                 });
 
             modelBuilder.Entity("API.Models.Rentals.Rental", b =>
@@ -1242,7 +1245,7 @@ namespace API.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("Rentals", (string)null);
+                    b.ToTable("Rentals");
                 });
 
             modelBuilder.Entity("API.Models.Rentals.RentalRequest", b =>
@@ -1315,7 +1318,7 @@ namespace API.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("RentalRequests", (string)null);
+                    b.ToTable("RentalRequests");
                 });
 
             modelBuilder.Entity("API.Models.VehicleBrand", b =>
@@ -1362,7 +1365,7 @@ namespace API.Migrations
                     b.HasKey("VehicleBrandId")
                         .HasName("VehicleBrands_pk");
 
-                    b.ToTable("VehicleBrands", (string)null);
+                    b.ToTable("VehicleBrands");
                 });
 
             modelBuilder.Entity("API.Models.VehicleModel", b =>
@@ -1423,7 +1426,7 @@ namespace API.Migrations
 
                     b.HasIndex("VehicleBrandId");
 
-                    b.ToTable("VehicleModels", (string)null);
+                    b.ToTable("VehicleModels");
                 });
 
             modelBuilder.Entity("API.Models.Vehicles.Vehicle", b =>
@@ -1549,7 +1552,7 @@ namespace API.Migrations
 
                     b.HasIndex("VehicleTypeId");
 
-                    b.ToTable("Vehicles", (string)null);
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("API.Models.Vehicles.VehicleOptionalInformation", b =>
@@ -1582,7 +1585,7 @@ namespace API.Migrations
                     b.HasKey("VehicleOptionalInformationId")
                         .HasName("VehicleOptionalInformation_pk");
 
-                    b.ToTable("VehicleOptionalInformation", (string)null);
+                    b.ToTable("VehicleOptionalInformation");
                 });
 
             modelBuilder.Entity("API.Models.Vehicles.VehicleStatistic", b =>
@@ -1609,7 +1612,7 @@ namespace API.Migrations
                     b.HasKey("VehicleStatisticsId")
                         .HasName("VehicleStatistics_pk");
 
-                    b.ToTable("VehicleStatistics", (string)null);
+                    b.ToTable("VehicleStatistics");
                 });
 
             modelBuilder.Entity("API.Models.Vehicles.VehicleStatus", b =>
@@ -1634,7 +1637,7 @@ namespace API.Migrations
                     b.HasKey("VehicleStatusId")
                         .HasName("VehicleStatus_pk");
 
-                    b.ToTable("VehicleStatuses", (string)null);
+                    b.ToTable("VehicleStatuses");
                 });
 
             modelBuilder.Entity("API.Models.Vehicles.VehicleType", b =>
@@ -1690,7 +1693,7 @@ namespace API.Migrations
                     b.HasKey("VehicleTypeId")
                         .HasName("VehicleTypes_pk");
 
-                    b.ToTable("VehicleTypes", (string)null);
+                    b.ToTable("VehicleTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

@@ -97,118 +97,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="VehiclesSideMenu" xml:space="preserve">
-    <value>Pojazdy</value>
+  <data name="BasicInformation" xml:space="preserve">
+    <value>Basic Information</value>
   </data>
-  <data name="VehicleTypesSideMenu" xml:space="preserve">
-    <value>Rodzaje pojazdów</value>
+  <data name="Customer" xml:space="preserve">
+    <value>Customer</value>
   </data>
-  <data name="VehicleBrandsSideMenu" xml:space="preserve">
-    <value>Marki pojazdów</value>
+  <data name="SelectCustomer" xml:space="preserve">
+    <value>Select Customer</value>
   </data>
-  <data name="VehicleModelsSideMenu" xml:space="preserve">
-    <value>Modele pojazdów</value>
+  <data name="LicenseType" xml:space="preserve">
+    <value>Type</value>
   </data>
-  <data name="ManageFiles" xml:space="preserve">
-    <value>Zarządzaj Plikami</value>
+  <data name="RequestDetails" xml:space="preserve">
+    <value>Request Details</value>
   </data>
-  <data name="Files" xml:space="preserve">
-    <value>Pliki</value>
+  <data name="RequestStatus" xml:space="preserve">
+    <value>Request Status</value>
   </data>
-  <data name="Returns" xml:space="preserve">
-    <value>Zdania</value>
+  <data name="ApprovedByEmployee" xml:space="preserve">
+    <value>Approved by</value>
   </data>
-  <data name="Pickups" xml:space="preserve">
-    <value>Odbiory</value>
+  <data name="SelectEmployee" xml:space="preserve">
+    <value>Select Employee</value>
   </data>
-  <data name="RequestsApproval" xml:space="preserve">
-    <value>Zatwierdzanie Wniosków</value>
+  <data name="File" xml:space="preserve">
+    <value>License</value>
   </data>
-  <data name="RentalManager" xml:space="preserve">
-    <value>Zarządzanie Wypożyczeniami</value>
-  </data>
-  <data name="Payments" xml:space="preserve">
-    <value>Płatności</value>
-  </data>
-  <data name="Rentals" xml:space="preserve">
-    <value>Wypożyczenia</value>
-  </data>
-  <data name="RentalRequests" xml:space="preserve">
-    <value>Wnioski Wypożyczenia</value>
-  </data>
-  <data name="CustomerTypes" xml:space="preserve">
-    <value>Rodzaje Klientów</value>
-  </data>
-  <data name="Customers" xml:space="preserve">
-    <value>Klienci</value>
-  </data>
-  <data name="RoleAssignment" xml:space="preserve">
-    <value>Przydział Ról</value>
-  </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Role</value>
-  </data>
-  <data name="Administrator" xml:space="preserve">
-    <value>Administrator</value>
-  </data>
-  <data name="Countries" xml:space="preserve">
-    <value>Kraje</value>
-  </data>
-  <data name="Addresses" xml:space="preserve">
-    <value>Adresy</value>
-  </data>
-  <data name="RentalPlaces" xml:space="preserve">
-    <value>Placówki</value>
-  </data>
-  <data name="Other" xml:space="preserve">
-    <value>Inne</value>
-  </data>
-  <data name="Schedules" xml:space="preserve">
-    <value>Grafik</value>
-  </data>
-  <data name="Positions" xml:space="preserve">
-    <value>Pozycje</value>
-  </data>
-  <data name="LeaveTypes" xml:space="preserve">
-    <value>Rodzaje Absencji</value>
-  </data>
-  <data name="ShiftTypes" xml:space="preserve">
-    <value>Rodzaje Zmian</value>
-  </data>
-  <data name="Employees" xml:space="preserve">
-    <value>Pracownicy</value>
-  </data>
-  <data name="VehicleMaintenance" xml:space="preserve">
-    <value>Inspekcja Pojazdu</value>
-  </data>
-  <data name="VehicleModels" xml:space="preserve">
-    <value>Modele Pojazdów</value>
-  </data>
-  <data name="VehiclesBrands" xml:space="preserve">
-    <value>Marki Pojazdów</value>
-  </data>
-  <data name="VehicleTypes" xml:space="preserve">
-    <value>Rodzaje Pojazdów</value>
-  </data>
-  <data name="Vehicles" xml:space="preserve">
-    <value>Pojazdy</value>
-  </data>
-  <data name="ModelsPerPage" xml:space="preserve">
-    <value>Modele na stronę:</value>
-  </data>
-  <data name="Language" xml:space="preserve">
-    <value>Język (reset okna):</value>
-  </data>
-  <data name="SettingsSuccessful" xml:space="preserve">
-    <value>Ustawienia zmienione pomyślnie!</value>
-  </data>
-  <data name="Map" xml:space="preserve">
-    <value>Mapa</value>
-  </data>
-  <data name="MapDisplayName" xml:space="preserve">
-    <value>Mapa</value>
-  </data>
-  <data name="LicenseApprovalRequests" xml:space="preserve">
-    <value>Wnioski Zatwierdzenia PJ</value>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Select License</value>
   </data>
 </root>

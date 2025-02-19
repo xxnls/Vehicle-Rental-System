@@ -65,6 +65,8 @@ public partial class Document : IBaseModel
 
     public virtual ICollection<News> News { get; set; } = new List<News>();
 
+    public virtual ICollection<LicenseApprovalRequests> LicenseApprovalRequests { get; set; } = new List<LicenseApprovalRequests>();
+
     public virtual Rental? Rental { get; set; }
 
     public virtual RentalPlace? RentalPlace { get; set; }

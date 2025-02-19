@@ -60,6 +60,7 @@ builder.Services.AddScoped<CustomerTypesService>();
 builder.Services.AddScoped<CustomerStatisticsService>();
 builder.Services.AddScoped<CustomersService>();
 builder.Services.AddScoped<CustomerAuthService>();
+builder.Services.AddScoped<LicenseApprovalRequestsService>();
 
 builder.Services.AddScoped<PaymentsService>();
 

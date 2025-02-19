@@ -202,4 +202,13 @@
   <data name="SettingsSuccessful" xml:space="preserve">
     <value>Settings saved successfully!</value>
   </data>
+  <data name="Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="MapDisplayName" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="LicenseApprovalRequests" xml:space="preserve">
+    <value>License Approval Requests</value>
+  </data>
 </root>

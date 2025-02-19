@@ -181,6 +181,10 @@
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="CountriesViewModel"
                             Content="{x:Static res:Resources.Countries}" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="MapViewModel"
+                            Content="{x:Static res:Resources.Map}" />
                     </StackPanel>
                 </Expander>
 
@@ -232,6 +236,10 @@
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="CustomerTypesViewModel"
                             Content="{x:Static res:Resources.CustomerTypes}" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="LicenseApprovalRequestsViewModel"
+                            Content="{x:Static res:Resources.LicenseApprovalRequests}" />
                     </StackPanel>
                 </Expander>
 

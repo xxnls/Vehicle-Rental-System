@@ -159,7 +159,7 @@ namespace BackOffice.ViewModels
                 if (_currentWorkspace == null)
                 {
                     // Initialize the default ViewModel only when first accessed
-                    _currentWorkspace = _viewModelMappings["VehicleModelsViewModel"]();
+                    _currentWorkspace = _viewModelMappings["VehiclesViewModel"]();
                     Debug.WriteLine(_currentWorkspace);
                 }
                 return _currentWorkspace;
@@ -228,6 +228,7 @@ namespace BackOffice.ViewModels
                 { "AddressesViewModel", () => new AddressesViewModel() },
                 { "CountriesViewModel", () => new CountriesViewModel() },
                 { "SettingsViewModel", () => new SettingsViewModel() },
+                { "MapViewModel", () => new MapViewModel() },
 
                 { "Employees", () => new EmployeesViewModel() },
                 { "EmployeeShiftTypesViewModel", () => new EmployeeShiftTypesViewModel() },
@@ -239,6 +240,7 @@ namespace BackOffice.ViewModels
 
                 { "CustomerTypesViewModel", () => new CustomerTypesViewModel() },
                 { "CustomersViewModel", () => new CustomersViewModel() },
+                { "LicenseApprovalRequestsViewModel", () => new LicenseApprovalRequestsViewModel() },
 
                 { "RentalRequestsViewModel", () => new RentalRequestsViewModel() },
                 { "RentalApprovalsViewModel", () => new RentalApprovalsViewModel() },

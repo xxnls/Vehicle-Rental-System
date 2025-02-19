@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using API.Interfaces;
 using API.Models.Rentals;
 using API.Models.FileSystem;
+using API.Models.Other;
 
 namespace API.Models.Customers;
 
@@ -48,4 +49,5 @@ public partial class Customer : IdentityUser<int>, IBaseModel
     public virtual ICollection<RentalRequest> RentalRequests { get; set; } = new List<RentalRequest>();
 
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+    public virtual ICollection<LicenseApprovalRequests> LicenseApprovalRequests { get; set; } = new List<LicenseApprovalRequests>();
 }

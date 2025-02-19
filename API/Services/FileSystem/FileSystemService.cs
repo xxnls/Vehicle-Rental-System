@@ -4,6 +4,7 @@ using API.Models.DTOs.FileSystem;
 using API.Models.FileSystem;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using API.Models.Customers;
 using API.Models.DTOs.Customers;
 using API.Models.DTOs.Employees;
 using API.Models.DTOs.Other;
@@ -62,6 +63,8 @@ namespace API.Services.FileSystem
             return await _dbSet
                 .Include(d => d.CreatedByEmployee)
                 .Include(d => d.Customer)
+                .Include(d => d.Customer.Address)
+                .Include(d => d.Customer.Address.Country)
                 .Include(d => d.DocumentCategory)
                 .Include(d => d.DocumentType)
                 .Include(d => d.Employee)
@@ -77,6 +80,8 @@ namespace API.Services.FileSystem
             return query
                 .Include(d => d.CreatedByEmployee)
                 .Include(d => d.Customer)
+                .Include(d => d.Customer.Address)
+                .Include(d => d.Customer.Address.Country)
                 .Include(d => d.DocumentCategory)
                 .Include(d => d.DocumentType)
                 .Include(d => d.Employee)

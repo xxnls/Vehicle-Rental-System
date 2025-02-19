@@ -18,7 +18,7 @@ namespace API.Models.DTOs.FileSystem
         public int? RentalPlaceId { get; set; }
         public int? RentalId { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public string FileName { get; set; } = null!;
         public string OriginalFileName { get; set; } = null!;
         public double FileSizeMb { get; set; }
