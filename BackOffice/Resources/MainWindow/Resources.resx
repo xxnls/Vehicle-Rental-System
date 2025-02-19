@@ -211,4 +211,7 @@
   <data name="LicenseApprovalRequests" xml:space="preserve">
     <value>License Approval Requests</value>
   </data>
+  <data name="ApproveRequests" xml:space="preserve">
+    <value>Approve Requests</value>
+  </data>
 </root>

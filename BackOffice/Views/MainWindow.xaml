@@ -240,6 +240,10 @@
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="LicenseApprovalRequestsViewModel"
                             Content="{x:Static res:Resources.LicenseApprovalRequests}" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="ApproveLicensesViewModel"
+                            Content="{x:Static res:Resources.ApproveRequests}" />
                     </StackPanel>
                 </Expander>
 

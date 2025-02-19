@@ -211,4 +211,7 @@
   <data name="LicenseApprovalRequests" xml:space="preserve">
     <value>Wnioski Zatwierdzenia PJ</value>
   </data>
+  <data name="ApproveRequests" xml:space="preserve">
+    <value>Zatwierdzanie Licencji</value>
+  </data>
 </root>

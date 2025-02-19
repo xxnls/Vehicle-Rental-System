@@ -77,6 +77,7 @@ builder.Services.AddTransient<IRentalCostCalculator, RentalCostCalculator>();
 builder.Services.AddTransient<IRentalProcessing, RentalProcessing>();
 builder.Services.AddTransient<ITransactionHandler, TransactionHandler>();
 builder.Services.AddTransient<IDocumentGenerator, DocumentGenerator>();
+builder.Services.AddTransient<ILicenseProcessing, LicenseProcessing>();
 
 #region Localization
 

@@ -60,7 +60,8 @@ namespace API.Services.Other
                 LicenseApprovalRequestId = model.LicenseApprovalRequestId,
                 CustomerId = model.CustomerId,
                 ApprovedByEmployeeId = model.ApprovedByEmployeeId,
-                DocumentId = model.DocumentId,
+                DocumentFrontId = model.DocumentFrontId,
+                DocumentBackId = model.DocumentBackId,
                 LicenseType = model.LicenseType,
                 RequestStatus = model.RequestStatus,
                 CreatedDate = model.CreatedDate,
@@ -79,8 +80,10 @@ namespace API.Services.Other
                 Customer = r.Customer != null ? _customersService.MapSingleEntityToDto(r.Customer) : null,
                 ApprovedByEmployeeId = r.ApprovedByEmployeeId,
                 ApprovedByEmployee = r.ApprovedByEmployee != null ? _employeesService.MapSingleEntityToDto(r.ApprovedByEmployee) : null,
-                DocumentId = r.DocumentId,
-                Document = r.Document != null ? _documentsService.MapSingleEntityToDto(r.Document) : null,
+                DocumentFrontId = r.DocumentFrontId,
+                DocumentBackId = r.DocumentBackId,
+                DocumentFront = r.DocumentFront != null ? _documentsService.MapSingleEntityToDto(r.DocumentFront) : null,
+                DocumentBack = r.DocumentBack != null ? _documentsService.MapSingleEntityToDto(r.DocumentBack) : null,
                 LicenseType = r.LicenseType,
                 RequestStatus = r.RequestStatus,
                 CreatedDate = r.CreatedDate,
@@ -99,8 +102,10 @@ namespace API.Services.Other
                 Customer = entity.Customer != null ? _customersService.MapSingleEntityToDto(entity.Customer) : null,
                 ApprovedByEmployeeId = entity.ApprovedByEmployeeId,
                 ApprovedByEmployee = entity.ApprovedByEmployee != null ? _employeesService.MapSingleEntityToDto(entity.ApprovedByEmployee) : null,
-                DocumentId = entity.DocumentId,
-                Document = entity.Document != null ? _documentsService.MapSingleEntityToDto(entity.Document) : null,
+                DocumentFrontId = entity.DocumentFrontId,
+                DocumentBackId = entity.DocumentBackId,
+                DocumentFront = entity.DocumentFront != null ? _documentsService.MapSingleEntityToDto(entity.DocumentFront) : null,
+                DocumentBack = entity.DocumentBack != null ? _documentsService.MapSingleEntityToDto(entity.DocumentBack) : null,
                 LicenseType = entity.LicenseType,
                 RequestStatus = entity.RequestStatus,
                 CreatedDate = entity.CreatedDate,
@@ -147,7 +152,8 @@ namespace API.Services.Other
         {
             entity.CustomerId = model.CustomerId;
             entity.ApprovedByEmployeeId = model.ApprovedByEmployeeId;
-            entity.DocumentId = model.DocumentId;
+            entity.DocumentFrontId = model.DocumentFrontId;
+            entity.DocumentBackId = model.DocumentBackId;
             entity.LicenseType = model.LicenseType;
             entity.RequestStatus = model.RequestStatus;
 
@@ -183,10 +189,11 @@ namespace API.Services.Other
                 .Include(r => r.Customer.Address)
                 .Include(r => r.Customer.Address.Country)
                 .Include(r => r.ApprovedByEmployee)
-                .Include(r => r.Document)
-                .Include(r => r.Document.Customer)
-                .Include(r => r.Document.Customer.Address)
-                .Include(r => r.Document.Customer.Address.Country)
+                .Include(r => r.DocumentFront)
+                .Include(r => r.DocumentFront.Customer)
+                .Include(r => r.DocumentFront.Customer.Address)
+                .Include(r => r.DocumentFront.Customer.Address.Country)
+                .Include(r => r.DocumentBack)
                 .FirstOrDefaultAsync(r => r.LicenseApprovalRequestId == id);
         }
 
@@ -198,10 +205,11 @@ namespace API.Services.Other
                 .Include(r => r.Customer.Address)
                 .Include(r => r.Customer.Address.Country)
                 .Include(r => r.ApprovedByEmployee)
-                .Include(r => r.Document)
-                .Include(r => r.Document.Customer)
-                .Include(r => r.Document.Customer.Address)
-                .Include(r => r.Document.Customer.Address.Country);
+                .Include(r => r.DocumentFront)
+                .Include(r => r.DocumentFront.Customer)
+                .Include(r => r.DocumentFront.Customer.Address)
+                .Include(r => r.DocumentFront.Customer.Address.Country)
+                .Include(r => r.DocumentBack);
         }
 
         public override async Task<LicenseApprovalRequestsDto> CreateAsync(LicenseApprovalRequestsDto licenseApprovalRequestsDto)
@@ -211,7 +219,8 @@ namespace API.Services.Other
                 var licenseApprovalRequest = new LicenseApprovalRequests
                 {
                     CustomerId = licenseApprovalRequestsDto.Customer.Id,
-                    DocumentId = licenseApprovalRequestsDto.Document.DocumentId,
+                    DocumentFrontId = licenseApprovalRequestsDto.DocumentFront.DocumentId,
+                    DocumentBackId = licenseApprovalRequestsDto.DocumentBack.DocumentId,
                     LicenseType = licenseApprovalRequestsDto.LicenseType,
                     RequestStatus = RequestStatus.Pending.ToString(), // Set initial status
                     CreatedDate = DateTime.UtcNow,

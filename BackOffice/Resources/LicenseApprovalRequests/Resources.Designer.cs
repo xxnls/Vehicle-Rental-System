@@ -70,6 +70,15 @@ namespace BackOffice.Resources.LicenseApprovalRequests {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approve Licenses.
+        /// </summary>
+        public static string ApproveRequests {
+            get {
+                return ResourceManager.GetString("ApproveRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basic Information.
         /// </summary>
         public static string BasicInformation {
@@ -84,6 +93,15 @@ namespace BackOffice.Resources.LicenseApprovalRequests {
         public static string Customer {
             get {
                 return ResourceManager.GetString("Customer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licenses.
+        /// </summary>
+        public static string DisplayName {
+            get {
+                return ResourceManager.GetString("DisplayName", resourceCulture);
             }
         }
         
@@ -142,11 +160,38 @@ namespace BackOffice.Resources.LicenseApprovalRequests {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select License.
+        ///   Looks up a localized string similar to License Back.
         /// </summary>
-        public static string SelectFile {
+        public static string SelectFileBack {
             get {
-                return ResourceManager.GetString("SelectFile", resourceCulture);
+                return ResourceManager.GetString("SelectFileBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to License Front.
+        /// </summary>
+        public static string SelectFileFront {
+            get {
+                return ResourceManager.GetString("SelectFileFront", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View back.
+        /// </summary>
+        public static string ViewBack {
+            get {
+                return ResourceManager.GetString("ViewBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View front.
+        /// </summary>
+        public static string ViewFront {
+            get {
+                return ResourceManager.GetString("ViewFront", resourceCulture);
             }
         }
     }

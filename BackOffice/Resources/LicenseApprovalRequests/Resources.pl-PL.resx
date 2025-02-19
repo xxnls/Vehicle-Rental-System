@@ -124,7 +124,22 @@
   <data name="File" xml:space="preserve">
     <value>Prawo Jazdy</value>
   </data>
-  <data name="SelectFile" xml:space="preserve">
-    <value>Wybierz PJ</value>
+  <data name="SelectFileFront" xml:space="preserve">
+    <value>Front PJ</value>
+  </data>
+  <data name="SelectFileBack" xml:space="preserve">
+    <value>Tył PJ</value>
+  </data>
+  <data name="ViewFront" xml:space="preserve">
+    <value>Zobacz front</value>
+  </data>
+  <data name="ViewBack" xml:space="preserve">
+    <value>Zobacz tył</value>
+  </data>
+  <data name="ApproveRequests" xml:space="preserve">
+    <value>Zatwierdzanie Licencji</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Licencje</value>
   </data>
 </root>

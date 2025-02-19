@@ -231,6 +231,18 @@
                         <DataGridTextColumn Binding="{Binding CompanyName}" Header="{x:Static res:Resources.CompanyName}" />
                         <DataGridTextColumn Binding="{Binding CustomerType.CustomerType}" Header="{x:Static res:Resources.CustomerType}" />
                         <DataGridTextColumn Binding="{Binding Address.City}" Header="{x:Static res:Resources.City}" />
+                        <DataGridTextColumn
+                            Binding="{Binding ApprovedA}"
+                            CellStyle="{StaticResource ApprovedACellStyle}"
+                            Header="A" />
+                        <DataGridTextColumn
+                            Binding="{Binding ApprovedB}"
+                            CellStyle="{StaticResource ApprovedBCellStyle}"
+                            Header="B" />
+                        <DataGridTextColumn
+                            Binding="{Binding ApprovedC}"
+                            CellStyle="{StaticResource ApprovedCCellStyle}"
+                            Header="C" />
                         <DataGridTextColumn Binding="{Binding CreatedDate}" Header="{x:Static generic:Resources.CreatedDate}" />
                         <DataGridTextColumn Binding="{Binding ModifiedDate}" Header="{x:Static generic:Resources.ModifiedDate}" />
                         <DataGridTextColumn

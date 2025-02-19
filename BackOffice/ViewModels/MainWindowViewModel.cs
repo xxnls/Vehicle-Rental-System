@@ -241,6 +241,7 @@ namespace BackOffice.ViewModels
                 { "CustomerTypesViewModel", () => new CustomerTypesViewModel() },
                 { "CustomersViewModel", () => new CustomersViewModel() },
                 { "LicenseApprovalRequestsViewModel", () => new LicenseApprovalRequestsViewModel() },
+                { "ApproveLicensesViewModel", () => new ApproveLicensesViewModel() },
 
                 { "RentalRequestsViewModel", () => new RentalRequestsViewModel() },
                 { "RentalApprovalsViewModel", () => new RentalApprovalsViewModel() },

@@ -136,6 +136,10 @@
         <otherviews:LicenseApprovalRequestsView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type other:ApproveLicensesViewModel}">
+        <otherviews:ApproveLicensesView />
+    </DataTemplate>
+
     <Storyboard x:Key="ExpandSidebar">
         <DoubleAnimation
             Storyboard.TargetName="Sidebar"

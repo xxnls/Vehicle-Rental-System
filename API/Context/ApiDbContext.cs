@@ -831,7 +831,8 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
 
             entity.Property(e => e.LicenseApprovalRequestId).HasColumnName("LicenseApprovalRequestID");
             entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
-            entity.Property(e => e.DocumentId).HasColumnName("DocumentID");
+            entity.Property(e => e.DocumentFrontId).HasColumnName("DocumentFrontID");
+            entity.Property(e => e.DocumentBackId).HasColumnName("DocumentBackID");
             entity.Property(e => e.ApprovedByEmployeeId).HasColumnName("ApprovedByEmployeeID");
             entity.Property(e => e.LicenseType).HasConversion<string>().HasDefaultValue(LicenseType.B).HasMaxLength(50).IsRequired();
             entity.Property(e => e.RequestStatus).HasConversion<string>().HasDefaultValue(RequestStatus.Pending).HasMaxLength(50)
@@ -844,10 +845,19 @@ public partial class ApiDbContext : IdentityDbContext<IdentityUser<int>, Employe
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("LicenseApprovalRequests_Customers");
 
-            entity.HasOne(d => d.Document).WithMany(p => p.LicenseApprovalRequests)
-                .HasForeignKey(d => d.DocumentId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("LicenseApprovalRequests_Documents");
+            modelBuilder.Entity<LicenseApprovalRequests>()
+                .HasOne(l => l.DocumentFront)
+                .WithMany()
+                .HasForeignKey(l => l.DocumentFrontId)
+                .OnDelete(DeleteBehavior.Restrict) // Use Restrict
+                .HasConstraintName("LicenseApprovalRequests_DocumentsFront");
+
+            modelBuilder.Entity<LicenseApprovalRequests>()
+                .HasOne(l => l.DocumentBack)
+                .WithMany()
+                .HasForeignKey(l => l.DocumentBackId)
+                .OnDelete(DeleteBehavior.Restrict) // Use Restrict
+                .HasConstraintName("LicenseApprovalRequests_DocumentsBack");
 
             entity.HasOne(d => d.ApprovedByEmployee).WithMany(p => p.LicenseApprovalRequests)
                 .HasForeignKey(d => d.ApprovedByEmployeeId)

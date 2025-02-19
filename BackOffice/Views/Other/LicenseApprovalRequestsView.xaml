@@ -80,23 +80,44 @@
                                     Style="{StaticResource DefaultButtonStyle}" />
                             </StackPanel>
 
-                            <!--  File Upload  -->
+                            <!--  File Upload Front  -->
                             <StackPanel Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <Label Content="{x:Static res:Resources.File}" />
-                                <TextBox IsReadOnly="True" Text="{Binding License.FileName}" />
+                                <Label Content="{x:Static res:Resources.SelectFileFront}" />
+                                <TextBox IsReadOnly="True" Text="{Binding LicenseFront.FileName}" />
                                 <Button
                                     Width="150"
                                     Margin="0,5,0,0"
                                     HorizontalAlignment="Left"
-                                    Command="{Binding UploadFileCommand}"
-                                    Content="{x:Static res:Resources.SelectFile}"
+                                    Command="{Binding UploadFileFrontCommand}"
+                                    CommandParameter="front"
+                                    Content="{x:Static res:Resources.SelectFileFront}"
                                     Style="{StaticResource DefaultButtonStyle}" />
                                 <TextBlock
-                                    helpers:ValidationHelper.PropertyName="FileContent"
+                                    helpers:ValidationHelper.PropertyName="FileContentFront"
+                                    Foreground="{StaticResource ErrorBrush}"
+                                    Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
+                            </StackPanel>
+
+                            <!--  File Upload Back  -->
+                            <StackPanel Visibility="{Binding IsCreating, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label Content="{x:Static res:Resources.SelectFileBack}" />
+                                <TextBox IsReadOnly="True" Text="{Binding LicenseBack.FileName}" />
+                                <Button
+                                    Width="150"
+                                    Margin="0,5,0,0"
+                                    HorizontalAlignment="Left"
+                                    Command="{Binding UploadFileBackCommand}"
+                                    CommandParameter="back"
+                                    Content="{x:Static res:Resources.SelectFileBack}"
+                                    Style="{StaticResource DefaultButtonStyle}" />
+                                <TextBlock
+                                    helpers:ValidationHelper.PropertyName="FileContentBack"
                                     Foreground="{StaticResource ErrorBrush}"
                                     Text="{Binding (helpers:ValidationHelper.ErrorText), RelativeSource={RelativeSource Self}}" />
                             </StackPanel>
                         </StackPanel>
+
+
 
                         <!--  Right Column  -->
                         <StackPanel
@@ -194,7 +215,10 @@
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
                         <DataGridTextColumn Binding="{Binding LicenseType}" Header="{x:Static res:Resources.LicenseType}" />
-                        <DataGridTextColumn Binding="{Binding RequestStatus}" Header="{x:Static res:Resources.RequestStatus}" />
+                        <DataGridTextColumn
+                            Binding="{Binding RequestStatus}"
+                            CellStyle="{StaticResource LicenseStatusCellStyle}"
+                            Header="{x:Static res:Resources.RequestStatus}" />
                         <DataGridTextColumn Header="{x:Static res:Resources.ApprovedByEmployee}">
                             <DataGridTextColumn.Binding>
                                 <MultiBinding StringFormat="{}{0} {1}">
@@ -203,6 +227,32 @@
                                 </MultiBinding>
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
+                        <DataGridTemplateColumn Header="{x:Static res:Resources.ViewFront}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                        Width="75"
+                                        Height="20"
+                                        Command="{Binding DataContext.ViewFileContentCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding DocumentFrontId}"
+                                        Content="{x:Static res:Resources.ViewFront}"
+                                        Style="{StaticResource DefaultButtonStyle}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="{x:Static res:Resources.ViewBack}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                        Width="75"
+                                        Height="20"
+                                        Command="{Binding DataContext.ViewFileContentCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding DocumentBackId}"
+                                        Content="{x:Static res:Resources.ViewBack}"
+                                        Style="{StaticResource DefaultButtonStyle}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Binding="{Binding CreatedDate, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static generic:Resources.CreatedDate}" />
                         <DataGridTextColumn Binding="{Binding ModifiedDate, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static generic:Resources.ModifiedDate}" />
                         <DataGridTextColumn

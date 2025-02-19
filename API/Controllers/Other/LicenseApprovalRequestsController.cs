@@ -1,4 +1,5 @@
-﻿using API.Models.DTOs.Other;
+﻿using API.BusinessLogic;
+using API.Models.DTOs.Other;
 using API.Models.Other;
 using API.Services.Other;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace API.Controllers.Other
     public class LicenseApprovalRequestsController : BaseApiController<LicenseApprovalRequests, LicenseApprovalRequestsDto, LicenseApprovalRequestsDto>
     {
         private readonly LicenseApprovalRequestsService _service;
+        private readonly ILicenseProcessing _licenseProcessing;
 
-        public LicenseApprovalRequestsController(LicenseApprovalRequestsService service) : base(service)
+        public LicenseApprovalRequestsController(LicenseApprovalRequestsService service, ILicenseProcessing licenseProcessing) : base(service)
         {
             _service = service;
+            _licenseProcessing = licenseProcessing;
         }
 
         protected override int GetEntityId(LicenseApprovalRequestsDto entity)
@@ -42,5 +45,34 @@ namespace API.Controllers.Other
                 return StatusCode(500, "An error occurred while retrieving pending license approval requests.");
             }
         }
+
+        [HttpPut("approve/{requestId}/{employeeId}")]
+        public async Task<IActionResult> ApproveLicense(int requestId, int employeeid)
+        {
+            try
+            {
+                await _licenseProcessing.ApproveLicenseAsync(requestId, employeeid);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while approving license.");
+            }
+        }
+
+        [HttpPost("upload-license")]
+        public async Task<IActionResult> UploadLicense(UploadLicenseDto request)
+        {
+            try
+            {
+                await _licenseProcessing.UploadLicense(request);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while uploading license.");
+            }
+        }
+
     }
 }

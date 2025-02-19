@@ -69,6 +69,39 @@ namespace BackOffice.Models.DTOs.Customers
             }
         }
 
+        private bool? _approvedA;
+        public bool? ApprovedA
+        {
+            get => _approvedA;
+            set
+            {
+                _approvedA = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _approvedB;
+        public bool? ApprovedB
+        {
+            get => _approvedB;
+            set
+            {
+                _approvedB = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _approvedC;
+        public bool? ApprovedC
+        {
+            get => _approvedC;
+            set
+            {
+                _approvedC = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string? _userName;
         public string? UserName
         {

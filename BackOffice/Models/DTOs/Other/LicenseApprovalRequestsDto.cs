@@ -23,11 +23,13 @@ namespace BackOffice.Models.DTOs.Other
     {
         private int _customerId;
         private int? _approvedByEmployeeId;
-        private int _documentId;
+        private int? _documentFrontId;
+        private int? _documentBackId;
         private string? _licenseType;
         private string? _requestStatus;
         private CustomerDto _customer = null!;
-        private DocumentDto _document = null!;
+        private DocumentDto? _documentFront = null!;
+        private DocumentDto? _documentBack = null!;
         private EmployeeDto? _approvedByEmployee = null!;
         public int LicenseApprovalRequestId { get; set; }
         public int CustomerId
@@ -56,15 +58,28 @@ namespace BackOffice.Models.DTOs.Other
             }
         }
 
-        public int DocumentId
+        public int? DocumentFrontId
         {
-            get => _documentId;
+            get => _documentFrontId;
             set
             {
-                if (_documentId != value)
+                if (_documentFrontId != value)
                 {
-                    _documentId = value;
-                    OnPropertyChanged(nameof(DocumentId));
+                    _documentFrontId = value;
+                    OnPropertyChanged(nameof(DocumentFrontId));
+                }
+            }
+        }
+
+        public int? DocumentBackId
+        {
+            get => _documentBackId;
+            set
+            {
+                if (_documentBackId != value)
+                {
+                    _documentBackId = value;
+                    OnPropertyChanged(nameof(DocumentBackId));
                 }
             }
         }
@@ -109,15 +124,28 @@ namespace BackOffice.Models.DTOs.Other
             }
         }
 
-        public DocumentDto Document
+        public DocumentDto? DocumentFront
         {
-            get => _document;
+            get => _documentFront;
             set
             {
-                if (_document != value)
+                if (_documentFront != value)
                 {
-                    _document = value;
-                    OnPropertyChanged(nameof(Document));
+                    _documentFront = value;
+                    OnPropertyChanged(nameof(DocumentFront));
+                }
+            }
+        }
+
+        public DocumentDto? DocumentBack
+        {
+            get => _documentBack;
+            set
+            {
+                if (_documentBack != value)
+                {
+                    _documentBack = value;
+                    OnPropertyChanged(nameof(DocumentBack));
                 }
             }
         }

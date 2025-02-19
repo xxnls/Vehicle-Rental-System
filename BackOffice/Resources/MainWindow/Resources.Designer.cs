@@ -79,6 +79,15 @@ namespace BackOffice.Resources.MainWindow {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approve Requests.
+        /// </summary>
+        public static string ApproveRequests {
+            get {
+                return ResourceManager.GetString("ApproveRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Countries.
         /// </summary>
         public static string Countries {

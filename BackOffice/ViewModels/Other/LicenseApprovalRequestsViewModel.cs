@@ -17,21 +17,35 @@ using BackOffice.Views.Employees;
 using System.Windows;
 using BackOffice.Models.DTOs.FileSystem;
 using System.Windows.Input;
+using RTools_NTS.Util;
 
 namespace BackOffice.ViewModels.Other
 {
     public class LicenseApprovalRequestsViewModel : BaseListViewModel<LicenseApprovalRequestsDto>, IListViewModel
     {
         public SelectorDialogParameters SelectCustomerParameters { get; set; }
-        public ICommand UploadFileCommand { get; set; }
+        public ICommand UploadFileFrontCommand { get; set; }
+        public ICommand UploadFileBackCommand { get; set; }
+        public ICommand ViewFileContentCommand { get; set; }
 
-        private FileUploadDto _license = null!;
-        public FileUploadDto License
+        private FileUploadDto _licenseFront = null!;
+        public FileUploadDto LicenseFront
         {
-            get => _license;
+            get => _licenseFront;
             set
             {
-                _license = value;
+                _licenseFront = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private FileUploadDto _licenseBack = null!;
+        public FileUploadDto LicenseBack
+        {
+            get => _licenseBack;
+            set
+            {
+                _licenseBack = value;
                 OnPropertyChanged();
             }
         }
@@ -60,7 +74,9 @@ namespace BackOffice.ViewModels.Other
                 () => DeleteModelAsync(EditableModel.LicenseApprovalRequestId),
                 () => EditableModel != null
             );
-            UploadFileCommand = new AsyncRelayCommand(UploadFileAsync);
+            UploadFileFrontCommand = new AsyncRelayCommand<string>(UploadFileAsync);
+            UploadFileBackCommand = new AsyncRelayCommand<string>(UploadFileAsync);
+            ViewFileContentCommand = new AsyncRelayCommand<int>(FileHelper.ViewFile);
 
             ValidationRules = new Dictionary<string, Action>();
         }
@@ -69,11 +85,15 @@ namespace BackOffice.ViewModels.Other
         {
             try
             {
-                var result = await ApiClient.PostAsync<FileUploadDto, DocumentDto>($"FileSystem/upload", License);
+                var resultFront = await ApiClient.PostAsync<FileUploadDto, DocumentDto>($"FileSystem/upload", LicenseFront);
+                var resultBack = await ApiClient.PostAsync<FileUploadDto, DocumentDto>($"FileSystem/upload", LicenseBack);
                 var user = (EmployeeDto)SessionManager.Get("User");
-                result.CreatedByEmployeeId = user.Id;
-                result.CreatedByEmployee = user;
-                EditableModel.Document = result;
+                resultFront.CreatedByEmployeeId = user.Id;
+                resultFront.CreatedByEmployee = user;
+                resultBack.CreatedByEmployeeId = user.Id;
+                resultBack.CreatedByEmployee = user;
+                EditableModel.DocumentFront = resultFront;
+                EditableModel.DocumentBack = resultBack;
 
                 await base.CreateModelAsync(model);
             }
@@ -87,11 +107,15 @@ namespace BackOffice.ViewModels.Other
         {
             try
             {
-                var result = await ApiClient.GetAsync<DocumentDto>($"FileSystem", model.Document.DocumentId);
+                var resultFront = await ApiClient.GetAsync<DocumentDto>($"FileSystem", model.DocumentFront.DocumentId);
+                var resultBack = await ApiClient.GetAsync<DocumentDto>($"FileSystem", model.DocumentBack.DocumentId);
                 var user = (EmployeeDto)SessionManager.Get("User");
-                result.CreatedByEmployeeId = user.Id;
-                result.CreatedByEmployee = user;
-                model.Document = result;
+                resultFront.CreatedByEmployeeId = user.Id;
+                resultFront.CreatedByEmployee = user;
+                resultBack.CreatedByEmployeeId = user.Id;
+                resultBack.CreatedByEmployee = user;
+                model.DocumentFront = resultFront;
+                model.DocumentBack = resultBack;
                 await base.UpdateModelAsync(id, model);
             }
             catch (Exception e)
@@ -108,7 +132,7 @@ namespace BackOffice.ViewModels.Other
             await UpdateModelAsync(id, model);
         }
 
-        private async Task UploadFileAsync()
+        private async Task UploadFileAsync(string type)
         {
             try
             {
@@ -129,23 +153,32 @@ namespace BackOffice.ViewModels.Other
 
                     var user = (EmployeeDto)SessionManager.Get("User");
 
-                    License = new FileUploadDto
+                    if (type == "front")
                     {
-                        FileContent = fileContent,
-                        FileName = fileName,
-                        Title = $"License_{EditableModel.Customer.FirstName}_{EditableModel.Customer.LastName}",
-                        DocumentCategoryId = 3,
-                        DocumentTypeId = 2,
-                        CustomerId = EditableModel.Customer.Id,
-                        CreatedByEmployeeId = user.Id,
-                    };
-
-                    // Notify the UI that the file has been selected
-                    //OnPropertyChanged(nameof(EditableModel.FileName));
-                    //OnPropertyChanged(nameof(EditableModel.FileContent));
-
-                    // Clear any previous validation errors
-                    //ClearErrors(nameof(EditableModel.FileContent));
+                        LicenseFront = new FileUploadDto
+                        {
+                            FileContent = fileContent,
+                            FileName = fileName,
+                            Title = $"LicenseFront_{EditableModel.Customer.FirstName}_{EditableModel.Customer.LastName}",
+                            DocumentCategoryId = 3,
+                            DocumentTypeId = 2,
+                            CustomerId = EditableModel.Customer.Id,
+                            CreatedByEmployeeId = user.Id,
+                        };
+                    }
+                    else
+                    {
+                        LicenseBack = new FileUploadDto
+                        {
+                            FileContent = fileContent,
+                            FileName = fileName,
+                            Title = $"LicenseBack_{EditableModel.Customer.FirstName}_{EditableModel.Customer.LastName}",
+                            DocumentCategoryId = 3,
+                            DocumentTypeId = 2,
+                            CustomerId = EditableModel.Customer.Id,
+                            CreatedByEmployeeId = user.Id,
+                        };
+                    }
                 }
             }
             catch (Exception ex)
@@ -155,9 +188,5 @@ namespace BackOffice.ViewModels.Other
             }
         }
 
-        #region Validation
-
-
-        #endregion
     }
 }

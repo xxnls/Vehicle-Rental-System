@@ -1,0 +1,127 @@
+﻿<UserControl
+    x:Class="BackOffice.Views.Other.ApproveLicensesView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customControls="clr-namespace:BackOffice.Views.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:generic="clr-namespace:BackOffice.Resources.Generic"
+    xmlns:local="clr-namespace:BackOffice.Views.Other"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:other="clr-namespace:BackOffice.ViewModels.Other"
+    xmlns:res="clr-namespace:BackOffice.Resources.LicenseApprovalRequests"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <other:ApproveLicensesViewModel />
+    </UserControl.DataContext>
+
+    <Grid Margin="0,5,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="10,0,0,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding LoadModelsCommand}" Style="{StaticResource DefaultButtonStyle}">
+                    <Image Source="/ViewResources/Icons/reload.png" />
+                </Button>
+
+                <Button Command="{Binding ApproveRequestCommand}" Style="{StaticResource DefaultButtonStyle}">
+                    <Image Source="/ViewResources/Icons/check_circle.png" />
+                </Button>
+
+                <Button Command="{Binding RejectRequestCommand}" Style="{StaticResource DefaultButtonStyle}">
+                    <Image Source="/ViewResources/Icons/reject_circle.png" />
+                </Button>
+
+                <Button Command="{Binding CancelRequestCommand}" Style="{StaticResource DefaultButtonStyle}">
+                    <Image Source="/ViewResources/Icons/cancel_circle.png" />
+                </Button>
+            </StackPanel>
+
+            <customControls:SearchControl Grid.Column="0" SearchCommand="{Binding SearchCommand}" />
+        </Grid>
+
+        <DataGrid
+            Grid.Row="1"
+            ItemsSource="{Binding Models}"
+            SelectedItem="{Binding EditableModel, Mode=TwoWay}"
+            Style="{StaticResource DefaultDataGridStyle}">
+            <DataGrid.InputBindings>
+                <MouseBinding
+                    Command="{Binding ShowDetailedInfoCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Mode=OneWay}"
+                    Gesture="LeftDoubleClick" />
+            </DataGrid.InputBindings>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding LicenseApprovalRequestId}" Header="ID" />
+                <DataGridTextColumn Header="{x:Static res:Resources.Customer}">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0} {1}">
+                            <Binding Path="Customer.FirstName" />
+                            <Binding Path="Customer.LastName" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding LicenseType}" Header="{x:Static res:Resources.LicenseType}" />
+                <DataGridTextColumn
+                    Binding="{Binding RequestStatus}"
+                    CellStyle="{StaticResource LicenseStatusCellStyle}"
+                    Header="{x:Static res:Resources.RequestStatus}" />
+                <DataGridTextColumn Header="{x:Static res:Resources.ApprovedByEmployee}">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0} {1}">
+                            <Binding Path="ApprovedByEmployee.FirstName" />
+                            <Binding Path="ApprovedByEmployee.LastName" />
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Header="{x:Static res:Resources.ViewFront}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                Width="75"
+                                Height="20"
+                                Command="{Binding DataContext.ViewFileContentCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                CommandParameter="{Binding DocumentFrontId}"
+                                Content="{x:Static res:Resources.ViewFront}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="{x:Static res:Resources.ViewBack}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                Width="75"
+                                Height="20"
+                                Command="{Binding DataContext.ViewFileContentCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                CommandParameter="{Binding DocumentBackId}"
+                                Content="{x:Static res:Resources.ViewBack}"
+                                Style="{StaticResource DefaultButtonStyle}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding CreatedDate, StringFormat=dd/MM/yyyy HH:mm}" Header="{x:Static generic:Resources.CreatedDate}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <customControls:PaginationControl
+            Grid.Row="2"
+            CanLoadNextPage="{Binding CanLoadNextPage}"
+            CanLoadPreviousPage="{Binding CanLoadPreviousPage}"
+            CurrentPage="{Binding CurrentPage}"
+            ModelsPerPage="{Binding PageSize}"
+            NextPageCommand="{Binding LoadNextPageCommand}"
+            PreviousPageCommand="{Binding LoadPreviousPageCommand}"
+            TotalItemCount="{Binding TotalItemCount}" />
+    </Grid>
+</UserControl>

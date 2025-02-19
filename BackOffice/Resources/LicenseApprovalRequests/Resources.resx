@@ -124,7 +124,22 @@
   <data name="File" xml:space="preserve">
     <value>License</value>
   </data>
-  <data name="SelectFile" xml:space="preserve">
-    <value>Select License</value>
+  <data name="SelectFileFront" xml:space="preserve">
+    <value>License Front</value>
+  </data>
+  <data name="SelectFileBack" xml:space="preserve">
+    <value>License Back</value>
+  </data>
+  <data name="ViewFront" xml:space="preserve">
+    <value>View front</value>
+  </data>
+  <data name="ViewBack" xml:space="preserve">
+    <value>View back</value>
+  </data>
+  <data name="ApproveRequests" xml:space="preserve">
+    <value>Approve Licenses</value>
+  </data>
+  <data name="DisplayName" xml:space="preserve">
+    <value>Licenses</value>
   </data>
 </root>

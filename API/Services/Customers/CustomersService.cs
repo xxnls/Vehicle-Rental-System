@@ -67,6 +67,9 @@ namespace API.Services.Customers
                 Email = model.Email,
                 PhoneNumber = model.PhoneNumber,
                 CompanyName = model.CompanyName,
+                ApprovedA = model.ApprovedA ?? false,
+                ApprovedB = model.ApprovedB ?? false,
+                ApprovedC = model.ApprovedC ?? false,
                 UserName = model.UserName,
                 AddressId = model.AddressId,
                 CustomerTypeId = model.CustomerTypeId,
@@ -90,6 +93,9 @@ namespace API.Services.Customers
                 CompanyName = c.CompanyName,
                 UserName = c.UserName,
                 AddressId = c.AddressId,
+                ApprovedA = c.ApprovedA,
+                ApprovedB = c.ApprovedB,
+                ApprovedC = c.ApprovedC,
                 CustomerTypeId = c.CustomerTypeId,
                 CustomerStatisticsId = c.CustomerStatisticsId,
                 CreatedDate = c.CreatedDate,
@@ -113,6 +119,9 @@ namespace API.Services.Customers
                 PhoneNumber = entity.PhoneNumber,
                 CompanyName = entity.CompanyName,
                 UserName = entity.UserName,
+                ApprovedA = entity.ApprovedA,
+                ApprovedB = entity.ApprovedB,
+                ApprovedC = entity.ApprovedC,
                 AddressId = entity.AddressId,
                 CustomerTypeId = entity.CustomerTypeId,
                 CustomerStatisticsId = entity.CustomerStatisticsId,
@@ -141,6 +150,9 @@ namespace API.Services.Customers
             entity.FirstName = model.FirstName;
             entity.LastName = model.LastName;
             entity.Email = model.Email;
+            entity.ApprovedA = model.ApprovedA ?? false;
+            entity.ApprovedB = model.ApprovedB ?? false;
+            entity.ApprovedC = model.ApprovedC ?? false;
             entity.PhoneNumber = model.PhoneNumber;
             entity.CompanyName = model.CompanyName;
             entity.ModifiedDate = DateTime.UtcNow;

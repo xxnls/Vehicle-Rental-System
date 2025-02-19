@@ -25,7 +25,8 @@ namespace API.Models.Other
         public int LicenseApprovalRequestId { get; set; }
         public int CustomerId { get; set; }
         public int? ApprovedByEmployeeId { get; set; }
-        public int DocumentId { get; set; }
+        public int? DocumentFrontId { get; set; }
+        public int? DocumentBackId { get; set; }
         public string? LicenseType { get; set; }
         public string? RequestStatus { get; set; }
         public DateTime CreatedDate { get; set; }
@@ -35,7 +36,8 @@ namespace API.Models.Other
 
         // Navigation properties
         public virtual Customer Customer { get; set; } = null!;
-        public virtual Document Document { get; set; } = null!;
+        public virtual Document? DocumentFront { get; set; } = null!;
+        public virtual Document? DocumentBack { get; set; } = null!;
         public virtual Employee? ApprovedByEmployee { get; set; } = null!;
     }
 }
