@@ -295,7 +295,7 @@ namespace BackOffice.ViewModels
         public RelayCommand ShowDeletedModelsCommand { get; set; }
         public AsyncRelayCommand<int> RestoreModelCommand { get; set; }
         public ICommand ShowDetailedInfoCommand { get; }
-        public ICommand ShowSelectorDialogCommand { get; }
+        public ICommand ShowSelectorDialogCommand { get; set; }
         public AsyncRelayCommand? ApproveRequestCommand { get; set; }
         public AsyncRelayCommand? RejectRequestCommand { get; set; }
         public AsyncRelayCommand? CancelRequestCommand { get; set; }

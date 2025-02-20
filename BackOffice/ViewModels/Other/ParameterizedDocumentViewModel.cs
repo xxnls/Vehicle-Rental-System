@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Net.Sockets;
@@ -6,6 +7,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using BackOffice.Helpers;
 using BackOffice.Models;
 using BackOffice.Models.Customers;
 using BackOffice.Models.DTOs.Customers;
@@ -34,7 +36,10 @@ namespace BackOffice.ViewModels.Other
     {
         #region Properties
 
+        public ObservableCollection<string> AvailableVariables { get; set; } = new ObservableCollection<string>();
         public List<Type> ModelTypes { get; set; } = [];
+
+        public string ModelSelectionStatus { get; set; }
 
         private Type _selectedModelType;
         public Type SelectedModelType
@@ -44,7 +49,10 @@ namespace BackOffice.ViewModels.Other
             {
                 _selectedModelType = value;
                 OnPropertyChanged();
+
+                ClearModels();
                 ChangeParameters();
+                UpdateAvailableVariables();
             }
         }
 
@@ -91,6 +99,9 @@ namespace BackOffice.ViewModels.Other
             {
                 _customerModel = value;
                 OnPropertyChanged();
+
+                ModelSelectionStatus = _customerModel != null ? LocalizationHelper.GetString("ParametrizeDocuments", "ModelSelected") : LocalizationHelper.GetString("ParametrizeDocuments", "ModelNotSelected");
+                OnPropertyChanged(nameof(ModelSelectionStatus));
             }
         }
 
@@ -102,6 +113,9 @@ namespace BackOffice.ViewModels.Other
             {
                 _employeeDto = value;
                 OnPropertyChanged();
+
+                ModelSelectionStatus = _employeeDto != null ? LocalizationHelper.GetString("ParametrizeDocuments", "ModelSelected") : LocalizationHelper.GetString("ParametrizeDocuments", "ModelNotSelected");
+                OnPropertyChanged(nameof(ModelSelectionStatus));
             }
         }
 
@@ -113,6 +127,9 @@ namespace BackOffice.ViewModels.Other
             {
                 _addressDto = value;
                 OnPropertyChanged();
+
+                ModelSelectionStatus = _addressDto != null ? LocalizationHelper.GetString("ParametrizeDocuments", "ModelSelected") : LocalizationHelper.GetString("ParametrizeDocuments", "ModelNotSelected");
+                OnPropertyChanged(nameof(ModelSelectionStatus));
             }
         }
 
@@ -124,6 +141,9 @@ namespace BackOffice.ViewModels.Other
             {
                 _rentalPlaceDto = value;
                 OnPropertyChanged();
+
+                ModelSelectionStatus = _rentalPlaceDto != null ? LocalizationHelper.GetString("ParametrizeDocuments", "ModelSelected") : LocalizationHelper.GetString("ParametrizeDocuments", "ModelNotSelected");
+                OnPropertyChanged(nameof(ModelSelectionStatus));
             }
         }
 
@@ -135,6 +155,9 @@ namespace BackOffice.ViewModels.Other
             {
                 _rentalDto = value;
                 OnPropertyChanged();
+
+                ModelSelectionStatus = _rentalDto != null ? LocalizationHelper.GetString("ParametrizeDocuments", "ModelSelected") : LocalizationHelper.GetString("ParametrizeDocuments", "ModelNotSelected");
+                OnPropertyChanged(nameof(ModelSelectionStatus));
             }
         }
 
@@ -146,6 +169,9 @@ namespace BackOffice.ViewModels.Other
             {
                 _vehicleDto = value;
                 OnPropertyChanged();
+
+                ModelSelectionStatus = _vehicleDto != null ? LocalizationHelper.GetString("ParametrizeDocuments", "ModelSelected") : LocalizationHelper.GetString("ParametrizeDocuments", "ModelNotSelected");
+                OnPropertyChanged(nameof(ModelSelectionStatus));
             }
         }
 
@@ -157,7 +183,7 @@ namespace BackOffice.ViewModels.Other
         public ICommand SelectOutputFileCommand { get; }
         public RelayCommand GenerateDocumentCommand { get; }
 
-        public ParametrizedDocumentViewModel() : base("FileSystem", "Parametrize Document")
+        public ParametrizedDocumentViewModel() : base("FileSystem", LocalizationHelper.GetString("ParametrizeDocuments", "DisplayName"))
         {
             // Initialize commands
             SelectInputFileCommand = new RelayCommand(SelectInputFile);
@@ -171,6 +197,8 @@ namespace BackOffice.ViewModels.Other
             ModelTypes.Add(typeof(RentalPlaceDto));
             ModelTypes.Add(typeof(RentalDto));
             ModelTypes.Add(typeof(VehicleDto));
+
+            ShowSelectorDialogCommand = new RelayCommand<SelectorDialogParameters>(ShowSelectorDialog, (parameters) => SelectedModelType != null);
         }
 
         private void ChangeParameters()
@@ -235,6 +263,8 @@ namespace BackOffice.ViewModels.Other
                     Title = "Select Vehicle"
                 };
             }
+
+            UpdateAvailableVariables();
         }
 
         private void SelectInputFile()
@@ -267,6 +297,22 @@ namespace BackOffice.ViewModels.Other
             }
         }
 
+        private void UpdateAvailableVariables()
+        {
+            AvailableVariables.Clear();
+
+            if (SelectedModelType != null)
+            {
+                var properties = SelectedModelType.GetProperties();
+                foreach (var property in properties)
+                {
+                    AvailableVariables.Add($"<{property.Name}>");
+                }
+            }
+
+            OnPropertyChanged(nameof(AvailableVariables)); 
+        }
+
         /// <summary>
         /// Generate a document using the selected model and the input and output files.
         /// </summary>
@@ -274,7 +320,7 @@ namespace BackOffice.ViewModels.Other
         {
             if (string.IsNullOrEmpty(InputFilePath) || string.IsNullOrEmpty(OutputFilePath))
             {
-                MessageBox.Show("Please select input and output files.");
+                MessageBox.Show(LocalizationHelper.GetString("ParametrizeDocuments", "PleaseSelectFiles"));
                 return;
             }
 
@@ -282,30 +328,31 @@ namespace BackOffice.ViewModels.Other
             {
                 using (var document = DocX.Load(InputFilePath))
                 {
-                    // Get the selected model
                     var selectedModel = GetSelectedModel();
 
                     if (selectedModel == null)
                     {
-                        MessageBox.Show("No model selected.");
+                        MessageBox.Show(LocalizationHelper.GetString("ParametrizeDocuments", "NoModel"));
                         return;
                     }
 
-                    // Get the properties and values from the selected model
                     var properties = GetPropertyValues(selectedModel);
 
-                    foreach (var property in properties)
+                    foreach (var variable in AvailableVariables)
                     {
-                        document.ReplaceText($"<{property.Key}>", property.Value);
+                        if (properties.ContainsKey(variable.Trim('<', '>')))
+                        {
+                            document.ReplaceText(variable, properties[variable.Trim('<', '>')]);
+                        }
                     }
 
                     document.SaveAs(OutputFilePath);
-                    MessageBox.Show("Document generated successfully!");
+                    MessageBox.Show(LocalizationHelper.GetString("ParametrizeDocuments", "Success"));
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error generating document: {ex.Message}");
+                MessageBox.Show(LocalizationHelper.GetString("ParametrizeDocuments", "ErrorDocument") + ex.Message);
             }
         }
 
@@ -327,14 +374,13 @@ namespace BackOffice.ViewModels.Other
         {
             var properties = new Dictionary<string, string>();
 
-            if (obj == null) return properties; // Handle null object
+            if (obj == null) return properties;
 
             foreach (var propertyInfo in obj.GetType().GetProperties())
             {
                 var value = propertyInfo.GetValue(obj);
 
-                // Handle null values and convert to string (or appropriate format)
-                var stringValue = value?.ToString() ?? ""; // Use null-coalescing operator
+                var stringValue = value?.ToString() ?? "";
 
                 properties[propertyInfo.Name] = stringValue;
             }
@@ -348,6 +394,15 @@ namespace BackOffice.ViewModels.Other
             return !string.IsNullOrEmpty(InputFilePath) && !string.IsNullOrEmpty(OutputFilePath);
         }
 
+        private void ClearModels()
+        {
+            CustomerModel = null;
+            EmployeeDto = null;
+            AddressDto = null;
+            RentalPlaceDto = null;
+            RentalDto = null;
+            VehicleDto = null;
+        }
     }
 }
 

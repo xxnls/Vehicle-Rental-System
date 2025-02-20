@@ -3,9 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="clr-namespace:BackOffice.Helpers"
     xmlns:local="clr-namespace:BackOffice.Views.Other"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:other="clr-namespace:BackOffice.ViewModels.Other"
+    xmlns:res="clr-namespace:BackOffice.Resources.ParametrizeDocuments"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -15,61 +17,98 @@
         <other:ParametrizedDocumentViewModel x:Name="DataContext" />
     </UserControl.DataContext>
 
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="ModelTypesView" Source="{Binding ModelTypes}">
+            <CollectionViewSource.GroupDescriptions />
+        </CollectionViewSource>
 
-        <!--  Model Selection  -->
-        <ComboBox
-            Grid.Row="0"
-            Margin="0,0,0,10"
-            ItemsSource="{Binding ModelTypes}"
-            SelectedItem="{Binding SelectedModelType, UpdateSourceTrigger=PropertyChanged}" />
+        <helpers:TypeNameConverter x:Key="TypeNameConverter" />
+    </UserControl.Resources>
 
-        <!--  Properties Input  -->
-        <!--<ItemsControl Grid.Row="1" ItemsSource="{Binding Properties}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="0,5" Orientation="Horizontal">
-                        <TextBlock Width="150" Text="{Binding Key}" />
-                        <TextBox Width="200" Text="{Binding Value}" />
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <Border Style="{StaticResource CreateEditBorderStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel
+                    Grid.Column="0"
+                    Margin="10"
+                    Orientation="Vertical">
+
+                    <!--  Model Selection  -->
+                    <Label Content="{x:Static res:Resources.SelectModelType}" />
+                    <ComboBox
+                        Margin="0,0,0,10"
+                        ItemsSource="{Binding Source={StaticResource ModelTypesView}}"
+                        SelectedItem="{Binding SelectedModelType, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource TypeNameConverter}}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Button
+                            Width="100"
+                            HorizontalAlignment="Left"
+                            Command="{Binding ShowSelectorDialogCommand}"
+                            CommandParameter="{Binding SelectModelParameters}"
+                            Content="{x:Static res:Resources.SelectModel}"
+                            Style="{StaticResource DefaultButtonStyle}" />
+
+                        <TextBlock
+                            Margin="0,20,0,20"
+                            FontSize="16"
+                            Text="{Binding ModelSelectionStatus}" />
                     </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>-->
+                    <!--  File Selection  -->
+                    <TextBox Margin="0,20,0,0" Text="{Binding InputFilePath}" />
+                    <Button
+                        Width="150"
+                        Margin="0,10"
+                        HorizontalAlignment="Left"
+                        Command="{Binding SelectInputFileCommand}"
+                        Content="{x:Static res:Resources.SelectTemplateFile}"
+                        Style="{StaticResource DefaultButtonStyle}" />
+                    <TextBox Margin="0,20,0,0" Text="{Binding OutputFilePath}" />
+                    <Button
+                        Width="150"
+                        Margin="0,10"
+                        HorizontalAlignment="Left"
+                        Command="{Binding SelectOutputFileCommand}"
+                        Content="{x:Static res:Resources.SelectOutputPath}"
+                        Style="{StaticResource DefaultButtonStyle}" />
 
-        <Button
-            Grid.Row="1"
-            Width="100"
-            HorizontalAlignment="Left"
-            Command="{Binding ShowSelectorDialogCommand}"
-            CommandParameter="{Binding SelectModelParameters}"
-            Content="Select Model"
-            Style="{StaticResource DefaultButtonStyle}" />
+                    <!--  Generate Button  -->
+                    <Button
+                        Width="150"
+                        Margin="0,10"
+                        Command="{Binding GenerateDocumentCommand}"
+                        Content="{x:Static res:Resources.GenerateDocument}"
+                        Style="{StaticResource DefaultButtonStyle}" />
+                </StackPanel>
 
-        <!--  File Selection  -->
-        <Button
-            Grid.Row="3"
-            Margin="0,10"
-            Command="{Binding SelectInputFileCommand}"
-            Content="Select Template File" />
-        <Button
-            Grid.Row="4"
-            Margin="0,10"
-            Command="{Binding SelectOutputFileCommand}"
-            Content="Select Output File" />
-
-        <!--  Generate Button  -->
-        <Button
-            Grid.Row="5"
-            Margin="0,10"
-            Command="{Binding GenerateDocumentCommand}"
-            Content="Generate Document" />
-    </Grid>
+                <StackPanel Grid.Column="1" Margin="10,15,0,0">
+                    <TextBlock
+                        Margin="0,0,0,0"
+                        FontSize="16"
+                        Text="{x:Static res:Resources.AvailableVariables}" />
+                    <ItemsControl Margin="0,5,0,0" ItemsSource="{Binding AvailableVariables}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="5">
+                                    <TextBlock.Text>
+                                        <Binding StringFormat="- {0}" />
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </ScrollViewer>
 </UserControl>
