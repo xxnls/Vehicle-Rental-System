@@ -205,6 +205,15 @@ namespace BackOffice.Resources.MainWindow {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Parametrize Document.
+        /// </summary>
+        public static string ParametrizedDocuments {
+            get {
+                return ResourceManager.GetString("ParametrizedDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payments.
         /// </summary>
         public static string Payments {

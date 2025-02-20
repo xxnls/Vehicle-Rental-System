@@ -88,6 +88,9 @@
     <Compile Update="Views\Other\MapView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Other\ParametrizedDocumentView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Other\RentalPlacesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -226,6 +229,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Other\MapView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Other\ParametrizedDocumentView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Other\RentalPlacesView.xaml">

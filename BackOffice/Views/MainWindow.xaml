@@ -315,6 +315,10 @@
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="FilesViewModel"
                             Content="{x:Static res:Resources.ManageFiles}" />
+                        <Button
+                            Command="{Binding ChangeWorkspaceCommand}"
+                            CommandParameter="ParametrizedDocumentViewModel"
+                            Content="{x:Static res:Resources.ParametrizedDocuments}" />
                     </StackPanel>
                 </Expander>
             </StackPanel>
@@ -339,22 +343,6 @@
             <StatusBarItem>
                 <TextBlock VerticalAlignment="Center" Text="{Binding StatusMessage}" />
             </StatusBarItem>
-
-            <!--<StatusBarItem HorizontalAlignment="Right">
-                <Button
-                    Click="ChangeLanguage_OnClick"
-                    Command="{Binding ChangeLanguageCommand}"
-                    CommandParameter="en-US"
-                    Content="English" />
-            </StatusBarItem>
-
-            <StatusBarItem HorizontalAlignment="Right">
-                <Button
-                    Click="ChangeLanguage_OnClick"
-                    Command="{Binding ChangeLanguageCommand}"
-                    CommandParameter="pl-PL"
-                    Content="Polish" />
-            </StatusBarItem>-->
         </StatusBar>
     </Grid>
 </Window>

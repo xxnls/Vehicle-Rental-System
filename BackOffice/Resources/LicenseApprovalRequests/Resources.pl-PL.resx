@@ -142,4 +142,7 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Licencje</value>
   </data>
+  <data name="LicenseAlreadyApproved" xml:space="preserve">
+    <value>Ten rodzaj licencji jest już zatwierdzony.</value>
+  </data>
 </root>

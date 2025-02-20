@@ -214,4 +214,7 @@
   <data name="ApproveRequests" xml:space="preserve">
     <value>Zatwierdzanie Licencji</value>
   </data>
+  <data name="ParametrizedDocuments" xml:space="preserve">
+    <value>Parametryzuj Dokument</value>
+  </data>
 </root>

@@ -115,6 +115,15 @@ namespace BackOffice.Resources.LicenseApprovalRequests {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This type of license is already approved..
+        /// </summary>
+        public static string LicenseAlreadyApproved {
+            get {
+                return ResourceManager.GetString("LicenseAlreadyApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type.
         /// </summary>
         public static string LicenseType {

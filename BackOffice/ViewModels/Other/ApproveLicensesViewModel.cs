@@ -8,6 +8,7 @@ using System.Windows.Input;
 using BackOffice.Helpers;
 using BackOffice.Interfaces;
 using BackOffice.Models;
+using BackOffice.Models.DTOs.Customers;
 using BackOffice.Models.DTOs.Employees;
 using BackOffice.Models.DTOs.FileSystem;
 using BackOffice.Models.DTOs.Other;
@@ -51,9 +52,23 @@ namespace BackOffice.ViewModels.Other
                 return;
             }
 
+            var customer = await ApiClient.GetAsync<CustomerDto>($"Customers/{request.CustomerId}");
+
             switch (status)
             {
                 case RequestStatus.Approved:
+
+                    switch (request.LicenseType)
+                    {
+                        case "A" when customer.ApprovedA == true:
+                        case "B" when customer.ApprovedB == true:
+                        case "C" when customer.ApprovedC == true:
+                            request.ApprovedByEmployee = null;
+                            // Show error, customer already has this license
+                            MessageBox.Show(LocalizationHelper.GetString("LicenseApprovalRequests", "LicenseAlreadyApproved"));
+                            return;
+                    }
+
                     await ApiClient.PutAsync($"LicenseApprovalRequests/approve/{request.LicenseApprovalRequestId}/{request.ApprovedByEmployeeId}");
                     await LoadModelsAsync(CurrentSearchInput);
                     return;

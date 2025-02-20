@@ -251,7 +251,9 @@ namespace BackOffice.ViewModels
 
                 { "PaymentsViewModel", () => new PaymentsViewModel() },
 
-                { "FilesViewModel", () => new FilesViewModel() }
+                { "FilesViewModel", () => new FilesViewModel() },
+                { "ParametrizedDocumentViewModel", () => new ParametrizedDocumentViewModel() },
+
             };
 
             // Load user

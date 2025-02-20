@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+    <PackageReference Include="DocX" Version="4.0.25103.5784" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.7.25103.5738" />
     <PackageReference Include="Mapsui" Version="4.1.8" />
     <PackageReference Include="Mapsui.Nts" Version="4.1.8" />

@@ -140,6 +140,10 @@
         <otherviews:ApproveLicensesView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type other:ParametrizedDocumentViewModel}">
+        <otherviews:ParametrizedDocumentView />
+    </DataTemplate>
+
     <Storyboard x:Key="ExpandSidebar">
         <DoubleAnimation
             Storyboard.TargetName="Sidebar"
