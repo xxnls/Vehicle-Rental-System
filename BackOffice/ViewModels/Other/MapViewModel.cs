@@ -2,6 +2,10 @@
 using BackOffice.Interfaces;
 using BackOffice.Models.DTOs.Other;
 using BackOffice.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
+using Mapsui;
+using Mapsui.Tiling;
+using Mapsui.UI.Wpf;
 
 
 namespace BackOffice.ViewModels.Other
@@ -10,6 +14,7 @@ namespace BackOffice.ViewModels.Other
     {
         public MapViewModel() : base("Locations", LocalizationHelper.GetString("MainWindow", "MapDisplayName"))
         {
+
         }
     }
 }
