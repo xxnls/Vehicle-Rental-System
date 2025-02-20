@@ -9,21 +9,14 @@ namespace BackOffice.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values.Length == 2 && values[0] is bool sidebarCollapsed && values[1] is bool isUserAdmin)
+            foreach (var value in values)
             {
-                // If the sidebar is collapsed, hide the expander
-                if (!sidebarCollapsed)
+                if (value is bool boolValue && !boolValue)
+                {
                     return Visibility.Collapsed;
-
-                // If the user is not an admin, hide the expander
-                if (!isUserAdmin)
-                    return Visibility.Collapsed;
-
-                // Otherwise, show the expander
-                return Visibility.Visible;
+                }
             }
-
-            return Visibility.Collapsed;
+            return Visibility.Visible;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

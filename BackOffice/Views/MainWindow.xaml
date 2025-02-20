@@ -94,8 +94,13 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="{x:Static res:Resources.VehiclesSideMenu}"
-                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Header="{x:Static res:Resources.VehiclesSideMenu}">
+                    <Expander.Visibility>
+                        <MultiBinding Converter="{StaticResource MultiBooleanToVisibilityConverter}">
+                            <Binding Path="SidebarCollapsed" />
+                            <Binding Path="CanManageVehicles" />
+                        </MultiBinding>
+                    </Expander.Visibility>
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -128,8 +133,13 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="{x:Static res:Resources.Employees}"
-                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Header="{x:Static res:Resources.Employees}">
+                    <Expander.Visibility>
+                        <MultiBinding Converter="{StaticResource MultiBooleanToVisibilityConverter}">
+                            <Binding Path="SidebarCollapsed" />
+                            <Binding Path="CanManageEmployees" />
+                        </MultiBinding>
+                    </Expander.Visibility>
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -141,11 +151,13 @@
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeeShiftTypesViewModel"
-                            Content="{x:Static res:Resources.ShiftTypes}" />
+                            Content="{x:Static res:Resources.ShiftTypes}"
+                            Visibility="{Binding CanManageSchedule, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeeLeaveTypesViewModel"
-                            Content="{x:Static res:Resources.LeaveTypes}" />
+                            Content="{x:Static res:Resources.LeaveTypes}"
+                            Visibility="{Binding CanManageSchedule, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeePositionsViewModel"
@@ -153,7 +165,8 @@
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeeSchedulesViewModel"
-                            Content="{x:Static res:Resources.Schedules}" />
+                            Content="{x:Static res:Resources.Schedules}"
+                            Visibility="{Binding CanManageSchedule, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     </StackPanel>
                 </Expander>
 
@@ -163,8 +176,13 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="{x:Static res:Resources.Other}"
-                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Header="{x:Static res:Resources.Other}">
+                    <Expander.Visibility>
+                        <MultiBinding Converter="{StaticResource MultiBooleanToVisibilityConverter}">
+                            <Binding Path="SidebarCollapsed" />
+                            <Binding Path="IsUserAdmin" />
+                        </MultiBinding>
+                    </Expander.Visibility>
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -172,7 +190,8 @@
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="RentalPlacesViewModel"
-                            Content="{x:Static res:Resources.RentalPlaces}" />
+                            Content="{x:Static res:Resources.RentalPlaces}"
+                            Visibility="{Binding CanManageRentals, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         <Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="AddressesViewModel"
@@ -222,8 +241,13 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="{x:Static res:Resources.Customers}"
-                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Header="{x:Static res:Resources.Customers}">
+                    <Expander.Visibility>
+                        <MultiBinding Converter="{StaticResource MultiBooleanToVisibilityConverter}">
+                            <Binding Path="SidebarCollapsed" />
+                            <Binding Path="CanManageRentals" />
+                        </MultiBinding>
+                    </Expander.Visibility>
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -253,8 +277,13 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="{x:Static res:Resources.Rentals}"
-                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Header="{x:Static res:Resources.Rentals}">
+                    <Expander.Visibility>
+                        <MultiBinding Converter="{StaticResource MultiBooleanToVisibilityConverter}">
+                            <Binding Path="SidebarCollapsed" />
+                            <Binding Path="CanManageRentals" />
+                        </MultiBinding>
+                    </Expander.Visibility>
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -279,8 +308,13 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="{x:Static res:Resources.RentalManager}"
-                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Header="{x:Static res:Resources.RentalManager}">
+                    <Expander.Visibility>
+                        <MultiBinding Converter="{StaticResource MultiBooleanToVisibilityConverter}">
+                            <Binding Path="SidebarCollapsed" />
+                            <Binding Path="CanManageRentals" />
+                        </MultiBinding>
+                    </Expander.Visibility>
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>
@@ -305,8 +339,13 @@
                     Padding="3,5"
                     Background="{StaticResource DarkerPrimaryBrush}"
                     Foreground="White"
-                    Header="{x:Static res:Resources.Files}"
-                    Visibility="{Binding SidebarCollapsed, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Header="{x:Static res:Resources.Files}">
+                    <Expander.Visibility>
+                        <MultiBinding Converter="{StaticResource MultiBooleanToVisibilityConverter}">
+                            <Binding Path="SidebarCollapsed" />
+                            <Binding Path="CanManageRentals" />
+                        </MultiBinding>
+                    </Expander.Visibility>
                     <Expander.Resources>
                         <Style BasedOn="{StaticResource SideBarButton}" TargetType="Button" />
                     </Expander.Resources>

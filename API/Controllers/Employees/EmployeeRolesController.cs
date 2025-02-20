@@ -22,7 +22,7 @@ namespace API.Controllers.Employees
             return Ok(roles);
         }
 
-        [HttpPost("user/{userId}/roles/{roleName}")]
+        [HttpPut("user/{userId}/roles/{roleName}")]
         public async Task<IActionResult> AssignRole(string userId, string roleName)
         {
             var result = await service.AssignRoleAsync(userId, roleName);

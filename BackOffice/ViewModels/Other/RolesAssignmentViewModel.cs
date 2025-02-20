@@ -78,8 +78,7 @@ namespace BackOffice.ViewModels.Other
 
                 var url = $"EmployeeRoles/user/{EditableModel.Id}/roles/{SelectedRole}";
 
-                var response = await ApiClient.PostAsync<object, object>(url, null);
-
+                await ApiClient.PutAsync(url);
 
                 UpdateStatus(LocalizationHelper.GetString("RolesAssignment", "USSuccessfulAssignment"));
             }

@@ -159,7 +159,7 @@ namespace BackOffice.ViewModels
                 if (_currentWorkspace == null)
                 {
                     // Initialize the default ViewModel only when first accessed
-                    _currentWorkspace = _viewModelMappings["VehiclesViewModel"]();
+                    _currentWorkspace = _viewModelMappings["MapViewModel"]();
                     Debug.WriteLine(_currentWorkspace);
                 }
                 return _currentWorkspace;
