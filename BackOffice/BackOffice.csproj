@@ -39,9 +39,6 @@
     <PackageReference Include="NetTopologySuite" Version="2.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="QuestPDF" Version="2025.1.2" />
-    <PackageReference Include="SharpMap" Version="1.2.0" />
-    <PackageReference Include="SharpMap.UI" Version="1.2.0" />
-    <PackageReference Include="SharpMap.UI.WPF" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>

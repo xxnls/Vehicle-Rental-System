@@ -162,11 +162,11 @@
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeePositionsViewModel"
                             Content="{x:Static res:Resources.Positions}" />
-                        <Button
+                        <!--<Button
                             Command="{Binding ChangeWorkspaceCommand}"
                             CommandParameter="EmployeeSchedulesViewModel"
                             Content="{x:Static res:Resources.Schedules}"
-                            Visibility="{Binding CanManageSchedule, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            Visibility="{Binding CanManageSchedule, Converter={StaticResource BooleanToVisibilityConverter}}" />-->
                     </StackPanel>
                 </Expander>
 

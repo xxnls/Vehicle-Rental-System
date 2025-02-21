@@ -25,7 +25,6 @@ using Mapsui.Providers;
 using Mapsui.Styles;
 using Mapsui.Tiling;
 using Mapsui.UI.Wpf;
-using SharpMap;
 using static SkiaSharp.HarfBuzz.SKShaper;
 using Brush = Mapsui.Styles.Brush;
 using Color = Mapsui.Styles.Color;
@@ -99,12 +98,12 @@ namespace BackOffice.Views.Other
                     pointLayer.Style = null;
                     pointLayer.Features = features;
 
-                    // Center map on first location if any exist
+                    // Center map
                     if (features.Any())
                     {
                         var firstFeature = features.First() as PointFeature;
                         map.Navigator.CenterOn(firstFeature?.Point);
-                        map.Navigator.ZoomTo(50000);
+                        map.Navigator.ZoomTo(5000);
                     }
                 }
             }
@@ -143,7 +142,7 @@ namespace BackOffice.Views.Other
             var center = new MPoint(coordinates.x, coordinates.y);
 
             map.Navigator.CenterOn(center);
-            map.Navigator.ZoomTo(50000); // Use a positive zoom level
+            map.Navigator.ZoomTo(5); // Use a positive zoom level
 
             var feature = new PointFeature(center)
             {
