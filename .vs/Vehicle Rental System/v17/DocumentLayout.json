@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "G:\\Vehicle Rental System\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\other\\mapview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\other\\mapview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\backoffice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\backoffice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|g:\\vehicle rental system\\backoffice\\views\\other\\mapview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F90C202E-CA13-41CD-A8D2-07E18556FA1A}|BackOffice\\BackOffice.csproj|solutionrelative:backoffice\\views\\other\\mapview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -22,49 +9,11 @@
       "DocumentGroups": [
         {
           "DockedHeight": 578,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{79664857-03bf-4bca-aa54-ec998b3328f8}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BackOffice",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\BackOffice.csproj",
-              "RelativeDocumentMoniker": "BackOffice\\BackOffice.csproj",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\BackOffice.csproj",
-              "RelativeToolTip": "BackOffice\\BackOffice.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-02-21T01:57:17.414Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MapView.xaml.cs",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\Other\\MapView.xaml.cs",
-              "RelativeDocumentMoniker": "BackOffice\\Views\\Other\\MapView.xaml.cs",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Other\\MapView.xaml.cs",
-              "RelativeToolTip": "BackOffice\\Views\\Other\\MapView.xaml.cs",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAAwGQAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T01:56:03.543Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MapView.xaml",
-              "DocumentMoniker": "G:\\Vehicle Rental System\\BackOffice\\Views\\Other\\MapView.xaml",
-              "RelativeDocumentMoniker": "BackOffice\\Views\\Other\\MapView.xaml",
-              "ToolTip": "G:\\Vehicle Rental System\\BackOffice\\Views\\Other\\MapView.xaml",
-              "RelativeToolTip": "BackOffice\\Views\\Other\\MapView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-21T01:55:59.475Z",
-              "EditorCaption": ""
             }
           ]
         },

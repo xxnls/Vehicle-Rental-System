@@ -331,7 +331,7 @@ namespace BackOffice.Resources.MainWindow {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ShiftTypes.
+        ///   Looks up a localized string similar to Shift Types.
         /// </summary>
         public static string ShiftTypes {
             get {
