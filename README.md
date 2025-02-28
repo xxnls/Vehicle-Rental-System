@@ -100,7 +100,7 @@ Path: Map > View Rental Locations > Filter by Vehicle Availability
 
 Watch the raw presentation video to see the Vehicle Rental System in action. The video demonstrates key features, workflows, and the overall user experience of the system.
 
-[![Vehicle Rental System Presentation](https://img.youtube.com/vi/Uk7T7VMwnlQ/0.jpg)](https://www.youtube.com/watch?v=Uk7T7VMwnlQ)
+[▶️ Vehicle Rental System Presentation](https://www.youtube.com/watch?v=Uk7T7VMwnlQ)
 
 ## API Documentation
 
@@ -108,7 +108,10 @@ Interactive API documentation is available via Swagger UI when running the API l
 
 https://localhost:7230/swagger
 
-![Swagger Preview](https://github.com/user-attachments/assets/f92bd80d-0ab2-47c8-9a85-565adf105d25)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f92bd80d-0ab2-47c8-9a85-565adf105d25" alt="Swagger Preview 1" width="75%" height="75%" />
+</p>
+
 
 ## Website Frontend
 
