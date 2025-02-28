@@ -23,9 +23,11 @@ A comprehensive vehicle rental management system built with **WPF** for the back
   Generate invoices automatically upon rental finalization, with customizable templates.
 - **Interactive Map**  
   Visualize rental places locations and vehicles on an interactive map.
-  
+- **Localization**  
+  Support for **English** and **Polish** languages, allowing users to switch between languages seamlessly.
 
-  ### Core API (ASP.NET Core Web API)
+
+### Core API (ASP.NET Core Web API)
 - **RESTful Endpoints**  
   Standardized endpoints for vehicles, customers, rentals, reports and more.
 - **JWT Authentication**  
@@ -76,7 +78,7 @@ A comprehensive vehicle rental management system built with **WPF** for the back
 
    Build and start API and then Backoffice. Login window should open. Use admin credentials `admin:123` to login into the app.
 
-### Example Usage
+## Example Usage
 
 Adding a New Vehicle
 ![Vehicle Creation Process] <gif-add-vehicle.gif>
@@ -94,13 +96,21 @@ Interactive Map
 ![Interactive Map] <gif-interactive-map.gif>
 Path: Map > View Rental Locations > Filter by Vehicle Availability
 
-### API Documentation
+### Presentation Video
+
+Watch the raw presentation video to see the Vehicle Rental System in action. The video demonstrates key features, workflows, and the overall user experience of the system.
+
+[![Vehicle Rental System Presentation](https://img.youtube.com/vi/Uk7T7VMwnlQ/0.jpg)](https://www.youtube.com/watch?v=Uk7T7VMwnlQ)
+
+## API Documentation
 
 Interactive API documentation is available via Swagger UI when running the API locally:
-https://localhost:7230/swagger
-![Swagger Preview] <placeholder-swagger.png>
 
-### Website Frontend
+https://localhost:7230/swagger
+
+![Swagger Preview](https://github.com/user-attachments/assets/f92bd80d-0ab2-47c8-9a85-565adf105d25)
+
+## Website Frontend
 
 The consumer-facing website is available in a separate repository:
 [Vehicle Rental System Website](https://github.com/xxnls/vrswebsite)
