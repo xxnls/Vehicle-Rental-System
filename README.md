@@ -2,7 +2,7 @@
 
 A comprehensive vehicle rental management system built with **WPF** for the backoffice and **ASP.NET Core Web API** for the backend. The system is designed to streamline vehicle rental operations, including HR management, customer handling, and rental processing. The database is powered by **MSSQL**, ensuring robust data management and scalability.
 
-![Backoffice Dashboard Preview] <placeholder-dashboard-preview.gif>
+![Backoffice](https://github.com/user-attachments/assets/e37ea3b9-3e50-4631-bb94-94c65b3ddf50)
 
 -------
 
