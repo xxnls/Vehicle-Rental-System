@@ -2,8 +2,6 @@
 
 A comprehensive vehicle rental management system built with **WPF** for the backoffice and **ASP.NET Core Web API** for the backend. The system is designed to streamline vehicle rental operations, including HR management, customer handling, and rental processing. The database is powered by **MSSQL**, ensuring robust data management and scalability.
 
-![Backoffice](https://github.com/user-attachments/assets/e37ea3b9-3e50-4631-bb94-94c65b3ddf50)
-
 -------
 
 ## Features
@@ -80,21 +78,35 @@ A comprehensive vehicle rental management system built with **WPF** for the back
 
 ## Example Usage
 
-Adding a New Vehicle
-![Vehicle Creation Process] <gif-add-vehicle.gif>
-Path: Vehicles > Add Vehicle > Fill details (model, type, price) > Save
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+  <!-- Row 1, Column 1 -->
+  <div>
+    <h3>Customizable Validation</h3>
+    <img src="gif-add-vehicle.gif" alt="Vehicle Creation Process" style="width: 100%; max-width: 300px;">
+    <p><strong>Path:</strong> Vehicles > Add Vehicle > Fill details (model, type, price) > Save</p>
+  </div>
 
-Processing a Rental
-![Rental Processing] <gif-process-rental.gif>
-Path: Rentals > Select Customer > Assign Vehicle > Confirm Rental
+  <!-- Row 1, Column 2 -->
+  <div>
+    <h3>File System</h3>
+    <img src="gif-process-rental.gif" alt="Rental Processing" style="width: 100%; max-width: 300px;">
+    <p><strong>Path:</strong> Rentals > Select Customer > Assign Vehicle > Confirm Rental</p>
+  </div>
 
-Generating an Invoice
-![Invoice Generation] <gif-invoice-generation.gif>
-Path: Rentals > Select Rental > Generate Invoice > Download PDF
+  <!-- Row 2, Column 1 -->
+  <div>
+    <h3>Roles and Permissions</h3>
+    <img src="gif-invoice-generation.gif" alt="Invoice Generation" style="width: 100%; max-width: 300px;">
+    <p><strong>Path:</strong> Rentals > Select Rental > Generate Invoice > Download PDF</p>
+  </div>
 
-Interactive Map
-![Interactive Map] <gif-interactive-map.gif>
-Path: Map > View Rental Locations > Filter by Vehicle Availability
+  <!-- Row 2, Column 2 -->
+  <div>
+    <h3>Approving a License</h3>
+    <img src="gif-interactive-map.gif" alt="Interactive Map" style="width: 100%; max-width: 300px;">
+    <p><strong>Path:</strong> Map > View Rental Locations > Filter by Vehicle Availability</p>
+  </div>
+</div>
 
 ### Presentation Video
 
