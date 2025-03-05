@@ -78,35 +78,37 @@ A comprehensive vehicle rental management system built with **WPF** for the back
 
 ## Example Usage
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-  <!-- Row 1, Column 1 -->
-  <div>
-    <h3>Customizable Validation</h3>
-    <img src="gif-add-vehicle.gif" alt="Vehicle Creation Process" style="width: 100%; max-width: 300px;">
-    <p><strong>Path:</strong> Vehicles > Add Vehicle > Fill details (model, type, price) > Save</p>
-  </div>
+<table>
+  <tr>
+    <td>
+      <div style="text-align: center;">
+        <img src="https://github.com/user-attachments/assets/085c0330-957e-457b-a9cb-9d60107af75c" alt="Customizable Validation" style="width: 100%; max-width: 350px;">
+        <p>Customizable Validation</p>
+      </div>
+    </td>
+    <td>
+      <div style="text-align: center;">
+        <img src="https://github.com/user-attachments/assets/aad8ad71-32f8-4c36-9f68-3381be5c9620" alt="File System" style="width: 100%; max-width: 350px;">
+        <p>File System</p>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div style="text-align: center;">
+        <img src="https://github.com/user-attachments/assets/0b6f822d-069f-4b01-aca6-6ad1d01ca5cf" alt="Roles and Permissions" style="width: 100%; max-width: 350px;">
+        <p>Roles and Permissions</p>
+      </div>
+    </td>
+    <td>
+      <div style="text-align: center;">
+        <img src="https://github.com/user-attachments/assets/e37ea3b9-3e50-4631-bb94-94c65b3ddf50" alt="Approving a License" style="width: 100%; max-width: 350px;">
+        <p>Approving a License</p>
+      </div>
+    </td>
+  </tr>
+</table>
 
-  <!-- Row 1, Column 2 -->
-  <div>
-    <h3>File System</h3>
-    <img src="gif-process-rental.gif" alt="Rental Processing" style="width: 100%; max-width: 300px;">
-    <p><strong>Path:</strong> Rentals > Select Customer > Assign Vehicle > Confirm Rental</p>
-  </div>
-
-  <!-- Row 2, Column 1 -->
-  <div>
-    <h3>Roles and Permissions</h3>
-    <img src="gif-invoice-generation.gif" alt="Invoice Generation" style="width: 100%; max-width: 300px;">
-    <p><strong>Path:</strong> Rentals > Select Rental > Generate Invoice > Download PDF</p>
-  </div>
-
-  <!-- Row 2, Column 2 -->
-  <div>
-    <h3>Approving a License</h3>
-    <img src="gif-interactive-map.gif" alt="Interactive Map" style="width: 100%; max-width: 300px;">
-    <p><strong>Path:</strong> Map > View Rental Locations > Filter by Vehicle Availability</p>
-  </div>
-</div>
 
 ### Presentation Video
 
