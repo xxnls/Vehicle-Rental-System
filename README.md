@@ -93,7 +93,7 @@ A comprehensive vehicle rental management system built with **WPF** for the back
     </td>
     <td>
       <div style="text-align: center;">
-        <img src="https://i.imgur.com/sGbxG7L.mp4" alt="File System" style="width: 100%; max-width: 350px;">
+        <video src="https://i.imgur.com/sGbxG7L.mp4" alt="File System" style="width: 100%; max-width: 350px;">
         <p>File System</p>
       </div>
     </td>
