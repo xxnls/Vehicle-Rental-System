@@ -2,6 +2,11 @@
 
 A comprehensive vehicle rental management system built with **WPF** for the backoffice and **ASP.NET Core Web API** for the backend. The system is designed to streamline vehicle rental operations, including HR management, customer handling, and rental processing. The database is powered by **MSSQL**, ensuring robust data management and scalability.
 
+<div style="text-align: center;">
+  <img src="https://i.imgur.com/Gmzu3Zh.mp4" alt="Customizable Validation" style="width: 100%; max-width: 350px;">
+  <p>Customizable Validation</p>
+</div>
+
 -------
 
 ## Features
@@ -88,7 +93,7 @@ A comprehensive vehicle rental management system built with **WPF** for the back
     </td>
     <td>
       <div style="text-align: center;">
-        <img src="https://github.com/user-attachments/assets/aad8ad71-32f8-4c36-9f68-3381be5c9620" alt="File System" style="width: 100%; max-width: 350px;">
+        <img src="https://i.imgur.com/sGbxG7L.mp4" alt="File System" style="width: 100%; max-width: 350px;">
         <p>File System</p>
       </div>
     </td>
@@ -96,13 +101,13 @@ A comprehensive vehicle rental management system built with **WPF** for the back
   <tr>
     <td>
       <div style="text-align: center;">
-        <img src="https://github.com/user-attachments/assets/0b6f822d-069f-4b01-aca6-6ad1d01ca5cf" alt="Roles and Permissions" style="width: 100%; max-width: 350px;">
+        <img src="https://i.imgur.com/JAwWoks.gif" alt="Roles and Permissions" style="width: 100%; max-width: 350px;">
         <p>Roles and Permissions</p>
       </div>
     </td>
     <td>
       <div style="text-align: center;">
-        <img src="https://github.com/user-attachments/assets/e37ea3b9-3e50-4631-bb94-94c65b3ddf50" alt="Approving a License" style="width: 100%; max-width: 350px;">
+        <img src="https://i.imgur.com/B7n5hk9.gif" alt="Approving a License" style="width: 100%; max-width: 350px;">
         <p>Approving a License</p>
       </div>
     </td>
