@@ -82,7 +82,7 @@ A comprehensive vehicle rental management system built with **WPF** for the back
   <tr>
     <td>
       <div style="text-align: center;">
-        <img src="https://github.com/user-attachments/assets/085c0330-957e-457b-a9cb-9d60107af75c" alt="Customizable Validation" style="width: 100%; max-width: 350px;">
+        <img src="https://i.imgur.com/8OKUZUc.gif" alt="Customizable Validation" style="width: 100%; max-width: 350px;">
         <p>Customizable Validation</p>
       </div>
     </td>
